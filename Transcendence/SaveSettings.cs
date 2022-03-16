@@ -2,6 +2,6 @@ namespace Transcendence
 {
     public class SaveSettings
     {
-        public CharmSettings AntigravityAmulet = new() { Got = true };
+        public CharmSettings AntigravityAmulet = new();
     }
 }

@@ -1,5 +1,11 @@
 using Modding;
 using SFCore;
+using ItemChanger;
+using ItemChanger.Modules;
+using ItemChanger.Locations;
+using ItemChanger.Items;
+using ItemChanger.UIDefs;
+using RandomizerMod;
 
 namespace Transcendence
 {
@@ -7,12 +13,15 @@ namespace Transcendence
     {
         private static List<Charm> Charms = new() {
             new() {
-                Sprite = "Transcendence.Resources.LifebloodCore.png",
+                Sprite = "Transcendence.Resources.AntigravityAmulet.png",
                 Name = "Antigravity Amulet",
                 Description = "Used by shamans to float around.\n\nDecreases the effect of gravity on the bearer, allowing them to leap to greater heights.",
                 Cost = 3,
                 SettingsBools = s => s.AntigravityAmulet,
-                Hook = AntigravityAmulet.Hook
+                Hook = AntigravityAmulet.Hook,
+                Scene = "Ruins1_27",
+                X = 50.7f,
+                Y = 23.4f
             }
         };
 
@@ -27,6 +36,7 @@ namespace Transcendence
             foreach (var charm in Charms)
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
+                charm.Num = num;
                 Ints[$"charmCost_{num}"] = charm.Cost;
                 AddTextEdit($"CHARM_NAME_{num}", "UI", charm.Name);
                 AddTextEdit($"CHARM_DESC_{num}", "UI", charm.Description);
@@ -45,7 +55,8 @@ namespace Transcendence
             ModHooks.SetPlayerBoolHook += WriteCharmBools;
             ModHooks.GetPlayerIntHook += ReadCharmCosts;
             ModHooks.LanguageGetHook += GetCharmStrings;
-            
+            // This will run after Rando has already set up its item placements.
+            On.UIManager.StartNewGame += PlaceItems;
         }
 
         private Dictionary<(string Key, string Sheet), Func<string>> TextEdits = new();
@@ -71,10 +82,8 @@ namespace Transcendence
             if (BoolGetters.TryGetValue(boolName, out var f))
             {
                 var v = f();
-                Log($"custom {boolName} = ${v}");
                 return v;
             }
-            Log($"{boolName} = {value}");
             return value;
         }
 
@@ -103,6 +112,57 @@ namespace Transcendence
                 return text();
             }
             return orig;
+        }
+
+        private static void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
+        {
+            ItemChangerMod.CreateSettingsProfile(overwrite: false);
+
+            var placements = new List<AbstractPlacement>();
+
+            foreach (var charm in Charms)
+            {
+                var name = charm.Name.Replace(" ", "_");
+                placements.Add(
+                    new CoordinateLocation() { x = charm.X, y = charm.Y, elevation = 0, sceneName = charm.Scene, name = name }
+                    .Wrap()
+                    .Add(new ItemChanger.Items.CharmItem() { charmNum = charm.Num, name = name, UIDef =
+                        new MsgUIDef() { 
+                            name = new LanguageString("UI", $"CHARM_NAME_{charm.Num}"),
+                            shopDesc = new LanguageString("UI", $"CHARM_NAME_{charm.Num}"),
+                            sprite = new EmbeddedSprite() { key = charm.Sprite }
+                        }}));
+            }
+
+            ItemChangerMod.AddPlacements(placements, conflictResolution: PlacementConflictResolution.Ignore);
+
+            orig(self, permaDeath, bossRush);
+        }
+
+        private static bool IsRandoActive() =>
+            ModHooks.GetMod("Randomizer 4") != null && RandomizerMod.RandomizerMod.RS?.GenerationSettings != null;
+
+        private static void ConfigureICModules()
+        {
+            if (!IsRandoActive())
+            {
+                ItemChangerMod.Modules.Remove<AutoUnlockIselda>();
+                ItemChangerMod.Modules.Remove<BaldurHealthCap>();
+                ItemChangerMod.Modules.Remove<CliffsShadeSkipAssist>();
+                ItemChangerMod.Modules.Remove<DreamNailCutsceneEvent>();
+                ItemChangerMod.Modules.Remove<FastGrubfather>();
+                ItemChangerMod.Modules.Remove<GreatHopperEasterEgg>();
+                ItemChangerMod.Modules.Remove<InventoryTracker>();
+                ItemChangerMod.Modules.Remove<MenderbugUnlock>();
+                ItemChangerMod.Modules.Remove<NonlinearColosseums>();
+                ItemChangerMod.Modules.Remove<PreventLegEaterDeath>();
+                ItemChangerMod.Modules.Remove<PreventZoteDeath>();
+                ItemChangerMod.Modules.Remove<RemoveVoidHeartEffects>();
+                ItemChangerMod.Modules.Remove<ReusableBeastsDenEntrance>();
+                ItemChangerMod.Modules.Remove<ReusableCityCrestGate>();
+                ItemChangerMod.Modules.Remove<ReverseBeastDenPath>();
+                ItemChangerMod.Modules.Remove<RightCityPlatform>();
+            }
         }
     }
 }

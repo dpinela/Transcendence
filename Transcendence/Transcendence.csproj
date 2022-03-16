@@ -47,6 +47,12 @@
     <Reference Include="SFCore">
       <HintPath>$(HK15PATH)/Mods/SFCore/SFCore.dll</HintPath>
     </Reference>
+    <Reference Include="ItemChanger">
+      <HintPath>$(HK15PATH)/Mods/ItemChanger/ItemChanger.dll</HintPath>
+    </Reference>
+    <Reference Include="RandomizerMod">
+      <HintPath>$(HK15PATH)/Mods/Randomizer 4/RandomizerMod.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Target Name="ClearReferenceCopyLocalPaths" AfterTargets="ResolveAssemblyReferences">
     <ItemGroup>
