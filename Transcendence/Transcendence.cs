@@ -129,7 +129,7 @@ namespace Transcendence
                     .Add(new ItemChanger.Items.CharmItem() { charmNum = charm.Num, name = name, UIDef =
                         new MsgUIDef() { 
                             name = new LanguageString("UI", $"CHARM_NAME_{charm.Num}"),
-                            shopDesc = new LanguageString("UI", $"CHARM_NAME_{charm.Num}"),
+                            shopDesc = new LanguageString("UI", $"CHARM_DESC_{charm.Num}"),
                             sprite = new EmbeddedSprite() { key = charm.Sprite }
                         }}));
             }
