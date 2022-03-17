@@ -19,9 +19,31 @@ namespace Transcendence
                 Cost = 3,
                 SettingsBools = s => s.AntigravityAmulet,
                 Hook = AntigravityAmulet.Hook,
-                Scene = "Ruins1_27",
-                X = 50.7f,
-                Y = 23.4f
+                Scene = "Mines_28",
+                X = 5.1f,
+                Y = 27.4f
+            },
+            new() {
+                Sprite = "Transcendence.Resources.BluemothWings.png",
+                Name = "Bluemoth Wings",
+                Description = "A charm made from the wings of a rare blue bug.\n\nAllows the bearer to jump repeatedly in the air in exchange for Geo.",
+                Cost = 3,
+                SettingsBools = s => s.BluemothWings,
+                Hook = BluemothWings.Hook,
+                Scene = "Fungus1_17",
+                X = 71.5f,
+                Y = 24.4f
+            },
+            new() {
+                Sprite = "Transcendence.Resources.FloristsMask.png",
+                Name = "Florist's Mask",
+                Description = "A charm made in the image of the keepers of the Mosskin's lands.\n\nThe bearer may earn Geo by delivering flowers to the denizens of Hallownest.",
+                Cost = 2,
+                SettingsBools = s => s.FloristsMask,
+                Hook = FloristsMask.Hook,
+                Scene = "Room_Slug_Shrine",
+                X = 29.2f,
+                Y = 6.4f
             }
         };
 
