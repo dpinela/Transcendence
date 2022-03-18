@@ -38,18 +38,31 @@ namespace Transcendence
                 Sprite = "Transcendence.Resources.FloristsMask.png",
                 Name = "Florist's Mask",
                 Description = "A charm made in the image of the keepers of the Mosskin's lands.\n\nThe bearer may earn Geo by delivering flowers to the denizens of Hallownest.",
-                Cost = 2,
+                Cost = 1,
                 SettingsBools = s => s.FloristsMask,
                 Hook = FloristsMask.Hook,
                 Scene = "Room_Slug_Shrine",
                 X = 29.2f,
                 Y = 6.4f
-            }
+            },
+            new() {
+                Sprite = "Transcendence.Resources.ShamanAmp.png",
+                Name = "Shaman Amp",
+                Description = "Forgotten shaman artifact, used by wealthy shamans to strike fear in foes.\n\nIncreases the size of spells in proportion to the amount of Geo held.",
+                Cost = 4,
+                SettingsBools = s => s.ShamanAmp,
+                Hook = ShamanAmp.Hook,
+                Scene = "Deepnest_East_04",
+                X = 27.5f,
+                Y = 80.4f
+            },
+            
         };
 
         private Dictionary<string, Func<bool>> BoolGetters = new();
         private Dictionary<string, Action<bool>> BoolSetters = new();
         private Dictionary<string, int> Ints = new();
+        private Dictionary<(string, string), Action<PlayMakerFSM>> FSMEdits = new();
 
         public override void Initialize()
         {
@@ -70,7 +83,7 @@ namespace Transcendence
                 BoolSetters[$"gotCharm_{num}"] = value => bools(Settings).Got = value;
                 BoolGetters[$"newCharm_{num}"] = () => bools(Settings).New;
                 BoolSetters[$"newCharm_{num}"] = value => bools(Settings).New = value;
-                charm.Hook(equipped);
+                charm.Hook(equipped, this);
             }
 
             ModHooks.GetPlayerBoolHook += ReadCharmBools;
@@ -79,6 +92,7 @@ namespace Transcendence
             ModHooks.LanguageGetHook += GetCharmStrings;
             // This will run after Rando has already set up its item placements.
             On.UIManager.StartNewGame += PlaceItems;
+            On.PlayMakerFSM.OnEnable += EditFSMs;
         }
 
         private Dictionary<(string Key, string Sheet), Func<string>> TextEdits = new();
@@ -134,6 +148,20 @@ namespace Transcendence
                 return text();
             }
             return orig;
+        }
+
+        internal void AddFsmEdit(string objName, string fsmName, Action<PlayMakerFSM> edit)
+        {
+            FSMEdits[(objName, fsmName)] = edit;
+        }
+
+        private void EditFSMs(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM fsm)
+        {
+            orig(fsm);
+            if (FSMEdits.TryGetValue((fsm.gameObject.name, fsm.FsmName), out var edit))
+            {
+                edit(fsm);
+            }
         }
 
         private static void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)

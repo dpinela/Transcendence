@@ -6,7 +6,7 @@ namespace Transcendence
 {
     internal static class AntigravityAmulet
     {
-        public static void Hook(Func<bool> equipped)
+        public static void Hook(Func<bool> equipped, Transcendence mod)
         {
             Equipped = equipped;
             ModHooks.HeroUpdateHook += ChangeGravity;

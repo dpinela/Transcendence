@@ -5,7 +5,7 @@ namespace Transcendence
 {
     internal static class FloristsMask
     {
-        public static void Hook(Func<bool> equipped)
+        public static void Hook(Func<bool> equipped, Transcendence mod)
         {
             Equipped = equipped;
             ModHooks.SetPlayerBoolHook += GiveGeoOnFlowerDelivery;

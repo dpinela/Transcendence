@@ -7,7 +7,7 @@ namespace Transcendence
         public string Description;
         public int Cost;
         public Func<SaveSettings, CharmSettings> SettingsBools;
-        public Action<Func<bool>> Hook;
+        public Action<Func<bool>, Transcendence> Hook;
 
         public string Scene;
         public float X;
