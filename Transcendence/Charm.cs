@@ -1,18 +1,23 @@
 namespace Transcendence
 {
-    internal class Charm
+    internal abstract class Charm
     {
-        public string Sprite;
-        public string Name;
-        public string Description;
-        public int Cost;
-        public Func<SaveSettings, CharmSettings> SettingsBools;
-        public Action<Func<bool>, Transcendence> Hook;
+        public abstract string Sprite { get; }
+        public abstract string Name { get; }
+        public abstract string Description { get; }
+        public abstract int DefaultCost { get; }
+        public abstract string Scene { get; }
+        public abstract float X { get; }
+        public abstract float Y { get; }
 
-        public string Scene;
-        public float X;
-        public float Y;
+        // assigned at runtime by SFCore's CharmHelper
+        public int Num { get; set; }
 
-        public int Num; // assigned at runtime by SFCore's CharmHelper
+        public bool Equipped() => PlayerData.instance.GetBool($"equippedCharm_{Num}");
+
+        public abstract CharmSettings Settings(SaveSettings s);
+
+        public virtual void Hook() {}
+        public virtual List<(string obj, string fsm, Action<PlayMakerFSM> edit)> FsmEdits => new();
     }
 }

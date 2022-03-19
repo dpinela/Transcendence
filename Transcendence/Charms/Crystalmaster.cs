@@ -2,15 +2,26 @@ using GlobalEnums;
 
 namespace Transcendence
 {
-    internal static class Crystalmaster
+    internal class Crystalmaster : Charm
     {
-        public static void Hook(Func<bool> equipped, Transcendence mod)
+        public static readonly Crystalmaster Instance = new();
+
+        private Crystalmaster() {}
+
+        public override string Sprite => "Crystalmaster.png";
+        public override string Name => "Crystalmaster";
+        public override string Description => "Bears the likeness of a crystallised bug known only as 'The Crystalmaster'.\n\nGreatly increases the running speed of the bearer, in exchange for Geo. The increase is stronger the richer they are.";
+        public override int DefaultCost => 2;
+        public override string Scene => "Mines_25";
+        public override float X => 28.1f;
+        public override float Y => 95.4f;
+
+        public override CharmSettings Settings(SaveSettings s) => s.Crystalmaster;
+
+        public override void Hook()
         {
-            Equipped = equipped;
             On.HeroController.Move += SpeedUp;
         }
-
-        private static Func<bool> Equipped;
 
         private const string ShopDescription = "I've heard that crystals help you to \"go zoom zoom\", so if that's something you're interested in you should take this beauty home!";
 
@@ -24,7 +35,7 @@ namespace Transcendence
 
         private static int ChargeTimer = 0;
 
-        private static void SpeedUp(On.HeroController.orig_Move orig, HeroController self, float dir)
+        private void SpeedUp(On.HeroController.orig_Move orig, HeroController self, float dir)
         {
             if (Equipped() && HeroController.instance.transitionState == HeroTransitionState.WAITING_TO_TRANSITION && dir != 0)
             {

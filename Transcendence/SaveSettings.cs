@@ -2,11 +2,11 @@ namespace Transcendence
 {
     public class SaveSettings
     {
-        public CharmSettings AntigravityAmulet = new();
-        public CharmSettings BluemothWings = new();
-        public CharmSettings FloristsMask = new();
-        public CharmSettings ShamanAmp = new();
-        public CharmSettings Crystalmaster = new();
-        public CharmSettings NitroCrystal = new();
+        public CharmSettings AntigravityAmulet = new() { Got = true };
+        public CharmSettings BluemothWings = new() { Got = true };
+        public CharmSettings FloristsMask = new() { Got = true };
+        public CharmSettings ShamanAmp = new() { Got = true };
+        public CharmSettings Crystalmaster = new() { Got = true };
+        public CharmSettings NitroCrystal = new() { Got = true };
     }
 }

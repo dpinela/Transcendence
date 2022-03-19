@@ -11,73 +11,14 @@ namespace Transcendence
 {
     public class Transcendence : Mod, ILocalSettings<SaveSettings>
     {
-        private static List<Charm> Charms = new() {
-            new() {
-                Sprite = "AntigravityAmulet.png",
-                Name = "Antigravity Amulet",
-                Description = "Used by shamans to float around.\n\nDecreases the effect of gravity on the bearer, allowing them to leap to greater heights.",
-                Cost = 2,
-                SettingsBools = s => s.AntigravityAmulet,
-                Hook = AntigravityAmulet.Hook,
-                Scene = "Mines_28",
-                X = 5.1f,
-                Y = 27.4f
-            },
-            new() {
-                Sprite = "BluemothWings.png",
-                Name = "Bluemoth Wings",
-                Description = "A charm made from the wings of a rare blue bug.\n\nAllows the bearer to jump repeatedly in the air in exchange for Geo.",
-                Cost = 2,
-                SettingsBools = s => s.BluemothWings,
-                Hook = BluemothWings.Hook,
-                Scene = "Fungus1_17",
-                X = 71.5f,
-                Y = 24.4f
-            },
-            new() {
-                Sprite = "FloristsMask.png",
-                Name = "Florist's Mask",
-                Description = "A charm made in the image of the keepers of the Mosskin's lands.\n\nThe bearer may earn Geo by delivering flowers to the denizens of Hallownest.",
-                Cost = 1,
-                SettingsBools = s => s.FloristsMask,
-                Hook = FloristsMask.Hook,
-                Scene = "Room_Slug_Shrine",
-                X = 29.2f,
-                Y = 6.4f
-            },
-            new() {
-                Sprite = "ShamanAmp.png",
-                Name = "Shaman Amp",
-                Description = "Forgotten shaman artifact, used by wealthy shamans to strike fear in foes.\n\nIncreases the size of spells in proportion to the amount of Geo held.",
-                Cost = 4,
-                SettingsBools = s => s.ShamanAmp,
-                Hook = ShamanAmp.Hook,
-                Scene = "Deepnest_East_04",
-                X = 27.5f,
-                Y = 80.4f
-            },
-            new() {
-                Sprite = "NitroCrystal.png",
-                Name = "Nitro Crystal",
-                Description = "A crystal vessel filled with a dangerously explosive substance.\n\nGreatly increases the speed and damage of the bearer's Super Dashes.",
-                Cost = 4,
-                SettingsBools = s => s.NitroCrystal,
-                Hook = NitroCrystal.Hook,
-                Scene = "Mines_13",
-                X = 25.6f,
-                Y = 21.5f
-            },
-            new() {
-                Sprite = "Crystalmaster.png",
-                Name = "Crystalmaster",
-                Description = "Bears the likeness of a crystallised bug known only as 'The Crystalmaster'.\n\nGreatly increases the running speed of the bearer, in exchange for Geo. The increase is stronger the richer they are.",
-                Cost = 2,
-                SettingsBools = s => s.Crystalmaster,
-                Hook = Crystalmaster.Hook,
-                Scene = "Mines_25",
-                X = 28.1f,
-                Y = 95.4f
-            }
+        private static List<Charm> Charms = new() 
+        {
+            AntigravityAmulet.Instance,
+            BluemothWings.Instance,
+            FloristsMask.Instance,
+            ShamanAmp.Instance,
+            NitroCrystal.Instance,
+            Crystalmaster.Instance
         };
 
         private Dictionary<string, Func<bool>> BoolGetters = new();
@@ -91,18 +32,21 @@ namespace Transcendence
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
                 charm.Num = num;
-                Ints[$"charmCost_{num}"] = charm.Cost;
+                Ints[$"charmCost_{num}"] = charm.DefaultCost;
                 AddTextEdit($"CHARM_NAME_{num}", "UI", charm.Name);
                 AddTextEdit($"CHARM_DESC_{num}", "UI", charm.Description);
-                var bools = charm.SettingsBools;
-                var equipped = () => bools(Settings).Equipped;
-                BoolGetters[$"equippedCharm_{num}"] = equipped;
+                var bools = charm.Settings;
+                BoolGetters[$"equippedCharm_{num}"] = () => bools(Settings).Equipped;
                 BoolSetters[$"equippedCharm_{num}"] = value => bools(Settings).Equipped = value;
                 BoolGetters[$"gotCharm_{num}"] = () => bools(Settings).Got;
                 BoolSetters[$"gotCharm_{num}"] = value => bools(Settings).Got = value;
                 BoolGetters[$"newCharm_{num}"] = () => bools(Settings).New;
                 BoolSetters[$"newCharm_{num}"] = value => bools(Settings).New = value;
-                charm.Hook(equipped, this);
+                charm.Hook();
+                foreach (var edit in charm.FsmEdits)
+                {
+                    AddFsmEdit(edit.obj, edit.fsm, edit.edit);
+                }
             }
 
             ModHooks.GetPlayerBoolHook += ReadCharmBools;
@@ -136,8 +80,7 @@ namespace Transcendence
         {
             if (BoolGetters.TryGetValue(boolName, out var f))
             {
-                var v = f();
-                return v;
+                return f();
             }
             return value;
         }

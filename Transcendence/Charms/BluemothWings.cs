@@ -4,20 +4,31 @@ using UnityEngine;
 
 namespace Transcendence
 {
-    internal static class BluemothWings
+    internal class BluemothWings : Charm
     {
-        public static void Hook(Func<bool> equipped, Transcendence mod)
+        public static readonly BluemothWings Instance = new();
+
+        private BluemothWings() {}
+
+        public override string Sprite => "BluemothWings.png";
+        public override string Name => "Bluemoth Wings";
+        public override string Description => "A charm made from the wings of a rare blue bug.\n\nAllows the bearer to jump repeatedly in the air in exchange for Geo.";
+        public override int DefaultCost => 2;
+        public override string Scene => "Fungus1_17";
+        public override float X => 71.5f;
+        public override float Y => 24.4f;
+
+        public override CharmSettings Settings(SaveSettings s) => s.BluemothWings;
+
+        public override void Hook()
         {
-            Equipped = equipped;
             On.HeroController.CanDoubleJump += AllowDoubleJump;
             On.HeroController.DoDoubleJump += AllowExtraJumps;
         }
 
-        private static Func<bool> Equipped;
-
         private const int ExtraJumpCost = 5;
 
-        private static bool AllowDoubleJump(On.HeroController.orig_CanDoubleJump orig, HeroController self)
+        private bool AllowDoubleJump(On.HeroController.orig_CanDoubleJump orig, HeroController self)
         {
             // We pretend to have wings only during this call so that a rando wings
             // pickup doesn't think we already have wings and gives us the dupe
@@ -31,7 +42,7 @@ namespace Transcendence
             return result;
         }
 
-        private static void AllowExtraJumps(On.HeroController.orig_DoDoubleJump orig, HeroController self)
+        private void AllowExtraJumps(On.HeroController.orig_DoDoubleJump orig, HeroController self)
         {
             if (!Equipped())
             {

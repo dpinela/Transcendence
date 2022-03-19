@@ -4,17 +4,28 @@ using GlobalEnums;
 
 namespace Transcendence
 {
-    internal static class AntigravityAmulet
+    internal class AntigravityAmulet : Charm
     {
-        public static void Hook(Func<bool> equipped, Transcendence mod)
+        public static readonly AntigravityAmulet Instance = new();
+
+        private AntigravityAmulet() {}
+
+        public override string Sprite => "AntigravityAmulet.png";
+        public override string Name => "Antigravity Amulet";
+        public override string Description => "Used by shamans to float around.\n\nDecreases the effect of gravity on the bearer, allowing them to leap to greater heights.";
+        public override int DefaultCost => 2;
+        public override string Scene => "Mines_28";
+        public override float X => 5.1f;
+        public override float Y => 27.4f;
+
+        public override CharmSettings Settings(SaveSettings s) => s.AntigravityAmulet;
+
+        public override void Hook()
         {
-            Equipped = equipped;
             ModHooks.HeroUpdateHook += ChangeGravity;
         }
 
-        private static Func<bool> Equipped;
-
-        private static void ChangeGravity()
+        private void ChangeGravity()
         {
             if (HeroController.instance == null)
             {
