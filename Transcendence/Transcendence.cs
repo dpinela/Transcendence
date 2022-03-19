@@ -15,7 +15,7 @@ namespace Transcendence
         {
             AntigravityAmulet.Instance,
             BluemothWings.Instance,
-            FloristsMask.Instance,
+            FloristsBlessing.Instance,
             ShamanAmp.Instance,
             NitroCrystal.Instance,
             Crystalmaster.Instance
@@ -175,6 +175,16 @@ namespace Transcendence
                 ItemChangerMod.Modules.Remove<ReverseBeastDenPath>();
                 ItemChangerMod.Modules.Remove<RightCityPlatform>();
             }
+        }
+
+        internal static void UpdateNailDamage()
+        {
+            System.Collections.IEnumerator WaitThenUpdate()
+            {
+                yield return null;
+                PlayMakerFSM.BroadcastEvent("UPDATE NAIL DAMAGE");
+            }
+            GameManager.instance.StartCoroutine(WaitThenUpdate());
         }
     }
 }
