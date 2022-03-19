@@ -13,10 +13,6 @@
     <Nullable>annotations</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Resources\*.png" />
-    <EmbeddedResource Include="Resources\*.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>$(HK15PATH)/Assembly-CSharp.dll</HintPath>
     </Reference>

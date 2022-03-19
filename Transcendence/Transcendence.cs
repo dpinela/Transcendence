@@ -13,10 +13,10 @@ namespace Transcendence
     {
         private static List<Charm> Charms = new() {
             new() {
-                Sprite = "Transcendence.Resources.AntigravityAmulet.png",
+                Sprite = "AntigravityAmulet.png",
                 Name = "Antigravity Amulet",
                 Description = "Used by shamans to float around.\n\nDecreases the effect of gravity on the bearer, allowing them to leap to greater heights.",
-                Cost = 3,
+                Cost = 2,
                 SettingsBools = s => s.AntigravityAmulet,
                 Hook = AntigravityAmulet.Hook,
                 Scene = "Mines_28",
@@ -24,10 +24,10 @@ namespace Transcendence
                 Y = 27.4f
             },
             new() {
-                Sprite = "Transcendence.Resources.BluemothWings.png",
+                Sprite = "BluemothWings.png",
                 Name = "Bluemoth Wings",
                 Description = "A charm made from the wings of a rare blue bug.\n\nAllows the bearer to jump repeatedly in the air in exchange for Geo.",
-                Cost = 3,
+                Cost = 2,
                 SettingsBools = s => s.BluemothWings,
                 Hook = BluemothWings.Hook,
                 Scene = "Fungus1_17",
@@ -35,7 +35,7 @@ namespace Transcendence
                 Y = 24.4f
             },
             new() {
-                Sprite = "Transcendence.Resources.FloristsMask.png",
+                Sprite = "FloristsMask.png",
                 Name = "Florist's Mask",
                 Description = "A charm made in the image of the keepers of the Mosskin's lands.\n\nThe bearer may earn Geo by delivering flowers to the denizens of Hallownest.",
                 Cost = 1,
@@ -46,7 +46,7 @@ namespace Transcendence
                 Y = 6.4f
             },
             new() {
-                Sprite = "Transcendence.Resources.ShamanAmp.png",
+                Sprite = "ShamanAmp.png",
                 Name = "Shaman Amp",
                 Description = "Forgotten shaman artifact, used by wealthy shamans to strike fear in foes.\n\nIncreases the size of spells in proportion to the amount of Geo held.",
                 Cost = 4,
@@ -56,7 +56,28 @@ namespace Transcendence
                 X = 27.5f,
                 Y = 80.4f
             },
-            
+            new() {
+                Sprite = "NitroCrystal.png",
+                Name = "Nitro Crystal",
+                Description = "A crystal vessel filled with a dangerously explosive substance.\n\nGreatly increases the speed and damage of the bearer's Super Dashes.",
+                Cost = 4,
+                SettingsBools = s => s.NitroCrystal,
+                Hook = NitroCrystal.Hook,
+                Scene = "Mines_13",
+                X = 25.6f,
+                Y = 21.5f
+            },
+            new() {
+                Sprite = "Crystalmaster.png",
+                Name = "Crystalmaster",
+                Description = "Bears the likeness of a crystallised bug known only as 'The Crystalmaster'.\n\nGreatly increases the running speed of the bearer, in exchange for Geo. The increase is stronger the richer they are.",
+                Cost = 2,
+                SettingsBools = s => s.Crystalmaster,
+                Hook = Crystalmaster.Hook,
+                Scene = "Mines_25",
+                X = 28.1f,
+                Y = 95.4f
+            }
         };
 
         private Dictionary<string, Func<bool>> BoolGetters = new();
@@ -66,8 +87,6 @@ namespace Transcendence
 
         public override void Initialize()
         {
-            EmbeddedSprites.Load();
-
             foreach (var charm in Charms)
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
