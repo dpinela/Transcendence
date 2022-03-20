@@ -19,5 +19,6 @@ namespace Transcendence
 
         public virtual void Hook() {}
         public virtual List<(string obj, string fsm, Action<PlayMakerFSM> edit)> FsmEdits => new();
+        public virtual List<(int Period, Action Func)> Tickers => new();
     }
 }

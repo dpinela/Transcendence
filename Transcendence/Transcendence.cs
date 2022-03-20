@@ -1,4 +1,7 @@
+using System.Collections;
 using Modding;
+using UnityEngine;
+using USM = UnityEngine.SceneManagement;
 using SFCore;
 using ItemChanger;
 using ItemChanger.Modules;
@@ -15,16 +18,22 @@ namespace Transcendence
         {
             AntigravityAmulet.Instance,
             BluemothWings.Instance,
+            LemmsStrength.Instance,
+            ShinySlash.Instance,
             FloristsBlessing.Instance,
             ShamanAmp.Instance,
             NitroCrystal.Instance,
-            Crystalmaster.Instance
+            Crystalmaster.Instance,
+            DisinfectantFlask.Instance,
+            MillibellesBlessing.Instance,
+            Greedsong.Instance
         };
 
         private Dictionary<string, Func<bool>> BoolGetters = new();
         private Dictionary<string, Action<bool>> BoolSetters = new();
         private Dictionary<string, int> Ints = new();
         private Dictionary<(string, string), Action<PlayMakerFSM>> FSMEdits = new();
+        private List<(int Period, Action Func)> Tickers = new();
 
         public override void Initialize()
         {
@@ -47,6 +56,7 @@ namespace Transcendence
                 {
                     AddFsmEdit(edit.obj, edit.fsm, edit.edit);
                 }
+                Tickers.AddRange(charm.Tickers);
             }
 
             ModHooks.GetPlayerBoolHook += ReadCharmBools;
@@ -56,6 +66,7 @@ namespace Transcendence
             // This will run after Rando has already set up its item placements.
             On.UIManager.StartNewGame += PlaceItems;
             On.PlayMakerFSM.OnEnable += EditFSMs;
+            USM.SceneManager.activeSceneChanged += StartTicking;
         }
 
         private Dictionary<(string Key, string Sheet), Func<string>> TextEdits = new();
@@ -126,6 +137,35 @@ namespace Transcendence
             }
         }
 
+        private void StartTicking(USM.Scene from, USM.Scene to)
+        {
+            // The coroutines get stopped every time the player quits out, so we
+            // need to restart them. This is a good point to do so.
+            if (from.name == "Menu_Title")
+            {
+                foreach (var t in Tickers)
+                {
+                    IEnumerator ticker()
+                    {
+                        while (true)
+                        {
+                            try
+                            {
+                                t.Func();
+                            }
+                            catch (Exception ex)
+                            {
+                                LogError(ex);
+                            }
+                            yield return new WaitForSeconds(t.Period);
+                        }
+                    }
+
+                    GameManager.instance.StartCoroutine(ticker());
+                }
+            }
+        }
+
         private static void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
         {
             ItemChangerMod.CreateSettingsProfile(overwrite: false);
@@ -179,7 +219,7 @@ namespace Transcendence
 
         internal static void UpdateNailDamage()
         {
-            System.Collections.IEnumerator WaitThenUpdate()
+            IEnumerator WaitThenUpdate()
             {
                 yield return null;
                 PlayMakerFSM.BroadcastEvent("UPDATE NAIL DAMAGE");
