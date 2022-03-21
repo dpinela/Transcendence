@@ -13,5 +13,6 @@ namespace Transcendence
         public CharmSettings DisinfectantFlask = new() { Got = true };
         public CharmSettings MillibellesBlessing = new() { Got = true };
         public CharmSettings Greedsong = new() { Got = true };
+        public CharmSettings SnailSoul = new() { Got = true };
     }
 }

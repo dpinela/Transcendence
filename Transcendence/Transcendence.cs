@@ -21,6 +21,7 @@ namespace Transcendence
             LemmsStrength.Instance,
             ShinySlash.Instance,
             FloristsBlessing.Instance,
+            SnailSoul.Instance,
             ShamanAmp.Instance,
             NitroCrystal.Instance,
             Crystalmaster.Instance,
@@ -28,6 +29,8 @@ namespace Transcendence
             MillibellesBlessing.Instance,
             Greedsong.Instance
         };
+
+        internal static Transcendence Instance;
 
         private Dictionary<string, Func<bool>> BoolGetters = new();
         private Dictionary<string, Action<bool>> BoolSetters = new();
@@ -37,6 +40,7 @@ namespace Transcendence
 
         public override void Initialize()
         {
+            Instance = this;
             foreach (var charm in Charms)
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
@@ -125,7 +129,16 @@ namespace Transcendence
 
         internal void AddFsmEdit(string objName, string fsmName, Action<PlayMakerFSM> edit)
         {
-            FSMEdits[(objName, fsmName)] = edit;
+            var key = (objName, fsmName);
+            var newEdit = edit;
+            if (FSMEdits.TryGetValue(key, out var orig))
+            {
+                newEdit = fsm => {
+                    orig(fsm);
+                    edit(fsm);
+                };
+            }
+            FSMEdits[key] = newEdit;
         }
 
         private void EditFSMs(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM fsm)

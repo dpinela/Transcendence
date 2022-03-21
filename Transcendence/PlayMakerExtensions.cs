@@ -34,18 +34,21 @@ namespace Transcendence
 
         internal static void AddAction(this FsmState s, Action a)
         {
+            SpliceAction(s, s.Actions.Length, a);
+        }
+
+        internal static void SpliceAction(this FsmState s, int pos, Action a)
+        {
             var actions = new FsmStateAction[s.Actions.Length + 1];
-            Array.Copy(s.Actions, actions, s.Actions.Length);
-            actions[s.Actions.Length] = new FuncAction(a);
+            Array.Copy(s.Actions, actions, pos);
+            actions[pos] = new FuncAction(a);
+            Array.Copy(s.Actions, pos, actions, pos + 1, s.Actions.Length - pos);
             s.Actions = actions;
         }
 
         internal static void PrependAction(this FsmState s, Action a)
         {
-            var actions = new FsmStateAction[s.Actions.Length + 1];
-            Array.Copy(s.Actions, 0, actions, 1, s.Actions.Length);
-            actions[0] = new FuncAction(a);
-            s.Actions = actions;
+            SpliceAction(s, 0, a);
         }
 
         internal static void ReplaceAction(this FsmState s, int i, Action a)
