@@ -25,8 +25,8 @@ namespace Transcendence
         public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
         {
             ("Fireball(Clone)", "Fireball Control", SlowVengefulSpirit),
-            ("Fireball2 Spiral(Clone)", "Fireball Control", SlowShadeSoul),
-            ("Fireball2 Top(Clone)", "Fireball Cast", SlowShadeSoulB)
+            ("Fireball2 Spiral(Clone)", "Fireball Control", ExtendShadeSoulDuration),
+            ("Fireball2 Top(Clone)", "Fireball Cast", SlowShadeSoul)
         };
 
         private const float Slowdown = 4f;
