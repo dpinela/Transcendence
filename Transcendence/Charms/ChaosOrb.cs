@@ -49,7 +49,7 @@ namespace Transcendence
             var unequippedCharms = new List<int>();
             for (var i = 1; i <= 40; i++)
             {
-                // Quick Slash is excluded because it doesn't work.
+                // Quick Slash and Elegy are excluded because they don't work.
                 if (!(i == 32 || PlayerData.instance.GetBool($"equippedCharm_{i}")))
                 {
                     unequippedCharms.Add(i);
@@ -82,7 +82,6 @@ namespace Transcendence
             HeroController.instance.CharmUpdate();
             PlayMakerFSM.BroadcastEvent("CHARM EQUIP CHECK");
             PlayMakerFSM.BroadcastEvent("CHARM INDICATOR CHECK");
-            PlayMakerFSM.BroadcastEvent("UPDATE BLUE HEALTH");
         }
 
         private void RerollCharmsIfEquipped()
