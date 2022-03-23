@@ -27,14 +27,15 @@ namespace Transcendence
             Crystalmaster.Instance,
             DisinfectantFlask.Instance,
             MillibellesBlessing.Instance,
-            Greedsong.Instance
+            Greedsong.Instance,
+            ChaosOrb.Instance
         };
 
         internal static Transcendence Instance;
 
-        private Dictionary<string, Func<bool>> BoolGetters = new();
+        private Dictionary<string, Func<bool, bool>> BoolGetters = new();
         private Dictionary<string, Action<bool>> BoolSetters = new();
-        private Dictionary<string, int> Ints = new();
+        private Dictionary<string, Func<int, int>> IntGetters = new();
         private Dictionary<(string, string), Action<PlayMakerFSM>> FSMEdits = new();
         private List<(int Period, Action Func)> Tickers = new();
 
@@ -45,15 +46,15 @@ namespace Transcendence
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
                 charm.Num = num;
-                Ints[$"charmCost_{num}"] = charm.DefaultCost;
+                IntGetters[$"charmCost_{num}"] = _ => (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num)) ? 0 : charm.DefaultCost;
                 AddTextEdit($"CHARM_NAME_{num}", "UI", charm.Name);
-                AddTextEdit($"CHARM_DESC_{num}", "UI", charm.Description);
+                AddTextEdit($"CHARM_DESC_{num}", "UI", () => charm.Description);
                 var bools = charm.Settings;
-                BoolGetters[$"equippedCharm_{num}"] = () => bools(Settings).Equipped;
+                BoolGetters[$"equippedCharm_{num}"] = _ => bools(Settings).Equipped || (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num));
                 BoolSetters[$"equippedCharm_{num}"] = value => bools(Settings).Equipped = value;
-                BoolGetters[$"gotCharm_{num}"] = () => bools(Settings).Got;
+                BoolGetters[$"gotCharm_{num}"] = _ => bools(Settings).Got;
                 BoolSetters[$"gotCharm_{num}"] = value => bools(Settings).Got = value;
-                BoolGetters[$"newCharm_{num}"] = () => bools(Settings).New;
+                BoolGetters[$"newCharm_{num}"] = _ => bools(Settings).New;
                 BoolSetters[$"newCharm_{num}"] = value => bools(Settings).New = value;
                 charm.Hook();
                 foreach (var edit in charm.FsmEdits)
@@ -61,6 +62,12 @@ namespace Transcendence
                     AddFsmEdit(edit.obj, edit.fsm, edit.edit);
                 }
                 Tickers.AddRange(charm.Tickers);
+            }
+            for (var i = 1; i <= 40; i++)
+            {
+                var num = i; // needed for closure to capture a different copy of the variable each time
+                BoolGetters[$"equippedCharm_{num}"] = value => value || (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num));
+                IntGetters[$"charmCost_{num}"] = value => (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num)) ? 0 : value;
             }
 
             ModHooks.GetPlayerBoolHook += ReadCharmBools;
@@ -73,11 +80,19 @@ namespace Transcendence
             USM.SceneManager.activeSceneChanged += StartTicking;
         }
 
+        // breaks infinite loop when reading equippedCharm_X
+        private bool Equipped(Charm c) => c.Settings(Settings).Equipped;
+
         private Dictionary<(string Key, string Sheet), Func<string>> TextEdits = new();
 
         internal void AddTextEdit(string key, string sheetName, string text)
         {
             TextEdits.Add((key, sheetName), () => text);
+        }
+
+        internal void AddTextEdit(string key, string sheetName, Func<string> text)
+        {
+            TextEdits.Add((key, sheetName), text);
         }
 
         public override string GetVersion() => "1.0";
@@ -95,7 +110,7 @@ namespace Transcendence
         {
             if (BoolGetters.TryGetValue(boolName, out var f))
             {
-                return f();
+                return f(value);
             }
             return value;
         }
@@ -111,9 +126,9 @@ namespace Transcendence
 
         private int ReadCharmCosts(string intName, int value)
         {
-            if (Ints.TryGetValue(intName, out var cost))
+            if (IntGetters.TryGetValue(intName, out var cost))
             {
-                return cost;
+                return cost(value);
             }
             return value;
         }
