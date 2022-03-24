@@ -19,7 +19,7 @@ namespace Transcendence
 
         public override CharmSettings Settings(SaveSettings s) => s.ChaosOrb;
 
-        private const int TickPeriod = 30;
+        private const int TickPeriod = 10;
 
         public override List<(int, Action)> Tickers => new() {(TickPeriod, RerollCharmsIfEquipped)};
 
@@ -35,9 +35,17 @@ namespace Transcendence
         private string GivenCharmDescription() =>
             GivenCharms.Count switch {
                 0 => "nothing",
-                1 => Language.Language.Get($"CHARM_NAME_{GivenCharms[0]}", "UI"),
-                _ => String.Join(", ", GivenCharms.GetRange(0, GivenCharms.Count - 1).Select(x => Language.Language.Get($"CHARM_NAME_{x}", "UI"))) + " and " + Language.Language.Get($"CHARM_NAME_{GivenCharms[GivenCharms.Count - 1]}", "UI")
+                1 => CharmName(GivenCharms[0]),
+                _ => String.Join(", ", GivenCharms.GetRange(0, GivenCharms.Count - 1).Select(CharmName)) + " and " + CharmName(GivenCharms[GivenCharms.Count - 1])
             };
+
+        private static string CharmName(int num) {
+            var key = num switch {
+                36 => PlayerData.instance.GetInt("royalCharmState") > 3 ? "CHARM_NAME_36_C" : "CHARM_NAME_36_B",
+                _ => $"CHARM_NAME_{num}"
+            };
+            return Language.Language.Get(key, "UI");
+        }
 
         private List<int> CustomCharms = new();
         public void AddCustomCharm(int num) => CustomCharms.Add(num);
@@ -79,7 +87,6 @@ namespace Transcendence
         private void RerollCharms()
         {
             GivenCharms = PickNUnequippedCharms(3);
-            HeroController.instance.CharmUpdate();
             PlayMakerFSM.BroadcastEvent("CHARM EQUIP CHECK");
             PlayMakerFSM.BroadcastEvent("CHARM INDICATOR CHECK");
         }
