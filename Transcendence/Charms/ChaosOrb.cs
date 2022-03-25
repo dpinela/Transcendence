@@ -58,7 +58,7 @@ namespace Transcendence
             for (var i = 1; i <= 40; i++)
             {
                 // Quick Slash and Elegy are excluded because they don't work.
-                if (!(i == 32 || PlayerData.instance.GetBool($"equippedCharm_{i}")))
+                if (!(i == 32 || i == 35 || PlayerData.instance.GetBool($"equippedCharm_{i}")))
                 {
                     unequippedCharms.Add(i);
                 }
@@ -86,6 +86,7 @@ namespace Transcendence
 
         private void RerollCharms()
         {
+            GivenCharms.Clear(); // so that charms currently given by the Orb can be selected again
             GivenCharms = PickNUnequippedCharms(3);
             PlayMakerFSM.BroadcastEvent("CHARM EQUIP CHECK");
             PlayMakerFSM.BroadcastEvent("CHARM INDICATOR CHECK");
