@@ -19,7 +19,7 @@ namespace Transcendence
 
         public override CharmSettings Settings(SaveSettings s) => s.ChaosOrb;
 
-        private const int TickPeriod = 10;
+        private const int TickPeriod = 5;
 
         public override List<(int, Action)> Tickers => new() {(TickPeriod, RerollCharmsIfEquipped)};
 
@@ -90,7 +90,23 @@ namespace Transcendence
             GivenCharms = PickNUnequippedCharms(3);
             PlayMakerFSM.BroadcastEvent("CHARM EQUIP CHECK");
             PlayMakerFSM.BroadcastEvent("CHARM INDICATOR CHECK");
+            if (GivenCharms.Contains(6))
+            {
+                if (Health() == 1)
+                {
+                    PlayMakerFSM.BroadcastEvent("ENABLE FURY");
+                }
+                
+            }
+            // what if the player equipped it manually while Orb was giving it?
+            else if (!PlayerData.instance.GetBool("equippedCharm_6"))
+            {
+                PlayMakerFSM.BroadcastEvent("DISABLE FURY");
+            }
         }
+
+        private static int Health() => 
+            PlayerData.instance.GetInt(PlayerData.instance.GetBool("equippedCharm_27") ? "joniHealthBlue" : "health");
 
         private void RerollCharmsIfEquipped()
         {
