@@ -15,5 +15,6 @@ namespace Transcendence
         public CharmSettings Greedsong = new() { Got = true };
         public CharmSettings SnailSoul = new() { Got = true };
         public CharmSettings ChaosOrb = new() { Got = true };
+        public CharmSettings MarissasAudience = new() { Got = true };
     }
 }

@@ -28,6 +28,7 @@ namespace Transcendence
             DisinfectantFlask.Instance,
             MillibellesBlessing.Instance,
             Greedsong.Instance,
+            MarissasAudience.Instance,
             ChaosOrb.Instance
         };
 
