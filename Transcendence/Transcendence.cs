@@ -9,6 +9,11 @@ using ItemChanger.Locations;
 using ItemChanger.Items;
 using ItemChanger.UIDefs;
 using RandomizerMod;
+using RandomizerMod.Settings;
+using RandomizerMod.RC;
+using RandomizerCore;
+using RandomizerCore.Logic;
+using RandomizerCore.LogicItems;
 
 namespace Transcendence
 {
@@ -68,6 +73,16 @@ namespace Transcendence
                     AddFsmEdit(edit.obj, edit.fsm, edit.edit);
                 }
                 Tickers.AddRange(charm.Tickers);
+
+                var item = new ItemChanger.Items.CharmItem() { 
+                    charmNum = charm.Num,
+                    name = charm.Name.Replace(" ", "_"),
+                    UIDef = new MsgUIDef() { 
+                        name = new LanguageString("UI", $"CHARM_NAME_{charm.Num}"),
+                        shopDesc = new LanguageString("UI", $"CHARM_DESC_{charm.Num}"),
+                        sprite = new EmbeddedSprite() { key = charm.Sprite }
+                    }};
+                Finder.DefineCustomItem(item);
             }
             for (var i = 1; i <= 40; i++)
             {
@@ -84,6 +99,9 @@ namespace Transcendence
             On.UIManager.StartNewGame += PlaceItems;
             On.PlayMakerFSM.OnEnable += EditFSMs;
             USM.SceneManager.activeSceneChanged += StartTicking;
+            RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
+            RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
+            RCData.RuntimeLogicOverride.Subscribe(50, DefineLogicItems);
         }
 
         // breaks infinite loop when reading equippedCharm_X
@@ -204,29 +222,75 @@ namespace Transcendence
         {
             ItemChangerMod.CreateSettingsProfile(overwrite: false);
 
-            var placements = new List<AbstractPlacement>();
+            ConfigureICModules();
+            if (!AreCharmsRandod())
+            {
+                var placements = new List<AbstractPlacement>();
+                foreach (var charm in Charms)
+                {
+                    var name = charm.Name.Replace(" ", "_");
+                    placements.Add(
+                        new CoordinateLocation() { x = charm.X, y = charm.Y, elevation = 0, sceneName = charm.Scene, name = name }
+                        .Wrap()
+                        .Add(Finder.GetItem(name)));
+                }
+                ItemChangerMod.AddPlacements(placements, conflictResolution: PlacementConflictResolution.Ignore);
+            }
+            orig(self, permaDeath, bossRush);
+        }
 
+        private static void DefineCharmsForRando(RequestBuilder rb)
+        {
+            if (!rb.gs.PoolSettings.Charms)
+            {
+                return;
+            }
             foreach (var charm in Charms)
             {
                 var name = charm.Name.Replace(" ", "_");
-                placements.Add(
-                    new CoordinateLocation() { x = charm.X, y = charm.Y, elevation = 0, sceneName = charm.Scene, name = name }
-                    .Wrap()
-                    .Add(new ItemChanger.Items.CharmItem() { charmNum = charm.Num, name = name, UIDef =
-                        new MsgUIDef() { 
-                            name = new LanguageString("UI", $"CHARM_NAME_{charm.Num}"),
-                            shopDesc = new LanguageString("UI", $"CHARM_DESC_{charm.Num}"),
-                            sprite = new EmbeddedSprite() { key = charm.Sprite }
-                        }}));
+                rb.EditItemRequest(name, info =>
+                {
+                    info.getItemDef = () => new()
+                    {
+                        Name = name,
+                        Pool = "Charm",
+                        MajorItem = false,
+                        PriceCap = 666
+                    };
+                });
             }
+        }
 
-            ItemChangerMod.AddPlacements(placements, conflictResolution: PlacementConflictResolution.Ignore);
+        private static void DefineLogicItems(GenerationSettings gs, LogicManagerBuilder lmb)
+        {
+            if (!gs.PoolSettings.Charms)
+            {
+                return;
+            }
+            foreach (var charm in Charms)
+            {
+                var name = charm.Name.Replace(" ", "_");
+                var term = lmb.GetOrAddTerm(name);
+                lmb.AddItem(new SingleItem(name, new TermValue(term, 1)));
+            }
+        }
 
-            orig(self, permaDeath, bossRush);
+        private static void AddCharmsToPool(RequestBuilder rb)
+        {
+            if (!rb.gs.PoolSettings.Charms)
+            {
+                return;
+            }
+            foreach (var charm in Charms)
+            {
+                rb.AddItemByName(charm.Name.Replace(" ", "_"));
+            }
         }
 
         private static bool IsRandoActive() =>
             ModHooks.GetMod("Randomizer 4") != null && RandomizerMod.RandomizerMod.RS?.GenerationSettings != null;
+        private static bool AreCharmsRandod() =>
+            ModHooks.GetMod("Randomizer 4") != null && RandomizerMod.RandomizerMod.RS?.GenerationSettings?.PoolSettings?.Charms == true;
 
         private static void ConfigureICModules()
         {

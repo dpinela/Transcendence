@@ -49,6 +49,9 @@
     <Reference Include="RandomizerMod">
       <HintPath>$(HK15PATH)/Mods/Randomizer 4/RandomizerMod.dll</HintPath>
     </Reference>
+    <Reference Include="RandomizerCore">
+      <HintPath>$(HK15PATH)/Mods/RandomizerCore/RandomizerCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Target Name="ClearReferenceCopyLocalPaths" AfterTargets="ResolveAssemblyReferences">
     <ItemGroup>

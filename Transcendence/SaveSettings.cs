@@ -2,19 +2,19 @@ namespace Transcendence
 {
     public class SaveSettings
     {
-        public CharmSettings AntigravityAmulet = new() { Got = true };
-        public CharmSettings BluemothWings = new() { Got = true };
-        public CharmSettings LemmsStrength = new() { Got = true };
-        public CharmSettings ShinySlash = new() { Got = true };
-        public CharmSettings FloristsBlessing = new() { Got = true };
-        public CharmSettings ShamanAmp = new() { Got = true };
-        public CharmSettings Crystalmaster = new() { Got = true };
-        public CharmSettings NitroCrystal = new() { Got = true };
-        public CharmSettings DisinfectantFlask = new() { Got = true };
-        public CharmSettings MillibellesBlessing = new() { Got = true };
-        public CharmSettings Greedsong = new() { Got = true };
-        public CharmSettings SnailSoul = new() { Got = true };
-        public CharmSettings ChaosOrb = new() { Got = true };
-        public CharmSettings MarissasAudience = new() { Got = true };
+        public CharmSettings AntigravityAmulet = new();
+        public CharmSettings BluemothWings = new();
+        public CharmSettings LemmsStrength = new();
+        public CharmSettings ShinySlash = new();
+        public CharmSettings FloristsBlessing = new();
+        public CharmSettings ShamanAmp = new();
+        public CharmSettings Crystalmaster = new();
+        public CharmSettings NitroCrystal = new();
+        public CharmSettings DisinfectantFlask = new();
+        public CharmSettings MillibellesBlessing = new();
+        public CharmSettings Greedsong = new();
+        public CharmSettings SnailSoul = new();
+        public CharmSettings ChaosOrb = new();
+        public CharmSettings MarissasAudience = new();
     }
 }
