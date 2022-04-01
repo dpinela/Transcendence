@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Modding;
 using UnityEngine;
@@ -57,16 +58,16 @@ namespace Transcendence
                 {
                     ChaosOrb.Instance.AddCustomCharm(num);
                 }
-                IntGetters[$"charmCost_{num}"] = _ => (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num)) ? 0 : charm.DefaultCost;
+                var settings = charm.Settings;
+                IntGetters[$"charmCost_{num}"] = _ => (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num)) ? 0 : settings(Settings).Cost;
                 AddTextEdit($"CHARM_NAME_{num}", "UI", charm.Name);
                 AddTextEdit($"CHARM_DESC_{num}", "UI", () => charm.Description);
-                var bools = charm.Settings;
-                BoolGetters[$"equippedCharm_{num}"] = _ => bools(Settings).Equipped || (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num));
-                BoolSetters[$"equippedCharm_{num}"] = value => bools(Settings).Equipped = value;
-                BoolGetters[$"gotCharm_{num}"] = _ => bools(Settings).Got;
-                BoolSetters[$"gotCharm_{num}"] = value => bools(Settings).Got = value;
-                BoolGetters[$"newCharm_{num}"] = _ => bools(Settings).New;
-                BoolSetters[$"newCharm_{num}"] = value => bools(Settings).New = value;
+                BoolGetters[$"equippedCharm_{num}"] = _ => settings(Settings).Equipped || (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num));
+                BoolSetters[$"equippedCharm_{num}"] = value => settings(Settings).Equipped = value;
+                BoolGetters[$"gotCharm_{num}"] = _ => settings(Settings).Got;
+                BoolSetters[$"gotCharm_{num}"] = value => settings(Settings).Got = value;
+                BoolGetters[$"newCharm_{num}"] = _ => settings(Settings).New;
+                BoolSetters[$"newCharm_{num}"] = value => settings(Settings).New = value;
                 charm.Hook();
                 foreach (var edit in charm.FsmEdits)
                 {
@@ -218,25 +219,70 @@ namespace Transcendence
             }
         }
 
-        private static void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
+        private void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
         {
-            ItemChangerMod.CreateSettingsProfile(overwrite: false);
-
-            ConfigureICModules();
-            if (!AreCharmsRandod())
+            if (IsRandoActive())
             {
-                var placements = new List<AbstractPlacement>();
-                foreach (var charm in Charms)
+                if (RandomizerMod.RandomizerMod.RS.GenerationSettings.MiscSettings.RandomizeNotchCosts)
                 {
-                    var name = charm.Name.Replace(" ", "_");
-                    placements.Add(
-                        new CoordinateLocation() { x = charm.X, y = charm.Y, elevation = 0, sceneName = charm.Scene, name = name }
-                        .Wrap()
-                        .Add(Finder.GetItem(name)));
+                    RandomizeNotchCosts(RandomizerMod.RandomizerMod.RS.GenerationSettings.Seed);
                 }
-                ItemChangerMod.AddPlacements(placements, conflictResolution: PlacementConflictResolution.Ignore);
+                else
+                {
+                    SetDefaultNotchCosts();
+                }
+                if (!RandomizerMod.RandomizerMod.RS.GenerationSettings.PoolSettings.Charms)
+                {
+                    PlaceCharmsAtFixedPositions();
+                }
             }
+            else
+            {
+                ItemChangerMod.CreateSettingsProfile(overwrite: false);
+                ConfigureICModules();
+                PlaceCharmsAtFixedPositions();
+                SetDefaultNotchCosts();
+            }
+            
             orig(self, permaDeath, bossRush);
+        }
+
+        private static void PlaceCharmsAtFixedPositions()
+        {
+            var placements = new List<AbstractPlacement>();
+            foreach (var charm in Charms)
+            {
+                var name = charm.Name.Replace(" ", "_");
+                placements.Add(
+                    new CoordinateLocation() { x = charm.X, y = charm.Y, elevation = 0, sceneName = charm.Scene, name = name }
+                    .Wrap()
+                    .Add(Finder.GetItem(name)));
+            }
+            ItemChangerMod.AddPlacements(placements, conflictResolution: PlacementConflictResolution.Ignore);
+        }
+
+        private void RandomizeNotchCosts(int seed)
+        {
+            var rng = new System.Random(seed);
+            var total = Charms.Select(x => x.DefaultCost).Sum();
+            for (var i = 0; i < total; i++)
+            {
+                var possiblePicks = Charms.Select(x => x.Settings(Settings)).Where(s => s.Cost < 6).ToList();
+                if (possiblePicks.Count == 0)
+                {
+                    break;
+                }
+                var pick = rng.Next(possiblePicks.Count);
+                possiblePicks[pick].Cost++;
+            }
+        }
+
+        private void SetDefaultNotchCosts()
+        {
+            foreach (var charm in Charms)
+            {
+                charm.Settings(Settings).Cost = charm.DefaultCost;
+            }
         }
 
         private static void DefineCharmsForRando(RequestBuilder rb)
@@ -289,30 +335,25 @@ namespace Transcendence
 
         private static bool IsRandoActive() =>
             ModHooks.GetMod("Randomizer 4") != null && RandomizerMod.RandomizerMod.RS?.GenerationSettings != null;
-        private static bool AreCharmsRandod() =>
-            ModHooks.GetMod("Randomizer 4") != null && RandomizerMod.RandomizerMod.RS?.GenerationSettings?.PoolSettings?.Charms == true;
 
         private static void ConfigureICModules()
         {
-            if (!IsRandoActive())
-            {
-                ItemChangerMod.Modules.Remove<AutoUnlockIselda>();
-                ItemChangerMod.Modules.Remove<BaldurHealthCap>();
-                ItemChangerMod.Modules.Remove<CliffsShadeSkipAssist>();
-                ItemChangerMod.Modules.Remove<DreamNailCutsceneEvent>();
-                ItemChangerMod.Modules.Remove<FastGrubfather>();
-                ItemChangerMod.Modules.Remove<GreatHopperEasterEgg>();
-                ItemChangerMod.Modules.Remove<InventoryTracker>();
-                ItemChangerMod.Modules.Remove<MenderbugUnlock>();
-                ItemChangerMod.Modules.Remove<NonlinearColosseums>();
-                ItemChangerMod.Modules.Remove<PreventLegEaterDeath>();
-                ItemChangerMod.Modules.Remove<PreventZoteDeath>();
-                ItemChangerMod.Modules.Remove<RemoveVoidHeartEffects>();
-                ItemChangerMod.Modules.Remove<ReusableBeastsDenEntrance>();
-                ItemChangerMod.Modules.Remove<ReusableCityCrestGate>();
-                ItemChangerMod.Modules.Remove<ReverseBeastDenPath>();
-                ItemChangerMod.Modules.Remove<RightCityPlatform>();
-            }
+            ItemChangerMod.Modules.Remove<AutoUnlockIselda>();
+            ItemChangerMod.Modules.Remove<BaldurHealthCap>();
+            ItemChangerMod.Modules.Remove<CliffsShadeSkipAssist>();
+            ItemChangerMod.Modules.Remove<DreamNailCutsceneEvent>();
+            ItemChangerMod.Modules.Remove<FastGrubfather>();
+            ItemChangerMod.Modules.Remove<GreatHopperEasterEgg>();
+            ItemChangerMod.Modules.Remove<InventoryTracker>();
+            ItemChangerMod.Modules.Remove<MenderbugUnlock>();
+            ItemChangerMod.Modules.Remove<NonlinearColosseums>();
+            ItemChangerMod.Modules.Remove<PreventLegEaterDeath>();
+            ItemChangerMod.Modules.Remove<PreventZoteDeath>();
+            ItemChangerMod.Modules.Remove<RemoveVoidHeartEffects>();
+            ItemChangerMod.Modules.Remove<ReusableBeastsDenEntrance>();
+            ItemChangerMod.Modules.Remove<ReusableCityCrestGate>();
+            ItemChangerMod.Modules.Remove<ReverseBeastDenPath>();
+            ItemChangerMod.Modules.Remove<RightCityPlatform>();
         }
 
         internal static void UpdateNailDamage()

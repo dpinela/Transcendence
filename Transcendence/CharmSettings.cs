@@ -5,5 +5,6 @@ namespace Transcendence
         public bool Got;
         public bool Equipped;
         public bool New;
+        public int Cost;
     }
 }
