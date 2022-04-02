@@ -26,9 +26,9 @@ namespace Transcendence
         }
 
         private const int DamagePerJournal = 1;
-        private const int DamagePerSeal = 2;
-        private const int DamagePerIdol = 4;
-        private const int DamagePerEgg = 6;
+        private const int DamagePerSeal = 1;
+        private const int DamagePerIdol = 1;
+        private const int DamagePerEgg = 1;
 
         private int BuffNail(string intName, int damage)
         {
