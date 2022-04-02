@@ -99,6 +99,8 @@ namespace Transcendence
             // This will run after Rando has already set up its item placements.
             On.UIManager.StartNewGame += PlaceItems;
             On.PlayMakerFSM.OnEnable += EditFSMs;
+            // This hook is set before ItemChanger's, so AutoSalubraNotches will take our charms into account.
+            On.PlayerData.CountCharms += CountOurCharms;
             USM.SceneManager.activeSceneChanged += StartTicking;
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
@@ -217,6 +219,12 @@ namespace Transcendence
                     GameManager.instance.StartCoroutine(ticker());
                 }
             }
+        }
+
+        private void CountOurCharms(On.PlayerData.orig_CountCharms orig, PlayerData self)
+        {
+            orig(self);
+            self.SetInt("charmsOwned", self.GetInt("charmsOwned") + Charms.Count(c => c.Settings(Settings).Got));
         }
 
         private void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
