@@ -129,9 +129,14 @@ namespace Transcendence
         public void OnLoadLocal(SaveSettings s)
         {
             Settings = s;
+            FloristsBlessing.Instance.Broken = s.FloristsBlessingBroken;
         }
 
-        public SaveSettings OnSaveLocal() => Settings;
+        public SaveSettings OnSaveLocal()
+        {
+            Settings.FloristsBlessingBroken = FloristsBlessing.Instance.Broken;
+            return Settings;
+        }
 
         private bool ReadCharmBools(string boolName, bool value)
         {

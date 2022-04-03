@@ -1,5 +1,3 @@
-using FB = Transcendence.FloristsBlessing;
-
 namespace Transcendence
 {
     public class SaveSettings
@@ -9,11 +7,7 @@ namespace Transcendence
         public CharmSettings LemmsStrength = new();
         public CharmSettings ShinySlash = new();
         public CharmSettings FloristsBlessing = new();
-        public bool FloristsBlessingBroken
-        {
-            get => FB.Instance.Broken;
-            set => FB.Instance.Broken = value;
-        }
+        public bool FloristsBlessingBroken;
         public CharmSettings ShamanAmp = new();
         public CharmSettings Crystalmaster = new();
         public CharmSettings NitroCrystal = new();
