@@ -8,6 +8,7 @@ using ItemChanger;
 using ItemChanger.Modules;
 using ItemChanger.Locations;
 using ItemChanger.Items;
+using ItemChanger.Placements;
 using ItemChanger.UIDefs;
 using RandomizerMod;
 using RandomizerMod.Settings;
@@ -234,6 +235,7 @@ namespace Transcendence
 
         private void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
         {
+            ItemChangerMod.CreateSettingsProfile(overwrite: false);
             if (IsRandoActive())
             {
                 if (RandomizerMod.RandomizerMod.RS.GenerationSettings.MiscSettings.RandomizeNotchCosts)
@@ -251,11 +253,12 @@ namespace Transcendence
             }
             else
             {
-                ItemChangerMod.CreateSettingsProfile(overwrite: false);
                 ConfigureICModules();
                 PlaceCharmsAtFixedPositions();
                 SetDefaultNotchCosts();
             }
+
+            PlaceFloristsBlessingRepair();
             
             orig(self, permaDeath, bossRush);
         }
@@ -272,6 +275,14 @@ namespace Transcendence
                     .Add(Finder.GetItem(name)));
             }
             ItemChangerMod.AddPlacements(placements, conflictResolution: PlacementConflictResolution.Ignore);
+        }
+
+        private static void PlaceFloristsBlessingRepair()
+        {
+            var repairPlacement = new CoordinateLocation() { x = 72.0f, y = 3.4f, elevation = 0, sceneName = "RestingGrounds_12", name = "Florist's_Blessing_Repair" }.Wrap() as MutablePlacement;
+            repairPlacement.Cost = new RecurringGeoCost(FloristsBlessing.RepairCost);
+            repairPlacement.Add(new FloristsBlessingRepairItem());
+            ItemChangerMod.AddPlacements(new List<AbstractPlacement>() {repairPlacement}, conflictResolution: PlacementConflictResolution.Ignore);
         }
 
         private void RandomizeNotchCosts(int seed)
