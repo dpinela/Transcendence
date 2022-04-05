@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Transcendence
 {
-    public class EmbeddedSprite : ISprite
+    internal class EmbeddedSprite : ISprite
     {
         public string key;
 

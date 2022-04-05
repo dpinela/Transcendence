@@ -5,7 +5,7 @@ namespace Transcendence
 {
     // A geo cost that must be paid every time the item is obtained,
     // instead of just the first time.
-    public record RecurringGeoCost(int geo) : GeoCost(geo)
+    internal record RecurringGeoCost(int geo) : GeoCost(geo)
     {
         public override void OnPay()
         {

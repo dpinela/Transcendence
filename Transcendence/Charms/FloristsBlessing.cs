@@ -47,6 +47,7 @@ namespace Transcendence
             {
                 Broken = true;
                 GameManager.instance.SaveGame();
+                ItemChanger.Internal.MessageController.Enqueue(EmbeddedSprites.Get("FloristsBlessingBroken.png"), "Charm Broken");
                 Transcendence.UpdateNailDamage();
             }
             return damage;
