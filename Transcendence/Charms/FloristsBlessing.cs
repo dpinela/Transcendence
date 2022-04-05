@@ -11,7 +11,7 @@ namespace Transcendence
 
         public override string Sprite => "FloristsBlessing.png";
         public override string Name => "Florist's Blessing";
-        public override string Description => "Blessed by Ze'mer, one of the Great Knights of Hallownest.\n\nMassively increases the damage the bearer deals to enemies with their nail.\n\nThis charm is delicate, and will break if its bearer takes damage.";
+        public override string Description => $"Blessed by Ze'mer, one of the Great Knights of Hallownest.\n\nMassively increases the damage the bearer deals to enemies with their nail.\n\n{(Broken ? "This charm has broken, and the power inside has been silenced." : "This charm is delicate, and will break if its bearer takes damage.")}";
         public override int DefaultCost => 1;
         public override string Scene => "Room_Slug_Shrine";
         public override float X => 29.2f;
