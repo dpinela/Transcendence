@@ -90,6 +90,7 @@ namespace Transcendence
             GivenCharms = PickNUnequippedCharms(3);
             PlayMakerFSM.BroadcastEvent("CHARM EQUIP CHECK");
             PlayMakerFSM.BroadcastEvent("CHARM INDICATOR CHECK");
+            PlayMakerFSM.BroadcastEvent("UPDATE NAIL DAMAGE");
             if (GivenCharms.Contains(6))
             {
                 if (Health() == 1)

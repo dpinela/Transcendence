@@ -26,8 +26,10 @@ namespace Transcendence
             AntigravityAmulet.Instance,
             BluemothWings.Instance,
             LemmsStrength.Instance,
-            ShinySlash.Instance,
             FloristsBlessing.Instance,
+            // needs to hook after the previous two so that the player can't negate
+            // the drawback of Snail Slash with them
+            SnailSlash.Instance,
             SnailSoul.Instance,
             ShamanAmp.Instance,
             NitroCrystal.Instance,
@@ -55,7 +57,7 @@ namespace Transcendence
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
                 charm.Num = num;
                 // Shiny Slash could cause the player to lose a lot of Geo all of a sudden.
-                if (!(charm == ShinySlash.Instance || charm == ChaosOrb.Instance))
+                if (!(charm == ChaosOrb.Instance))
                 {
                     ChaosOrb.Instance.AddCustomCharm(num);
                 }

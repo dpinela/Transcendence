@@ -5,7 +5,7 @@ namespace Transcendence
         public CharmSettings AntigravityAmulet = new();
         public CharmSettings BluemothWings = new();
         public CharmSettings LemmsStrength = new();
-        public CharmSettings ShinySlash = new();
+        public CharmSettings SnailSlash = new();
         public CharmSettings FloristsBlessing = new();
         public bool FloristsBlessingBroken;
         public CharmSettings ShamanAmp = new();
