@@ -10,7 +10,7 @@ namespace Transcendence
 
         public override string Sprite => "Greedsong.png";
         public override string Name => "Greedsong";
-        public override string Description => "A golden charm made by the Grubfather as a gift for his children.\n\nDrop Geo when taking damage.";
+        public override string Description => "A golden charm made by the Grubfather as a gift for his children.\n\nGain Geo when taking damage.";
         public override int DefaultCost => 1;
         public override string Scene => "Ruins2_11";
         public override float X => 51.8f;
