@@ -26,7 +26,7 @@ namespace Transcendence
             On.HeroController.DoDoubleJump += AllowExtraJumps;
         }
 
-        private const int ExtraJumpCost = 5;
+        private const int ExtraJumpCost = 10;
 
         private bool AllowDoubleJump(On.HeroController.orig_CanDoubleJump orig, HeroController self)
         {
