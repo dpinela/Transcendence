@@ -8,7 +8,7 @@ namespace Transcendence
 
         private SnailSlash() {}
 
-        public override string Sprite => "ShinySlash.png";
+        public override string Sprite => "SnailSlash.png";
         public override string Name => "Snail Slash";
         public override string Description => "A charm symbolising the distaste of shamans for nail combat.\n\nThe bearer will gain SOUL from all sources at a much higher rate, but their nail will deal minimal damage.";
         public override int DefaultCost => 3;
