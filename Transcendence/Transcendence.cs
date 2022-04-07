@@ -55,8 +55,6 @@ namespace Transcendence
             foreach (var charm in Charms)
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
-                charm.Num = num;
-                // Shiny Slash could cause the player to lose a lot of Geo all of a sudden.
                 if (!(charm == ChaosOrb.Instance))
                 {
                     ChaosOrb.Instance.AddCustomCharm(num);

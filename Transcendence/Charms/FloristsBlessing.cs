@@ -28,7 +28,7 @@ namespace Transcendence
             ModHooks.SetPlayerBoolHook += UpdateNailDamage;
         }
 
-        public const int RepairCost = 5000;
+        public const int RepairCost = 1200;
 
         private const int BuffFactor = 3;
 
