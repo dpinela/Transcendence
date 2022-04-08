@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using Modding;
+using System.Reflection;
 using UnityEngine;
-using USM = UnityEngine.SceneManagement;
 using SFCore;
 using ItemChanger;
 using ItemChanger.Modules;
@@ -103,7 +103,7 @@ namespace Transcendence
             On.PlayMakerFSM.OnEnable += EditFSMs;
             // This hook is set before ItemChanger's, so AutoSalubraNotches will take our charms into account.
             On.PlayerData.CountCharms += CountOurCharms;
-            USM.SceneManager.activeSceneChanged += StartTicking;
+            StartTicking();
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
             RCData.RuntimeLogicOverride.Subscribe(50, DefineLogicItems);
@@ -199,32 +199,32 @@ namespace Transcendence
             }
         }
 
-        private void StartTicking(USM.Scene from, USM.Scene to)
+        private void StartTicking()
         {
-            // The coroutines get stopped every time the player quits out, so we
-            // need to restart them. This is a good point to do so.
-            if (from.name == "Menu_Title")
+            // Use our own object to hold timers so that GameManager.StopAllCoroutines
+            // does not kill them.
+            var timerHolder = new GameObject("Timer Holder");
+            GameObject.DontDestroyOnLoad(timerHolder);
+            var timers = timerHolder.AddComponent<DummyMonoBehaviour>();
+            foreach (var t in Tickers)
             {
-                foreach (var t in Tickers)
+                IEnumerator ticker()
                 {
-                    IEnumerator ticker()
+                    while (true)
                     {
-                        while (true)
+                        try
                         {
-                            try
-                            {
-                                t.Func();
-                            }
-                            catch (Exception ex)
-                            {
-                                LogError(ex);
-                            }
-                            yield return new WaitForSeconds(t.Period);
+                            t.Func();
                         }
+                        catch (Exception ex)
+                        {
+                            LogError(ex);
+                        }
+                        yield return new WaitForSeconds(t.Period);
                     }
-
-                    GameManager.instance.StartCoroutine(ticker());
                 }
+
+                timers.StartCoroutine(ticker());
             }
         }
 

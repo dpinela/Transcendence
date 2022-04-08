@@ -19,7 +19,7 @@ namespace Transcendence
 
         public override CharmSettings Settings(SaveSettings s) => s.ChaosOrb;
 
-        private const int TickPeriod = 5;
+        private const int TickPeriod = 30;
 
         public override List<(int, Action)> Tickers => new() {(TickPeriod, RerollCharmsIfEquipped)};
 
