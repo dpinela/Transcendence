@@ -12,9 +12,9 @@ namespace Transcendence
         public override string Name => "Snail Slash";
         public override string Description => "A charm symbolising the distaste of shamans for nail combat.\n\nThe bearer will gain SOUL from all sources at a much higher rate, but their nail will deal minimal damage.";
         public override int DefaultCost => 3;
-        public override string Scene => "Ruins_Elevator";
-        public override float X => 75.1f;
-        public override float Y => 96.4f;
+        public override string Scene => "Deepnest_45_v02";
+        public override float X => 12.5f;
+        public override float Y => 42.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.SnailSlash;
 

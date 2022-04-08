@@ -55,6 +55,7 @@ namespace Transcendence
             foreach (var charm in Charms)
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
+                charm.Num = num;
                 if (!(charm == ChaosOrb.Instance))
                 {
                     ChaosOrb.Instance.AddCustomCharm(num);

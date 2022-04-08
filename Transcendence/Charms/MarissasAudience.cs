@@ -13,9 +13,9 @@ namespace Transcendence
         public override string Name => "Marissa's Audience";
         public override string Description => "Prized by those who seek companionship above all else.\n\nThe bearer will be able to summon more companions.";
         public override int DefaultCost => 4;
-        public override string Scene => "Deepnest_45_v02";
-        public override float X => 12.5f;
-        public override float Y => 42.4f;
+        public override string Scene => "Ruins_Elevator";
+        public override float X => 75.1f;
+        public override float Y => 96.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.MarissasAudience;
 
