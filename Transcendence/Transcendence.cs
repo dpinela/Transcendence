@@ -50,6 +50,7 @@ namespace Transcendence
 
         public override void Initialize()
         {
+            Log("Initializing");
             Instance = this;
             foreach (var charm in Charms)
             {
@@ -103,9 +104,15 @@ namespace Transcendence
             // This hook is set before ItemChanger's, so AutoSalubraNotches will take our charms into account.
             On.PlayerData.CountCharms += CountOurCharms;
             StartTicking();
-            RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
-            RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
-            RCData.RuntimeLogicOverride.Subscribe(50, DefineLogicItems);
+
+            if (ModHooks.GetMod("Randomizer 4") != null)
+            {
+                // The code that references rando needs to be in a separate method
+                // so that the mod will still load without it installed
+                // (trying to run a method whose code references an unavailable
+                // DLL will fail even if the code in question isn't actually run)
+                HookRando();
+            }
         }
 
         // breaks infinite loop when reading equippedCharm_X
@@ -236,20 +243,9 @@ namespace Transcendence
         private void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
         {
             ItemChangerMod.CreateSettingsProfile(overwrite: false);
-            if (IsRandoActive())
+            if (ModHooks.GetMod("Randomizer 4") != null && IsRandoActive())
             {
-                if (RandomizerMod.RandomizerMod.RS.GenerationSettings.MiscSettings.RandomizeNotchCosts)
-                {
-                    RandomizeNotchCosts(RandomizerMod.RandomizerMod.RS.GenerationSettings.Seed);
-                }
-                else
-                {
-                    SetDefaultNotchCosts();
-                }
-                if (!RandomizerMod.RandomizerMod.RS.GenerationSettings.PoolSettings.Charms)
-                {
-                    PlaceCharmsAtFixedPositions();
-                }
+                PlaceItemsRando();
             }
             else
             {
@@ -261,6 +257,22 @@ namespace Transcendence
             PlaceFloristsBlessingRepair();
             
             orig(self, permaDeath, bossRush);
+        }
+
+        private void PlaceItemsRando()
+        {
+            if (RandomizerMod.RandomizerMod.RS.GenerationSettings.MiscSettings.RandomizeNotchCosts)
+            {
+                RandomizeNotchCosts(RandomizerMod.RandomizerMod.RS.GenerationSettings.Seed);
+            }
+            else
+            {
+                SetDefaultNotchCosts();
+            }
+            if (!RandomizerMod.RandomizerMod.RS.GenerationSettings.PoolSettings.Charms)
+            {
+                PlaceCharmsAtFixedPositions();
+            }
         }
 
         private static void PlaceCharmsAtFixedPositions()
@@ -299,6 +311,13 @@ namespace Transcendence
                 var pick = rng.Next(possiblePicks.Count);
                 possiblePicks[pick].Cost++;
             }
+        }
+
+        private static void HookRando()
+        {
+            RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
+            RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool); 
+            RCData.RuntimeLogicOverride.Subscribe(50, DefineLogicItems);
         }
 
         private void SetDefaultNotchCosts()
@@ -358,7 +377,7 @@ namespace Transcendence
         }
 
         private static bool IsRandoActive() =>
-            ModHooks.GetMod("Randomizer 4") != null && RandomizerMod.RandomizerMod.RS?.GenerationSettings != null;
+            RandomizerMod.RandomizerMod.RS?.GenerationSettings != null;
 
         private static void ConfigureICModules()
         {
