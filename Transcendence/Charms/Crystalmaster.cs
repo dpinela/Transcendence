@@ -29,7 +29,7 @@ namespace Transcendence
 
         private const int ChargeInterval = 5 * PhysicsFramesPerSecond;
 
-        private const float MaxSpeedupFactor = 5.0f;
+        private const float MaxSpeedupFactor = 3.0f;
 
         private static float SpeedupFactor(int geo) => 1.0f + (MaxSpeedupFactor - 1) * (float)(1.0 - Math.Exp(-geo / 5000.0));
 
