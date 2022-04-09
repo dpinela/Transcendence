@@ -7,6 +7,7 @@ locations.
 # Dependencies
 
 - ItemChanger
+- SFCore
 - HK 1.5
 
 # Compatibility
