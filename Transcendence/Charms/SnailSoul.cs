@@ -24,7 +24,8 @@ namespace Transcendence
 
         public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
         {
-            ("Fireball(Clone)", "Fireball Control", SlowVengefulSpirit),
+            ("Fireball(Clone)", "Fireball Control", ExtendVengefulSpiritDuration),
+            ("Fireball Top(Clone)", "Fireball Cast", SlowVengefulSpirit),
             ("Fireball2 Spiral(Clone)", "Fireball Control", ExtendShadeSoulDuration),
             ("Fireball2 Top(Clone)", "Fireball Cast", SlowShadeSoul)
         };
@@ -36,23 +37,32 @@ namespace Transcendence
         private const float SSWait = 0.475f;
         private const float SSVelocity = 45f;
 
-        private void SlowVengefulSpirit(PlayMakerFSM fsm)
+        private void ExtendVengefulSpiritDuration(PlayMakerFSM fsm)
         {
             var idle = fsm.GetState("Idle");
             var wait = idle.Actions[idle.Actions.Length - 1] as Wait;
             idle.SpliceAction(8, () =>
             {
-                if (Equipped())
-                {
-                    var rb = fsm.gameObject.GetComponent<Rigidbody2D>();
-                    rb.velocity = new Vector2(CopySign(VSVelocity, rb.velocity.x) / Slowdown, rb.velocity.y);
-                    wait.time.Value = VSWait * Slowdown;
-                }
-                else
-                {
-                    wait.time.Value = VSWait;
-                }
+                wait.time.Value = VSWait * (Equipped() ? Slowdown : 1);
             });
+        }
+
+        private void SlowVengefulSpirit(PlayMakerFSM fsm)
+        {
+            var castLeft = fsm.GetState("Cast Left");
+            // These objects may get reused, so avoid re-patching.
+            if (castLeft.Actions[6] is SetVelocityAsAngle sva)
+            {
+                var speedVar = sva.speed;
+
+                void AdjustSpeed()
+                {
+                    speedVar.Value = VSVelocity / (Equipped() ? Slowdown : 1);
+                }
+
+                castLeft.SpliceAction(6, AdjustSpeed);
+                fsm.GetState("Cast Right").SpliceAction(9, AdjustSpeed);
+            }
         }
 
         private void ExtendShadeSoulDuration(PlayMakerFSM fsm)
@@ -72,26 +82,20 @@ namespace Transcendence
 
         private void SlowShadeSoul(PlayMakerFSM fsm)
         {
-            // Due to the game reusing Shade Soul objects, we can't reliably set
-            // their speed from within their FSM. Instead, override the action
-            // in the cast FSM that sets the speed. This also has the advantage of
-            // being an idempotent patch, so we don't care if the Fireball2 Top
-            // object gets recycled.
             var castLeft = fsm.GetState("Cast Left");
-            var fbVar = (castLeft.Actions[4] as SpawnObjectFromGlobalPool).storeObject;
-            castLeft.ReplaceAction(6, () => {
-                var rb = fbVar.Value.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2(-SSVelocity / (Equipped() ? Slowdown : 1), 0);
-            });
-            fsm.GetState("Cast Right").ReplaceAction(6, () => {
-                var rb = fbVar.Value.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2(SSVelocity / (Equipped() ? Slowdown : 1), 0);
-            });
-        }
+            // These objects may get reused, so avoid re-patching.
+            if (castLeft.Actions[6] is SetVelocityAsAngle sva)
+            {
+                var speedVar = sva.speed;
 
-        private static float CopySign(float x, float sign)
-        {
-            return Math.Abs(x) * (sign < 0 ? -1 : 1);
+                void AdjustSpeed()
+                {
+                    speedVar.Value = SSVelocity / (Equipped() ? Slowdown : 1);
+                }
+
+                castLeft.SpliceAction(6, AdjustSpeed);
+                fsm.GetState("Cast Right").SpliceAction(6, AdjustSpeed);
+            }
         }
     }
 }
