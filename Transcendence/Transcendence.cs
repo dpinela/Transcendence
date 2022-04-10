@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Reflection;
+using MonoMod.RuntimeDetour;
 using Modding;
 using UnityEngine;
 using SFCore;
@@ -112,6 +114,10 @@ namespace Transcendence
                 // (trying to run a method whose code references an unavailable
                 // DLL will fail even if the code in question isn't actually run)
                 HookRando();
+            }
+            if (ModHooks.GetMod("DebugMod") != null)
+            {
+                HookDebugMod();
             }
         }
 
@@ -258,10 +264,7 @@ namespace Transcendence
 
             if (bossRush)
             {
-                foreach (var charm in Charms)
-                {
-                    charm.Settings(Settings).Got = true;
-                }
+                GrantAllOurCharms();
             }
             
             orig(self, permaDeath, bossRush);
@@ -415,6 +418,36 @@ namespace Transcendence
                 PlayMakerFSM.BroadcastEvent("UPDATE NAIL DAMAGE");
             }
             GameManager.instance.StartCoroutine(WaitThenUpdate());
+        }
+
+        private void GrantAllOurCharms()
+        {
+            foreach (var charm in Charms)
+            {
+                charm.Settings(Settings).Got = true;
+            }
+        }
+
+        private void HookDebugMod()
+        {
+            var commands = Type.GetType("DebugMod.BindableFunctions, DebugMod");
+            if (commands == null)
+            {
+                return;
+            }
+            var method = commands.GetMethod("GiveAllCharms", BindingFlags.Public | BindingFlags.Static);
+            if (method == null)
+            {
+                return;
+            }
+            new Hook(
+                method,
+                (Action orig) => {
+                    orig();
+                    GrantAllOurCharms();
+                    PlayerData.instance.CountCharms();
+                }
+            );
         }
     }
 }
