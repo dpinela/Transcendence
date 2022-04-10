@@ -255,6 +255,14 @@ namespace Transcendence
             }
 
             PlaceFloristsBlessingRepair();
+
+            if (bossRush)
+            {
+                foreach (var charm in Charms)
+                {
+                    charm.Settings(Settings).Got = true;
+                }
+            }
             
             orig(self, permaDeath, bossRush);
         }
