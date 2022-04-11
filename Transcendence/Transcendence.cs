@@ -248,7 +248,7 @@ namespace Transcendence
 
         private void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
         {
-            ItemChangerMod.CreateSettingsProfile(overwrite: false);
+            ItemChangerMod.CreateSettingsProfile(overwrite: false, createDefaultModules: false);
             if (ModHooks.GetMod("Randomizer 4") != null && IsRandoActive())
             {
                 PlaceItemsRando();
@@ -392,22 +392,12 @@ namespace Transcendence
 
         private static void ConfigureICModules()
         {
-            ItemChangerMod.Modules.Remove<AutoUnlockIselda>();
-            ItemChangerMod.Modules.Remove<BaldurHealthCap>();
-            ItemChangerMod.Modules.Remove<CliffsShadeSkipAssist>();
-            ItemChangerMod.Modules.Remove<DreamNailCutsceneEvent>();
-            ItemChangerMod.Modules.Remove<FastGrubfather>();
-            ItemChangerMod.Modules.Remove<GreatHopperEasterEgg>();
-            ItemChangerMod.Modules.Remove<InventoryTracker>();
-            ItemChangerMod.Modules.Remove<MenderbugUnlock>();
-            ItemChangerMod.Modules.Remove<NonlinearColosseums>();
-            ItemChangerMod.Modules.Remove<PreventLegEaterDeath>();
-            ItemChangerMod.Modules.Remove<PreventZoteDeath>();
-            ItemChangerMod.Modules.Remove<RemoveVoidHeartEffects>();
-            ItemChangerMod.Modules.Remove<ReusableBeastsDenEntrance>();
-            ItemChangerMod.Modules.Remove<ReusableCityCrestGate>();
-            ItemChangerMod.Modules.Remove<ReverseBeastDenPath>();
-            ItemChangerMod.Modules.Remove<RightCityPlatform>();
+            // Just to add the hook that Chaos Orb uses to turn on Fury.
+            ItemChangerMod.Modules.Add<FixFury>();
+            ItemChangerMod.Modules.Add<LeftCityChandelier>();
+            ItemChangerMod.Modules.Add<PlayerDataEditModule>();
+            ItemChangerMod.Modules.Add<RespawnCollectorJars>();
+            ItemChangerMod.Modules.Add<TransitionFixes>();
         }
 
         internal static void UpdateNailDamage()
