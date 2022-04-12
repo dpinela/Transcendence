@@ -9,6 +9,7 @@ using ItemChanger;
 using ItemChanger.Modules;
 using ItemChanger.Locations;
 using ItemChanger.Items;
+using ItemChanger.Tags;
 using ItemChanger.Placements;
 using ItemChanger.UIDefs;
 using RandomizerMod;
@@ -87,6 +88,12 @@ namespace Transcendence
                         shopDesc = new LanguageString("UI", $"CHARM_DESC_{charm.Num}"),
                         sprite = new EmbeddedSprite() { key = charm.Sprite }
                     }};
+                // Tag the item for ConnectionMetadataInjector, so that MapModS and
+                // other mods recognize the items we're adding as charms.
+                var mapmodTag = item.AddTag<InteropTag>();
+                mapmodTag.Message = "RandoSupplementalMetadata";
+                mapmodTag.Properties["ModSource"] = GetName();
+                mapmodTag.Properties["PoolGroup"] = "Charms";
                 Finder.DefineCustomItem(item);
             }
             for (var i = 1; i <= 40; i++)

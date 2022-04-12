@@ -9,7 +9,3 @@ locations.
 - ItemChanger
 - SFCore
 - HK 1.5
-
-# Compatibility
-
-Probably does not work with the SkillUpgrades mod.
