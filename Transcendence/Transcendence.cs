@@ -12,7 +12,12 @@ using ItemChanger.Items;
 using ItemChanger.Tags;
 using ItemChanger.Placements;
 using ItemChanger.UIDefs;
+using MenuChanger;
+using MenuChanger.MenuElements;
+using MenuChanger.MenuPanels;
+using MenuChanger.Extensions;
 using RandomizerMod;
+using RandomizerMod.Menu;
 using RandomizerMod.Settings;
 using RandomizerMod.RC;
 using RandomizerCore;
@@ -331,11 +336,29 @@ namespace Transcendence
             }
         }
 
-        private static void HookRando()
+        private void HookRando()
         {
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool); 
             RCData.RuntimeLogicOverride.Subscribe(50, DefineLogicItems);
+            RandomizerMenuAPI.AddMenuPage(BuildMenu, BuildButton);
+        }
+
+        private MenuPage SettingsPage;
+        private RandoSettings RandoSettings = new();
+
+        private void BuildMenu(MenuPage landingPage)
+        {
+            SettingsPage = new("Transcendence", landingPage);
+            var factory = new MenuElementFactory<RandoSettings>(SettingsPage, RandoSettings);
+            new VerticalItemPanel(SettingsPage, new(0, 300), 75f, false, factory.Elements);
+        }
+
+        private bool BuildButton(MenuPage landingPage, out SmallButton settingsButton)
+        {
+            settingsButton = new(landingPage, "Transcendence");
+            settingsButton.AddHideAndShowEvent(landingPage, SettingsPage);
+            return true;
         }
 
         private void SetDefaultNotchCosts()

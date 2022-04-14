@@ -49,6 +49,9 @@
     <Reference Include="ItemChanger">
       <HintPath>$(HK15PATH)/Mods/ItemChanger/ItemChanger.dll</HintPath>
     </Reference>
+    <Reference Include="MenuChanger">
+      <HintPath>$(HK15PATH)/Mods/MenuChanger/MenuChanger.dll</HintPath>
+    </Reference>
     <Reference Include="RandomizerMod">
       <HintPath>$(HK15PATH)/Mods/Randomizer 4/RandomizerMod.dll</HintPath>
     </Reference>
