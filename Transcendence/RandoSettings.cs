@@ -1,6 +1,6 @@
 namespace Transcendence
 {
-    internal class RandoSettings
+    public class RandoSettings
     {
         public bool AddCharms = true;
         

@@ -26,7 +26,7 @@ using RandomizerCore.LogicItems;
 
 namespace Transcendence
 {
-    public class Transcendence : Mod, ILocalSettings<SaveSettings>
+    public class Transcendence : Mod, ILocalSettings<SaveSettings>, IGlobalSettings<RandoSettings>
     {
         private static List<Charm> Charms = new() 
         {
@@ -163,6 +163,13 @@ namespace Transcendence
             Settings.FloristsBlessingBroken = FloristsBlessing.Instance.Broken;
             return Settings;
         }
+
+        public void OnLoadGlobal(RandoSettings s)
+        {
+            RandoSettings = s;
+        }
+
+        public RandoSettings OnSaveGlobal() => RandoSettings;
 
         private bool ReadCharmBools(string boolName, bool value)
         {
