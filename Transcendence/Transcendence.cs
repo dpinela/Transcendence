@@ -339,7 +339,8 @@ namespace Transcendence
         private void HookRando()
         {
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
-            RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool); 
+            RequestBuilder.OnUpdate.Subscribe(-200, IncreaseMaxCharmCost);
+            RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
             RCData.RuntimeLogicOverride.Subscribe(50, DefineLogicItems);
             RandomizerMenuAPI.AddMenuPage(BuildMenu, BuildButton);
         }
@@ -349,14 +350,14 @@ namespace Transcendence
 
         private void BuildMenu(MenuPage landingPage)
         {
-            SettingsPage = new("Transcendence", landingPage);
+            SettingsPage = new(GetName(), landingPage);
             var factory = new MenuElementFactory<RandoSettings>(SettingsPage, RandoSettings);
             new VerticalItemPanel(SettingsPage, new(0, 300), 75f, false, factory.Elements);
         }
 
         private bool BuildButton(MenuPage landingPage, out SmallButton settingsButton)
         {
-            settingsButton = new(landingPage, "Transcendence");
+            settingsButton = new(landingPage, GetName());
             settingsButton.AddHideAndShowEvent(landingPage, SettingsPage);
             return true;
         }
@@ -391,6 +392,14 @@ namespace Transcendence
             }
         }
 
+        private void IncreaseMaxCharmCost(RequestBuilder rb)
+        {
+            if (RandoSettings.AddCharms)
+            {
+                rb.gs.CostSettings.MaximumCharmCost += RandoSettings.IncreaseMaxCharmCostBy;
+            }
+        }
+
         private static void DefineLogicItems(GenerationSettings gs, LogicManagerBuilder lmb)
         {
             if (!gs.PoolSettings.Charms)
@@ -401,13 +410,18 @@ namespace Transcendence
             {
                 var name = charm.Name.Replace(" ", "_");
                 var term = lmb.GetOrAddTerm(name);
-                lmb.AddItem(new SingleItem(name, new TermValue(term, 1)));
+                var oneOf = new TermValue(term, 1);
+                lmb.AddItem(new CappedItem(name, new TermValue[]
+                {
+                    oneOf,
+                    new TermValue(lmb.GetTerm("CHARMS"), 1)
+                }, oneOf));
             }
         }
 
-        private static void AddCharmsToPool(RequestBuilder rb)
+        private void AddCharmsToPool(RequestBuilder rb)
         {
-            if (!rb.gs.PoolSettings.Charms)
+            if (!(rb.gs.PoolSettings.Charms && RandoSettings.AddCharms))
             {
                 return;
             }
