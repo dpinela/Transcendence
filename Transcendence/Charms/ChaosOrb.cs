@@ -57,8 +57,10 @@ namespace Transcendence
             var unequippedCharms = new List<int>();
             for (var i = 1; i <= 40; i++)
             {
-                // Quick Slash and Elegy are excluded because they don't work.
-                if (!(i == 32 || i == 35 || PlayerData.instance.GetBool($"equippedCharm_{i}")))
+                // Quick Slash and Elegy are excluded because they don't work at all.
+                // Joni's Blessing is excluded because it causes wonky behaviour
+                // when given by this charm.
+                if (!(i == 32 || i == 35 || i == 27 || PlayerData.instance.GetBool($"equippedCharm_{i}")))
                 {
                     unequippedCharms.Add(i);
                 }
