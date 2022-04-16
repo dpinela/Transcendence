@@ -1,8 +1,6 @@
 using System;
 using System.IO;
 using System.Collections;
-using System.Reflection;
-using MonoMod.RuntimeDetour;
 using Modding;
 using UnityEngine;
 using SFCore;
@@ -29,7 +27,7 @@ using RandomizerCore.LogicItems;
 
 namespace Transcendence
 {
-    public class Transcendence : Mod, ILocalSettings<SaveSettings>, IGlobalSettings<RandoSettings>
+    public class Transcendence : Mod, ILocalSettings<SaveSettings>, IGlobalSettings<RawRandoSettings>
     {
         private static List<Charm> Charms = new() 
         {
@@ -132,7 +130,10 @@ namespace Transcendence
             }
             if (ModHooks.GetMod("DebugMod") != null)
             {
-                HookDebugMod();
+                DebugModHook.GiveAllCharms(() => {
+                    GrantAllOurCharms();
+                    PlayerData.instance.CountCharms();
+                });
             }
         }
 
@@ -167,12 +168,12 @@ namespace Transcendence
             return Settings;
         }
 
-        public void OnLoadGlobal(RandoSettings s)
+        public void OnLoadGlobal(RawRandoSettings s)
         {
-            RandoSettings = s;
+            RandoSettings = new(s);
         }
 
-        public RandoSettings OnSaveGlobal() => RandoSettings;
+        public RawRandoSettings OnSaveGlobal() => RandoSettings.ToRaw();
 
         private bool ReadCharmBools(string boolName, bool value)
         {
@@ -356,20 +357,23 @@ namespace Transcendence
             SettingsLog.AfterLogSettings += LogRandoSettings;
         }
 
-        private MenuPage SettingsPage;
-        private RandoSettings RandoSettings = new();
+        // This is actually a MenuPage, but we can't use that as the static type because then this mod won't
+        // load without MenuChanger installed because the runtime can't load the type of the field.
+        private object SettingsPage;
+        private RandoSettings RandoSettings = new(new RawRandoSettings());
 
         private void BuildMenu(MenuPage landingPage)
         {
-            SettingsPage = new(GetName(), landingPage);
-            var factory = new MenuElementFactory<RandoSettings>(SettingsPage, RandoSettings);
-            new VerticalItemPanel(SettingsPage, new(0, 300), 75f, true, factory.Elements);
+            var sp = new MenuPage(GetName(), landingPage);
+            SettingsPage = sp;
+            var factory = new MenuElementFactory<RandoSettings>(sp, RandoSettings);
+            new VerticalItemPanel(sp, new(0, 300), 75f, true, factory.Elements);
         }
 
         private bool BuildButton(MenuPage landingPage, out SmallButton settingsButton)
         {
             settingsButton = new(landingPage, GetName());
-            settingsButton.AddHideAndShowEvent(landingPage, SettingsPage);
+            settingsButton.AddHideAndShowEvent(landingPage, (MenuPage)SettingsPage);
             return true;
         }
 
@@ -477,28 +481,6 @@ namespace Transcendence
             {
                 charm.Settings(Settings).Got = true;
             }
-        }
-
-        private void HookDebugMod()
-        {
-            var commands = Type.GetType("DebugMod.BindableFunctions, DebugMod");
-            if (commands == null)
-            {
-                return;
-            }
-            var method = commands.GetMethod("GiveAllCharms", BindingFlags.Public | BindingFlags.Static);
-            if (method == null)
-            {
-                return;
-            }
-            new Hook(
-                method,
-                (Action orig) => {
-                    orig();
-                    GrantAllOurCharms();
-                    PlayerData.instance.CountCharms();
-                }
-            );
         }
     }
 }
