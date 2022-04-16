@@ -4,6 +4,8 @@ Can work with or without the randomizer: if it is in use and charms are randomiz
 the charms are shuffled into the pool, otherwise they are placed at set hidden
 locations.
 
+See SPOILERS.md for a description of what the charms do and their vanilla locations and notch costs.
+
 # Dependencies
 
 - ItemChanger
