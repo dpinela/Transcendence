@@ -1,5 +1,6 @@
 using System;
 using Modding;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Transcendence
 {
@@ -27,6 +28,7 @@ namespace Transcendence
         {
             ModHooks.SetPlayerBoolHook += RerollCharmsOnEquip;
             ModHooks.GetPlayerIntHook += EnableKingsoul;
+            ModHooks.DashVectorHook += EnableSharpShadow;
         }
 
         private List<int> GivenCharms = new();
@@ -138,6 +140,22 @@ namespace Transcendence
                 value = 3;
             }
             return value;
+        }
+
+        // While the game will automatically enable the damage effect of Sharp Shadow when given,
+        // it will not enable the extended dash length, so we have to do that ourselves.
+        // This is something of a kludge - there's probably an event somewhere that is sent normally
+        // when the player equips it that Chaos Orb isn't replicating.
+        private Vector2 EnableSharpShadow(Vector2 orig)
+        {
+            // Apply our changes only if the player is dashing horizontally;
+            // SkillUpgrades's directional dash already has the extra distance calculated into it,
+            // but only for dashes that go up or down; purely horizontal dashes are unaffected.
+            if (!(orig.y == 0 && HeroController.instance.cState.shadowDashing && Equipped() && GivingCharm(16)))
+            {
+                return orig;
+            }
+            return new Vector2(orig.x * 1.4f, orig.y);
         }
     }
 }
