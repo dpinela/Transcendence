@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Reflection;
 using MonoMod.RuntimeDetour;
@@ -19,6 +20,8 @@ using MenuChanger.Extensions;
 using RandomizerMod;
 using RandomizerMod.Menu;
 using RandomizerMod.Settings;
+using RandomizerMod.Logging;
+using RandomizerMod.RandomizerData;
 using RandomizerMod.RC;
 using RandomizerCore;
 using RandomizerCore.Logic;
@@ -350,6 +353,7 @@ namespace Transcendence
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
             RCData.RuntimeLogicOverride.Subscribe(50, DefineLogicItems);
             RandomizerMenuAPI.AddMenuPage(BuildMenu, BuildButton);
+            SettingsLog.AfterLogSettings += LogRandoSettings;
         }
 
         private MenuPage SettingsPage;
@@ -359,7 +363,7 @@ namespace Transcendence
         {
             SettingsPage = new(GetName(), landingPage);
             var factory = new MenuElementFactory<RandoSettings>(SettingsPage, RandoSettings);
-            new VerticalItemPanel(SettingsPage, new(0, 300), 75f, false, factory.Elements);
+            new VerticalItemPanel(SettingsPage, new(0, 300), 75f, true, factory.Elements);
         }
 
         private bool BuildButton(MenuPage landingPage, out SmallButton settingsButton)
@@ -367,6 +371,12 @@ namespace Transcendence
             settingsButton = new(landingPage, GetName());
             settingsButton.AddHideAndShowEvent(landingPage, SettingsPage);
             return true;
+        }
+
+        private void LogRandoSettings(LogArguments args, TextWriter w)
+        {
+            w.WriteLine("Logging Transcendence settings:");
+            w.WriteLine(JsonUtil.Serialize(RandoSettings));
         }
 
         private void SetDefaultNotchCosts()
