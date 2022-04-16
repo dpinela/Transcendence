@@ -31,6 +31,11 @@ namespace Transcendence
             ("Scr Heads 2", "FSM", EnlargeShriek)
         };
 
+        public override void Hook()
+        {
+            ModHooks.ObjectPoolSpawnHook += EnlargeFlukes;
+        }
+
         private static bool ShamanStoneEquipped() =>
             PlayerData.instance.GetBool("equippedCharm_19");
 
@@ -155,6 +160,17 @@ namespace Transcendence
                 var k = EnlargementFactor();
                 obj.transform.localScale = new Vector3(vec.x * k, vec.y * k, vec.z);
             }
+        }
+
+        private GameObject EnlargeFlukes(GameObject obj)
+        {
+            if (obj.name.StartsWith("Spell Fluke") && Equipped())
+            {
+                var vec = obj.transform.localScale;
+                var k = EnlargementFactor();
+                obj.transform.localScale = new Vector3(vec.x * k, vec.y * k, vec.z);
+            }
+            return obj;
         }
     }
 }
