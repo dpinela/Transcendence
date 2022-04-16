@@ -22,7 +22,15 @@ namespace Transcendence
         {
             ModHooks.GetPlayerIntHook += NerfNail;
             ModHooks.SetPlayerBoolHook += UpdateNailDamageOnEquip;
-            On.PlayerData.AddMPCharge += IncreaseSoulCollection;
+            // Soul gain through nail hits doesn't go through HeroController.AddMPCharge for some reason.
+            // It does go through PlayerData.AddMPCharge, but if we hook that
+            // we also duplicate soul transferred from the extra vessels, which
+            // is not what we want.
+            // The same happens if we hook HeroController.TryAddMPChargeSpa,
+            // so it seems that there is no way to speed up soul collection from
+            // hot springs and Salubra's Blessing without causing that bug.
+            ModHooks.SoulGainHook += IncreaseSoulCollectionFromNail;
+            On.HeroController.AddMPCharge += IncreaseSoulCollectionFromElsewhere;
         }
 
         private int NerfNail(string intName, int value)
@@ -34,13 +42,22 @@ namespace Transcendence
             return value;
         }
 
-        private bool IncreaseSoulCollection(On.PlayerData.orig_AddMPCharge orig, PlayerData self, int soul)
+        private int IncreaseSoulCollectionFromNail(int soul)
         {
             if (Equipped())
             {
                 soul *= 2;
             }
-            return orig(self, soul);
+            return soul;
+        }
+
+        private void IncreaseSoulCollectionFromElsewhere(On.HeroController.orig_AddMPCharge orig, HeroController self, int soul)
+        {
+            if (Equipped())
+            {
+                soul *= 2;
+            }
+            orig(self, soul);
         }
 
         private bool UpdateNailDamageOnEquip(string boolName, bool value)
