@@ -160,11 +160,13 @@ namespace Transcendence
         {
             Settings = s;
             FloristsBlessing.Instance.Broken = s.FloristsBlessingBroken;
+            ChaosOrb.Instance.GivenCharms = s.ChaosOrbGivenCharms;
         }
 
         public SaveSettings OnSaveLocal()
         {
             Settings.FloristsBlessingBroken = FloristsBlessing.Instance.Broken;
+            Settings.ChaosOrbGivenCharms = ChaosOrb.Instance.GivenCharms;
             return Settings;
         }
 

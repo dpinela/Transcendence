@@ -31,7 +31,7 @@ namespace Transcendence
             ModHooks.DashVectorHook += EnableSharpShadow;
         }
 
-        private List<int> GivenCharms = new();
+        public List<int> GivenCharms = new();
         public bool GivingCharm(int num) => GivenCharms.Contains(num);
 
         private string GivenCharmDescription() =>
