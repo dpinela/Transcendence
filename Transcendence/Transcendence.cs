@@ -335,6 +335,9 @@ namespace Transcendence
 
         private void RandomizeNotchCosts(int seed)
         {
+            // This log statement is here to help diagnose a possible bug where charms cost more than
+            // they ever should.
+            Log("Randomizing notch costs");
             var rng = new System.Random(seed);
             var total = Charms.Select(x => x.DefaultCost).Sum();
             for (var i = 0; i < total; i++)

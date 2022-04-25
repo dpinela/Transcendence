@@ -1,6 +1,7 @@
 using System;
 using Modding;
 using Vector2 = UnityEngine.Vector2;
+using ItemChanger;
 
 namespace Transcendence
 {
@@ -29,6 +30,12 @@ namespace Transcendence
             ModHooks.SetPlayerBoolHook += RerollCharmsOnEquip;
             ModHooks.GetPlayerIntHook += EnableKingsoul;
             ModHooks.DashVectorHook += EnableSharpShadow;
+            // While picking up a WhiteFragmentItem, having royalCharmState raised to 3 will cause the fragment
+            // to erroneously turn into Void Heart. So we need to disable that hook before ItemChanger calls
+            // the item's Redundant method, and enable it again after. These are the closest hook points that ItemChanger
+            // provides to do that. Hopefully nothing in between throws an exception!
+            AbstractItem.BeforeGiveGlobal += DisableKingsoulFakery;
+            AbstractItem.OnGiveGlobal += EnableKingsoulFakery;
         }
 
         public List<int> GivenCharms = new();
@@ -140,6 +147,16 @@ namespace Transcendence
                 value = 3;
             }
             return value;
+        }
+
+        private void DisableKingsoulFakery(ReadOnlyGiveEventArgs args)
+        {
+            ModHooks.GetPlayerIntHook -= EnableKingsoul;
+        }
+
+        private void EnableKingsoulFakery(ReadOnlyGiveEventArgs args)
+        {
+            ModHooks.GetPlayerIntHook += EnableKingsoul;
         }
 
         // While the game will automatically enable the damage effect of Sharp Shadow when given,
