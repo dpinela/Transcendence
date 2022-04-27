@@ -30,12 +30,12 @@ namespace Transcendence
             ModHooks.SetPlayerBoolHook += RerollCharmsOnEquip;
             ModHooks.GetPlayerIntHook += EnableKingsoul;
             ModHooks.DashVectorHook += EnableSharpShadow;
-            // While picking up a WhiteFragmentItem, having royalCharmState raised to 3 will cause the fragment
-            // to erroneously turn into Void Heart. So we need to disable that hook before ItemChanger calls
-            // the item's Redundant method, and enable it again after. These are the closest hook points that ItemChanger
-            // provides to do that. Hopefully nothing in between throws an exception!
-            AbstractItem.BeforeGiveGlobal += DisableKingsoulFakery;
-            AbstractItem.OnGiveGlobal += EnableKingsoulFakery;
+            // Temporarily stop giving any charms while ItemChanger is giving an item. This solves two issues:
+            // - While picking up a WhiteFragmentItem, having royalCharmState raised to 3 from EnableKingsoul would cause
+            // the fragment to erroneously turn into Void Heart.
+            // - When NotchCostUI is active, picking up a charm that is currently being granted by the Orb would make
+            // the pickup message display the cost as 0 instead of the charm's actual cost.
+            AbstractItem.ModifyItemGlobal += DisableWhileGivingItem;
         }
 
         public List<int> GivenCharms = new();
@@ -149,14 +149,15 @@ namespace Transcendence
             return value;
         }
 
-        private void DisableKingsoulFakery(ReadOnlyGiveEventArgs args)
-        {
-            ModHooks.GetPlayerIntHook -= EnableKingsoul;
-        }
+        private static readonly List<int> empty = new();
 
-        private void EnableKingsoulFakery(ReadOnlyGiveEventArgs args)
+        private void DisableWhileGivingItem(GiveEventArgs args)
         {
-            ModHooks.GetPlayerIntHook += EnableKingsoul;
+            var givenCharms = GivenCharms;
+            GivenCharms = empty;
+            args.Info.Callback += (AbstractItem it) => {
+                GivenCharms = givenCharms;
+            };
         }
 
         // While the game will automatically enable the damage effect of Sharp Shadow when given,
