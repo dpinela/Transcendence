@@ -152,7 +152,7 @@ namespace Transcendence
             TextEdits.Add((key, sheetName), text);
         }
 
-        public override string GetVersion() => "1.1";
+        public override string GetVersion() => "1.1.1";
 
         private SaveSettings Settings = new();
 
