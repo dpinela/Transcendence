@@ -153,6 +153,11 @@ namespace Transcendence
 
         private void DisableWhileGivingItem(GiveEventArgs args)
         {
+            // args.Info may be null in contexts where no item is being given.
+            if (args == null || args.Info == null)
+            {
+                return;
+            }
             var givenCharms = GivenCharms;
             GivenCharms = empty;
             args.Info.Callback += (AbstractItem it) => {
