@@ -463,11 +463,11 @@ namespace Transcendence
         private static void ConfigureICModules()
         {
             // Just to add the hook that Chaos Orb uses to turn on Fury.
-            ItemChangerMod.Modules.Add<FixFury>();
-            ItemChangerMod.Modules.Add<LeftCityChandelier>();
-            ItemChangerMod.Modules.Add<PlayerDataEditModule>();
-            ItemChangerMod.Modules.Add<RespawnCollectorJars>();
-            ItemChangerMod.Modules.Add<TransitionFixes>();
+            ItemChangerMod.Modules.GetOrAdd<FixFury>();
+            ItemChangerMod.Modules.GetOrAdd<LeftCityChandelier>();
+            ItemChangerMod.Modules.GetOrAdd<PlayerDataEditModule>();
+            ItemChangerMod.Modules.GetOrAdd<RespawnCollectorJars>();
+            ItemChangerMod.Modules.GetOrAdd<TransitionFixes>();
         }
 
         internal static void UpdateNailDamage()
