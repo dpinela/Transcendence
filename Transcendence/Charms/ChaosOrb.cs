@@ -29,10 +29,13 @@ namespace Transcendence
         {
             ModHooks.SetPlayerBoolHook += RerollCharmsOnEquip;
             ModHooks.GetPlayerIntHook += EnableKingsoul;
-            ModHooks.GetPlayerBoolHook += GiveUnbreakableCharms;
+            ModHooks.GetPlayerBoolHook += EnableUnbreakableCharms;
             // Temporarily stop giving any charms while ItemChanger is giving an item. This solves two issues:
             // - While picking up a WhiteFragmentItem, having royalCharmState raised to 3 from EnableKingsoul would cause
             // the fragment to erroneously turn into Void Heart.
+            // - While picking up a Fragile/Unbreakable charm, having it set to unbreakable from EnableUnbreakableCharms
+            // would cause... problems. (Probably, the Fragile version would be given as normal, but the Unbreakable
+            // pickup would be treated as a duplicate as the game thinks you already have it.)
             // - When NotchCostUI is active, picking up a charm that is currently being granted by the Orb would make
             // the pickup message display the cost as 0 instead of the charm's actual cost.
             AbstractItem.ModifyItemGlobal += DisableWhileGivingItem;
@@ -51,6 +54,7 @@ namespace Transcendence
         private static string CharmName(int num) {
             var key = num switch {
                 36 => PlayerData.instance.GetInt("royalCharmState") > 3 ? "CHARM_NAME_36_C" : "CHARM_NAME_36_B",
+                23 or 24 or 25 => $"CHARM_NAME_{num}_G",
                 _ => $"CHARM_NAME_{num}"
             };
             return Language.Language.Get(key, "UI");
@@ -147,6 +151,14 @@ namespace Transcendence
             }
             return value;
         }
+
+        private bool EnableUnbreakableCharms(string boolName, bool value) =>
+            boolName switch {
+                "fragileHealth_unbreakable" => value || (Equipped() && GivingCharm(23)),
+                "fragileGreed_unbreakable" => value || (Equipped() && GivingCharm(24)),
+                "fragileStrength_unbreakable" => value || (Equipped() && GivingCharm(25)),
+                _ => value
+            };
 
         private static readonly List<int> empty = new();
 
