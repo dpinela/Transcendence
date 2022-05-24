@@ -29,7 +29,7 @@ namespace Transcendence
         {
             ModHooks.SetPlayerBoolHook += RerollCharmsOnEquip;
             ModHooks.GetPlayerIntHook += EnableKingsoul;
-            ModHooks.DashVectorHook += EnableSharpShadow;
+            ModHooks.GetPlayerBoolHook += GiveUnbreakableCharms;
             // Temporarily stop giving any charms while ItemChanger is giving an item. This solves two issues:
             // - While picking up a WhiteFragmentItem, having royalCharmState raised to 3 from EnableKingsoul would cause
             // the fragment to erroneously turn into Void Heart.
@@ -66,10 +66,9 @@ namespace Transcendence
             var unequippedCharms = new List<int>();
             for (var i = 1; i <= 40; i++)
             {
-                // Quick Slash and Elegy are excluded because they don't work at all.
                 // Joni's Blessing is excluded because it causes wonky behaviour
                 // when given by this charm.
-                if (!(i == 32 || i == 35 || i == 27 || PlayerData.instance.GetBool($"equippedCharm_{i}")))
+                if (!(i == 27 || PlayerData.instance.GetBool($"equippedCharm_{i}")))
                 {
                     unequippedCharms.Add(i);
                 }
@@ -163,22 +162,6 @@ namespace Transcendence
             args.Info.Callback += (AbstractItem it) => {
                 GivenCharms = givenCharms;
             };
-        }
-
-        // While the game will automatically enable the damage effect of Sharp Shadow when given,
-        // it will not enable the extended dash length, so we have to do that ourselves.
-        // This is something of a kludge - there's probably an event somewhere that is sent normally
-        // when the player equips it that Chaos Orb isn't replicating.
-        private Vector2 EnableSharpShadow(Vector2 orig)
-        {
-            // Apply our changes only if the player is dashing horizontally;
-            // SkillUpgrades's directional dash already has the extra distance calculated into it,
-            // but only for dashes that go up or down; purely horizontal dashes are unaffected.
-            if (!(orig.y == 0 && HeroController.instance.cState.shadowDashing && Equipped() && GivingCharm(16)))
-            {
-                return orig;
-            }
-            return new Vector2(orig.x * 1.4f, orig.y);
         }
     }
 }
