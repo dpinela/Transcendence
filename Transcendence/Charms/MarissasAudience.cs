@@ -1,5 +1,6 @@
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
+using UnityEngine;
 
 namespace Transcendence
 {
@@ -22,7 +23,9 @@ namespace Transcendence
         public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
         {
             ("Charm Effects", "Weaverling Control", DoubleWeaverlings),
-            ("Charm Effects", "Hatchling Spawn", DoubleHatchlings)
+            ("Charm Effects", "Hatchling Spawn", DoubleHatchlings),
+            ("Charm Effects", "Spawn Grimmchild", DoubleGrimmchild),
+            ("Grimmchild(Clone)", "Control", MoveDuplicateGrimmchild)
         };
 
         private void DoubleWeaverlings(PlayMakerFSM fsm)
@@ -48,6 +51,36 @@ namespace Transcendence
                 var max = Equipped() ? 8 : 4;
                 fsm.SendEvent(countVar.Value >= max ? "CANCEL" : "FINISHED");
             });
+        }
+
+        private GameObject DuplicateGrimmchild;
+
+        private void DoubleGrimmchild(PlayMakerFSM fsm)
+        {
+            var spawn = fsm.GetState("Spawn");
+            var origSpawn = spawn.Actions[2] as SpawnObjectFromGlobalPool;
+            spawn.SpliceAction(3, () => {
+                if (Equipped())
+                {
+                    var spawnPoint = origSpawn.spawnPoint.Value.transform;
+                    DuplicateGrimmchild = origSpawn.gameObject.Value.Spawn(spawnPoint.position, spawnPoint.rotation);
+                }
+            });
+        }
+
+        private void MoveDuplicateGrimmchild(PlayMakerFSM fsm)
+        {
+            var change = fsm.GetState("Change");
+            // Grimmchild objects can be reused, so check if this one has been patched
+            // already.
+            if (change.Actions[1] is SetFloatValue s)
+            {
+                var offsetX = (change.Actions[1] as SetFloatValue).floatValue;
+                change.PrependAction(() => {
+                    offsetX.Value = fsm.gameObject == DuplicateGrimmchild ? 4.5f : 2f;
+                    Transcendence.Instance.Log($"setting Grimmchild '{fsm.gameObject.name}' to offsetX {offsetX.Value}");
+                });
+            }
         }
     }
 }
