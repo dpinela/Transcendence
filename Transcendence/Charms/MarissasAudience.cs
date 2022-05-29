@@ -26,7 +26,9 @@ namespace Transcendence
             ("Charm Effects", "Weaverling Control", DoubleWeaverlings),
             ("Charm Effects", "Hatchling Spawn", DoubleHatchlings),
             ("Charm Effects", "Spawn Grimmchild", DoubleGrimmchild),
-            ("Grimmchild(Clone)", "Control", MoveDuplicateGrimmchild)
+            ("Grimmchild(Clone)", "Control", MoveDuplicateGrimmchild),
+            ("Grimm Scene", "Initial Scene", UpgradeDuplicateGrimmchildTo2),
+            ("Defeated NPC", "Conversation Control", UpgradeDuplicateGrimmchildTo3)
         };
 
         public override void Hook()
@@ -96,12 +98,17 @@ namespace Transcendence
         {
             if (DuplicateGrimmchild != null)
             {
-                FSMUtility.LocateMyFSM(DuplicateGrimmchild, "Charm Unequip").Fsm.Event(new FsmEventTarget() {
-                    target = FsmEventTarget.EventTarget.GameObject,
-                    gameObject = new FsmOwnerDefault() { GameObject = new FsmGameObject(DuplicateGrimmchild)}
-                }, "DESPAWN");
+                SendEventToDuplicateGrimmchild("DESPAWN");
                 DuplicateGrimmchild = null;
             }
+        }
+
+        private void SendEventToDuplicateGrimmchild(string eventName)
+        {
+            FSMUtility.LocateMyFSM(DuplicateGrimmchild, "Charm Unequip").Fsm.Event(new FsmEventTarget() {
+                target = FsmEventTarget.EventTarget.GameObject,
+                gameObject = new FsmOwnerDefault() { GameObject = new FsmGameObject(DuplicateGrimmchild)}
+            }, eventName);
         }
 
         private bool GrimmchildEquipped() => PlayerData.instance.GetBool("equippedCharm_40");
@@ -134,6 +141,26 @@ namespace Transcendence
                     offsetX.Value = fsm.gameObject == DuplicateGrimmchild ? 4.5f : 2f;
                 });
             }
+        }
+
+        private void UpgradeDuplicateGrimmchildTo2(PlayMakerFSM fsm)
+        {
+            fsm.GetState("Level Up To 2").AppendAction(() => {
+                if (Equipped() && DuplicateGrimmchild != null)
+                {
+                    SendEventToDuplicateGrimmchild("LEVEL UP");
+                }
+            });
+        }
+
+        private void UpgradeDuplicateGrimmchildTo3(PlayMakerFSM fsm)
+        {
+            fsm.GetState("Level Up To 3").AppendAction(() => {
+                if (Equipped() && DuplicateGrimmchild != null)
+                {
+                    SendEventToDuplicateGrimmchild("LEVEL UP 2");
+                }
+            });
         }
     }
 }

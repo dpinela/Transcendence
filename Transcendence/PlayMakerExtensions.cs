@@ -37,6 +37,11 @@ namespace Transcendence
             SpliceAction(s, s.Actions.Length, a);
         }
 
+        internal static void AppendAction(this FsmState s, Action a)
+        {
+            AddAction(s, a);
+        }
+
         internal static void SpliceAction(this FsmState s, int pos, Action a)
         {
             var actions = new FsmStateAction[s.Actions.Length + 1];
