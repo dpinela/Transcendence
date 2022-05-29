@@ -78,5 +78,10 @@ namespace Transcendence
         {
             return fsm.FsmVariables.IntVariables.FirstOrDefault(v => v.Name == name);
         }
+
+        internal static FsmBool GetFsmBool(this PlayMakerFSM fsm, string name)
+        {
+            return fsm.FsmVariables.BoolVariables.FirstOrDefault(v => v.Name == name);
+        }
     }
 }

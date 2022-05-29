@@ -1,6 +1,7 @@
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using UnityEngine;
+using Modding;
 
 namespace Transcendence
 {
@@ -28,6 +29,11 @@ namespace Transcendence
             ("Grimmchild(Clone)", "Control", MoveDuplicateGrimmchild)
         };
 
+        public override void Hook()
+        {
+            ModHooks.SetPlayerBoolHook += ToggleDuplicateGrimmchild;
+        }
+
         private void DoubleWeaverlings(PlayMakerFSM fsm)
         {
             var spawnExtra = fsm.AddState("Spawn Extra");
@@ -54,18 +60,66 @@ namespace Transcendence
         }
 
         private GameObject DuplicateGrimmchild;
+        // These will not be available until the first time that Grimmchild is spawned.
+        // This should not be a problem; under no circumstances would a duplicate
+        // Grimmchild need to spawn before the original.
+        private GameObject GrimmchildPrefab;
+        private Transform GrimmchildPrefabTransform;
 
         private void DoubleGrimmchild(PlayMakerFSM fsm)
         {
             var spawn = fsm.GetState("Spawn");
             var origSpawn = spawn.Actions[2] as SpawnObjectFromGlobalPool;
             spawn.SpliceAction(3, () => {
+                var spawnPoint = origSpawn.spawnPoint.Value.transform;
+                GrimmchildPrefabTransform = spawnPoint;
+                GrimmchildPrefab = origSpawn.gameObject.Value;
                 if (Equipped())
                 {
-                    var spawnPoint = origSpawn.spawnPoint.Value.transform;
                     DuplicateGrimmchild = origSpawn.gameObject.Value.Spawn(spawnPoint.position, spawnPoint.rotation);
                 }
             });
+        }
+
+        private void SpawnDuplicateGrimmchild()
+        {
+            if (GrimmchildPrefab == null)
+            {
+                Transcendence.Instance.LogError("cannot spawn duplicate Grimmchild; missing prefab");
+                return;
+            }
+            DuplicateGrimmchild = GrimmchildPrefab.Spawn(GrimmchildPrefabTransform.position, GrimmchildPrefabTransform.rotation);
+            FSMUtility.LocateMyFSM(DuplicateGrimmchild, "Control").GetFsmBool("Scene Appear").Value = true;
+        }
+
+        private void DespawnDuplicateGrimmchild()
+        {
+            if (DuplicateGrimmchild != null)
+            {
+                FSMUtility.LocateMyFSM(DuplicateGrimmchild, "Charm Unequip").Fsm.Event(new FsmEventTarget() {
+                    target = FsmEventTarget.EventTarget.GameObject,
+                    gameObject = new FsmOwnerDefault() { GameObject = new FsmGameObject(DuplicateGrimmchild)}
+                }, "DESPAWN");
+                DuplicateGrimmchild = null;
+            }
+        }
+
+        private bool GrimmchildEquipped() => PlayerData.instance.GetBool("equippedCharm_40");
+
+        private bool ToggleDuplicateGrimmchild(string boolName, bool value)
+        {
+            if (boolName == $"equippedCharm_{Num}" && GrimmchildEquipped())
+            {
+                if (value && DuplicateGrimmchild == null)
+                {
+                    SpawnDuplicateGrimmchild();
+                }
+                else if (!value && DuplicateGrimmchild != null)
+                {
+                    DespawnDuplicateGrimmchild();
+                }
+            }
+            return value;
         }
 
         private void MoveDuplicateGrimmchild(PlayMakerFSM fsm)
@@ -75,10 +129,9 @@ namespace Transcendence
             // already.
             if (change.Actions[1] is SetFloatValue s)
             {
-                var offsetX = (change.Actions[1] as SetFloatValue).floatValue;
+                var offsetX = s.floatValue;
                 change.PrependAction(() => {
                     offsetX.Value = fsm.gameObject == DuplicateGrimmchild ? 4.5f : 2f;
-                    Transcendence.Instance.Log($"setting Grimmchild '{fsm.gameObject.name}' to offsetX {offsetX.Value}");
                 });
             }
         }
