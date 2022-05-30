@@ -28,7 +28,8 @@ namespace Transcendence
             ("Charm Effects", "Spawn Grimmchild", DoubleGrimmchild),
             ("Grimmchild(Clone)", "Control", MoveDuplicateGrimmchild),
             ("Grimm Scene", "Initial Scene", UpgradeDuplicateGrimmchildTo2),
-            ("Defeated NPC", "Conversation Control", UpgradeDuplicateGrimmchildTo3)
+            ("Defeated NPC", "Conversation Control", UpgradeDuplicateGrimmchildTo3),
+            ("Charm Effects", "Spawn Orbit Shield", DoubleDreamshield)
         };
 
         public override void Hook()
@@ -179,6 +180,19 @@ namespace Transcendence
                 if (Equipped() && DuplicateGrimmchild != null)
                 {
                     SendEventToDuplicateGrimmchild("LEVEL UP 2");
+                }
+            });
+        }
+
+        private void DoubleDreamshield(PlayMakerFSM fsm)
+        {
+            var spawn = fsm.GetState("Spawn");
+            var origSpawn = spawn.Actions[2] as SpawnObjectFromGlobalPool;
+            spawn.SpliceAction(3, () => {
+                if (Equipped())
+                {
+                    var dupeShield = origSpawn.gameObject.Value.Spawn(Vector3.zero, Quaternion.Euler(Vector3.up));
+                    dupeShield.transform.Rotate(0, 0, 180);
                 }
             });
         }
