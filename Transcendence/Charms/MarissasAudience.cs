@@ -34,6 +34,7 @@ namespace Transcendence
         public override void Hook()
         {
             ModHooks.SetPlayerBoolHook += ToggleDuplicateGrimmchild;
+            ChaosOrb.Instance.OnReroll += ToggleDuplicateGrimmchildFromChaosOrb;
         }
 
         private void DoubleWeaverlings(PlayMakerFSM fsm)
@@ -127,6 +128,25 @@ namespace Transcendence
                 }
             }
             return value;
+        }
+
+        private static bool JustGrantedCharm(List<int> prevCharms, List<int> newCharms, int num) =>
+            !prevCharms.Contains(num) && newCharms.Contains(num);
+
+        private void ToggleDuplicateGrimmchildFromChaosOrb(List<int> prevCharms, List<int> newCharms)
+        {
+            // Spawn the duplicate Grimmchild if the Orb just granted this charm and Grimmchild is equipped,
+            // unless it also just granted Grimmchild, in which case the spawn FSM takes care of this.
+            if (JustGrantedCharm(prevCharms, newCharms, Num) && !JustGrantedCharm(prevCharms, newCharms, 40) && GrimmchildEquipped())
+            {
+                SpawnDuplicateGrimmchild();
+            }
+            // Despawn the duplicate Grimmchild if the Orb just removed this charm and Grimmchild is equipped, unless
+            // it also just granted Grimmchild, in which case there is no duplicate Grimmchild to despawn.
+            else if (prevCharms.Contains(Num) && !newCharms.Contains(Num) && !JustGrantedCharm(prevCharms, newCharms, 40) && GrimmchildEquipped())
+            {
+                DespawnDuplicateGrimmchild();
+            }
         }
 
         private void MoveDuplicateGrimmchild(PlayMakerFSM fsm)
