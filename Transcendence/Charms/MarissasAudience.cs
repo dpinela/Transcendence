@@ -2,6 +2,7 @@ using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using UnityEngine;
 using Modding;
+using System.Collections;
 
 namespace Transcendence
 {
@@ -76,8 +77,11 @@ namespace Transcendence
             var origSpawn = spawn.Actions[2] as SpawnObjectFromGlobalPool;
             spawn.SpliceAction(3, () => {
                 var spawnPoint = origSpawn.spawnPoint.Value.transform;
-                GrimmchildPrefabTransform = spawnPoint;
-                GrimmchildPrefab = origSpawn.gameObject.Value;
+                if (GrimmchildPrefab == null)
+                {
+                    GrimmchildPrefabTransform = spawnPoint;
+                    GrimmchildPrefab = origSpawn.gameObject.Value;
+                }
                 if (Equipped())
                 {
                     DuplicateGrimmchild = origSpawn.gameObject.Value.Spawn(spawnPoint.position, spawnPoint.rotation);
@@ -89,7 +93,7 @@ namespace Transcendence
         {
             if (GrimmchildPrefab == null)
             {
-                Transcendence.Instance.LogError("cannot spawn duplicate Grimmchild; missing prefab");
+                Transcendence.Instance.LogWarn("cannot spawn duplicate Grimmchild; missing prefab");
                 return;
             }
             DuplicateGrimmchild = GrimmchildPrefab.Spawn(GrimmchildPrefabTransform.position, GrimmchildPrefabTransform.rotation);
@@ -105,27 +109,48 @@ namespace Transcendence
             }
         }
 
-        private void SendEventToDuplicateGrimmchild(string eventName)
+        private static void SendEvent(GameObject obj, string fsmName, string eventName)
         {
-            FSMUtility.LocateMyFSM(DuplicateGrimmchild, "Charm Unequip").Fsm.Event(new FsmEventTarget() {
+            FSMUtility.LocateMyFSM(obj, fsmName).Fsm.Event(new FsmEventTarget() {
                 target = FsmEventTarget.EventTarget.GameObject,
-                gameObject = new FsmOwnerDefault() { GameObject = new FsmGameObject(DuplicateGrimmchild)}
+                gameObject = new FsmOwnerDefault() { GameObject = new FsmGameObject(obj) }
             }, eventName);
         }
 
+        private void SendEventToDuplicateGrimmchild(string eventName)
+        {
+            SendEvent(DuplicateGrimmchild, "Charm Unequip", eventName);
+        }
+
         private bool GrimmchildEquipped() => PlayerData.instance.GetBool("equippedCharm_40");
+        private bool DreamshieldEquipped() => PlayerData.instance.GetBool("equippedCharm_38");
 
         private bool ToggleDuplicateGrimmchild(string boolName, bool value)
         {
-            if (boolName == $"equippedCharm_{Num}" && GrimmchildEquipped())
+            if (boolName == $"equippedCharm_{Num}")
             {
-                if (value && DuplicateGrimmchild == null)
+                if (GrimmchildEquipped())
                 {
-                    SpawnDuplicateGrimmchild();
+                    if (value && DuplicateGrimmchild == null)
+                    {
+                        SpawnDuplicateGrimmchild();
+                    }
+                    else if (!value && DuplicateGrimmchild != null)
+                    {
+                        DespawnDuplicateGrimmchild();
+                    }
                 }
-                else if (!value && DuplicateGrimmchild != null)
+                
+                if (DreamshieldEquipped())
                 {
-                    DespawnDuplicateGrimmchild();
+                    if (value && DuplicateDreamshield == null)
+                    {
+                        SpawnDuplicateDreamshield();
+                    }
+                    else if (!value && DuplicateDreamshield != null)
+                    {
+                        DespawnDuplicateDreamshield();
+                    }
                 }
             }
             return value;
@@ -184,17 +209,61 @@ namespace Transcendence
             });
         }
 
+        private GameObject DreamshieldPrefab;
+        private GameObject DuplicateDreamshield;
+
         private void DoubleDreamshield(PlayMakerFSM fsm)
         {
             var spawn = fsm.GetState("Spawn");
             var origSpawn = spawn.Actions[2] as SpawnObjectFromGlobalPool;
             spawn.SpliceAction(3, () => {
+                if (DreamshieldPrefab == null)
+                {
+                    DreamshieldPrefab = origSpawn.gameObject.Value;
+                }
                 if (Equipped())
                 {
-                    var dupeShield = origSpawn.gameObject.Value.Spawn(Vector3.zero, Quaternion.Euler(Vector3.up));
+                    var dupeShield = DreamshieldPrefab.Spawn(Vector3.zero, Quaternion.Euler(Vector3.up));
                     dupeShield.transform.Rotate(0, 0, 180);
+                    DuplicateDreamshield = dupeShield;
                 }
             });
+        }
+
+        private void SpawnDuplicateDreamshield()
+        {
+            if (DreamshieldPrefab == null)
+            {
+                Transcendence.Instance.LogWarn("cannot spawn duplicate Dreamshield; missing prefab");
+                return;
+            }
+            var dupeShield = DreamshieldPrefab.Spawn(Vector3.zero, Quaternion.Euler(Vector3.up));
+            // Put the duplicate shield on the opposite side from the original.
+            var origShield = GameObject.FindWithTag("Orbit Shield");
+            if (origShield != null)
+            {
+                dupeShield.transform.rotation = origShield.transform.rotation;
+            }
+            dupeShield.transform.Rotate(0, 0, 180);
+            DuplicateDreamshield = dupeShield;
+        }
+
+        private void DespawnDuplicateDreamshield()
+        {
+            if (DuplicateDreamshield != null)
+            {
+                var shield = DuplicateDreamshield;
+                SendEvent(shield.transform.Find("Shield").gameObject, "Shield Hit", "DISAPPEAR");
+                IEnumerator DelayedDestroy()
+                {
+                    // not sure how long this should be exactly. Orbit Shield's Control FSM says 1 second, but
+                    // that's clearly too long; the despawn animation doesn't actually end with the shield gone.
+                    yield return new WaitForSeconds(0.5f);
+                    shield.Recycle();
+                }
+                GameManager.instance.StartCoroutine(DelayedDestroy());
+                DuplicateDreamshield = null;
+            }
         }
     }
 }
