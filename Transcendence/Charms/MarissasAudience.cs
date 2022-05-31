@@ -35,8 +35,8 @@ namespace Transcendence
 
         public override void Hook()
         {
-            ModHooks.SetPlayerBoolHook += ToggleDuplicateGrimmchild;
-            ChaosOrb.Instance.OnReroll += ToggleDuplicateGrimmchildFromChaosOrb;
+            ModHooks.SetPlayerBoolHook += ToggleDuplicatesOnEquip;
+            ChaosOrb.Instance.OnReroll += ToggleDuplicatesFromChaosOrb;
         }
 
         private void DoubleWeaverlings(PlayMakerFSM fsm)
@@ -125,7 +125,7 @@ namespace Transcendence
         private bool GrimmchildEquipped() => PlayerData.instance.GetBool("equippedCharm_40");
         private bool DreamshieldEquipped() => PlayerData.instance.GetBool("equippedCharm_38");
 
-        private bool ToggleDuplicateGrimmchild(string boolName, bool value)
+        private bool ToggleDuplicatesOnEquip(string boolName, bool value)
         {
             if (boolName == $"equippedCharm_{Num}")
             {
@@ -159,19 +159,35 @@ namespace Transcendence
         private static bool JustGrantedCharm(List<int> prevCharms, List<int> newCharms, int num) =>
             !prevCharms.Contains(num) && newCharms.Contains(num);
 
-        private void ToggleDuplicateGrimmchildFromChaosOrb(List<int> prevCharms, List<int> newCharms)
+        private void ToggleDuplicatesFromChaosOrb(List<int> prevCharms, List<int> newCharms)
         {
-            // Spawn the duplicate Grimmchild if the Orb just granted this charm and Grimmchild is equipped,
-            // unless it also just granted Grimmchild, in which case the spawn FSM takes care of this.
-            if (JustGrantedCharm(prevCharms, newCharms, Num) && !JustGrantedCharm(prevCharms, newCharms, 40) && GrimmchildEquipped())
+            if (JustGrantedCharm(prevCharms, newCharms, Num))
             {
-                SpawnDuplicateGrimmchild();
+                // Spawn the duplicate Grimmchild if the Orb just granted this charm and Grimmchild is equipped,
+                // unless it also just granted Grimmchild, in which case the spawn FSM takes care of this.
+                if (!JustGrantedCharm(prevCharms, newCharms, 40) && GrimmchildEquipped())
+                {
+                    SpawnDuplicateGrimmchild();
+                }
+                // Same for Dreamshield.
+                if (!JustGrantedCharm(prevCharms, newCharms, 38) && DreamshieldEquipped())
+                {
+                    SpawnDuplicateDreamshield();
+                }
             }
-            // Despawn the duplicate Grimmchild if the Orb just removed this charm and Grimmchild is equipped, unless
-            // it also just granted Grimmchild, in which case there is no duplicate Grimmchild to despawn.
-            else if (prevCharms.Contains(Num) && !newCharms.Contains(Num) && !JustGrantedCharm(prevCharms, newCharms, 40) && GrimmchildEquipped())
+            else if (prevCharms.Contains(Num) && !newCharms.Contains(Num))
             {
-                DespawnDuplicateGrimmchild();
+                // Despawn the duplicate Grimmchild if the Orb just removed this charm and Grimmchild is equipped, unless
+                // it also just granted Grimmchild, in which case there is no duplicate Grimmchild to despawn.
+                if (!JustGrantedCharm(prevCharms, newCharms, 40) && GrimmchildEquipped())
+                {
+                    DespawnDuplicateGrimmchild();
+                }
+                // Same for Dreamshield.
+                if (!JustGrantedCharm(prevCharms, newCharms, 38) && DreamshieldEquipped())
+                {
+                    DespawnDuplicateDreamshield();
+                }
             }
         }
 
