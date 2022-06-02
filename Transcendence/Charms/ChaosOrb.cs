@@ -21,7 +21,7 @@ namespace Transcendence
 
         public override CharmSettings Settings(SaveSettings s) => s.ChaosOrb;
 
-        private const int TickPeriod = 6;
+        private const int TickPeriod = 30;
 
         public override List<(int, Action)> Tickers => new() {(TickPeriod, RerollCharmsIfEquipped)};
 
@@ -106,7 +106,7 @@ namespace Transcendence
             GivenCharms = empty; // so that charms currently given by the Orb can be selected again
             GivenCharms = PickNUnequippedCharms(3);
             OnReroll?.Invoke(oldCharms, GivenCharms);
-            
+
             PlayMakerFSM.BroadcastEvent("CHARM EQUIP CHECK");
             PlayMakerFSM.BroadcastEvent("CHARM INDICATOR CHECK");
             PlayMakerFSM.BroadcastEvent("UPDATE NAIL DAMAGE");
