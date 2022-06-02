@@ -154,7 +154,7 @@ namespace Transcendence
 
         public override string GetVersion() => "1.2";
 
-        private SaveSettings Settings = new();
+        internal SaveSettings Settings = new();
 
         public void OnLoadLocal(SaveSettings s)
         {

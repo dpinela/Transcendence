@@ -127,7 +127,10 @@ namespace Transcendence
 
         private bool ToggleDuplicatesOnEquip(string boolName, bool value)
         {
-            if (boolName == $"equippedCharm_{Num}")
+            // Toggle when this charm is [un]equipped directly, or indirectly
+            // as a result of equipping Chaos Orb when it is granting this charm
+            // and it is not otherwise equipped
+            if (boolName == $"equippedCharm_{Num}" || (ChaosOrb.Instance.GivingCharm(Num) && !Settings(Transcendence.Instance.Settings).Equipped && boolName == $"equippedCharm_{ChaosOrb.Instance.Num}"))
             {
                 if (GrimmchildEquipped())
                 {
