@@ -15,7 +15,7 @@ namespace Transcendence
         public override string Sprite => "MarissasAudience.png";
         public override string Name => "Marissa's Audience";
         public override string Description => "Prized by those who seek companionship above all else.\n\nThe bearer will be able to summon more companions.";
-        public override int DefaultCost => 4;
+        public override int DefaultCost => 1;
         public override string Scene => "Ruins_Elevator";
         public override float X => 75.1f;
         public override float Y => 96.4f;

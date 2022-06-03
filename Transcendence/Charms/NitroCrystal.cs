@@ -11,7 +11,7 @@ namespace Transcendence
         public override string Sprite => "NitroCrystal.png";
         public override string Name => "Nitro Crystal";
         public override string Description => "A crystal vessel filled with a dangerously explosive substance.\n\nGreatly increases the speed and damage of the bearer's Super Dashes.";
-        public override int DefaultCost => 4;
+        public override int DefaultCost => 2;
         public override string Scene => "Mines_13";
         public override float X => 25.6f;
         public override float Y => 21.5f;
