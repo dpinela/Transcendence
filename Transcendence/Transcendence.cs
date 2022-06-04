@@ -402,9 +402,11 @@ namespace Transcendence
             {
                 return;
             }
+            var names = new HashSet<string>();
             foreach (var charm in Charms)
             {
                 var name = charm.Name.Replace(" ", "_");
+                names.Add(name);
                 rb.EditItemRequest(name, info =>
                 {
                     info.getItemDef = () => new()
@@ -416,6 +418,16 @@ namespace Transcendence
                     };
                 });
             }
+
+            rb.OnGetGroupFor.Subscribe(0f, (RequestBuilder rb, string item, RequestBuilder.ElementType type, out GroupBuilder gb) => {
+                if (names.Contains(item) && (type == RequestBuilder.ElementType.Unknown || type == RequestBuilder.ElementType.Item))
+                {
+                    gb = rb.GetGroupFor("Shaman_Stone");
+                    return true;
+                }
+                gb = default;
+                return false;
+            });
         }
 
         private void IncreaseMaxCharmCost(RequestBuilder rb)
