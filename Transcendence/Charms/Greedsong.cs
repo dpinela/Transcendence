@@ -25,14 +25,18 @@ namespace Transcendence
 
         private Random rng = new();
 
+        private static bool GreedEquipped() => PlayerData.instance.GetBool("equippedCharm_24");
+
         private const int MinGeoOnHit = 1;
         private const int MaxGeoOnHit = 30;
+        private const int GreedBonus = 10;
 
         private int SpawnGeoOnHit(int damage)
         {
             if (Equipped())
             {
-                GeoFlinger.Fling(rng.Next(MinGeoOnHit, MaxGeoOnHit + 1), HeroController.instance.transform);
+                var bonus = GreedEquipped() ? GreedBonus : 0;
+                GeoFlinger.Fling(rng.Next(MinGeoOnHit + bonus, MaxGeoOnHit + bonus + 1), HeroController.instance.transform);
             }
             return damage;
         }

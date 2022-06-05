@@ -20,11 +20,14 @@ namespace Transcendence
 
         private const int TickPeriod = 5;
 
+        private static bool GreedEquipped() => PlayerData.instance.GetBool("equippedCharm_24");
+
         private void GivePeriodicGeo()
         {
             if (HeroController.instance != null && Equipped())
             {
-                HeroController.instance.AddGeo((int)(3 * Math.Log10(PlayerData.instance.GetInt("geo") + 1)));
+                var k = GreedEquipped() ? 4 : 3;
+                HeroController.instance.AddGeo((int)(k * Math.Log10(PlayerData.instance.GetInt("geo") + 1)));
             }
         }
     }
