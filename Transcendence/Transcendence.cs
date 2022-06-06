@@ -333,13 +333,16 @@ namespace Transcendence
             ItemChangerMod.AddPlacements(new List<AbstractPlacement>() {repairPlacement}, conflictResolution: PlacementConflictResolution.Ignore);
         }
 
+        private const int MinTotalCost = 22;
+        private const int MaxTotalCost = 35;
+
         private void RandomizeNotchCosts(int seed)
         {
             // This log statement is here to help diagnose a possible bug where charms cost more than
             // they ever should.
-            Log("Randomizing notch costs");
             var rng = new System.Random(seed);
-            var total = Charms.Select(x => x.DefaultCost).Sum();
+            var total = rng.Next(MinTotalCost, MaxTotalCost + 1);
+            Log($"Randomizing notch costs; total cost = {total}");
             for (var i = 0; i < total; i++)
             {
                 var possiblePicks = Charms.Select(x => x.Settings(Settings)).Where(s => s.Cost < 6).ToList();
