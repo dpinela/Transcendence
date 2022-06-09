@@ -263,6 +263,12 @@ namespace Transcendence
                     DuplicateDreamshield = dupeShield;
                 }
             });
+            fsm.GetState("Send Slash Event").AppendAction(() => {
+                if (DuplicateDreamshield != null)
+                {
+                    SendEvent(DuplicateDreamshield, "Control", "SLASH");
+                }
+            });
         }
 
         private void SpawnDuplicateDreamshield()
