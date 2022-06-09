@@ -96,6 +96,22 @@ namespace Transcendence
                 Transcendence.Instance.LogWarn("cannot spawn duplicate Grimmchild; missing prefab");
                 return;
             }
+            // If we spawn a duplicate Grimmchild in the NKG room, it will never disappear for some reason,
+            // and in any case it's weird having it there without the original one.
+            if (GameManager.instance == null || GameManager.instance.sceneName == "Grimm_Nightmare")
+            {
+                Transcendence.Instance.Log("not spawning duplicate Grimmchild in this room");
+                return;
+            }
+            // When equipping Grimmchild, the spawn routine in the FSM does not run until the inventory is closed.
+            // Without this check, if the player were to equip Grimmchild and then this charm, the duplicate would spawn,
+            // then when they close the inventory, the FSM would run, check that a GameObject tagged Grimmchild already 
+            // exists (which it does) and not spawn in the original.
+            if (GameObject.FindWithTag("Grimmchild") == null)
+            {
+                Transcendence.Instance.Log("not spawning duplicate Grimmchild yet, original not present");
+                return;
+            }
             DuplicateGrimmchild = GrimmchildPrefab.Spawn(GrimmchildPrefabTransform.position, GrimmchildPrefabTransform.rotation);
             FSMUtility.LocateMyFSM(DuplicateGrimmchild, "Control").GetFsmBool("Scene Appear").Value = true;
         }
