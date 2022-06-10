@@ -100,7 +100,7 @@ namespace Transcendence
             return unequippedCharms.GetRange(0, n);
         }
 
-        private void RerollCharms()
+        public void RerollCharms()
         {
             var oldCharms = GivenCharms;
             GivenCharms = empty; // so that charms currently given by the Orb can be selected again

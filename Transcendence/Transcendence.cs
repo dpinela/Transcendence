@@ -76,7 +76,9 @@ namespace Transcendence
                 AddTextEdit($"CHARM_NAME_{num}", "UI", charm.Name);
                 AddTextEdit($"CHARM_DESC_{num}", "UI", () => charm.Description);
                 BoolGetters[$"equippedCharm_{num}"] = _ => settings(Settings).Equipped || (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num));
-                BoolSetters[$"equippedCharm_{num}"] = value => settings(Settings).Equipped = value;
+                BoolSetters[$"equippedCharm_{num}"] = charm == ChaosOrb.Instance ?
+                    (value => settings(Settings).Equipped = value || Settings.ChaosMode)
+                     : (value => settings(Settings).Equipped = value);
                 BoolGetters[$"gotCharm_{num}"] = _ => settings(Settings).Got;
                 BoolSetters[$"gotCharm_{num}"] = value => settings(Settings).Got = value;
                 BoolGetters[$"newCharm_{num}"] = _ => settings(Settings).New;
@@ -283,6 +285,8 @@ namespace Transcendence
 
         private void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
         {
+            Settings.ChaosMode = ModSettings.ChaosMode;
+
             ItemChangerMod.CreateSettingsProfile(overwrite: false, createDefaultModules: false);
             if (ModHooks.GetMod("Randomizer 4") != null && IsRandoActive())
             {
@@ -293,6 +297,10 @@ namespace Transcendence
                 ConfigureICModules();
                 PlaceCharmsAtFixedPositions();
                 SetDefaultNotchCosts();
+                if (Settings.ChaosMode)
+                {
+                    GrantFreeChaosOrb();
+                }
             }
 
             PlaceFloristsBlessingRepair();
@@ -333,6 +341,19 @@ namespace Transcendence
                     .Add(Finder.GetItem(name)));
             }
             ItemChangerMod.AddPlacements(placements, conflictResolution: PlacementConflictResolution.Ignore);
+        }
+
+        private void GrantFreeChaosOrb()
+        {
+            ItemChangerMod.AddPlacements(new List<AbstractPlacement>()
+            {
+                Finder.GetLocation("Start").Wrap().Add(Finder.GetItem("Chaos_Orb")),
+            }, conflictResolution: PlacementConflictResolution.Ignore);
+            Settings.ChaosOrb.Cost = 0;
+            Settings.ChaosOrb.Equipped = true;
+            PlayerData.instance.EquipCharm(ChaosOrb.Instance.Num);
+            ChaosOrb.Instance.RerollCharms();
+            PlayerData.instance.CountCharms();
         }
 
         private static void PlaceFloristsBlessingRepair()
