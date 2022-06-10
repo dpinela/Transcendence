@@ -7,19 +7,10 @@ namespace Transcendence
         [MenuChanger.Attributes.MenuRange(0, 14)]
         public int IncreaseMaxCharmCostBy;
 
-        public RandoSettings(RawRandoSettings rs)
+        public RandoSettings(GlobalSettings rs)
         {
             AddCharms = rs.AddCharms;
             IncreaseMaxCharmCostBy = rs.IncreaseMaxCharmCostBy;
-        }
-
-        public RawRandoSettings ToRaw()
-        {
-            return new RawRandoSettings()
-            {
-                AddCharms = AddCharms,
-                IncreaseMaxCharmCostBy = IncreaseMaxCharmCostBy
-            };
         }
     }
 }

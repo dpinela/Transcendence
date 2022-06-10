@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Collections;
 using Modding;
+using Modding.Menu;
+using Modding.Menu.Config;
 using UnityEngine;
 using SFCore;
 using ItemChanger;
@@ -27,7 +29,7 @@ using RandomizerCore.LogicItems;
 
 namespace Transcendence
 {
-    public class Transcendence : Mod, ILocalSettings<SaveSettings>, IGlobalSettings<RawRandoSettings>
+    public class Transcendence : Mod, ILocalSettings<SaveSettings>, IGlobalSettings<GlobalSettings>, ICustomMenuMod
     {
         private static List<Charm> Charms = new() 
         {
@@ -170,12 +172,20 @@ namespace Transcendence
             return Settings;
         }
 
-        public void OnLoadGlobal(RawRandoSettings s)
+        internal GlobalSettings ModSettings = new();
+
+        public void OnLoadGlobal(GlobalSettings s)
         {
+            ModSettings = s;
             RandoSettings = new(s);
         }
 
-        public RawRandoSettings OnSaveGlobal() => RandoSettings.ToRaw();
+        public GlobalSettings OnSaveGlobal()
+        {
+            ModSettings.AddCharms = RandoSettings.AddCharms;
+            ModSettings.IncreaseMaxCharmCostBy = RandoSettings.IncreaseMaxCharmCostBy;
+            return ModSettings;
+        }
 
         private bool ReadCharmBools(string boolName, bool value)
         {
@@ -368,7 +378,7 @@ namespace Transcendence
         // This is actually a MenuPage, but we can't use that as the static type because then this mod won't
         // load without MenuChanger installed because the runtime can't load the type of the field.
         private object SettingsPage;
-        private RandoSettings RandoSettings = new(new RawRandoSettings());
+        private RandoSettings RandoSettings = new(new GlobalSettings());
 
         private void BuildMenu(MenuPage landingPage)
         {
@@ -389,6 +399,36 @@ namespace Transcendence
         {
             w.WriteLine("Logging Transcendence settings:");
             w.WriteLine(JsonUtil.Serialize(RandoSettings));
+        }
+
+        bool ICustomMenuMod.ToggleButtonInsideMenu => false;
+
+        public MenuScreen GetMenuScreen(MenuScreen prevScreen, ModToggleDelegates? dels)
+        {
+            var builder = MenuUtils.CreateMenuBuilderWithBackButton("Transcendence", prevScreen, out _);
+            builder.AddContent(
+                RegularGridLayout.CreateVerticalLayout(105f),
+                c => {
+                    c.AddHorizontalOption("Chaos Mode", new HorizontalOptionConfig()
+                    {
+                        Label = "Chaos Mode",
+                        Description = new DescriptionInfo()
+                        {
+                            Text = "Start with 0-cost Chaos Orb permanently equipped."
+                        },
+                        Options = new[] { "Off", "On" },
+                        ApplySetting = (_, i) =>
+                        {
+                            ModSettings.ChaosMode = i == 1;
+                        },
+                        RefreshSetting = (s, _) => s.optionList.SetOptionTo(ModSettings.ChaosMode ? 1 : 0),
+                        CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(prevScreen),
+                        Style = HorizontalOptionStyle.VanillaStyle
+                    }, out var chaosOption);
+                    chaosOption.menuSetting.RefreshValueFromGameSettings();
+                }
+            );
+            return builder.Build();
         }
 
         private void SetDefaultNotchCosts()

@@ -43,6 +43,9 @@
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>$(HK15PATH)/UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(HK15PATH)/UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="SFCore">
       <HintPath>$(HK15PATH)/Mods/SFCore/SFCore.dll</HintPath>
     </Reference>
