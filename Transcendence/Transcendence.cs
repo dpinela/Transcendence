@@ -298,10 +298,13 @@ namespace Transcendence
                 ConfigureICModules();
                 PlaceCharmsAtFixedPositions();
                 SetDefaultNotchCosts();
-                if (Settings.ChaosMode)
-                {
-                    GrantFreeChaosOrb();
-                }
+            }
+            // Even in rando, we want to add the starting Chaos Orb directly rather
+            // than going through the RequestBuilder because doing it that way would
+            // cause placements to change.
+            if (Settings.ChaosMode)
+            {
+                GrantFreeChaosOrb();
             }
 
             PlaceFloristsBlessingRepair();
@@ -346,10 +349,12 @@ namespace Transcendence
 
         private void GrantFreeChaosOrb()
         {
+            // Use MergeKeepingOld so that we don't conflict with any starting items
+            // that rando gives.
             ItemChangerMod.AddPlacements(new List<AbstractPlacement>()
             {
-                Finder.GetLocation("Start").Wrap().Add(Finder.GetItem("Chaos_Orb")),
-            }, conflictResolution: PlacementConflictResolution.Ignore);
+                Finder.GetLocation("Start").Wrap().Add(Finder.GetItem(ChaosOrb.Instance.InternalName)),
+            }, conflictResolution: PlacementConflictResolution.MergeKeepingOld);
             Settings.ChaosOrb.Cost = 0;
             Settings.ChaosOrb.Equipped = true;
             PlayerData.instance.EquipCharm(ChaosOrb.Instance.Num);

@@ -19,6 +19,8 @@ namespace Transcendence
         public override float X => 27.5f;
         public override float Y => 80.4f;
 
+        public string InternalName => Name.Replace(" ", "_");
+
         public override CharmSettings Settings(SaveSettings s) => s.ChaosOrb;
 
         private const int TickPeriod = 30;
