@@ -338,6 +338,7 @@ namespace Transcendence
             else
             {
                 PlaceCharmsAtFixedPositions();
+                PlaceFloristsBlessingRepair();
             }
         }
 
@@ -518,7 +519,8 @@ namespace Transcendence
 
         private void IncreaseMaxCharmCost(RequestBuilder rb)
         {
-            if (RandoSettings.AddCharms)
+            // This limitation could be lifted 
+            if (rb.gs.PoolSettings.Charms && RandoSettings.AddCharms)
             {
                 rb.gs.CostSettings.MaximumCharmCost += RandoSettings.IncreaseMaxCharmCostBy;
             }
