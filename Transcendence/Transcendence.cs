@@ -292,11 +292,13 @@ namespace Transcendence
             if (ModHooks.GetMod("Randomizer 4") != null && IsRandoActive())
             {
                 PlaceItemsRando();
+                
             }
             else
             {
                 ConfigureICModules();
                 PlaceCharmsAtFixedPositions();
+                PlaceFloristsBlessingRepair();
                 SetDefaultNotchCosts();
             }
             // Even in rando, we want to add the starting Chaos Orb directly rather
@@ -306,8 +308,6 @@ namespace Transcendence
             {
                 GrantFreeChaosOrb();
             }
-
-            PlaceFloristsBlessingRepair();
 
             if (bossRush)
             {
@@ -327,7 +327,15 @@ namespace Transcendence
             {
                 SetDefaultNotchCosts();
             }
-            if (!RandomizerMod.RandomizerMod.RS.GenerationSettings.PoolSettings.Charms)
+
+            if (RandomizerMod.RandomizerMod.RS.GenerationSettings.PoolSettings.Charms)
+            {
+                if (RandoSettings.AddCharms)
+                {
+                    PlaceFloristsBlessingRepair();
+                }
+            }
+            else
             {
                 PlaceCharmsAtFixedPositions();
             }
