@@ -63,7 +63,7 @@ Vanilla notch cost: 2
 
 Increases Super Dash damage to 40 and doubles its speed.
 
-Found at the Quirrel location in Crystal Peak (Mines13_, 25.6, 21.5).
+Found at the Quirrel location in Crystal Peak (Mines_13, 25.6, 21.5).
 
 ## Crystalmaster
 
