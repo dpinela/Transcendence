@@ -88,6 +88,8 @@ Vanilla notch cost: 2
 Gives a small amount of passive geo every 5 seconds, scaling slightly
 with current geo.
 
+If Fragile/Unbreakable Greed is also equipped, the amount of geo given is increased by 33%.
+
 Found next to Millibelle in Fog Canyon.
 
 ## Greedsong
@@ -96,13 +98,15 @@ Vanilla notch cost: 1
 
 Makes you spawn a random amount of geo between 1 and 30 whenever you take damage.
 
+If Fragile/Unbreakable Greed is also equipped, the amount is between 11 and 40 instead.
+
 Found at the Vitruvian Grub (Ruins2_11, 51.8, 128.4).
 
 ## Marissa's Audience
 
 Vanilla notch cost: 1
 
-Doubles the number of familiars that Weaversong and Glowing Womb can spawn.
+Doubles the number of familiars that Weaversong, Glowing Womb, Grimmchild and Dreamshield can spawn.
 
 Found at Poggy Thorax (Ruins_Elevator, 75.1, 96.4).
 
@@ -112,7 +116,7 @@ Vanilla notch cost: 2
 
 Gives the effects of 3 random charms (that aren't already equipped), rerolling every 30 seconds. Can give charms that you don't have yet.
 
-Joni's Blessing, Quick Slash and Grubberfly's Elegy are not currently
-given due to technical limitations. This may change in the future.
+Joni's Blessing is not currently given due to technical limitations.
+This may change in the future.
 
 Found below Bardoon's tail (Deepnest_East_04, 27.5, 80.4).
