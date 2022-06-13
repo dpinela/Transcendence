@@ -59,7 +59,7 @@ Found at the Fluke Hermit (Room_GG_Shortcut, 103.3, 69.4).
 
 ## Nitro Crystal
 
-Vanilla notch cost: 4
+Vanilla notch cost: 2
 
 Increases Super Dash damage to 40 and doubles its speed.
 
@@ -100,7 +100,7 @@ Found at the Vitruvian Grub (Ruins2_11, 51.8, 128.4).
 
 ## Marissa's Audience
 
-Vanilla notch cost: 4
+Vanilla notch cost: 1
 
 Doubles the number of familiars that Weaversong and Glowing Womb can spawn.
 
