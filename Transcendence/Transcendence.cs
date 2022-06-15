@@ -2,8 +2,6 @@ using System;
 using System.IO;
 using System.Collections;
 using Modding;
-using Modding.Menu;
-using Modding.Menu.Config;
 using UnityEngine;
 using SFCore;
 using ItemChanger;
@@ -29,7 +27,7 @@ using RandomizerCore.LogicItems;
 
 namespace Transcendence
 {
-    public class Transcendence : Mod, ILocalSettings<SaveSettings>, IGlobalSettings<GlobalSettings>, ICustomMenuMod
+    public class Transcendence : Mod, ILocalSettings<SaveSettings>, IGlobalSettings<GlobalSettings>, IMenuMod
     {
         private static List<Charm> Charms = new() 
         {
@@ -445,35 +443,19 @@ namespace Transcendence
             w.WriteLine(JsonUtil.Serialize(RandoSettings));
         }
 
-        bool ICustomMenuMod.ToggleButtonInsideMenu => false;
+        public bool ToggleButtonInsideMenu => false;
 
-        public MenuScreen GetMenuScreen(MenuScreen prevScreen, ModToggleDelegates? dels)
+        public List<IMenuMod.MenuEntry> GetMenuData(IMenuMod.MenuEntry? toggle) => new()
         {
-            var builder = MenuUtils.CreateMenuBuilderWithBackButton("Transcendence", prevScreen, out _);
-            builder.AddContent(
-                RegularGridLayout.CreateVerticalLayout(105f),
-                c => {
-                    c.AddHorizontalOption("Chaos Mode", new HorizontalOptionConfig()
-                    {
-                        Label = "Chaos Mode",
-                        Description = new DescriptionInfo()
-                        {
-                            Text = "Start with 0-cost Chaos Orb permanently equipped."
-                        },
-                        Options = new[] { "Off", "On" },
-                        ApplySetting = (_, i) =>
-                        {
-                            ModSettings.ChaosMode = i == 1;
-                        },
-                        RefreshSetting = (s, _) => s.optionList.SetOptionTo(ModSettings.ChaosMode ? 1 : 0),
-                        CancelAction = _ => UIManager.instance.UIGoToDynamicMenu(prevScreen),
-                        Style = HorizontalOptionStyle.VanillaStyle
-                    }, out var chaosOption);
-                    chaosOption.menuSetting.RefreshValueFromGameSettings();
-                }
-            );
-            return builder.Build();
-        }
+            new()
+            {
+                Name = "Chaos Mode",
+                Description = "Start with 0-cost Chaos Orb permanently equipped.",
+                Values = new[] { "Off", "On" },
+                Saver = i => { ModSettings.ChaosMode = i == 1; },
+                Loader = () => ModSettings.ChaosMode ? 1 : 0
+            }
+        };
 
         private void SetDefaultNotchCosts()
         {
