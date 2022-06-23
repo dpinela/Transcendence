@@ -54,6 +54,7 @@ namespace Transcendence
         private Dictionary<string, Func<bool, bool>> BoolGetters = new();
         private Dictionary<string, Action<bool>> BoolSetters = new();
         private Dictionary<string, Func<int, int>> IntGetters = new();
+        private Dictionary<string, Func<int, int>> IntSetters = new();
         private Dictionary<(string, string), Action<PlayMakerFSM>> FSMEdits = new();
         private List<(int Period, Action Func)> Tickers = new();
 
@@ -71,6 +72,7 @@ namespace Transcendence
                 }
                 var settings = charm.Settings;
                 IntGetters[$"charmCost_{num}"] = _ => (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num)) ? 0 : settings(Settings).Cost;
+                IntSetters[$"charmCost_{num}"] = value => settings(Settings).Cost = value;
                 AddTextEdit($"CHARM_NAME_{num}", "UI", charm.Name);
                 AddTextEdit($"CHARM_DESC_{num}", "UI", () => charm.Description);
                 BoolGetters[$"equippedCharm_{num}"] = _ => settings(Settings).Equipped || (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num));
@@ -114,6 +116,9 @@ namespace Transcendence
             ModHooks.GetPlayerBoolHook += ReadCharmBools;
             ModHooks.SetPlayerBoolHook += WriteCharmBools;
             ModHooks.GetPlayerIntHook += ReadCharmCosts;
+            // This exists so that we can store charm costs in PlayerDataEditModule for the benefit
+            // of ItemChangerDataLoader users.
+            ModHooks.SetPlayerIntHook += WriteCharmCosts;
             ModHooks.LanguageGetHook += GetCharmStrings;
             // This will run after Rando has already set up its item placements.
             On.UIManager.StartNewGame += PlaceItems;
@@ -155,7 +160,7 @@ namespace Transcendence
             TextEdits.Add((key, sheetName), text);
         }
 
-        public override string GetVersion() => "1.2";
+        public override string GetVersion() => "1.2.1";
 
         internal SaveSettings Settings = new();
 
@@ -209,6 +214,15 @@ namespace Transcendence
         private int ReadCharmCosts(string intName, int value)
         {
             if (IntGetters.TryGetValue(intName, out var cost))
+            {
+                return cost(value);
+            }
+            return value;
+        }
+
+        private int WriteCharmCosts(string intName, int value)
+        {
+            if (IntSetters.TryGetValue(intName, out var cost))
             {
                 return cost(value);
             }
@@ -284,8 +298,6 @@ namespace Transcendence
 
         private void PlaceItems(On.UIManager.orig_StartNewGame orig, UIManager self, bool permaDeath, bool bossRush)
         {
-            Settings.ChaosMode = ModSettings.ChaosMode;
-
             ItemChangerMod.CreateSettingsProfile(overwrite: false, createDefaultModules: false);
             if (ModHooks.GetMod("Randomizer 4") != null && IsRandoActive())
             {
@@ -297,14 +309,14 @@ namespace Transcendence
                 ConfigureICModules();
                 PlaceCharmsAtFixedPositions();
                 PlaceFloristsBlessingRepair();
-                SetDefaultNotchCosts();
+                StoreNotchCosts(DefaultNotchCosts());
             }
             // Even in rando, we want to add the starting Chaos Orb directly rather
             // than going through the RequestBuilder because doing it that way would
             // cause placements to change.
-            if (Settings.ChaosMode)
+            if (ModSettings.ChaosMode)
             {
-                GrantFreeChaosOrb();
+                SetupChaosMode();
             }
 
             if (bossRush)
@@ -317,14 +329,10 @@ namespace Transcendence
 
         private void PlaceItemsRando()
         {
-            if (RandomizerMod.RandomizerMod.RS.GenerationSettings.MiscSettings.RandomizeNotchCosts)
-            {
-                RandomizeNotchCosts(RandomizerMod.RandomizerMod.RS.GenerationSettings.Seed);
-            }
-            else
-            {
-                SetDefaultNotchCosts();
-            }
+            var gs = RandomizerMod.RandomizerMod.RS.GenerationSettings;
+            var costs = gs.MiscSettings.RandomizeNotchCosts ? RandomizeNotchCosts(gs.Seed) : DefaultNotchCosts();
+            
+            StoreNotchCosts(costs);
 
             if (RandomizerMod.RandomizerMod.RS.GenerationSettings.PoolSettings.Charms)
             {
@@ -354,7 +362,7 @@ namespace Transcendence
             ItemChangerMod.AddPlacements(placements, conflictResolution: PlacementConflictResolution.Ignore);
         }
 
-        private void GrantFreeChaosOrb()
+        private void SetupChaosMode()
         {
             // Use MergeKeepingOld so that we don't conflict with any starting items
             // that rando gives.
@@ -362,11 +370,9 @@ namespace Transcendence
             {
                 Finder.GetLocation("Start").Wrap().Add(Finder.GetItem(ChaosOrb.Instance.InternalName)),
             }, conflictResolution: PlacementConflictResolution.MergeKeepingOld);
-            Settings.ChaosOrb.Cost = 0;
-            Settings.ChaosOrb.Equipped = true;
-            PlayerData.instance.EquipCharm(ChaosOrb.Instance.Num);
-            ChaosOrb.Instance.RerollCharms();
-            PlayerData.instance.CountCharms();
+
+            // store the Chaos Mode setting and initialization routine for later use with ICDL
+            ItemChangerMod.Modules.Add<ChaosModeModule>();
         }
 
         private void BlockChaosOrbUnequip(On.PlayerData.orig_UnequipCharm orig, PlayerData pd, int charmNum)
@@ -388,22 +394,49 @@ namespace Transcendence
         private const int MinTotalCost = 22;
         private const int MaxTotalCost = 35;
 
-        private void RandomizeNotchCosts(int seed)
+        private Dictionary<int, int> RandomizeNotchCosts(int seed)
         {
             // This log statement is here to help diagnose a possible bug where charms cost more than
             // they ever should.
             var rng = new System.Random(seed);
             var total = rng.Next(MinTotalCost, MaxTotalCost + 1);
             Log($"Randomizing notch costs; total cost = {total}");
+            var costs = Charms.ToDictionary(c => c.Num, c => 0);
             for (var i = 0; i < total; i++)
             {
-                var possiblePicks = Charms.Select(x => x.Settings(Settings)).Where(s => s.Cost < 6).ToList();
+                var possiblePicks = costs.Where(c => c.Value < 6).Select(c => c.Key).ToList();
                 if (possiblePicks.Count == 0)
                 {
                     break;
                 }
                 var pick = rng.Next(possiblePicks.Count);
-                possiblePicks[pick].Cost++;
+                costs[possiblePicks[pick]]++;
+            }
+            // ChaosModeModule will set the cost in this case, avoid setting it twice to avoid
+            // order-dependency.
+            if (ModSettings.ChaosMode)
+            {
+                costs.Remove(ChaosOrb.Instance.Num);
+            }
+            return costs;
+        }
+
+        private Dictionary<int, int> DefaultNotchCosts() {
+            var costs = Charms.ToDictionary(c => c.Num, c => c.DefaultCost);
+            if (ModSettings.ChaosMode)
+            {
+                costs.Remove(ChaosOrb.Instance.Num);
+            }
+            return costs;
+        }
+
+        // Store notch costs in an ItemChanger module so that ICDL will reload them.
+        private void StoreNotchCosts(Dictionary<int, int> costs)
+        {
+            var icPlayerData = ItemChangerMod.Modules.GetOrAdd<ItemChanger.Modules.PlayerDataEditModule>();
+            foreach ((var num, var cost) in costs)
+            {
+                icPlayerData.AddPDEdit($"charmCost_{num}", cost);
             }
         }
 
@@ -456,14 +489,6 @@ namespace Transcendence
                 Loader = () => ModSettings.ChaosMode ? 1 : 0
             }
         };
-
-        private void SetDefaultNotchCosts()
-        {
-            foreach (var charm in Charms)
-            {
-                charm.Settings(Settings).Cost = charm.DefaultCost;
-            }
-        }
 
         private static void DefineCharmsForRando(RequestBuilder rb)
         {
