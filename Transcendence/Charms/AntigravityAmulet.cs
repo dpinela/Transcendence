@@ -20,10 +20,17 @@ namespace Transcendence
 
         public override CharmSettings Settings(SaveSettings s) => s.AntigravityAmulet;
 
+        public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
+        {
+            ("Inventory", "Inventory Control", DisableDuringInventoryDrops)
+        };
+
         public override void Hook()
         {
             ModHooks.HeroUpdateHook += ChangeGravity;
         }
+
+        private bool InInventory;
 
         private void ChangeGravity()
         {
@@ -41,7 +48,16 @@ namespace Transcendence
             }
             // Keep normal gravity after going through upwards transitions, so that the player does not fall
             // through spikes in some rooms before they gain control.
-            rb.gravityScale = (Equipped() && HeroController.instance.transitionState == HeroTransitionState.WAITING_TO_TRANSITION) ? 0.3f : 0.79f;
+            rb.gravityScale = (Equipped() && !InInventory && HeroController.instance.transitionState == HeroTransitionState.WAITING_TO_TRANSITION) ? 0.3f : 0.79f;
+        }
+
+        private void DisableDuringInventoryDrops(PlayMakerFSM fsm)
+        {
+            fsm.GetState("Open").AppendAction(() => InInventory = true);
+            void LeaveInventory() => InInventory = false;
+            fsm.GetState("Close").AppendAction(LeaveInventory);
+            fsm.GetState("R Lock Close").AppendAction(LeaveInventory);
+            fsm.GetState("Damage Close").AppendAction(LeaveInventory);
         }
     }
 }
