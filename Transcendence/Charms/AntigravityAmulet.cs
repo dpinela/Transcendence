@@ -12,7 +12,7 @@ namespace Transcendence
 
         public override string Sprite => "AntigravityAmulet.png";
         public override string Name => "Antigravity Amulet";
-        public override string Description => "Used by shamans to float around.\n\nDecreases the effect of gravity on the bearer, allowing them to leap to greater heights.";
+        public override string Description => "Used by shamans to float around.\n\nDecreases the effect of gravity on the bearer, allowing them to leap to greater heights and fall more softly.";
         public override int DefaultCost => 2;
         public override string Scene => "Mines_28";
         public override float X => 5.1f;
@@ -28,6 +28,7 @@ namespace Transcendence
         public override void Hook()
         {
             ModHooks.HeroUpdateHook += ChangeGravity;
+            On.HeroController.ShouldHardLand += FallSoftly;
         }
 
         private bool InInventory;
@@ -50,6 +51,9 @@ namespace Transcendence
             // through spikes in some rooms before they gain control.
             rb.gravityScale = (Equipped() && !InInventory && HeroController.instance.transitionState == HeroTransitionState.WAITING_TO_TRANSITION) ? 0.3f : 0.79f;
         }
+
+        private bool FallSoftly(On.HeroController.orig_ShouldHardLand orig, HeroController self, Collision2D collision) =>
+            orig(self, collision) && !Equipped();
 
         private void DisableDuringInventoryDrops(PlayMakerFSM fsm)
         {
