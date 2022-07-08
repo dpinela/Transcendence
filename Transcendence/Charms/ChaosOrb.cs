@@ -1,6 +1,5 @@
 using System;
 using Modding;
-using Vector2 = UnityEngine.Vector2;
 using ItemChanger;
 
 namespace Transcendence
