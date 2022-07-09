@@ -43,6 +43,7 @@ namespace Transcendence
             "Crossroads_21",
             "Crossroads_22",
             "Waterways_03",
+            "Fungus3_39",
             "Room_Final_Boss_Atrium",
             "Room_Final_Boss_Core"
         };
@@ -70,14 +71,29 @@ namespace Transcendence
         {
             if (Equipped() && DisinfectedScenes.Contains(to.name))
             {
-                foreach (var obj in UnityEngine.Object.FindObjectsOfType<GameObject>())
+                if (DisinfectedScenes.Contains(to.name))
                 {
-                    foreach (var p in DisinfectedPrefixes)
+                    foreach (var obj in UnityEngine.Object.FindObjectsOfType<GameObject>())
                     {
-                        if (obj.name.StartsWith(p))
+                        foreach (var p in DisinfectedPrefixes)
                         {
-                            UnityEngine.Object.Destroy(obj);
+                            if (obj.name.StartsWith(p))
+                            {
+                                UnityEngine.Object.Destroy(obj);
+                            }
                         }
+                    }
+                }
+                if (to.name == "Fungus3_39")
+                {
+                    var prophetSprite = GameObject.Find("Moss Cultist")?.GetComponent<tk2dSprite>();
+                    if (prophetSprite == null)
+                    {
+                        Transcendence.Instance.LogWarn("Moss Cultist tk2dSprite not found, cannot reskin");
+                    }
+                    else
+                    {
+                        prophetSprite.GetCurrentSpriteDef().material.mainTexture = EmbeddedSprites.Get("MossProphet.png").texture;
                     }
                 }
             }
