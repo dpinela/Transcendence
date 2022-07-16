@@ -21,6 +21,8 @@ namespace Transcendence
 
         public override CharmSettings Settings(SaveSettings s) => s.DisinfectantFlask;
 
+        public override List<(int, Action)> Tickers => new() {(1, AnimateAspidMother)};
+
         public override void Hook()
         {
             ModHooks.GetPlayerBoolHook += DisinfectCrossroads;
@@ -86,6 +88,18 @@ namespace Transcendence
                         }
                     }
                 }
+                if (to.name == "Crossroads_22")
+                {
+                    var aspidAnimator = GameObject.Find(AspidMotherName)?.GetComponent("Animator");
+                    if (aspidAnimator == null)
+                    {
+                        Transcendence.Instance.LogWarn("Aspid Mother Animator not found");
+                    }
+                    else
+                    {
+                        UnityEngine.Object.Destroy(aspidAnimator);
+                    }
+                }
             }
 
             // We have to manually restore the original Moss Prophet sprites when this charm is
@@ -112,6 +126,24 @@ namespace Transcendence
                 else
                 {
                     Transcendence.Instance.LogWarn("Moss Cultist original sprite not available");
+                }
+            }
+        }
+
+        private const int NumAspidMotherFrames = 4;
+        private const string AspidMotherName = "giant_hatcher_corpse0003";
+
+        private int AspidMotherFrame = 0;
+
+        private void AnimateAspidMother()
+        {
+            if (Equipped())
+            {
+                var sr = GameObject.Find(AspidMotherName)?.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.sprite = EmbeddedSprites.Get($"AspidMother{AspidMotherFrame}.png");
+                    AspidMotherFrame = (AspidMotherFrame + 1) % NumAspidMotherFrames;
                 }
             }
         }
