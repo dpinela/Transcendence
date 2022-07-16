@@ -67,6 +67,8 @@ namespace Transcendence
             "wispy smoke BG",
         };
 
+        private Texture OriginalMossProphetTexture;
+
         private void DisinfectOtherAreas(USM.Scene from, USM.Scene to)
         {
             if (Equipped() && DisinfectedScenes.Contains(to.name))
@@ -84,17 +86,32 @@ namespace Transcendence
                         }
                     }
                 }
-                if (to.name == "Fungus3_39")
+            }
+
+            // We have to manually restore the original Moss Prophet sprites when this charm is
+            // not in use, as changes to the material's main texture persist through room loads.
+            if (to.name == "Fungus3_39")
+            {
+                var prophetSprite = GameObject.Find("Moss Cultist")?.GetComponent<tk2dSprite>();
+                if (prophetSprite == null)
                 {
-                    var prophetSprite = GameObject.Find("Moss Cultist")?.GetComponent<tk2dSprite>();
-                    if (prophetSprite == null)
+                    Transcendence.Instance.LogWarn("Moss Cultist tk2dSprite not found, cannot reskin");
+                }
+                else if (Equipped())
+                {
+                    if (OriginalMossProphetTexture == null)
                     {
-                        Transcendence.Instance.LogWarn("Moss Cultist tk2dSprite not found, cannot reskin");
+                        OriginalMossProphetTexture = prophetSprite.GetCurrentSpriteDef().material.mainTexture;
                     }
-                    else
-                    {
-                        prophetSprite.GetCurrentSpriteDef().material.mainTexture = EmbeddedSprites.Get("MossProphet.png").texture;
-                    }
+                    prophetSprite.GetCurrentSpriteDef().material.mainTexture = EmbeddedSprites.Get("MossProphet.png").texture;
+                }
+                else if (OriginalMossProphetTexture != null)
+                {
+                    prophetSprite.GetCurrentSpriteDef().material.mainTexture = OriginalMossProphetTexture;
+                }
+                else
+                {
+                    Transcendence.Instance.LogWarn("Moss Cultist original sprite not available");
                 }
             }
         }
