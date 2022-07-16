@@ -20,18 +20,25 @@ namespace Transcendence
 
         public override CharmSettings Settings(SaveSettings s) => s.AntigravityAmulet;
 
-        public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
-        {
-            ("Inventory", "Inventory Control", DisableDuringInventoryDrops)
-        };
-
         public override void Hook()
         {
             ModHooks.HeroUpdateHook += ChangeGravity;
             On.HeroController.ShouldHardLand += FallSoftly;
         }
 
-        private bool InInventory;
+        private static readonly HashSet<string> InventoryClosedStates = new()
+        {
+            "Init",
+            "Init Enemy List",
+            "Closed",
+            "Can Open Inventory?"
+        };
+
+        private static bool InInventory()
+        {
+            var invState = GameManager.instance?.inventoryFSM?.Fsm.ActiveStateName;
+            return invState != null && !InventoryClosedStates.Contains(invState);
+        }
 
         private void ChangeGravity()
         {
@@ -49,19 +56,10 @@ namespace Transcendence
             }
             // Keep normal gravity after going through upwards transitions, so that the player does not fall
             // through spikes in some rooms before they gain control.
-            rb.gravityScale = (Equipped() && !InInventory && HeroController.instance.transitionState == HeroTransitionState.WAITING_TO_TRANSITION) ? 0.3f : 0.79f;
+            rb.gravityScale = (Equipped() && !InInventory() && HeroController.instance.transitionState == HeroTransitionState.WAITING_TO_TRANSITION) ? 0.3f : 0.79f;
         }
 
         private bool FallSoftly(On.HeroController.orig_ShouldHardLand orig, HeroController self, Collision2D collision) =>
             orig(self, collision) && !Equipped();
-
-        private void DisableDuringInventoryDrops(PlayMakerFSM fsm)
-        {
-            fsm.GetState("Open").AppendAction(() => InInventory = true);
-            void LeaveInventory() => InInventory = false;
-            fsm.GetState("Close").AppendAction(LeaveInventory);
-            fsm.GetState("R Lock Close").AppendAction(LeaveInventory);
-            fsm.GetState("Damage Close").AppendAction(LeaveInventory);
-        }
     }
 }
