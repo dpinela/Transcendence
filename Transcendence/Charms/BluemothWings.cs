@@ -56,7 +56,17 @@ namespace Transcendence
             self.dJumpWingsPrefab.SetActive(false);
             self.dJumpFlashPrefab.SetActive(false);
             orig(self);
-            self.TakeGeo(ExtraJumpCost);
+
+            // In Godseeker mode, there is no geo counter, so TakeGeo will throw an exception.
+            if (PlayerData.instance.GetBool("bossRushMode"))
+            {
+                PlayerData.instance.IntAdd("geo", -ExtraJumpCost);
+            }
+            else
+            {
+                self.TakeGeo(ExtraJumpCost);
+            }
+            
             GameManager.instance.StartCoroutine(RefreshWings());
         }
 

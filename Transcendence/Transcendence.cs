@@ -322,6 +322,7 @@ namespace Transcendence
             if (bossRush)
             {
                 GrantAllOurCharms();
+                GrantGodhomeStartingItems();
             }
             
             orig(self, permaDeath, bossRush);
@@ -346,6 +347,19 @@ namespace Transcendence
                 PlaceCharmsAtFixedPositions();
                 PlaceFloristsBlessingRepair();
             }
+        }
+
+        private void GrantGodhomeStartingItems()
+        {
+            PlayerData.instance.SetInt("geo", 50000);
+            PlayerData.instance.SetInt("trinket1", 14);
+            PlayerData.instance.SetInt("trinket2", 17);
+            PlayerData.instance.SetInt("trinket3", 8);
+            PlayerData.instance.SetInt("trinket4", 4);
+            PlayerData.instance.SetBool("foundTrinket1", true);
+            PlayerData.instance.SetBool("foundTrinket2", true);
+            PlayerData.instance.SetBool("foundTrinket3", true);
+            PlayerData.instance.SetBool("foundTrinket4", true);
         }
 
         private static void PlaceCharmsAtFixedPositions()
@@ -385,10 +399,19 @@ namespace Transcendence
 
         private static void PlaceFloristsBlessingRepair()
         {
-            var repairPlacement = new CoordinateLocation() { x = 72.0f, y = 3.4f, elevation = 0, sceneName = "RestingGrounds_12", name = "Florist's_Blessing_Repair" }.Wrap() as MutablePlacement;
+            ItemChangerMod.AddPlacements(new List<AbstractPlacement>()
+            {
+                MakeFloristsBlessingPlacement("Florist's_Blessing_Repair", "RestingGrounds_12", 72.0f, 3.4f),
+                MakeFloristsBlessingPlacement("Florist's_Blessing_Repair_Godhome", "GG_Atrium", 155.6f, 61.4f)
+            }, conflictResolution: PlacementConflictResolution.Ignore);
+        }
+
+        private static MutablePlacement MakeFloristsBlessingPlacement(string name, string scene, float x, float y)
+        {
+            var repairPlacement = new CoordinateLocation() { x = x, y = y, elevation = 0, sceneName = scene, name = name }.Wrap() as MutablePlacement;
             repairPlacement.Cost = new RecurringGeoCost(FloristsBlessing.RepairCost);
             repairPlacement.Add(new FloristsBlessingRepairItem());
-            ItemChangerMod.AddPlacements(new List<AbstractPlacement>() {repairPlacement}, conflictResolution: PlacementConflictResolution.Ignore);
+            return repairPlacement;
         }
 
         private const int MinTotalCost = 22;
