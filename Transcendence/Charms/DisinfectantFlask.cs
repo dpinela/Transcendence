@@ -1,5 +1,6 @@
 using Modding;
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using USM = UnityEngine.SceneManagement;
 
@@ -20,8 +21,6 @@ namespace Transcendence
         public override float Y => 4.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.DisinfectantFlask;
-
-        public override List<(int, Action)> Tickers => new() {(1, AnimateAspidMother)};
 
         public override void Hook()
         {
@@ -90,7 +89,10 @@ namespace Transcendence
                 }
                 if (to.name == "Crossroads_22")
                 {
-                    var aspidAnimator = GameObject.Find(AspidMotherName)?.GetComponent("Animator");
+                    var aspidMother = GameObject.Find(AspidMotherName);
+                    // Use the string form of GetComponent to avoid taking an otherwise-unnecessary
+                    // dependency on UnityEngine.AnimationModule.
+                    var aspidAnimator = aspidMother?.GetComponent("Animator");
                     if (aspidAnimator == null)
                     {
                         Transcendence.Instance.LogWarn("Aspid Mother Animator not found");
@@ -98,6 +100,29 @@ namespace Transcendence
                     else
                     {
                         UnityEngine.Object.Destroy(aspidAnimator);
+                        var newAnim = aspidMother.AddComponent<DummyMonoBehaviour>();
+                        var sr = aspidMother.GetComponent<SpriteRenderer>();
+
+                        IEnumerator Animate()
+                        {
+                            var steps = new List<(string, float)>()
+                            {
+                                ("AspidMother0.png", 0.8f),
+                                ("AspidMother1.png", 0.1f),
+                                ("AspidMother2.png", 0.1f),
+                                ("AspidMother3.png", 0.1f)
+                            };
+                            while (true)
+                            {
+                                foreach (var (sprite, duration) in steps)
+                                {
+                                    sr.sprite = EmbeddedSprites.Get(sprite, 64);
+                                    yield return new WaitForSeconds(duration);
+                                }
+                            }
+                        }
+
+                        newAnim.StartCoroutine(Animate());
                     }
                 }
             }
@@ -130,22 +155,6 @@ namespace Transcendence
             }
         }
 
-        private const int NumAspidMotherFrames = 4;
         private const string AspidMotherName = "giant_hatcher_corpse0003";
-
-        private int AspidMotherFrame = 0;
-
-        private void AnimateAspidMother()
-        {
-            if (Equipped())
-            {
-                var sr = GameObject.Find(AspidMotherName)?.GetComponent<SpriteRenderer>();
-                if (sr != null)
-                {
-                    sr.sprite = EmbeddedSprites.Get($"AspidMother{AspidMotherFrame}.png");
-                    AspidMotherFrame = (AspidMotherFrame + 1) % NumAspidMotherFrames;
-                }
-            }
-        }
     }
 }
