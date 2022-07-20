@@ -1,6 +1,9 @@
 using System;
 using Modding;
 using ItemChanger;
+using MagicUI.Core;
+using MagicUI.Elements;
+using UnityEngine;
 
 namespace Transcendence
 {
@@ -40,6 +43,8 @@ namespace Transcendence
             // - When NotchCostUI is active, picking up a charm that is currently being granted by the Orb would make
             // the pickup message display the cost as 0 instead of the charm's actual cost.
             AbstractItem.ModifyItemGlobal += DisableWhileGivingItem;
+
+            On.HeroController.Awake += SetupChaosHud;
         }
 
         public List<int> GivenCharms = new();
@@ -61,12 +66,9 @@ namespace Transcendence
             return Language.Language.Get(key, "UI");
         }
 
-        private List<int> CustomCharms = new();
-        public void AddCustomCharm(int num) => CustomCharms.Add(num);
-
         internal event Action<List<int>, List<int>> OnReroll;
 
-        private Random rng = new();
+        private System.Random rng = new();
 
         private List<int> PickNUnequippedCharms(int n)
         {
@@ -80,11 +82,11 @@ namespace Transcendence
                     unequippedCharms.Add(i);
                 }
             }
-            foreach (var i in CustomCharms)
+            foreach (var charm in Transcendence.Charms)
             {
-                if (!PlayerData.instance.GetBool($"equippedCharm_{i}"))
+                if (charm != this && !PlayerData.instance.GetBool($"equippedCharm_{charm.Num}"))
                 {
-                    unequippedCharms.Add(i);
+                    unequippedCharms.Add(charm.Num);
                 }
             }
             if (n > unequippedCharms.Count)
@@ -107,6 +109,7 @@ namespace Transcendence
             GivenCharms = empty; // so that charms currently given by the Orb can be selected again
             GivenCharms = PickNUnequippedCharms(3);
             OnReroll?.Invoke(oldCharms, GivenCharms);
+            UpdateHud();
 
             PlayMakerFSM.BroadcastEvent("CHARM EQUIP CHECK");
             PlayMakerFSM.BroadcastEvent("CHARM INDICATOR CHECK");
@@ -180,6 +183,41 @@ namespace Transcendence
             args.Info.Callback += (AbstractItem it) => {
                 GivenCharms = givenCharms;
             };
+        }
+
+        private StackLayout HudSlots;
+
+        internal void UpdateHud()
+        {
+            if (HudSlots == null)
+            {
+                Transcendence.Instance.Log("not updating Chaos HUD: not initialized yet");
+                return;
+            }
+
+            var slots = HudSlots.Children;
+            slots.Clear();
+            foreach (var charmNum in GivenCharms)
+            {
+                slots.Add(new Image(HudSlots.LayoutRoot, CharmSprite(charmNum), $"Chaos HUD Item"));
+            }
+        }
+
+        private static Sprite CharmSprite(int num) => num <= 40 ?
+            CharmIconList.Instance?.GetSprite(num) :
+            EmbeddedSprites.Get(Transcendence.Charms.First(c => c.Num == num).Sprite);
+
+        private void SetupChaosHud(On.HeroController.orig_Awake orig, HeroController self)
+        {
+            var root = new LayoutRoot(true, "Chaos HUD");
+            var slots = new StackLayout(root, "Given Charms");
+            slots.HorizontalAlignment = HorizontalAlignment.Right;
+            slots.VerticalAlignment = VerticalAlignment.Top;
+            slots.Orientation = Orientation.Vertical;
+            slots.Spacing = 0.5f;
+            HudSlots = slots;
+
+            orig(self);
         }
     }
 }

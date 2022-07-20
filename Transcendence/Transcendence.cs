@@ -29,7 +29,7 @@ namespace Transcendence
 {
     public class Transcendence : Mod, ILocalSettings<SaveSettings>, IGlobalSettings<GlobalSettings>, IMenuMod
     {
-        private static List<Charm> Charms = new() 
+        internal static List<Charm> Charms = new()
         {
             AntigravityAmulet.Instance,
             BluemothWings.Instance,
@@ -66,10 +66,6 @@ namespace Transcendence
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
                 charm.Num = num;
-                if (!(charm == ChaosOrb.Instance))
-                {
-                    ChaosOrb.Instance.AddCustomCharm(num);
-                }
                 var settings = charm.Settings;
                 IntGetters[$"charmCost_{num}"] = _ => (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num)) ? 0 : settings(Settings).Cost;
                 IntSetters[$"charmCost_{num}"] = value => settings(Settings).Cost = value;
@@ -169,6 +165,7 @@ namespace Transcendence
             Settings = s;
             FloristsBlessing.Instance.Broken = s.FloristsBlessingBroken;
             ChaosOrb.Instance.GivenCharms = s.ChaosOrbGivenCharms;
+            //ChaosOrb.Instance.UpdateHud();
         }
 
         public SaveSettings OnSaveLocal()
@@ -335,7 +332,7 @@ namespace Transcendence
             
             StoreNotchCosts(costs);
 
-            if (RandomizerMod.RandomizerMod.RS.GenerationSettings.PoolSettings.Charms)
+            if (gs.PoolSettings.Charms)
             {
                 if (RandoSettings.AddCharms)
                 {
