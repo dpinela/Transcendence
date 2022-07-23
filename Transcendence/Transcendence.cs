@@ -180,6 +180,7 @@ namespace Transcendence
         {
             ModSettings = s;
             RandoSettings = new(s);
+            ChaosOrb.Instance.InitChaosHudSettings(s.ChaosHud);
         }
 
         public GlobalSettings OnSaveGlobal()
@@ -506,6 +507,47 @@ namespace Transcendence
                 Values = new[] { "Off", "On" },
                 Saver = i => { ModSettings.ChaosMode = i == 1; },
                 Loader = () => ModSettings.ChaosMode ? 1 : 0
+            },
+            new()
+            {
+                Name = "Chaos HUD",
+                Description = "Display charms currently given by Chaos Orb on screen.",
+                Values = new[] { "Off", "On" },
+                Saver = i => {
+                    ModSettings.ChaosHud.Enabled = i == 1;
+                    ChaosOrb.Instance.UpdateChaosHudSettings(ModSettings.ChaosHud);
+                },
+                Loader = () => ModSettings.ChaosHud.Enabled ? 1 : 0
+            },
+            new()
+            {
+                Name = "Chaos HUD Horizontal Position",
+                Values = new[] { "Left", "Center", "Right" },
+                Saver = i => {
+                    ModSettings.ChaosHud.HorizontalPosition = i;
+                    ChaosOrb.Instance.UpdateChaosHudSettings(ModSettings.ChaosHud);
+                },
+                Loader = () => ModSettings.ChaosHud.HorizontalPosition
+            },
+            new()
+            {
+                Name = "Chaos HUD Vertical Position",
+                Values = new[] { "Top", "Center", "Right" },
+                Saver = i => {
+                    ModSettings.ChaosHud.VerticalPosition = i;
+                    ChaosOrb.Instance.UpdateChaosHudSettings(ModSettings.ChaosHud);
+                },
+                Loader = () => ModSettings.ChaosHud.VerticalPosition
+            },
+            new()
+            {
+                Name = "Chaos HUD Orientation",
+                Values = new[] { "Horizontal", "Vertical" },
+                Saver = i => {
+                    ModSettings.ChaosHud.Orientation = i;
+                    ChaosOrb.Instance.UpdateChaosHudSettings(ModSettings.ChaosHud);
+                },
+                Loader = () => ModSettings.ChaosHud.Orientation
             }
         };
 

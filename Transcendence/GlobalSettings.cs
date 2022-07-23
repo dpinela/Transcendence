@@ -9,5 +9,6 @@ namespace Transcendence
         public bool AddCharms = true;
         public int IncreaseMaxCharmCostBy = 7;
         public bool ChaosMode = false;
+        public ChaosHudSettings ChaosHud = new();
     }
 }

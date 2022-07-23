@@ -114,7 +114,6 @@ namespace Transcendence
             var oldCharms = GivenCharms;
             GivenCharms = empty; // so that charms currently given by the Orb can be selected again
             GivenCharms = PickNUnequippedCharms(3);
-            GivenCharms.Add(36);
             OnReroll?.Invoke(oldCharms, GivenCharms);
             UpdateHud();
 
@@ -196,11 +195,12 @@ namespace Transcendence
         private Sprite KingsoulIcon;
         private Sprite VoidHeartIcon;
 
+        private ChaosHudSettings HudSettings = new();
+
         internal void UpdateHud()
         {
-            if (HudSlots == null)
+            if (HudSlots == null || HudSlots.Visibility != Visibility.Visible)
             {
-                Transcendence.Instance.Log("not updating Chaos HUD: not initialized yet");
                 return;
             }
             // CharmIconList isn't loaded yet the first time the game loads into a gameplay scene.
@@ -236,17 +236,67 @@ namespace Transcendence
             _ => EmbeddedSprites.Get(Transcendence.Charms.First(c => c.Num == num).Sprite)
         };
 
+        private static HorizontalAlignment HorizAlignmentFromIndex(int n) => n switch
+        {
+            0 => HorizontalAlignment.Left,
+            1 => HorizontalAlignment.Center,
+            _ => HorizontalAlignment.Right
+        };
+
+        private static VerticalAlignment VertAlignmentFromIndex(int n) => n switch
+        {
+            1 => VerticalAlignment.Center,
+            2 => VerticalAlignment.Bottom,
+            _ => VerticalAlignment.Top,
+        };
+
+        private static Orientation OrientationFromIndex(int n) => n switch
+        {
+            0 => Orientation.Horizontal,
+            _ => Orientation.Vertical
+        };
+
+        internal void InitChaosHudSettings(ChaosHudSettings s)
+        {
+            HudSettings = s;
+        }
+
+        internal void UpdateChaosHudSettings(ChaosHudSettings s)
+        {
+            if (HudSlots != null)
+            {
+                if (s.Enabled && !HudSettings.Enabled)
+                {
+                    if (GameManager.instance.IsGameplayScene())
+                    {
+                        HudSlots.Visibility = Visibility.Visible;
+                        UpdateHud();
+                    }
+                }
+                else if (!s.Enabled && HudSettings.Enabled)
+                {
+                    HudSlots.Visibility = Visibility.Collapsed;
+                }
+                ConfigureChaosHud(s);
+            }
+            HudSettings = s;
+        }
+
+        private void ConfigureChaosHud(ChaosHudSettings s)
+        {
+            HudSlots.HorizontalAlignment = HorizAlignmentFromIndex(s.HorizontalPosition);
+            HudSlots.VerticalAlignment = VertAlignmentFromIndex(s.VerticalPosition);
+            HudSlots.Orientation = OrientationFromIndex(s.Orientation);
+            HudSlots.Spacing = s.Spacing;
+        }
+
         private void SetupChaosHud(On.HeroController.orig_Awake orig, HeroController self)
         {
             Transcendence.Instance.Log("Initializing Chaos HUD");
             var root = new LayoutRoot(true, "Chaos HUD");
-            var slots = new StackLayout(root, "Given Charms");
-            slots.HorizontalAlignment = HorizontalAlignment.Right;
-            slots.VerticalAlignment = VerticalAlignment.Top;
-            slots.Orientation = Orientation.Vertical;
-            slots.Spacing = 0.5f;
-            slots.Visibility = Visibility.Collapsed;
-            HudSlots = slots;
+            HudSlots = new StackLayout(root, "Given Charms");
+            ConfigureChaosHud(HudSettings);
+            HudSlots.Visibility = Visibility.Collapsed;
 
             orig(self);
         }
@@ -255,7 +305,7 @@ namespace Transcendence
         {
             if (GameManager.instance.IsGameplayScene())
             {
-                if (HudSlots.Visibility != Visibility.Visible)
+                if (HudSettings.Enabled && HudSlots.Visibility != Visibility.Visible)
                 {
                     Transcendence.Instance.Log("Turning on Chaos HUD");
                     HudSlots.Visibility = Visibility.Visible;
