@@ -165,7 +165,6 @@ namespace Transcendence
             Settings = s;
             FloristsBlessing.Instance.Broken = s.FloristsBlessingBroken;
             ChaosOrb.Instance.GivenCharms = s.ChaosOrbGivenCharms;
-            //ChaosOrb.Instance.UpdateHud();
         }
 
         public SaveSettings OnSaveLocal()

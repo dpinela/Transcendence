@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using Modding;
 using ItemChanger;
 using MagicUI.Core;
 using MagicUI.Elements;
 using UnityEngine;
+using USM = UnityEngine.SceneManagement;
 
 namespace Transcendence
 {
@@ -45,6 +47,10 @@ namespace Transcendence
             AbstractItem.ModifyItemGlobal += DisableWhileGivingItem;
 
             On.HeroController.Awake += SetupChaosHud;
+            // Can't use ItemChanger's scene change hook because it doesn't trigger when exiting to
+            // Menu_Title.
+            USM.SceneManager.activeSceneChanged += ToggleChaosHud;
+            GrabRoyalCharmIcons();
         }
 
         public List<int> GivenCharms = new();
@@ -108,6 +114,7 @@ namespace Transcendence
             var oldCharms = GivenCharms;
             GivenCharms = empty; // so that charms currently given by the Orb can be selected again
             GivenCharms = PickNUnequippedCharms(3);
+            GivenCharms.Add(36);
             OnReroll?.Invoke(oldCharms, GivenCharms);
             UpdateHud();
 
@@ -186,6 +193,8 @@ namespace Transcendence
         }
 
         private StackLayout HudSlots;
+        private Sprite KingsoulIcon;
+        private Sprite VoidHeartIcon;
 
         internal void UpdateHud()
         {
@@ -194,30 +203,82 @@ namespace Transcendence
                 Transcendence.Instance.Log("not updating Chaos HUD: not initialized yet");
                 return;
             }
+            // CharmIconList isn't loaded yet the first time the game loads into a gameplay scene.
+            // In that case, wait until it is.
+            if (CharmIconList.Instance == null || HeroController.instance == null)
+            {
+                IEnumerator UpdateLater()
+                {
+                    yield return new WaitWhile(() => HeroController.instance == null || CharmIconList.Instance == null);
+                    yield return new WaitForSeconds(2);
+                    UpdateHud();
+                }
+
+                GameManager.instance.StartCoroutine(UpdateLater());
+                return;
+            }
+
+            Transcendence.Instance.Log("Updating Chaos HUD");
 
             var slots = HudSlots.Children;
             slots.Clear();
             foreach (var charmNum in GivenCharms)
             {
-                slots.Add(new Image(HudSlots.LayoutRoot, CharmSprite(charmNum), $"Chaos HUD Item"));
+                var sprite = CharmSprite(charmNum);
+                Transcendence.Instance.Log($"sprite for charm {charmNum} is size {sprite.rect.size} ppu {sprite.pixelsPerUnit}");
+                slots.Add(new Image(HudSlots.LayoutRoot, sprite, "Chaos HUD Item"));
             }
         }
 
-        private static Sprite CharmSprite(int num) => num <= 40 ?
-            CharmIconList.Instance?.GetSprite(num) :
-            EmbeddedSprites.Get(Transcendence.Charms.First(c => c.Num == num).Sprite);
+        private Sprite CharmSprite(int num) => num switch {
+            36 => PlayerData.instance.GetInt("royalCharmState") > 3 ? VoidHeartIcon : KingsoulIcon,
+            <= 40 => CharmIconList.Instance.GetSprite(num),
+            _ => EmbeddedSprites.Get(Transcendence.Charms.First(c => c.Num == num).Sprite)
+        };
 
         private void SetupChaosHud(On.HeroController.orig_Awake orig, HeroController self)
         {
+            Transcendence.Instance.Log("Initializing Chaos HUD");
             var root = new LayoutRoot(true, "Chaos HUD");
             var slots = new StackLayout(root, "Given Charms");
             slots.HorizontalAlignment = HorizontalAlignment.Right;
             slots.VerticalAlignment = VerticalAlignment.Top;
             slots.Orientation = Orientation.Vertical;
             slots.Spacing = 0.5f;
+            slots.Visibility = Visibility.Collapsed;
             HudSlots = slots;
 
             orig(self);
+        }
+
+        private void ToggleChaosHud(USM.Scene from, USM.Scene to)
+        {
+            if (GameManager.instance.IsGameplayScene())
+            {
+                if (HudSlots.Visibility != Visibility.Visible)
+                {
+                    Transcendence.Instance.Log("Turning on Chaos HUD");
+                    HudSlots.Visibility = Visibility.Visible;
+                    UpdateHud();
+                }
+            }
+            else
+            {
+                Transcendence.Instance.Log("Turning off Chaos HUD");
+                HudSlots.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        // CharmIconList does not have the sprites for Kingsoul and Void Heart for some reason; in their
+        // place it has the Dashmaster-esque unused charm icon.
+        private void GrabRoyalCharmIcons()
+        {
+            KingsoulIcon = Finder.GetItem("Kingsoul")?.UIDef?.GetSprite();
+            VoidHeartIcon = Finder.GetItem("Void_Heart")?.UIDef?.GetSprite();
+            if (KingsoulIcon == null || VoidHeartIcon == null)
+            {
+                Transcendence.Instance.LogWarn("Kingsoul or Void Heart icons not found");
+            }
         }
     }
 }
