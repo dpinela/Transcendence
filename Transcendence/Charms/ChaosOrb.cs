@@ -196,6 +196,7 @@ namespace Transcendence
         private Sprite VoidHeartIcon;
 
         private ChaosHudSettings HudSettings = new();
+        private const float IconSize = 75f;
 
         internal void UpdateHud()
         {
@@ -226,7 +227,10 @@ namespace Transcendence
             {
                 var sprite = CharmSprite(charmNum);
                 Transcendence.Instance.Log($"sprite for charm {charmNum} is size {sprite.rect.size} ppu {sprite.pixelsPerUnit}");
-                slots.Add(new Image(HudSlots.LayoutRoot, sprite, "Chaos HUD Item"));
+                var img = new Image(HudSlots.LayoutRoot, sprite, "Chaos HUD Item");
+                img.Width = IconSize;
+                img.Height = IconSize;
+                slots.Add(img);
             }
         }
 
