@@ -33,7 +33,7 @@ namespace Transcendence
 
         public override void Hook()
         {
-            ModHooks.SetPlayerBoolHook += RerollCharmsOnEquip;
+            ModHooks.SetPlayerBoolHook += RerollCharmsAndOtherStuffOnEquip;
             ModHooks.GetPlayerIntHook += EnableKingsoul;
             ModHooks.GetPlayerBoolHook += EnableUnbreakableCharms;
             // Temporarily stop giving any charms while ItemChanger is giving an item. This solves two issues:
@@ -146,13 +146,29 @@ namespace Transcendence
             }
         }
 
-        private bool RerollCharmsOnEquip(string boolName, bool value)
+        private bool RerollCharmsAndOtherStuffOnEquip(string boolName, bool value)
         {
-            // Technically it might be the case that the last tick
-            // actually picked zero charms, but in that case every
-            // charm is equipped, so rerolling will make no difference.
-            if (boolName == $"equippedCharm_{Num}" && value && GivenCharms.Count == 0)
+            if (boolName == $"equippedCharm_{Num}")
             {
+                if (value)
+                {
+                    // Technically it might be the case that the last tick
+                    // actually picked zero charms, but in that case every
+                    // charm is equipped, so rerolling will make no difference.
+                    if (GivenCharms.Count == 0)
+                    {
+                        RerollCharms();
+                    }
+                    if (HudSlots != null)
+                    {
+                        HudSlots.Visibility = Visibility.Visible;
+                        UpdateHud();
+                    }
+                }
+                else if (HudSlots != null)
+                {
+                    HudSlots.Visibility = Visibility.Collapsed;
+                }
                 RerollCharms();
             }
             return value;
@@ -271,7 +287,7 @@ namespace Transcendence
             {
                 if (s.Enabled && !HudSettings.Enabled)
                 {
-                    if (GameManager.instance.IsGameplayScene())
+                    if (GameManager.instance.IsGameplayScene() && Equipped())
                     {
                         HudSlots.Visibility = Visibility.Visible;
                         UpdateHud();
@@ -309,7 +325,7 @@ namespace Transcendence
         {
             if (GameManager.instance.IsGameplayScene())
             {
-                if (HudSettings.Enabled && HudSlots.Visibility != Visibility.Visible)
+                if (HudSettings.Enabled && HudSlots.Visibility != Visibility.Visible && Equipped())
                 {
                     Transcendence.Instance.Log("Turning on Chaos HUD");
                     HudSlots.Visibility = Visibility.Visible;
