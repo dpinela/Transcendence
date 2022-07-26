@@ -227,7 +227,6 @@ namespace Transcendence
                 IEnumerator UpdateLater()
                 {
                     yield return new WaitWhile(() => HeroController.instance == null || CharmIconList.Instance == null);
-                    yield return new WaitForSeconds(2);
                     UpdateHud();
                 }
 
@@ -242,7 +241,6 @@ namespace Transcendence
             foreach (var charmNum in GivenCharms)
             {
                 var sprite = CharmSprite(charmNum);
-                Transcendence.Instance.Log($"sprite for charm {charmNum} is size {sprite.rect.size} ppu {sprite.pixelsPerUnit}");
                 var img = new Image(HudSlots.LayoutRoot, sprite, "Chaos HUD Item");
                 img.Width = IconSize;
                 img.Height = IconSize;

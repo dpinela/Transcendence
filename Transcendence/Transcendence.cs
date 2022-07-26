@@ -521,7 +521,7 @@ namespace Transcendence
             },
             new()
             {
-                Name = "Chaos HUD Horizontal Position",
+                Name = "Chaos HUD Horiz. Position",
                 Values = new[] { "Left", "Center", "Right" },
                 Saver = i => {
                     ModSettings.ChaosHud.HorizontalPosition = i;
@@ -532,7 +532,7 @@ namespace Transcendence
             new()
             {
                 Name = "Chaos HUD Vertical Position",
-                Values = new[] { "Top", "Center", "Right" },
+                Values = new[] { "Top", "Center", "Bottom" },
                 Saver = i => {
                     ModSettings.ChaosHud.VerticalPosition = i;
                     ChaosOrb.Instance.UpdateChaosHudSettings(ModSettings.ChaosHud);
