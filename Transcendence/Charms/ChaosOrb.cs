@@ -34,6 +34,8 @@ namespace Transcendence
         public override void Hook()
         {
             ModHooks.SetPlayerBoolHook += RerollCharmsAndOtherStuffOnEquip;
+            // Does not apply to debug upgrades/downgrades since it doesn't use SetInt to do them.
+            ModHooks.SetPlayerIntHook += UpdateChaosHudOnKingsoulUpgrade;
             ModHooks.GetPlayerIntHook += EnableKingsoul;
             ModHooks.GetPlayerBoolHook += EnableUnbreakableCharms;
             // Temporarily stop giving any charms while ItemChanger is giving an item. This solves two issues:
@@ -335,6 +337,24 @@ namespace Transcendence
                 Transcendence.Instance.Log("Turning off Chaos HUD");
                 HudSlots.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private int UpdateChaosHudOnKingsoulUpgrade(string intName, int value)
+        {
+            if (intName == "royalCharmState")
+            {
+                // We cannot just wait until the change to PlayerData is written, because the
+                // big item UI for the new Kingsoul level (if given by ItemChanger) may still be
+                // up, and during that time the Orb is disabled by DisableWhileGivingItem.
+                IEnumerator UpdateHudAfterItemGiven()
+                {
+                    yield return null;
+                    yield return new WaitWhile(() => GivenCharms.Count == 0);
+                    UpdateHud();
+                }
+                GameManager.instance.StartCoroutine(UpdateHudAfterItemGiven());
+            }
+            return value;
         }
 
         // CharmIconList does not have the sprites for Kingsoul and Void Heart for some reason; in their

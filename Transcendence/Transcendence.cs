@@ -640,12 +640,17 @@ namespace Transcendence
 
         internal static void UpdateNailDamage()
         {
-            IEnumerator WaitThenUpdate()
+            DoNextFrame(() => PlayMakerFSM.BroadcastEvent("UPDATE NAIL DAMAGE"));
+        }
+
+        internal static void DoNextFrame(Action f)
+        {
+            IEnumerator WaitThenCall()
             {
                 yield return null;
-                PlayMakerFSM.BroadcastEvent("UPDATE NAIL DAMAGE");
+                f();
             }
-            GameManager.instance.StartCoroutine(WaitThenUpdate());
+            GameManager.instance.StartCoroutine(WaitThenCall());
         }
 
         private void GrantAllOurCharms()
