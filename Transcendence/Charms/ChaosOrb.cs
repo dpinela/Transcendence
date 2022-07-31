@@ -176,9 +176,15 @@ namespace Transcendence
             return value;
         }
 
+        private static bool GivingVanillaWhiteCharm() =>
+            GameObject.Find("UI Msg Get WhiteCharm(Clone)")?.LocateMyFSM("Msg Control")?.Fsm.ActiveStateName == "Init";
+
         private int EnableKingsoul(string intName, int value)
         {
-            if (intName == "royalCharmState" && Equipped() && GivingCharm(36) && value < 3)
+            // We cannot pretend to have Kingsoul while vanilla White Fragment/Kingsoul/Void Heart
+            // animations are running, or the game will softlock AND, at least in some cases,
+            // lock the player out of the item they were supposed to get.
+            if (intName == "royalCharmState" && value < 3 && GivingCharm(36) && Equipped() && !GivingVanillaWhiteCharm())
             {
                 value = 3;
             }
@@ -341,7 +347,7 @@ namespace Transcendence
 
         private int UpdateChaosHudOnKingsoulUpgrade(string intName, int value)
         {
-            if (intName == "royalCharmState")
+            if (intName == "royalCharmState" && HudSlots?.Visibility == Visibility.Visible)
             {
                 // We cannot just wait until the change to PlayerData is written, because the
                 // big item UI for the new Kingsoul level (if given by ItemChanger) may still be
