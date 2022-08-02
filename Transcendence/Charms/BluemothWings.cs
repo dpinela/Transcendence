@@ -1,6 +1,10 @@
 using System.Collections;
+using System.Reflection;
 using Modding;
+using GlobalEnums;
 using UnityEngine;
+using USM = UnityEngine.SceneManagement;
+using ItemChanger;
 
 namespace Transcendence
 {
@@ -24,6 +28,9 @@ namespace Transcendence
         {
             On.HeroController.CanDoubleJump += AllowDoubleJump;
             On.HeroController.DoDoubleJump += AllowExtraJumps;
+
+            Events.OnSceneChange += OpenOnewayTransitions;
+            On.HeroController.AffectedByGravity += GiveControlFromUpwardsTransitions;
         }
 
         private const int ExtraJumpCost = 10;
@@ -74,6 +81,44 @@ namespace Transcendence
         {
             yield return new WaitUntil(() => !InputHandler.Instance.inputActions.jump.IsPressed);
             ReflectionHelper.SetField(HeroController.instance, "doubleJumped", false);
+        }
+
+        private static readonly Dictionary<string, string> DisabledUpwardsTransitions = new()
+        {
+            {"RestingGrounds_02", "top1"},
+            {"Mines_13", "top1"},
+            {"Mines_23", "top1"},
+            {"Town", "_Transition Gates/top1"},
+            {"Tutorial_01", "_Transition Gates/top1"},
+            {"Fungus2_25", "top2"}, // not working yet
+            {"Deepnest_East_03", "top2"},
+            {"Deepnest_01b", "_Transition Gates/top2"}
+        };
+
+        private void OpenOnewayTransitions(USM.Scene dest)
+        {
+            if (DisabledUpwardsTransitions.TryGetValue(dest.name, out var gateName))
+            {
+                GameObject.Find(gateName).GetComponent<Collider2D>().enabled = true;
+            }
+        }
+
+        private void GiveControlFromUpwardsTransitions(On.HeroController.orig_AffectedByGravity orig, HeroController self, bool gravityOn)
+        {
+            // AffectedByGravity(true) is called by EnterScene under the below conditions
+            // when entering a scene from below.
+            // We use that as a hook to give back control because it's far less cursed than
+            // trying to hook EnterScene itself (which is a coroutine method).
+            if (gravityOn && self.transitionState == HeroTransitionState.ENTERING_SCENE && self.sceneEntryGate?.GetGatePosition() == GatePosition.bottom)
+            {
+                const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance;
+
+                Transcendence.Instance.Log("returning control on upwards transition");
+                typeof(HeroController).GetMethod("FinishedEnteringScene", flags)?.Invoke(self, new object[] { true, false });
+                // TODO: fix player not taking damage sometimes?
+                // do this only on the otherwise-oneway transitions
+            }
+            orig(self, gravityOn);
         }
     }
 }
