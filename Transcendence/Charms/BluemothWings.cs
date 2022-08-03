@@ -85,13 +85,13 @@ namespace Transcendence
 
         private static readonly Dictionary<string, string> DisabledUpwardsTransitions = new()
         {
-            {"RestingGrounds_02", "top1"},
-            {"Mines_13", "top1"},
-            {"Mines_23", "top1"},
+            {"RestingGrounds_02", "top1"}, // also reachable with Antigravity, but cannot go further
+            {"Mines_13", "top1"}, 
+            {"Mines_23", "top1"}, // also reachable with Antigravity, but cannot go further
             {"Town", "_Transition Gates/top1"},
             {"Tutorial_01", "_Transition Gates/top1"},
-            {"Fungus2_25", "top2"}, // not working yet; collider not active when entering room from the right?
-            {"Deepnest_East_03", "top2"},
+            {"Fungus2_25", "top2"}, // also reachable with Antigravity; can reach a platform with either another jump or a dash; not working yet; collider not active when entering room from the right?
+            {"Deepnest_East_03", "top2"}, // also reachable with Antigravity; can reach a platform with another jump
             {"Deepnest_01b", "_Transition Gates/top2"}
         };
 
@@ -137,8 +137,10 @@ namespace Transcendence
 
                 Transcendence.Instance.Log("returning control on upwards transition");
                 typeof(HeroController).GetMethod("FinishedEnteringScene", flags)?.Invoke(self, new object[] { true, false });
-                // TODO: fix player not taking damage sometimes?
-                // do this only on the otherwise-oneway transitions
+                // After this call to AffectedByGravity, EnterScene sets transitionState
+                // to DROPPING_DOWN, which gives the player invulnerability and also disables Antigravity
+                // This is the easiest and most reliable way of fixing that.
+                Transcendence.DoNextFrame(() => self.transitionState = HeroTransitionState.WAITING_TO_TRANSITION);
             }
             orig(self, gravityOn);
         }
