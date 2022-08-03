@@ -90,16 +90,34 @@ namespace Transcendence
             {"Mines_23", "top1"},
             {"Town", "_Transition Gates/top1"},
             {"Tutorial_01", "_Transition Gates/top1"},
-            {"Fungus2_25", "top2"}, // not working yet
+            {"Fungus2_25", "top2"}, // not working yet; collider not active when entering room from the right?
             {"Deepnest_East_03", "top2"},
             {"Deepnest_01b", "_Transition Gates/top2"}
+        };
+
+        private static readonly Dictionary<string, string> OnewayUpwardsTargets = new()
+        {
+            {"Mines_28", "bot1"},
+            {"Mines_34", "bot2"},
+            {"Cliffs_02", "bot2"},
+            {"Fungus2_30", "bot1"},
+            {"Deepnest_East_07", "bot2"},
+            {"Deepnest_01", "bot2"}
         };
 
         private void OpenOnewayTransitions(USM.Scene dest)
         {
             if (DisabledUpwardsTransitions.TryGetValue(dest.name, out var gateName))
             {
-                GameObject.Find(gateName).GetComponent<Collider2D>().enabled = true;
+                var coll = GameObject.Find(gateName)?.GetComponent<Collider2D>();
+                if (coll == null)
+                {
+                    Transcendence.Instance.LogWarn($"collider for gate {gateName} in scene {dest.name} not found");
+                }
+                else
+                {
+                    coll.enabled = true;
+                }
             }
         }
 
@@ -109,7 +127,11 @@ namespace Transcendence
             // when entering a scene from below.
             // We use that as a hook to give back control because it's far less cursed than
             // trying to hook EnterScene itself (which is a coroutine method).
-            if (gravityOn && self.transitionState == HeroTransitionState.ENTERING_SCENE && self.sceneEntryGate?.GetGatePosition() == GatePosition.bottom)
+            if (gravityOn &&
+                self.transitionState == HeroTransitionState.ENTERING_SCENE &&
+                self.sceneEntryGate?.GetGatePosition() == GatePosition.bottom &&
+                OnewayUpwardsTargets.TryGetValue(GameManager.instance.sceneName, out var gate) &&
+                self.GetEntryGateName() == gate)
             {
                 const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance;
 
