@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Reflection;
 using Modding;
+using Modding.Utils;
 using GlobalEnums;
 using UnityEngine;
 using USM = UnityEngine.SceneManagement;
@@ -90,7 +91,7 @@ namespace Transcendence
             {"Mines_23", "top1"}, // also reachable with Antigravity, but cannot go further
             {"Town", "_Transition Gates/top1"},
             {"Tutorial_01", "_Transition Gates/top1"},
-            {"Fungus2_25", "top2"}, // also reachable with Antigravity; can reach a platform with either another jump or a dash; not working yet; collider not active when entering room from the right?
+            {"Fungus2_25", "top2"}, // also reachable with Antigravity; can reach a platform with either another jump or a dash
             {"Deepnest_East_03", "top2"}, // also reachable with Antigravity; can reach a platform with another jump
             {"Deepnest_01b", "_Transition Gates/top2"}
         };
@@ -109,7 +110,7 @@ namespace Transcendence
         {
             if (DisabledUpwardsTransitions.TryGetValue(dest.name, out var gateName))
             {
-                var coll = GameObject.Find(gateName)?.GetComponent<Collider2D>();
+                var coll = dest.FindGameObject(gateName)?.GetComponent<Collider2D>();
                 if (coll == null)
                 {
                     Transcendence.Instance.LogWarn($"collider for gate {gateName} in scene {dest.name} not found");
