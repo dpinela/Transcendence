@@ -26,6 +26,7 @@ namespace Transcendence
         public override void GiveImmediate(GiveInfo info)
         {
             FloristsBlessing.Instance.Broken = false;
+            Transcendence.UpdateNailDamage();
         }
     } 
 }
