@@ -329,6 +329,10 @@ namespace Transcendence
 
         private void ToggleChaosHud(USM.Scene from, USM.Scene to)
         {
+            if (HudSlots == null)
+            {
+                return;
+            }
             if (GameManager.instance.IsGameplayScene())
             {
                 if (HudSettings.Enabled && HudSlots.Visibility != Visibility.Visible && Equipped())
