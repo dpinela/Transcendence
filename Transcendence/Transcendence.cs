@@ -156,7 +156,7 @@ namespace Transcendence
             TextEdits.Add((key, sheetName), text);
         }
 
-        public override string GetVersion() => "1.2.2";
+        public override string GetVersion() => "1.3";
 
         internal SaveSettings Settings = new();
 
