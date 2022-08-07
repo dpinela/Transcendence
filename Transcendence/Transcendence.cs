@@ -56,6 +56,7 @@ namespace Transcendence
         private Dictionary<string, Func<int, int>> IntGetters = new();
         private Dictionary<string, Func<int, int>> IntSetters = new();
         private Dictionary<(string, string), Action<PlayMakerFSM>> FSMEdits = new();
+        private Dictionary<(string Key, string Sheet), Func<string?>> TextEdits = new();
         private List<(int Period, Action Func)> Tickers = new();
 
         public override void Initialize()
@@ -69,8 +70,8 @@ namespace Transcendence
                 var settings = charm.Settings;
                 IntGetters[$"charmCost_{num}"] = _ => (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num)) ? 0 : settings(Settings).Cost;
                 IntSetters[$"charmCost_{num}"] = value => settings(Settings).Cost = value;
-                AddTextEdit($"CHARM_NAME_{num}", "UI", charm.Name);
-                AddTextEdit($"CHARM_DESC_{num}", "UI", () => charm.Description);
+                TextEdits[(Key: $"CHARM_NAME_{num}", Sheet: "UI")] = () => charm.Name;
+                TextEdits[(Key: $"CHARM_DESC_{num}", Sheet: "UI")] = () => charm.Description;
                 BoolGetters[$"equippedCharm_{num}"] = _ => settings(Settings).Equipped || (Equipped(ChaosOrb.Instance) && ChaosOrb.Instance.GivingCharm(num));
                 BoolSetters[$"equippedCharm_{num}"] = charm == ChaosOrb.Instance ?
                     (value => settings(Settings).Equipped = value || Settings.ChaosMode)
@@ -139,22 +140,13 @@ namespace Transcendence
                     PlayerData.instance.CountCharms();
                 });
             }
+
+            TextEdits[(Key: "PERMA_GAME_OVER", Sheet: "Credits List")] = ABCDE.Title;
+            TextEdits[(Key: "PERMA_GAME_OVER_BODY", Sheet: "Credits List")] = ABCDE.Body;
         }
 
         // breaks infinite loop when reading equippedCharm_X
         private bool Equipped(Charm c) => c.Settings(Settings).Equipped;
-
-        private Dictionary<(string Key, string Sheet), Func<string>> TextEdits = new();
-
-        internal void AddTextEdit(string key, string sheetName, string text)
-        {
-            TextEdits.Add((key, sheetName), () => text);
-        }
-
-        internal void AddTextEdit(string key, string sheetName, Func<string> text)
-        {
-            TextEdits.Add((key, sheetName), text);
-        }
 
         public override string GetVersion() => "1.3";
 
@@ -226,14 +218,8 @@ namespace Transcendence
             return value;
         }
 
-        private string GetCharmStrings(string key, string sheetName, string orig)
-        {
-            if (TextEdits.TryGetValue((key, sheetName), out var text))
-            {
-                return text();
-            }
-            return orig;
-        }
+        private string GetCharmStrings(string key, string sheetName, string orig) =>
+            TextEdits.TryGetValue((key, sheetName), out var text) ? (text() ?? orig) : orig;
 
         internal void AddFsmEdit(string objName, string fsmName, Action<PlayMakerFSM> edit)
         {
