@@ -143,6 +143,7 @@ namespace Transcendence
 
             TextEdits[(Key: "PERMA_GAME_OVER", Sheet: "Credits List")] = ABCDE.Title;
             TextEdits[(Key: "PERMA_GAME_OVER_BODY", Sheet: "Credits List")] = ABCDE.Body;
+            AddFsmEdit("Hit Detect", "Hit Detect", Impurity.GrantConditionalImmortality);
         }
 
         // breaks infinite loop when reading equippedCharm_X

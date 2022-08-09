@@ -32,6 +32,11 @@ namespace Transcendence
             s.Actions = actions;
         }
 
+        internal static void FilterActions(this FsmState s, Func<FsmStateAction, bool> predicate)
+        {
+            s.Actions = s.Actions.Where(predicate).ToArray();
+        }
+
         internal static void AddAction(this FsmState s, Action a)
         {
             SpliceAction(s, s.Actions.Length, a);

@@ -32,9 +32,11 @@ namespace Transcendence
 
         private const int BuffFactor = 3;
 
+        public bool Active() => (!Broken || ChaosOrb.Instance.GivingCharm(Num)) && Equipped();
+
         private int BuffNail(string intName, int value)
         {
-            if (!Broken && intName == "nailDamage" && Equipped())
+            if (Active())
             {
                 value *= BuffFactor;
             }
