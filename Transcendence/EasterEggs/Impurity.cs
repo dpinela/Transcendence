@@ -19,10 +19,13 @@ namespace Transcendence
                 return;
             }
 
-            fsm.GetState("Nail").ReplaceAction(0, () => {
+            fsm.GetState("Nail").ReplaceAction(0, () =>
+            {
                 if (SnailSlash.Instance.Equipped())
                 {
                     ShowDreamText("Seriously? That barely tickled me!");
+                    // Go back to the initial state so that Sheo's buddy will respond to further
+                    // hits.
                     fsm.SetState("Detect");
                 }
                 else if (LemmsStrength.Instance.Equipped() || FloristsBlessing.Instance.Active())
@@ -31,13 +34,19 @@ namespace Transcendence
                 }
                 else
                 {
-                    var nailsmith = GameObject.Find("Nailsmith Cliff NPC");
-                    if (nailsmith == null)
-                    {
-                        Transcendence.Instance.LogWarn("404 Nailsmith Not Found");
-                        return;
-                    }
-                    nailsmith.LocateMyFSM("Kill").SendEvent("NAIL KILL");
+                    EuthanizeNailManufacturer("NAIL KILL");
+                }
+            });
+
+            fsm.GetState("Spell").ReplaceAction(0, () =>
+            {
+                if (SnailSoul.Instance.Equipped() || ShamanAmp.Instance.Equipped())
+                {
+                    WarpToSheo();
+                }
+                else
+                {
+                    EuthanizeNailManufacturer("SPELL KILL");
                 }
             });
         }
@@ -97,6 +106,17 @@ namespace Transcendence
 
             fsm.FsmVariables.FindFsmGameObject("Text").Value.GetComponent<TextMeshPro>().text = text;
             fsm.SendEvent("DISPLAY ENEMY DREAM");
+        }
+
+        private static void EuthanizeNailManufacturer(string means)
+        {
+            var nailsmith = GameObject.Find("Nailsmith Cliff NPC");
+            if (nailsmith == null)
+            {
+                Transcendence.Instance.LogWarn("404 Nailsmith Not Found");
+                return;
+            }
+            nailsmith.LocateMyFSM("Kill").SendEvent(means);
         }
     }
 }
