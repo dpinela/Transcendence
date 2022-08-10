@@ -30,6 +30,7 @@ namespace Transcendence
                 }
                 else if (LemmsStrength.Instance.Equipped() || FloristsBlessing.Instance.Active())
                 {
+                    GiveAllSheoItems();
                     WarpToSheo();
                 }
                 else
@@ -42,6 +43,7 @@ namespace Transcendence
             {
                 if (SnailSoul.Instance.Equipped() || ShamanAmp.Instance.Equipped())
                 {
+                    GiveAllSheoItems();
                     WarpToSheo();
                 }
                 else
@@ -67,6 +69,32 @@ namespace Transcendence
             var hc = HeroController.instance;
             var cr = ReflectionHelper.CallMethod<HeroController, IEnumerator>(hc, "Die", new object[] {});
             hc.StartCoroutine(cr);
+        }
+
+        private static void GiveAllSheoItems()
+        {
+            var settings = ItemChanger.Internal.Ref.Settings;
+            if (settings != null && settings.Placements.TryGetValue(LocationNames.Great_Slash, out var p))
+            {
+                p.GiveAll(new()
+                {
+                    Container = Container.Unknown,
+                    FlingType = FlingType.DirectDeposit,
+                    MessageType = MessageType.Corner,
+                    Callback = item => {}
+                });
+            }
+            else
+            {
+                var pd = PlayerData.instance;
+                pd.SetBool(nameof(PlayerData.hasNailArt), true);
+                pd.SetBool(nameof(PlayerData.hasDashSlash), true);
+                pd.SetBool(nameof(PlayerData.hasAllNailArts),
+                    // just in case we were overridden by another mod
+                    pd.GetBool(nameof(PlayerData.hasDashSlash)) &&
+                    pd.GetBool(nameof(PlayerData.hasCyclone)) &&
+                    pd.GetBool(nameof(PlayerData.hasUpwardSlash)));
+            }
         }
 
         private static void CreateDreamWarpTarget(USM.Scene dest)
