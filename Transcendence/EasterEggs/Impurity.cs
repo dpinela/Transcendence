@@ -83,6 +83,7 @@ namespace Transcendence
                     MessageType = MessageType.Corner,
                     Callback = item => {}
                 });
+                p.AddVisitFlag(VisitState.Accepted);
             }
             else
             {
