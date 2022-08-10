@@ -120,8 +120,18 @@ namespace Transcendence
             }
         }
 
+        private static float LastDreamTextTime = float.NegativeInfinity;
+
+        private const float MinSecondsBetweenDreamText = 5.5f;
+
         private static void ShowDreamText(string text)
         {
+            var now = Time.time;
+            if (now < LastDreamTextTime + MinSecondsBetweenDreamText)
+            {
+                return;
+            }
+            LastDreamTextTime = now;
             var dreamMsgVar = FsmVariables.GlobalVariables.FindFsmGameObject("Enemy Dream Msg");
             if (dreamMsgVar.Value == null)
             {
