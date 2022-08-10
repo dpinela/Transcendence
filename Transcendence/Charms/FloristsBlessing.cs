@@ -36,7 +36,7 @@ namespace Transcendence
 
         private int BuffNail(string intName, int value)
         {
-            if (Active())
+            if (intName == nameof(PlayerData.nailDamage) && Active())
             {
                 value *= BuffFactor;
             }
