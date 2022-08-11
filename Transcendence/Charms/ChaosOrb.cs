@@ -161,10 +161,15 @@ namespace Transcendence
                     {
                         RerollCharms();
                     }
-                    if (HudSlots != null)
+                    if (HudSlots != null && HudSettings.Enabled)
                     {
-                        HudSlots.Visibility = Visibility.Visible;
-                        UpdateHud();
+                        // Wait until the value is actually written so that Unbreakable charms
+                        // appear with the Unbreakable sprite in the UI. 
+                        Transcendence.DoNextFrame(() =>
+                        {
+                            HudSlots.Visibility = Visibility.Visible;
+                            UpdateHud();
+                        });
                     }
                 }
                 else if (HudSlots != null)
