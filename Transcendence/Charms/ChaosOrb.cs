@@ -193,9 +193,13 @@ namespace Transcendence
 
         private bool EnableUnbreakableCharms(string boolName, bool value) =>
             boolName switch {
-                "fragileHealth_unbreakable" => value || (Equipped() && GivingCharm(23)),
-                "fragileGreed_unbreakable" => value || (Equipped() && GivingCharm(24)),
-                "fragileStrength_unbreakable" => value || (Equipped() && GivingCharm(25)),
+                nameof(PlayerData.fragileHealth_unbreakable) => value || (Equipped() && GivingCharm(23)),
+                nameof(PlayerData.fragileGreed_unbreakable) => value || (Equipped() && GivingCharm(24)),
+                nameof(PlayerData.fragileStrength_unbreakable) => value || (Equipped() && GivingCharm(25)),
+                
+                nameof(PlayerData.brokenCharm_23) => value && !(Equipped() && GivingCharm(23)),
+                nameof(PlayerData.brokenCharm_24) => value && !(Equipped() && GivingCharm(24)),
+                nameof(PlayerData.brokenCharm_25) => value && !(Equipped() && GivingCharm(25)),
                 _ => value
             };
 
