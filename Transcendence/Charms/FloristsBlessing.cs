@@ -32,7 +32,9 @@ namespace Transcendence
 
         private const int BuffFactor = 3;
 
-        public bool Active() => (!Broken || ChaosOrb.Instance.GivingCharm(Num)) && Equipped();
+        public bool Active() => (!Broken || EquippedByChaosOrb()) && Equipped();
+
+        private bool EquippedByChaosOrb() => ChaosOrb.Instance.GivingCharm(Num) && ChaosOrb.Instance.Equipped();
 
         private int BuffNail(string intName, int value)
         {
@@ -45,7 +47,7 @@ namespace Transcendence
 
         private int BreakOnHit(int damage)
         {
-            if (!Broken && Equipped() && !ChaosOrb.Instance.GivingCharm(Num))
+            if (!Broken && Equipped() && !EquippedByChaosOrb())
             {
                 Broken = true;
                 GameManager.instance.SaveGame();
