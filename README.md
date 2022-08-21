@@ -6,7 +6,10 @@ locations.
 
 See SPOILERS.md for a description of what the charms do and their vanilla locations and notch costs.
 
-The charm icons were made by Tsira (???).
+The charm icons were made by Tsira ([fiverr][], [Twitch][]).
+
+[fiverr]: https://www.fiverr.com/share/yxvdl5
+[Twitch]: https://www.twitch.tv/tsira_kura
 
 # Configuration options
 
