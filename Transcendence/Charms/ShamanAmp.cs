@@ -109,7 +109,7 @@ namespace Transcendence
 
         // Our increase to some object's sizes persists after the scream/dive
         // is done (presumably the game is reusing the object).
-        // Keep the original size so we don't end up repeatedy embiggening it.
+        // Keep the original size so we don't end up repeatedly embiggening it.
         private void RestoreOriginalSize(GameObject obj, ref Vector3? origSize)
         {
             if (origSize is Vector3 v)
