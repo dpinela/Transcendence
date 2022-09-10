@@ -57,6 +57,10 @@ namespace Transcendence
 
         private static void WarpToSheo()
         {
+            // Make sure that Purity runs still end.
+            PlayerData.instance.SetBool(nameof(PlayerData.nailsmithKilled), true);
+            PlayerData.instance.SetBool(nameof(PlayerData.nailsmithSpared), true);
+
             // Sheo's hut doesn't have a dream return target, so we have to define one.
             Events.OnSceneChange += CreateDreamWarpTarget;
 
