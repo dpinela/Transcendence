@@ -58,7 +58,7 @@ namespace Transcendence
         {
             var checkCount = fsm.GetState("Check Count");
             var countVar = (checkCount.Actions[0] as GetTagCount).storeResult;
-            fsm.GetState("Check Count").ReplaceAction(1, () => {
+            checkCount.ReplaceAction(1, () => {
                 var max = Equipped() ? 8 : 4;
                 fsm.SendEvent(countVar.Value >= max ? "CANCEL" : "FINISHED");
             });
