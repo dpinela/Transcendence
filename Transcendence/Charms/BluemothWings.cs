@@ -117,7 +117,34 @@ namespace Transcendence
                 }
                 else
                 {
-                    coll.enabled = true;
+                    // With very slow load times, the player may become able to hit transitions before this
+                    // hook runs. If that occurs, and we enable the collider immediately at this point, the
+                    // player will hit the transition as soon as they enter the room and be thrown back up,
+                    // potentially causing a loop.
+                    // To avoid that, we delay enabling the transition's collider until the player is going up.
+                    // This will never prevent them from using the transition as intended, since there is no way
+                    // to reach it without going up.
+                    var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
+                    var destName = dest.name; 
+                    IEnumerator EnableAfterFallingBelowTransition()
+                    {
+                        yield return new WaitUntil(() => heroRB.velocity.y > 0);
+                        try
+                        {
+                            coll.enabled = true;
+                            Transcendence.Instance.Log($"enabled collider for gate {gateName} in scene {destName}; yspeed = {heroRB.velocity.y}");
+                        }
+                        // If the room is left before the player ever goes up, the next time they go up
+                        // this coroutine will throw an NRE since `coll` is no longer a valid object reference.
+                        // This isn't an issue, but the error should not pass silently, so report something.
+                        // (This is also why destName needs to be saved in a variable; the `dest` scene reference
+                        // also becomes unusable after going elsewhere)
+                        catch (NullReferenceException)
+                        {
+                            Transcendence.Instance.Log($"cancelled enabling collider for gate {gateName} in scene {destName} because that scene was exited");
+                        }
+                    }
+                    GameManager.instance.StartCoroutine(EnableAfterFallingBelowTransition());
                 }
             }
         }
