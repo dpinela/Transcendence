@@ -12,5 +12,7 @@ namespace Transcendence
             AddCharms = rs.AddCharms;
             IncreaseMaxCharmCostBy = rs.IncreaseMaxCharmCostBy;
         }
+
+        public bool Enabled() => AddCharms;
     }
 }
