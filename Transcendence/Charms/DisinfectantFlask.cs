@@ -74,16 +74,13 @@ namespace Transcendence
         {
             if (Equipped() && DisinfectedScenes.Contains(to.name))
             {
-                if (DisinfectedScenes.Contains(to.name))
+                foreach (var obj in UnityEngine.Object.FindObjectsOfType<GameObject>())
                 {
-                    foreach (var obj in UnityEngine.Object.FindObjectsOfType<GameObject>())
+                    foreach (var p in DisinfectedPrefixes)
                     {
-                        foreach (var p in DisinfectedPrefixes)
+                        if (obj.name.StartsWith(p))
                         {
-                            if (obj.name.StartsWith(p))
-                            {
-                                UnityEngine.Object.Destroy(obj);
-                            }
+                            UnityEngine.Object.Destroy(obj);
                         }
                     }
                 }
