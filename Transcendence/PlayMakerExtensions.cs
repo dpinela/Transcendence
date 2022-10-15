@@ -51,10 +51,11 @@ namespace Transcendence
         {
             var actions = new FsmStateAction[s.Actions.Length + 1];
             Array.Copy(s.Actions, actions, pos);
-            actions[pos] = new FuncAction(a);
+            var fa = new FuncAction(a);
+            fa.Init(s);
+            actions[pos] = fa;
             Array.Copy(s.Actions, pos, actions, pos + 1, s.Actions.Length - pos);
             s.Actions = actions;
-            a.Init(s);
         }
 
         internal static void PrependAction(this FsmState s, Action a)
@@ -64,7 +65,7 @@ namespace Transcendence
 
         internal static void ReplaceAction(this FsmState s, int i, Action a)
         {
-            FuncAction action = new FuncAction(a);
+            var action = new FuncAction(a);
             action.Init(s);
             s.Actions[i] = action;
         }
