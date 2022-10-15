@@ -7,6 +7,8 @@ namespace Transcendence
         [MenuChanger.Attributes.MenuRange(0, 14)]
         public int IncreaseMaxCharmCostBy;
 
+        public LogicSettings Logic = new();
+
         public RandoSettings(GlobalSettings rs)
         {
             AddCharms = rs.AddCharms;

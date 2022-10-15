@@ -149,7 +149,7 @@ namespace Transcendence
         // breaks infinite loop when reading equippedCharm_X
         private bool Equipped(Charm c) => c.Settings(Settings).Equipped;
 
-        public override string GetVersion() => "1.3.2";
+        public override string GetVersion() => "1.3.3";
 
         internal SaveSettings Settings = new();
 
@@ -466,8 +466,34 @@ namespace Transcendence
         {
             var sp = new MenuPage(GetName(), landingPage);
             SettingsPage = sp;
-            var factory = new MenuElementFactory<RandoSettings>(sp, RandoSettings);
-            new VerticalItemPanel(sp, new(0, 300), 75f, true, factory.Elements);
+
+            var items = new List<IMenuElement>();
+            items.AddRange(new MenuElementFactory<RandoSettings>(sp, RandoSettings).Elements);
+            items.Add(new MenuLabel(sp, "Logic Settings", MenuLabel.Style.Title));
+            items.AddRange(new MenuElementFactory<LogicSettings>(sp, RandoSettings.Logic).Elements);
+
+            const float BUTTON_HEIGHT = 32f;
+
+            new ManualVerticalItemPanel(sp, new(0, 300), items.ToArray(), new float[]
+            {
+                0,
+                75f,
+                // Logic Settings
+                75f,
+                75f,
+                BUTTON_HEIGHT,
+                BUTTON_HEIGHT,
+                75f,
+                BUTTON_HEIGHT,
+                BUTTON_HEIGHT,
+                BUTTON_HEIGHT,
+                BUTTON_HEIGHT,
+                BUTTON_HEIGHT,
+                BUTTON_HEIGHT,
+                BUTTON_HEIGHT,
+                BUTTON_HEIGHT,
+                BUTTON_HEIGHT
+            });
         }
 
         private Color ButtonColor() =>
