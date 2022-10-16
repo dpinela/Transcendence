@@ -180,6 +180,7 @@ namespace Transcendence
         {
             ModSettings.AddCharms = RandoSettings.AddCharms;
             ModSettings.IncreaseMaxCharmCostBy = RandoSettings.IncreaseMaxCharmCostBy;
+            ModSettings.LogicSettings = JsonUtil.Serialize(RandoSettings.Logic);
             return ModSettings;
         }
 

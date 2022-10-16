@@ -8,6 +8,7 @@ namespace Transcendence
         // used for anything.
         public bool AddCharms = true;
         public int IncreaseMaxCharmCostBy = 7;
+        public string LogicSettings = "{}";
         public bool ChaosMode = false;
         public ChaosHudSettings ChaosHud = new();
     }
