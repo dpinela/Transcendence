@@ -21,17 +21,17 @@ namespace Transcendence
         [MenuLabel("Marissa's Audience")]
         public bool MarissasAudience;
         public ChaosOrbMode ChaosOrb;
+    }
 
-        public enum GeoCharmLogicMode {
-            Off,
-            OnWithGeo,
-            On
-        }
+    public enum GeoCharmLogicMode {
+        Off,
+        OnWithGeo,
+        On
+    }
 
-        public enum ChaosOrbMode {
-            Off,
-            Rigged,
-            Fair
-        }
+    public enum ChaosOrbMode {
+        Off,
+        Rigged,
+        Fair
     }
 }

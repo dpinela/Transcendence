@@ -454,6 +454,7 @@ namespace Transcendence
             RequestBuilder.OnUpdate.Subscribe(-200, IncreaseMaxCharmCost);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
             RCData.RuntimeLogicOverride.Subscribe(50, DefineLogicItems);
+            SettingsPM.OnResolveBoolTerm += ReadCharmLogicTerms;
             RandomizerMenuAPI.AddMenuPage(BuildMenu, BuildButton);
             SettingsLog.AfterLogSettings += LogRandoSettings;
         }
@@ -632,7 +633,40 @@ namespace Transcendence
                     new TermValue(lmb.GetTerm("CHARMS"), 1)
                 }, oneOf));
             }
+            foreach (var term in LogicTermDefs.Keys)
+            {
+                lmb.GetOrAddTerm(term);
+            }
         }
+
+        private bool ReadCharmLogicTerms(string term, out bool value)
+        {
+            if (LogicTermDefs.TryGetValue(term, out var def))
+            {
+                value = def(RandoSettings.Logic);
+                return true;
+            }
+            value = false;
+            return false;
+        }
+
+        private static readonly Dictionary<string, Func<LogicSettings, bool>> LogicTermDefs = new()
+        {
+            {"ANTIGRAVITY_AMULET_ON", ls => ls.AntigravityAmulet},
+            {"BLUEMOTH_WINGS_ON", ls => ls.BluemothWings == GeoCharmLogicMode.On},
+            {"BLUEMOTH_WINGS_ON_GEO", ls => ls.BluemothWings == GeoCharmLogicMode.OnWithGeo},
+            {"LEMMS_STRENGTH_ON", ls => ls.LemmsStrength},
+            {"FLORISTS_BLESSING_ON", ls => ls.FloristsBlessing},
+            {"SNAIL_SOUL_ON", ls => ls.SnailSoul},
+            {"SNAIL_SLASH_ON", ls => ls.SnailSlash},
+            {"GREEDSONG_ON", ls => ls.Greedsong},
+            {"MILLIBELLES_BLESSING_ON", ls => ls.MillibellesBlessing},
+            {"NITRO_CRYSTAL_ON", ls => ls.NitroCrystal},
+            {"CRYSTALMASTER_ON", ls => ls.Crystalmaster == GeoCharmLogicMode.On},
+            {"CRYSTALMASTER_ON_GEO", ls => ls.Crystalmaster == GeoCharmLogicMode.OnWithGeo},
+            {"MARISSAS_AUDIENCE_ON", ls => ls.MarissasAudience},
+            {"CHAOS_ORB_ON", ls => ls.ChaosOrb != ChaosOrbMode.Off}
+        };
 
         private void AddCharmsToPool(RequestBuilder rb)
         {
