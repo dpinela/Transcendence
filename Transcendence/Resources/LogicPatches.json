@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Crossroads_18",
+        "logic": "ORIG | (Crossroads_18[right1] + ANTIGRAVITY_AMULET_ON + Antigravity_Amulet)"
+    },
+    {
+        "name": "Soul_Totem-Crossroads_Goam_Journal",
+        "logic": "ORIG | (Crossroads_18 + ANTIGRAVITY_AMULET_ON + Antigravity_Amulet)"
+    }
+]

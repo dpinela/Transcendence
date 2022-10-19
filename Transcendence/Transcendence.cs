@@ -453,7 +453,7 @@ namespace Transcendence
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
             RequestBuilder.OnUpdate.Subscribe(-200, IncreaseMaxCharmCost);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
-            RCData.RuntimeLogicOverride.Subscribe(50, DefineLogicItems);
+            RCData.RuntimeLogicOverride.Subscribe(50, HookLogic);
             SettingsPM.OnResolveBoolTerm += ReadCharmLogicTerms;
             RandomizerMenuAPI.AddMenuPage(BuildMenu, BuildButton);
             SettingsLog.AfterLogSettings += LogRandoSettings;
@@ -616,7 +616,7 @@ namespace Transcendence
             }
         }
 
-        private static void DefineLogicItems(GenerationSettings gs, LogicManagerBuilder lmb)
+        private static void HookLogic(GenerationSettings gs, LogicManagerBuilder lmb)
         {
             if (!gs.PoolSettings.Charms)
             {
@@ -636,6 +636,11 @@ namespace Transcendence
             foreach (var term in LogicTermDefs.Keys)
             {
                 lmb.GetOrAddTerm(term);
+            }
+            var logicLoc = Path.Combine(Path.GetDirectoryName(typeof(Transcendence).Assembly.Location), "LogicPatches.json");
+            using (var patches = File.OpenRead(logicLoc))
+            {
+                lmb.DeserializeJson(LogicManagerBuilder.JsonType.LogicEdit, patches);
             }
         }
 
@@ -676,7 +681,14 @@ namespace Transcendence
             }
             foreach (var charm in Charms)
             {
-                rb.AddItemByName(charm.Name.Replace(" ", "_"));
+                if (charm == AntigravityAmulet.Instance && RandoSettings.Logic.AntigravityAmulet)
+                {
+                    rb.AddToStart(charm.Name.Replace(" ", "_"));
+                }
+                else
+                {
+                    rb.AddItemByName(charm.Name.Replace(" ", "_"));
+                }
             }
         }
 
