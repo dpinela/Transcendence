@@ -454,7 +454,8 @@ namespace Transcendence
             RequestBuilder.OnUpdate.Subscribe(-200, IncreaseMaxCharmCost);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
             RCData.RuntimeLogicOverride.Subscribe(50, HookLogic);
-            SettingsPM.OnResolveBoolTerm += ReadCharmLogicTerms;
+            SettingsPM.OnResolveBoolTerm += ReadCharmLogicTermsForSettingsPM;
+            ProgressionInitializer.OnCreateProgressionInitializer += ReadCharmLogicTermsForProgression;
             RandomizerMenuAPI.AddMenuPage(BuildMenu, BuildButton);
             SettingsLog.AfterLogSettings += LogRandoSettings;
         }
@@ -633,9 +634,9 @@ namespace Transcendence
                     new TermValue(lmb.GetTerm("CHARMS"), 1)
                 }, oneOf));
             }
-            foreach (var term in LogicTermDefs.Keys)
+            foreach (var key in LogicTermDefs.Keys)
             {
-                lmb.GetOrAddTerm(term);
+                lmb.GetOrAddTerm(key);
             }
             var logicLoc = Path.Combine(Path.GetDirectoryName(typeof(Transcendence).Assembly.Location), "LogicPatches.json");
             using (var patches = File.OpenRead(logicLoc))
@@ -644,7 +645,7 @@ namespace Transcendence
             }
         }
 
-        private bool ReadCharmLogicTerms(string term, out bool value)
+        private bool ReadCharmLogicTermsForSettingsPM(string term, out bool value)
         {
             if (LogicTermDefs.TryGetValue(term, out var def))
             {
@@ -653,6 +654,17 @@ namespace Transcendence
             }
             value = false;
             return false;
+        }
+
+        private void ReadCharmLogicTermsForProgression(LogicManager lm, GenerationSettings gs, ProgressionInitializer pinit)
+        {
+            foreach (var entry in LogicTermDefs)
+            {
+                if (entry.Value(RandoSettings.Logic))
+                {
+                    pinit.Setters.Add(new(lm.GetTerm(entry.Key), 1));
+                }
+            }
         }
 
         private static readonly Dictionary<string, Func<LogicSettings, bool>> LogicTermDefs = new()
