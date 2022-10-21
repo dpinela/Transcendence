@@ -638,7 +638,13 @@ namespace Transcendence
             {
                 lmb.GetOrAddTerm(key);
             }
-            var logicLoc = Path.Combine(Path.GetDirectoryName(typeof(Transcendence).Assembly.Location), "LogicPatches.json");
+            var modDir = Path.GetDirectoryName(typeof(Transcendence).Assembly.Location);
+            var logicLoc = Path.Combine(modDir, "LogicPatches.json");
+            var macroLoc = Path.Combine(modDir, "LogicMacros.json");
+            using (var macros = File.OpenRead(macroLoc))
+            {
+                lmb.DeserializeJson(LogicManagerBuilder.JsonType.Macros, macros);
+            }
             using (var patches = File.OpenRead(logicLoc))
             {
                 lmb.DeserializeJson(LogicManagerBuilder.JsonType.LogicEdit, patches);

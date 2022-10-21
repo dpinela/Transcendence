@@ -1,10 +1,86 @@
 [
     {
+        "name": "Hallownest_Seal-Crossroads_Well",
+        "logic": "ORIG | ((Crossroads_01[left1] | Crossroads_01[top1] | Crossroads_01[right1]) + (ANTIGRAVWINGS | (INFECTED + SNAILSLASH)) + DREAMNAIL + UPWALLBREAK)"
+    },
+    {
+        "name": "Whispering_Root-Crossroads",
+        "logic": "ORIG | (Crossroads_07 + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-Crossroads_Root",
+        "logic": "ORIG | (Crossroads_07 + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-Crossroads_Root_Dupe_2",
+        "logic": "ORIG | (Crossroads_07 + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Crossroads_11_alt[left1]",
+        "logic": "ORIG | (Crossroads_11_alt[right1] + NITRO + LEFTSUPERDASH)"
+    },
+    {
+        "name": "Grub-Crossroads_Center",
+        "logic": "ORIG | ((Crossroads_05[left1] | Crossroads_05[right1]) + (BLUEMOTH | ANTIGRAV | CRYSTALMASTER))"
+    },
+    {
+        "name": "Soul_Totem-Crossroads_Acid",
+        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + CRYSTALMASTER + ANTIGRAV + AIRSTALL)))"
+    },
+    {
+        "name": "Crossroads_35[bot1]",
+        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + CRYSTALMASTER + ANTIGRAV + AIRSTALL)))"
+    },
+    {
+        "name": "Crossroads_35[right1]",
+        "logic": "ORIG | (Crossroads_35[bot1] + ACIDSKIPS + BLUEMOTH)"
+    },
+    {
+        "name": "Grub-Crossroads_Acid",
+        "logic": "ORIG | (Crossroads_35[bot1] + ACIDSKIPS + BLUEMOTH)"
+    },
+    {
         "name": "Crossroads_18",
-        "logic": "ORIG | (Crossroads_18[right1] + ANTIGRAVITY_AMULET_ON + Antigravity_Amulet)"
+        "logic": "ORIG | (Crossroads_18[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Soul_Totem-Crossroads_Goam_Journal",
-        "logic": "ORIG | (Crossroads_18 + ANTIGRAVITY_AMULET_ON + Antigravity_Amulet)"
+        "logic": "ORIG | (Crossroads_18 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Mask_Shard-Crossroads_Goam",
+        "logic": "ORIG | ((Crossroads_13[left1] | Crossroads_13[right1]) + (BLUEMOTH | ANTIGRAV))"
+    },
+    {
+        "name": "Crossroads_04[door_charmshop]",
+        "logic": "ORIG | ((Crossroads_04[door1] | Crossroads_04[door_Mender_House] | ((Crossroads_04[left1] | Crossroads_04[top1]) + Defeated_Gruz_Mother)) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Crossroads_04[right1]",
+        "logic": "ORIG | ((Crossroads_04[door1] | Crossroads_04[door_Mender_House] | ((Crossroads_04[left1] | Crossroads_04[top1]) + Defeated_Gruz_Mother)) + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + WINGS)))"
+    },
+    {
+        "name": "Geo_Rock-Crossroads_Above_False_Knight",
+        "logic": "ORIG | ((Crossroads_10[left1] | Crossroads_10[right1]) + (ANTIGRAVWINGS | (INFECTED + ANTIGRAV)))"
+    },
+    {
+        "name": "Boss_Essence-Failed_Champion",
+        "logic": "ORIG | ((Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + Defeated_Failed_Champion + DREAMNAIL + (ANTIGRAVWINGS | (INFECTED + ANTIGRAV)))"
+    },
+    {
+        "name": "Soul_Catcher",
+        "logic": "ORIG | (Crossroads_ShamanTemple[left1] + (ANTIGRAVWINGS | (NITRO + LEFTSUPERDASH + (UPWALLBREAK | (RIGHTCLAW + OBSCURESKIPS)))))"
+    },
+    {
+        "name": "Whispering_Root-Ancestral_Mound",
+        "logic": "ORIG | (Crossroads_ShamanTemple[left1] + DREAMNAIL + UPWALLBREAK + ((ANTIGRAV + LEFTBALDURS) | (ANTIGRAV + NITRO + LEFTSUPERDASH) | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Ancestral_Mound_Tree",
+        "logic": "ORIG | (Crossroads_ShamanTemple[left1] + (ANTIGRAV | BLUEMOTH) + (UPWALLBREAK | (LEFTSUPERDASH + RIGHTCLAW + OBSCURESKIPS) | (RIGHTSUPERDASH + LEFTCLAW + OBSCURESKIPS)))"
+    },
+    {
+        "name": "Geo_Rock-Ancestral_Mound_Tree_Dupe",
+        "logic": "ORIG | (Crossroads_ShamanTemple[left1] + (ANTIGRAV | BLUEMOTH) + (UPWALLBREAK | (LEFTSUPERDASH + RIGHTCLAW + OBSCURESKIPS) | (RIGHTSUPERDASH + LEFTCLAW + OBSCURESKIPS)))"
     }
 ]

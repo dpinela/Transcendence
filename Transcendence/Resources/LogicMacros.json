@@ -1,0 +1,12 @@
+{
+    "CHAOSORB": "CHAOS_ORB_ON + Chaos_Orb",
+    "ANTIGRAV": "ANTIGRAVITY_AMULET_ON + (Antigravity_Amulet | CHAOSORB) + Can_Bench",
+    "BLUEMOTH": "(Bluemoth_Wings | CHAOSORB) + Can_Bench + (BLUEMOTH_WINGS_ON | (BLUEMOTH_WINGS_ON_GEO + Can_Replenish_Geo))",
+    "ANTIGRAVWINGS": "BLUEMOTH | (ANTIGRAV + WINGS)",
+    "SNAILSOUL": "SNAIL_SOUL_ON + (Snail_Soul | CHAOSORB) + Can_Bench + FIREBALL",
+    "SNAILSLASH": "SNAIL_SLASH_ON + (Snail_Slash | CHAOSORB) + Can_Bench",
+    "GREEDSONG": "GREEDSONG_ON + Greedsong + Can_Bench + 2MASKS",
+    "MILLIBELLE": "MILLIBELLES_BLESSING_ON + Millibelle's_Blessing + Can_Bench",
+    "NITRO": "NITRO_CRYSTAL_ON + (Nitro_Crystal | CHAOSORB) + Can_Bench",
+    "CRYSTALMASTER": "(Crystalmaster | CHAOSORB) + Can_Bench + (CRYSTALMASTER_ON | (CRYSTALMASTER_ON_GEO + Can_Replenish_Geo))"
+}
