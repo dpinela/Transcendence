@@ -315,11 +315,9 @@ namespace Transcendence
 
         private void PlaceItemsRando()
         {
-            var gs = RandomizerMod.RandomizerMod.RS.GenerationSettings;
-            var costs = gs.MiscSettings.RandomizeNotchCosts ? RandomizeNotchCosts(gs.Seed) : DefaultNotchCosts();
-            
-            StoreNotchCosts(costs);
+            StoreNotchCosts(NextRandoNotchCosts);
 
+            var gs = RandomizerMod.RandomizerMod.RS.GenerationSettings;
             if (gs.PoolSettings.Charms)
             {
                 if (RandoSettings.AddCharms)
@@ -402,6 +400,15 @@ namespace Transcendence
         private const int MinTotalCost = 22;
         private const int MaxTotalCost = 35;
 
+        // stored here so it's accessible for logic purposes
+        private Dictionary<int, int> NextRandoNotchCosts = new();
+
+        private void SetRandoNotchCosts(RequestBuilder rb)
+        {
+            NextRandoNotchCosts = rb.gs.MiscSettings.RandomizeNotchCosts ?
+                RandomizeNotchCosts(rb.gs.Seed) : DefaultNotchCosts();
+        }
+
         private Dictionary<int, int> RandomizeNotchCosts(int seed)
         {
             // This log statement is here to help diagnose a possible bug where charms cost more than
@@ -450,6 +457,7 @@ namespace Transcendence
 
         private void HookRando()
         {
+            RequestBuilder.OnUpdate.Subscribe(-9999, SetRandoNotchCosts);
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
             RequestBuilder.OnUpdate.Subscribe(-200, IncreaseMaxCharmCost);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
@@ -617,7 +625,7 @@ namespace Transcendence
             }
         }
 
-        private static void HookLogic(GenerationSettings gs, LogicManagerBuilder lmb)
+        private void HookLogic(GenerationSettings gs, LogicManagerBuilder lmb)
         {
             if (!gs.PoolSettings.Charms)
             {
@@ -638,6 +646,26 @@ namespace Transcendence
             {
                 lmb.GetOrAddTerm(key);
             }
+            var origResolver = lmb.VariableResolver;
+            lmb.VariableResolver = new FuncVariableResolver((LogicManager lm, string term, out LogicInt lvar) =>
+            {
+                if (origResolver.TryMatch(lm, term, out lvar))
+                {
+                    return true;
+                }
+                switch (term)
+                {
+                    case "$NotchCostYEET":
+                        lvar = new FuncLogicInt(term, () => NextRandoNotchCosts[AntigravityAmulet.Instance.Num] + NextRandoNotchCosts[Crystalmaster.Instance.Num]);
+                        return true;
+                    case "$NotchCostANTIGRAVNITRO":
+                        lvar = new FuncLogicInt(term, () => NextRandoNotchCosts[AntigravityAmulet.Instance.Num] + NextRandoNotchCosts[NitroCrystal.Instance.Num]);
+                        return true;
+                    default:
+                        return false;
+                }
+            });
+
             var modDir = Path.GetDirectoryName(typeof(Transcendence).Assembly.Location);
             var logicLoc = Path.Combine(modDir, "LogicPatches.json");
             var macroLoc = Path.Combine(modDir, "LogicMacros.json");
@@ -645,6 +673,7 @@ namespace Transcendence
             {
                 lmb.DeserializeJson(LogicManagerBuilder.JsonType.Macros, macros);
             }
+
             using (var patches = File.OpenRead(logicLoc))
             {
                 lmb.DeserializeJson(LogicManagerBuilder.JsonType.LogicEdit, patches);

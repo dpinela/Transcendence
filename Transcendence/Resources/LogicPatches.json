@@ -1,4 +1,5 @@
 [
+    // Forgotten Crossroads
     {
         "name": "Hallownest_Seal-Crossroads_Well",
         "logic": "ORIG | ((Crossroads_01[left1] | Crossroads_01[top1] | Crossroads_01[right1]) + (ANTIGRAVWINGS | (INFECTED + SNAILSLASH)) + DREAMNAIL + UPWALLBREAK)"
@@ -25,11 +26,11 @@
     },
     {
         "name": "Soul_Totem-Crossroads_Acid",
-        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + CRYSTALMASTER + ANTIGRAV + AIRSTALL)))"
+        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + YEET + AIRSTALL)))"
     },
     {
         "name": "Crossroads_35[bot1]",
-        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + CRYSTALMASTER + ANTIGRAV + AIRSTALL)))"
+        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + YEET + AIRSTALL)))"
     },
     {
         "name": "Crossroads_35[right1]",
@@ -73,7 +74,7 @@
     },
     {
         "name": "Whispering_Root-Ancestral_Mound",
-        "logic": "ORIG | (Crossroads_ShamanTemple[left1] + DREAMNAIL + UPWALLBREAK + ((ANTIGRAV + LEFTBALDURS) | (ANTIGRAV + NITRO + LEFTSUPERDASH) | BLUEMOTH))"
+        "logic": "ORIG | (Crossroads_ShamanTemple[left1] + DREAMNAIL + UPWALLBREAK + ((ANTIGRAV + LEFTBALDURS) | (ANTIGRAVNITRO + LEFTSUPERDASH) | BLUEMOTH))"
     },
     {
         "name": "Geo_Rock-Ancestral_Mound_Tree",
@@ -82,5 +83,90 @@
     {
         "name": "Geo_Rock-Ancestral_Mound_Tree_Dupe",
         "logic": "ORIG | (Crossroads_ShamanTemple[left1] + (ANTIGRAV | BLUEMOTH) + (UPWALLBREAK | (LEFTSUPERDASH + RIGHTCLAW + OBSCURESKIPS) | (RIGHTSUPERDASH + LEFTCLAW + OBSCURESKIPS)))"
+    },
+
+    // Greenpath
+    {
+        "name": "Wanderer's_Journal-Greenpath_Lower",
+        "logic": "ORIG | (Fungus1_11 + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Fungus1_11[left1]",
+        "logic": "ORIG | (Fungus1_11 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Vessel_Fragment-Greenpath",
+        "logic": "ORIG | (Fungus1_13[right1] + ((ANTIGRAV + DAMAGEBOOSTS + 2HITS) | BLUEMOTH))"
+    },
+    // not going to include the Dashmaster skip for the next two locations because spelling out the 
+    // entire logic for that with the various possible combinations of Transcendence charms 
+    // requires a disproportionate amount of code because of notch cost logic.
+    {
+        "name": "Lore_Tablet-Greenpath_QG",
+        "logic": "ORIG | (Fungus1_13[right1] + ((ANTIGRAV + DAMAGEBOOSTS + 2HITS) | BLUEMOTH | CRYSTALMASTER) + (SIDESLASH | CYCLONE | GREATSLASH | LEFTDASHSLASH))"
+    },
+    {
+        "name": "Whispering_Root-Greenpath",
+        "logic": "ORIG | (Fungus1_13[left1] + Fungus1_13[right1] + DREAMNAIL + (ANTIGRAV | BLUEMOTH) + (SIDESLASH | CYCLONE | GREATSLASH | FULLDASHSLASH))"
+    },
+    {
+        "name": "Geo_Rock-Greenpath_Acid_Bridge",
+        "logic": "ORIG | ((Fungus1_10[left1] | Fungus1_10[right1] | Fungus1_10[top1]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Hallownest_Seal-Greenpath",
+        "logic": "ORIG | ((Fungus1_10[left1] | Fungus1_10[right1] | Fungus1_10[top1]) + ((CRYSTALMASTER + FULLCLAW) | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + AIRSTALL + LEFTCLAW) | (YEET + LEFTCLAW) | (YEET + AIRSTALL) | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + WINGS) | (ANTIGRAV + AIRSTALL + FULLCLAW) | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus1_09[left1]",
+        "logic": "ORIG | (Fungus1_09[right1] + (BLUEMOTH | (ANTIGRAV + LEFTDASH + LEFTCLAW) | (CRYSTALMASTER + AIRSTALL + LEFTCLAW) | (CRYSTALMASTER + GREATSLASH + LEFTCLAW) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW) | (CRYSTALMASTER + WINGS + LEFTCLAW) | (CRYSTALMASTER + WINGS + ANTIGRAV) | (RIGHTCLAW + WINGS + ANTIGRAV) | (AIRSTALL + WINGS + ANTIGRAV)))"
+    },
+    {
+        "name": "Fungus1_15[door1]",
+        "logic": "ORIG | (Fungus1_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + ANYCLAW) | (CRYSTALMASTER + WINGS) | (YEET)))"
+    },
+    {
+        "name": "Thorns_of_Agony",
+        "logic": "ORIG | (Fungus1_14[left1] + ((ANTIGRAV + AIRSTALL + 2HITS + DAMAGEBOOSTS) | YEET | (AIRSTALL + CRYSTALMASTER) | (RIGHTCLAW + CRYSTALMASTER)))"
+    },
+    {
+        "name": "Fungus1_04[left1]",
+        "logic": "ORIG | (Fungus1_04[right1] + (CRYSTALMASTER | ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus1_04[right1]",
+        "logic": "ORIG | (Fungus1_04[left1] + (CRYSTALMASTER | ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus1_26[left1]",
+        "logic": "ORIG | ((Fungus1_26[right1] | Fungus1_26[door_SlugShrine]) + ((ACID + ANTIGRAV) | (ANTIGRAV + WINGS + LEFTDASH + ENEMYPOGOS + PRECISEMOVEMENT) | (CRYSTALMASTER + WINGS + LEFTDASH + (ANTIGRAV | LEFTCLAW | (ENEMYPOGOS + PRECISEMOVEMENT))) | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus1_26[right1]",
+        "logic": "ORIG | (Fungus1_26[left1] + (BLUEMOTH | (RIGHTDASH + WINGS + YEET) | (RIGHTDASH + LEFTCLAW + WINGS + CRYSTALMASTER) | (AIRSTALL + ROOMSOUL + LEFTCLAW + WINGS + CRYSTALMASTER)))"
+    },
+    {
+        "name": "Shape_of_Unn",
+        "logic": "ORIG | (Fungus1_Slug[right1] + (BLUEMOTH | (FULLDASH + WINGS + CRYSTALMASTER) | (WINGS + AIRSTALL + ROOMSOUL + YEET) | (WINGS + GREATSLASH + YEET)))"
+    },
+    {
+        "name": "Greenpath_Map",
+        "logic": "ORIG | (Fungus1_06[left1] + (CRYSTALMASTER | ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus1_06[bot1]",
+        "logic": "ORIG | (Fungus1_06[left1] + (CRYSTALMASTER | ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Grub-Greenpath_Cornifer",
+        "logic": "ORIG | ((Fungus1_06[left1] | Fungus1_06[bot1]) + (CRYSTALMASTER | ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Grub-Greenpath_Journal",
+        "logic": "ORIG | ((Fungus1_07[left1] | Fungus1_07[top1] | Fungus1_07[right1]) + (CRYSTALMASTER | ANTIGRAVWINGS | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + AIRSTALL) | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    {
+        "name": "Boss_Geo-Vengefly_King",
+        "logic": "ORIG | ((Fungus1_20_v02[bot1] | Fungus1_20_v02[bot2] | Fungus1_20_v02[right1]) + (ANTIGRAV | BLUEMOTH))"
     }
 ]
