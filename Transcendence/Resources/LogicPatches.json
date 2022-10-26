@@ -168,5 +168,53 @@
     {
         "name": "Boss_Geo-Vengefly_King",
         "logic": "ORIG | ((Fungus1_20_v02[bot1] | Fungus1_20_v02[bot2] | Fungus1_20_v02[right1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "King's_Idol-Glade_of_Hope",
+        "logic": "ORIG | (RestingGrounds_08[left1] + (ANTIGRAVWINGS | YEET | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + ((AIRSTALL + ROOMSOUL) | GREATSLASH | CYCLONE | SWIM) + ANYCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Whispering_Root-Spirits_Glade",
+        "logic": "ORIG | (RestingGrounds_08[left1] + DREAMNAIL + (ANTIGRAVWINGS | YEET | (ANTIGRAV + FULLDASH) | (ANTIGRAV + ANYCLAW + ((AIRSTALL + ROOMSOUL) | GREATSLASH | CYCLONE)) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Grub-Resting_Grounds",
+        "logic": "ORIG | (RestingGrounds_10 + (ANTIGRAV | BLUEMOTH) + UPWALLBREAK)"
+    },
+    {
+        "name": "Geo_Rock-Resting_Grounds_Catacombs_Grub",
+        "logic": "ORIG | (RestingGrounds_10 + (ANTIGRAV | BLUEMOTH) + UPWALLBREAK)"
+    },
+    {
+        "name": "Soul_Eater",
+        "logic": "ORIG | (RestingGrounds_10 + (ANTIGRAV | BLUEMOTH) + UPWALLBREAK)"
+    },
+    {
+        "name": "Wanderer's_Journal-Resting_Grounds_Catacombs",
+        "logic": "ORIG | (RestingGrounds_10 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "RestingGrounds_10[top2]",
+        "logic": "ORIG | (RestingGrounds_10 + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "RestingGrounds_06[top1]",
+        "logic": "ORIG | ((RestingGrounds_06[left1] + RestingGrounds_06[right1]) + Opened_Resting_Grounds_Floor + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Crossroads_50[left1]",
+        "logic": "ORIG | (Crossroads_50[right1] + (BLUEMOTH | (SWIM + ANTIGRAV)))"
+    },
+    {
+        "name": "Crossroads_50[right1]",
+        "logic": "ORIG | (Crossroads_50[left1] + BLUEMOTH)"
+    },
+    {
+        "name": "Rancid_Egg-Blue_Lake",
+        "logic": "ORIG | (Crossroads_50[left1] + (BLUEMOTH | (YEET + AIRSTALL) | (YEET + GREATSLASH) | (YEET + RIGHTDASH) | (YEET + WINGS) | (ANTIGRAV + SWIM + ENEMYPOGOS + DAMAGEBOOSTS + 2HITS))) | (Crossroads_50[right1] + ANTIGRAV + LEFTSUPERDASH + WINGS + ENEMYPOGOS)"
+    },
+    {
+        "name": "Boss_Essence-Xero",
+        "logic": "ORIG | (RestingGrounds_02 + (ANTIGRAV | BLUEMOTH) + DREAMNAIL + Defeated_Xero)"
     }
 ]
