@@ -199,7 +199,7 @@
     },
     {
         "name": "RestingGrounds_06[top1]",
-        "logic": "ORIG | ((RestingGrounds_06[left1] + RestingGrounds_06[right1]) + Opened_Resting_Grounds_Floor + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | ((RestingGrounds_06[left1] + RestingGrounds_06[right1]) + $IfExists[Switch-Lower_Resting_Grounds] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Crossroads_50[left1]",

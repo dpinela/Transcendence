@@ -625,6 +625,19 @@ namespace Transcendence
             }
         }
 
+        private static bool IsConditionalLogicTerm(string term, out string innerTerm)
+        {
+            const string startMarker = "$IfExists[";
+            const string endMarker = "]";
+            if (term.StartsWith(startMarker) && term.EndsWith(endMarker))
+            {
+                innerTerm = term.Substring(startMarker.Length, term.Length - startMarker.Length - endMarker.Length);
+                return true;
+            }
+            innerTerm = "";
+            return false;
+        }
+
         private void HookLogic(GenerationSettings gs, LogicManagerBuilder lmb)
         {
             if (!gs.PoolSettings.Charms)
@@ -651,6 +664,14 @@ namespace Transcendence
             {
                 if (origResolver.TryMatch(lm, term, out lvar))
                 {
+                    return true;
+                }
+                if (IsConditionalLogicTerm(term, out var innerTerm))
+                {
+                    if (!origResolver.TryMatch(lm, innerTerm, out lvar))
+                    {
+                        lvar = new FuncLogicInt(term, () => 1);
+                    }
                     return true;
                 }
                 switch (term)
