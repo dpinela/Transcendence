@@ -699,6 +699,30 @@ namespace Transcendence
             {
                 lmb.DeserializeJson(LogicManagerBuilder.JsonType.LogicEdit, patches);
             }
+
+            if (ModHooks.GetMod("BenchRando") != null)
+            {
+                PatchBenchLogic(lmb, Path.Combine(modDir, "BenchLogicPatches.json"));
+            }
+        }
+
+        private void PatchBenchLogic(LogicManagerBuilder lmb, string benchLogicLoc)
+        {
+            if (!BenchRando.Rando.RandoInterop.IsEnabled())
+            {
+                return;
+            }
+
+            var benchLogic = JsonUtil.DeserializeString<RawLogicDef[]>(File.ReadAllText(benchLogicLoc));
+
+            foreach (var def in benchLogic)
+            {
+                // Not all benches will be in use at all times.
+                if (lmb.LogicLookup.ContainsKey(def.name))
+                {
+                    lmb.DoLogicEdit(def);
+                }
+            }
         }
 
         private bool ReadCharmLogicTermsForSettingsPM(string term, out bool value)

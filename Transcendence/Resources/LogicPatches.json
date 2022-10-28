@@ -198,12 +198,16 @@
         "logic": "ORIG | (RestingGrounds_10 + ANTIGRAVWINGS)"
     },
     {
+        "name": "RestingGrounds_10[top1]",
+        "logic": "ORIG | ($IfExists[Bench-Crypts] + ANTIGRAVWINGS)"
+    },
+    {
         "name": "RestingGrounds_06[top1]",
         "logic": "ORIG | ((RestingGrounds_06[left1] + RestingGrounds_06[right1]) + $IfExists[Switch-Lower_Resting_Grounds] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Crossroads_50[left1]",
-        "logic": "ORIG | (Crossroads_50[right1] + (BLUEMOTH | (SWIM + ANTIGRAV)))"
+        "logic": "ORIG | (Crossroads_50[right1] + (BLUEMOTH | (SWIM + ANTIGRAV))) | ($IfExists[Bench-West_Lake_Shore] + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Crossroads_50[right1]",
@@ -216,5 +220,17 @@
     {
         "name": "Boss_Essence-Xero",
         "logic": "ORIG | (RestingGrounds_02 + (ANTIGRAV | BLUEMOTH) + DREAMNAIL + Defeated_Xero)"
+    },
+    {
+        "name": "Cliffs_02[left2]",
+        "logic": "ORIG | (Cliffs_02 + (ANTIGRAVWINGS | (SNAILSLASH + AIRSTALL + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Cliffs_02[right1]",
+        "logic": "ORIG | (Cliffs_02 + (ANTIGRAVWINGS | CRYSTALMASTER | (SNAILSLASH + AIRSTALL + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Cliffs_02",
+        "logic": "ORIG | (Cliffs_02[bot1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Cliffs_02[left1] + (ANTIGRAV | BLUEMOTH))"
     }
 ]
