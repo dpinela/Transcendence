@@ -625,9 +625,9 @@ namespace Transcendence
             }
         }
 
-        private static bool IsConditionalLogicTerm(string term, out string innerTerm)
+        private static bool IsConditionalLogicTerm(string condition, string term, out string innerTerm)
         {
-            const string startMarker = "$IfExists[";
+            var startMarker = "$" + condition + "[";
             const string endMarker = "]";
             if (term.StartsWith(startMarker) && term.EndsWith(endMarker))
             {
@@ -655,6 +655,13 @@ namespace Transcendence
                     new TermValue(lmb.GetTerm("CHARMS"), 1)
                 }, oneOf));
             }
+
+            // remain hash-compatible with previous versions if logic options aren't turned on
+            if (!RandoSettings.Logic.AnyEnabled())
+            {
+                return;
+            }
+
             foreach (var key in LogicTermDefs.Keys)
             {
                 lmb.GetOrAddTerm(key);
@@ -666,11 +673,19 @@ namespace Transcendence
                 {
                     return true;
                 }
-                if (IsConditionalLogicTerm(term, out var innerTerm))
+                if (IsConditionalLogicTerm("TrueOrNotExist", term, out var innerTerm))
                 {
                     if (!origResolver.TryMatch(lm, innerTerm, out lvar))
                     {
                         lvar = new FuncLogicInt(term, () => 1);
+                    }
+                    return true;
+                }
+                if (IsConditionalLogicTerm("TrueAndExists", term, out var innerTermII))
+                {
+                    if (!origResolver.TryMatch(lm, innerTermII, out lvar))
+                    {
+                        lvar = new FuncLogicInt(term, () => 0);
                     }
                     return true;
                 }

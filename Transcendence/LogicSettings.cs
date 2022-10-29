@@ -21,6 +21,20 @@ namespace Transcendence
         [MenuLabel("Marissa's Audience")]
         public bool MarissasAudience;
         public ChaosOrbMode ChaosOrb;
+
+        public bool AnyEnabled() =>
+            AntigravityAmulet ||
+            BluemothWings != GeoCharmLogicMode.Off ||
+            LemmsStrength ||
+            FloristsBlessing ||
+            SnailSoul ||
+            SnailSlash ||
+            Greedsong ||
+            MillibellesBlessing ||
+            NitroCrystal ||
+            Crystalmaster != GeoCharmLogicMode.Off ||
+            MarissasAudience ||
+            ChaosOrb != ChaosOrbMode.Off;
     }
 
     public enum GeoCharmLogicMode {
