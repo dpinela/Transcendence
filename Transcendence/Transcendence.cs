@@ -714,25 +714,17 @@ namespace Transcendence
             {
                 lmb.DeserializeJson(LogicManagerBuilder.JsonType.LogicEdit, patches);
             }
-
-            if (ModHooks.GetMod("BenchRando") != null)
-            {
-                PatchBenchLogic(lmb, Path.Combine(modDir, "BenchLogicPatches.json"));
-            }
+            PatchConnectionLogic(lmb, Path.Combine(modDir, "ConnectionLogicPatches.json"));
         }
 
-        private void PatchBenchLogic(LogicManagerBuilder lmb, string benchLogicLoc)
+        private void PatchConnectionLogic(LogicManagerBuilder lmb, string logicFileLoc)
         {
-            if (!BenchRando.Rando.RandoInterop.IsEnabled())
-            {
-                return;
-            }
+            var logicDefs = JsonUtil.DeserializeString<RawLogicDef[]>(File.ReadAllText(logicFileLoc));
 
-            var benchLogic = JsonUtil.DeserializeString<RawLogicDef[]>(File.ReadAllText(benchLogicLoc));
-
-            foreach (var def in benchLogic)
+            foreach (var def in logicDefs)
             {
-                // Not all benches will be in use at all times.
+                // Not all benches/levers/etc will be in use at all times
+                // (or any, if the relevant connection isn't installed).
                 if (lmb.LogicLookup.ContainsKey(def.name))
                 {
                     lmb.DoLogicEdit(def);

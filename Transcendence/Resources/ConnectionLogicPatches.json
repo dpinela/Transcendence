@@ -1,0 +1,6 @@
+[
+    {
+        "name": "Lever-Crystal_Peak_Spike_Grub",
+        "logic": "ORIG | ((Mines_03[bot1] | Mines_03[right1]) + BLUEMOTH + (((CRYSTALMASTER | LEFTDASH | AIRSTALL) + SPIKETUNNELS) | Lever-Crystal_Peak_Spike_Grub)) | (Mines_03[bot1] + ANTIGRAV + (PRECISEMOVEMENT | Longnail | Mark_of_Pride) + SPIKETUNNELS) | (Mines_03[right1] + ANTIGRAV + SPIKETUNNELS)"
+    }
+]
