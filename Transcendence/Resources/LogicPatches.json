@@ -436,5 +436,50 @@
     {
         "name": "Geo_Rock-Crystal_Peak_Mimic_Grub",
         "logic": "ORIG | ((Mines_16[top1] | $TrueAndExists[Bench-Mimic's_Secret]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Mines_11",
+        "logic": "ORIG | (Mines_11[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Shopkeeper's_Key",
+        "logic": "ORIG | (Mines_11 + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL)))"
+    },
+    {
+        "name": "Mines_13[right1]",
+        "logic": "ORIG | (Mines_13[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Mines_20",
+        "logic": "ORIG | (Mines_20[right2] + BLUEMOTH) | (Mines_20[left2] + BLUEMOTH + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Upper]) | ((Mines_20[left3] | Mines_20[bot1]) + BLUEMOTH + ($TrueAndExists[Lever-Crystal_Peak_Tall_Room_Lower] | ($TrueAndExists[Lever-Crystal_Peak_Tall_Room_Middle] + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Upper])))"
+    },
+    {
+        "name": "Mines_20[left2]",
+        "logic": "ORIG | ((Mines_20[bot1] | Mines_20[left3]) + BLUEMOTH + ($TrueAndExists[Lever-Crystal_Peak_Tall_Room_Middle] | $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Lower])) | (Mines_20[right2] + BLUEMOTH)"
+    },
+    {
+        "name": "Mines_20[right1]",
+        "logic": "ORIG | (Mines_20 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Wanderer's_Journal-Crystal_Peak_Crawlers",
+        "logic": "ORIG | (Mines_20 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Soul_Totem-Upper_Crystal_Peak",
+        "logic": "ORIG | ((Mines_20[left3] | Mines_20[bot1]) + ANTIGRAVWINGS)"
+    },
+    // TODO: SNAILSLASH
+    {
+        "name": "Mines_23",
+        "logic": "ORIG | ((Mines_23[left1] | Mines_23[top1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH)) | (Mines_23[top1] + CRYSTALMASTER) | (Mines_23[left1] + CRYSTALMASTER + RIGHTCLAW)"
+    },
+    {
+        "name": "Mines_23[left1]",
+        "logic": "ORIG | ((Mines_23[right1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Mines_23[right1]",
+        "logic": "ORIG | ((Mines_23[left1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW))) | (Mines_23[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     }
 ]

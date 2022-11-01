@@ -657,7 +657,7 @@ namespace Transcendence
             }
 
             // remain hash-compatible with previous versions if logic options aren't turned on
-            if (!RandoSettings.Logic.AnyEnabled())
+            if (!(RandoSettings.AddCharms && RandoSettings.Logic.AnyEnabled()))
             {
                 return;
             }
