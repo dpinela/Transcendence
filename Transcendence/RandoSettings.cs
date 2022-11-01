@@ -9,6 +9,8 @@ namespace Transcendence
 
         public LogicSettings Logic = new();
 
+        public RandoSettings() {}
+
         public RandoSettings(GlobalSettings rs)
         {
             AddCharms = rs.AddCharms;

@@ -133,6 +133,10 @@ namespace Transcendence
                 // DLL will fail even if the code in question isn't actually run)
                 HookRando();
             }
+            if (ModHooks.GetMod("RandoSettingsManager") != null)
+            {
+                HookRandoSettingsManager();
+            }
             if (ModHooks.GetMod("DebugMod") != null)
             {
                 DebugModHook.GiveAllCharms(() => {
@@ -468,20 +472,44 @@ namespace Transcendence
             SettingsLog.AfterLogSettings += LogRandoSettings;
         }
 
+        private void HookRandoSettingsManager()
+        {
+            RandoSettingsManager.RandoSettingsManagerMod.Instance.RegisterConnection(new RandoSettingsManagerProxy()
+            {
+                getter = () => RandoSettings,
+                setter = rs =>
+                {
+                    RandoSettings = rs;
+                    UpdateSettingsMenu(rs);
+                }
+            });
+        }
+
         // This is actually a MenuPage, but we can't use that as the static type because then this mod won't
         // load without MenuChanger installed because the runtime can't load the type of the field.
         private object SettingsPage;
         private RandoSettings RandoSettings = new(new GlobalSettings());
 
+        private Action<RandoSettings> UpdateSettingsMenu;
+
         private void BuildMenu(MenuPage landingPage)
         {
             var sp = new MenuPage(GetName(), landingPage);
             SettingsPage = sp;
+            
+            var mainMEF = new MenuElementFactory<RandoSettings>(sp, RandoSettings);
+            var logicMEF = new MenuElementFactory<LogicSettings>(sp, RandoSettings.Logic);
+
+            UpdateSettingsMenu = rs =>
+            {
+                mainMEF.SetMenuValues(rs);
+                logicMEF.SetMenuValues(rs.Logic);
+            };
 
             var items = new List<IMenuElement>();
-            items.AddRange(new MenuElementFactory<RandoSettings>(sp, RandoSettings).Elements);
+            items.AddRange(mainMEF.Elements);
             items.Add(new MenuLabel(sp, "Logic Settings", MenuLabel.Style.Title));
-            items.AddRange(new MenuElementFactory<LogicSettings>(sp, RandoSettings.Logic).Elements);
+            items.AddRange(logicMEF.Elements);
 
             const float BUTTON_HEIGHT = 32f;
 
