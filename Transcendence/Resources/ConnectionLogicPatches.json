@@ -2,5 +2,17 @@
     {
         "name": "Lever-Crystal_Peak_Spike_Grub",
         "logic": "ORIG | ((Mines_03[bot1] | Mines_03[right1]) + BLUEMOTH + (((CRYSTALMASTER | LEFTDASH | AIRSTALL) + SPIKETUNNELS) | Lever-Crystal_Peak_Spike_Grub)) | (Mines_03[bot1] + ANTIGRAV + (PRECISEMOVEMENT | Longnail | Mark_of_Pride) + SPIKETUNNELS) | (Mines_03[right1] + ANTIGRAV + SPIKETUNNELS)"
+    },
+    {
+        "name": "Lever-Crystal_Peak_Crushers_Grub",
+        "logic": "ORIG | ((Mines_19[left1] | Mines_19[right1]) + (ANTIGRAV | BLUEMOTH) + (LEFTDASH | CRYSTALMASTER | Lever-Crystal_Peak_Crushers_Grub))"
+    },
+    {
+        "name": "Lever-Crystal_Peak_Crushers_Chest",
+        "logic": "ORIG | (Mines_37[bot1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Lever-Crystal_Peak_Above_Chest",
+        "logic": "ORIG | (Mines_37[top1] + ANTIGRAVWINGS) | (Mines_37[bot1] + ANTIGRAVWINGS + ($TrueOrNotExist[Lever-Crystal_Peak_Crushers_Chest] | FULLDASH | (DASHSPRINT + OBSCURESKIPS)))"
     }
 ]

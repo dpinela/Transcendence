@@ -451,11 +451,11 @@
     },
     {
         "name": "Mines_20",
-        "logic": "ORIG | (Mines_20[right2] + BLUEMOTH) | (Mines_20[left2] + BLUEMOTH + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Upper]) | ((Mines_20[left3] | Mines_20[bot1]) + BLUEMOTH + ($TrueAndExists[Lever-Crystal_Peak_Tall_Room_Lower] | ($TrueAndExists[Lever-Crystal_Peak_Tall_Room_Middle] + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Upper])))"
+        "logic": "ORIG | (Mines_20[right2] + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS + $TrueOrNotExist[Lever-Crystal_Peak_Tall_Room_Lower] + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Middle]))) | (Mines_20[left2] + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS + $TrueOrNotExist[Lever-Crystal_Peak_Tall_Room_Middle]) + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Upper])) | ((Mines_20[left3] | Mines_20[bot1]) + ((BLUEMOTH + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Lower]) | ((BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS)) + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Middle] + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Upper])))"
     },
     {
         "name": "Mines_20[left2]",
-        "logic": "ORIG | ((Mines_20[bot1] | Mines_20[left3]) + BLUEMOTH + ($TrueAndExists[Lever-Crystal_Peak_Tall_Room_Middle] | $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Lower])) | (Mines_20[right2] + BLUEMOTH)"
+        "logic": "ORIG | ((Mines_20[bot1] | Mines_20[left3]) + ((BLUEMOTH + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Lower]) | ((BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS)) + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Middle]))) | (Mines_20[right2] + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS + $TrueOrNotExist[Lever-Crystal_Peak_Tall_Room_Lower] + $TrueAndExists[Lever-Crystal_Peak_Tall_Room_Middle])))"
     },
     {
         "name": "Mines_20[right1]",
@@ -469,10 +469,9 @@
         "name": "Soul_Totem-Upper_Crystal_Peak",
         "logic": "ORIG | ((Mines_20[left3] | Mines_20[bot1]) + ANTIGRAVWINGS)"
     },
-    // TODO: SNAILSLASH
     {
         "name": "Mines_23",
-        "logic": "ORIG | ((Mines_23[left1] | Mines_23[top1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH)) | (Mines_23[top1] + CRYSTALMASTER) | (Mines_23[left1] + CRYSTALMASTER + RIGHTCLAW)"
+        "logic": "ORIG | ((Mines_23[left1] | Mines_23[top1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH)) | (Mines_23[top1] + CRYSTALMASTER) | (Mines_23[left1] + CRYSTALMASTER + RIGHTCLAW) | (Mines_23[left1] + SNAILSLASH + AIRSTALL + ROOMSOUL + RIGHTCLAW) | (Mines_23[right2] + SNAILSLASH + AIRSTALL + ROOMSOUL)"
     },
     {
         "name": "Mines_23[left1]",
@@ -480,6 +479,98 @@
     },
     {
         "name": "Mines_23[right1]",
-        "logic": "ORIG | ((Mines_23[left1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW))) | (Mines_23[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | ((Mines_23[left1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW))) | (Mines_23[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Mines_23[right2] + SNAILSLASH + AIRSTALL + ROOMSOUL)"
+    },
+    {
+        "name": "Grub-Hallownest_Crown",
+        "logic": "ORIG | (Mines_24[left1] + (CRYSTALMASTER | ANTIGRAVWINGS | (BLUEMOTH + PRECISEMOVEMENT) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Mines_25[top1]",
+        "logic": "ORIG | (Mines_25[left1] + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS))) | (Mines_25[top1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-Hallownest_Crown_Dive",
+        "logic": "ORIG | (Mines_25[left1] + QUAKE + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Hallownest_Crown_Dive_Dupe",
+        "logic": "ORIG | (Mines_25[left1] + QUAKE + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Soul_Totem-Hallownest_Crown",
+        "logic": "ORIG | (Mines_25[left1] + QUAKE + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Hallownest_Crown_Hidden",
+        "logic": "ORIG | (Mines_25[left1] + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS))) | (Mines_25[top1] + (ANTIGRAVWINGS | (SNAILSLASH + WINGS + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Hallownest_Crown_Hidden_Dupe_1",
+        "logic": "ORIG | (Mines_25[left1] + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS))) | (Mines_25[top1] + (ANTIGRAVWINGS | (SNAILSLASH + WINGS + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Hallownest_Crown_Hidden_Dupe_2",
+        "logic": "ORIG | (Mines_25[left1] + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS))) | (Mines_25[top1] + (ANTIGRAVWINGS | (SNAILSLASH + WINGS + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Mines_34[bot2]",
+        "logic": "ORIG | (Mines_34[bot1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Mines_34[left1]",
+        "logic": "ORIG | (Mines_34[bot1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Pale_Ore-Crystal_Peak",
+        "logic": "ORIG | (Mines_34[bot1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Mines_18[top1]",
+        "logic": "ORIG | (Mines_18[top1] + (ANTIGRAV | BLUEMOTH)) | (Mines_18 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Grub-Crystal_Peak_Crushers",
+        "logic": "ORIG | ((Mines_19[left1] | Mines_19[right1]) + (ANTIGRAV | BLUEMOTH) + (LEFTDASH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Mines_31[left1]",
+        "logic": "ORIG | ($TrueAndExists[Bench-Mining_Golem] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + LEFTDASH) | (YEET + LEFTCLAW)))"
+    },
+    {
+        "name": "Grub-Crystal_Heart",
+        "logic": "ORIG | (Mines_31[left1] + (ANTIGRAVWINGS | (ANTIGRAV + FULLCLAW + AIRSTALL + AREASOUL) | (ANTIGRAV + FULLCLAW + RIGHTDASH) | (YEET + LEFTCLAW) | (CRYSTALMASTER + FULLCLAW) | (CRYSTALMASTER + LEFTCLAW + GREATSLASH) | (CRYSTALMASTER + LEFTCLAW + AIRSTALL + AREASOUL)))"
+    },
+    {
+        "name": "Crystal_Heart",
+        "logic": "ORIG | (Mines_31[left1] + (ANTIGRAVWINGS | (CRYSTALMASTER + LEFTCLAW) | (ANTIGRAV + LEFTCLAW)))"
+    },
+    {
+        "name": "Split_Crystal_Heart",
+        "logic": "ORIG | (Mines_31[left1] + (ANTIGRAVWINGS | (CRYSTALMASTER + LEFTCLAW) | (ANTIGRAV + LEFTCLAW)))"
+    },
+    {
+        "name": "Soul_Totem-Crystal_Heart_1",
+        "logic": "ORIG | (Mines_31[left1] + (ANTIGRAVWINGS | (CRYSTALMASTER + LEFTCLAW) | (ANTIGRAV + LEFTCLAW)))"
+    },
+    {
+        "name": "Soul_Totem-Crystal_Heart_2",
+        "logic": "ORIG | (Mines_31[left1] + (ANTIGRAVWINGS | (CRYSTALMASTER + LEFTCLAW) | (ANTIGRAV + LEFTCLAW)))"
+    },
+    {
+        "name": "Mines_37[bot1]",
+        "logic": "ORIG | (Mines_37[top1] + CRYSTALMASTER)"
+    },
+    {
+        "name": "Geo_Chest-Crystal_Peak",
+        "logic": "ORIG | (Mines_37[top1] + ((YEET + WINGS) | (CRYSTALMASTER + ANYCLAW) | (ANTIGRAVWINGS + FULLDASH) | (ANTIGRAVWINGS + DASHSPRINT + OBSCURESKIPS)))"
+    },
+    {
+        "name": "Geo_Rock-Crystal_Peak_Above_Crushers_Lower",
+        "logic": "ORIG | (Mines_37[top1] + ANTIGRAVWINGS) | (Mines_37[bot1] + ANTIGRAVWINGS + ($TrueOrNotExist[Lever-Crystal_Peak_Crushers_Chest] | FULLDASH | (DASHSPRINT + OBSCURESKIPS)))"
+    },
+    {
+        "name": "Geo_Rock-Crystal_Peak_Above_Crushers_Higher",
+        "logic": "ORIG | (Mines_37[top1] + ANTIGRAVWINGS) | (Mines_37[bot1] + ANTIGRAVWINGS + ($TrueOrNotExist[Lever-Crystal_Peak_Crushers_Chest] | FULLDASH | (DASHSPRINT + OBSCURESKIPS)))"
     }
 ]
