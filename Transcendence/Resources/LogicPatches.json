@@ -565,6 +565,7 @@
         "name": "Geo_Chest-Crystal_Peak",
         "logic": "ORIG | (Mines_37[top1] + ((YEET + WINGS) | (CRYSTALMASTER + ANYCLAW) | (ANTIGRAVWINGS + FULLDASH) | (ANTIGRAVWINGS + DASHSPRINT + OBSCURESKIPS)))"
     },
+    // antigrav + rightclaw too, and maybe precise movement for antigrav + wings?
     {
         "name": "Geo_Rock-Crystal_Peak_Above_Crushers_Lower",
         "logic": "ORIG | (Mines_37[top1] + ANTIGRAVWINGS) | (Mines_37[bot1] + ANTIGRAVWINGS + ($TrueOrNotExist[Lever-Crystal_Peak_Crushers_Chest] | FULLDASH | (DASHSPRINT + OBSCURESKIPS)))"
