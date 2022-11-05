@@ -490,7 +490,8 @@ namespace Transcendence
         private object SettingsPage;
         private RandoSettings RandoSettings = new(new GlobalSettings());
 
-        private Action<RandoSettings> UpdateSettingsMenu;
+        private Action<RandoSettings> UpdateSettingsMenu = rs =>
+            LogWarning("did not update menu from received settings because menu has not been built yet");
 
         private void BuildMenu(MenuPage landingPage)
         {
