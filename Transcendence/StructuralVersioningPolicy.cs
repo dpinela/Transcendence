@@ -34,6 +34,11 @@ namespace Transcendence
 
         private static string LogicHash()
         {
+            if (!Transcendence.LogicAvailable())
+            {
+                return "NIL";
+            }
+
             using var hash = SHA256.Create();
             using var hstream = new CryptoStream(Stream.Null, hash, CryptoStreamMode.Write);
             var modDir = Path.GetDirectoryName(typeof(StructuralVersioningPolicy).Assembly.Location);

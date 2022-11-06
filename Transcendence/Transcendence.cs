@@ -461,6 +461,7 @@ namespace Transcendence
 
         private void HookRando()
         {
+            UpdateSettingsMenu = (rs => RandoSettings = rs);
             RequestBuilder.OnUpdate.Subscribe(-9999, SetRandoNotchCosts);
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
             RequestBuilder.OnUpdate.Subscribe(-200, IncreaseMaxCharmCost);
@@ -479,7 +480,6 @@ namespace Transcendence
                 getter = () => RandoSettings,
                 setter = rs =>
                 {
-                    RandoSettings = rs;
                     UpdateSettingsMenu(rs);
                 }
             });
@@ -490,8 +490,7 @@ namespace Transcendence
         private object SettingsPage;
         private RandoSettings RandoSettings = new(new GlobalSettings());
 
-        private Action<RandoSettings> UpdateSettingsMenu = rs =>
-            LogWarning("did not update menu from received settings because menu has not been built yet");
+        private Action<RandoSettings> UpdateSettingsMenu;
 
         private void BuildMenu(MenuPage landingPage)
         {
@@ -499,18 +498,22 @@ namespace Transcendence
             SettingsPage = sp;
             
             var mainMEF = new MenuElementFactory<RandoSettings>(sp, RandoSettings);
-            var logicMEF = new MenuElementFactory<LogicSettings>(sp, RandoSettings.Logic);
 
             UpdateSettingsMenu = rs =>
             {
                 mainMEF.SetMenuValues(rs);
-                logicMEF.SetMenuValues(rs.Logic);
             };
 
             var items = new List<IMenuElement>();
             items.AddRange(mainMEF.Elements);
-            items.Add(new MenuLabel(sp, "Logic Settings", MenuLabel.Style.Title));
-            items.AddRange(logicMEF.Elements);
+
+            if (LogicAvailable())
+            {
+                items.Add(new MenuLabel(sp, "Logic Settings", MenuLabel.Style.Title));
+                var logicMEF = new MenuElementFactory<LogicSettings>(sp, RandoSettings.Logic);
+                items.AddRange(logicMEF.Elements);
+                UpdateSettingsMenu += rs => logicMEF.SetMenuValues(rs.Logic);
+            }
 
             const float BUTTON_HEIGHT = 32f;
 
@@ -535,6 +538,9 @@ namespace Transcendence
                 BUTTON_HEIGHT
             });
         }
+
+        internal static bool LogicAvailable() =>
+            File.Exists(Path.Combine(Path.GetDirectoryName(typeof(Transcendence).Assembly.Location), "LogicPatches.json"));
 
         private Color ButtonColor() =>
             RandoSettings.Enabled() ? Colors.TRUE_COLOR : Colors.DEFAULT_COLOR;
