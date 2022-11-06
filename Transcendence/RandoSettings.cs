@@ -15,11 +15,14 @@ namespace Transcendence
         {
             AddCharms = rs.AddCharms;
             IncreaseMaxCharmCostBy = rs.IncreaseMaxCharmCostBy;
-            if (Modding.ModHooks.GetMod("MenuChanger") != null)
+            if (Modding.ModHooks.GetMod("Randomizer 4") != null)
             {
-                Logic = RandomizerMod.RandomizerData.JsonUtil.DeserializeString<LogicSettings>(rs.LogicSettings);
+                Logic = LoadLogic(rs);
             }
         }
+
+        private LogicSettings LoadLogic(GlobalSettings rs) =>
+            RandomizerMod.RandomizerData.JsonUtil.DeserializeString<LogicSettings>(rs.LogicSettings);
 
         public bool Enabled() => AddCharms;
     }
