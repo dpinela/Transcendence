@@ -572,5 +572,57 @@
     {
         "name": "Geo_Rock-Crystal_Peak_Above_Crushers_Higher",
         "logic": "ORIG | (Mines_37[top1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW))) | (Mines_37[bot1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)) + ($TrueOrNotExist[Lever-Crystal_Peak_Crushers_Chest] | FULLDASH | (DASHSPRINT + OBSCURESKIPS)))"
+    },
+    {
+        "name": "Deepnest_43[bot1]",
+        "logic": "ORIG | ((Deepnest_43[left1] | Deepnest_43[right1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_43[left1]",
+        "logic": "ORIG | (Deepnest_43[bot1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Deepnest_43[right1]",
+        "logic": "ORIG | (Deepnest_43[bot1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-Above_Mask_Maker_1",
+        "logic": "ORIG | ((Deepnest_43[bot1] | Deepnest_43[left1] | Deepnest_43[right1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Above_Mask_Maker_2",
+        "logic": "ORIG | ((Deepnest_43[bot1] | Deepnest_43[left1] | Deepnest_43[right1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus3_08[top1]",
+        "logic": "ORIG | ((Fungus3_08[right1] | Fungus3_08[left1] | Fungus3_08[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SNAILSLASH) | (ANTIGRAV + ENEMYPOGOS) | (SNAILSLASH + AIRSTALL + DANGEROUSSKIPS)))"
+    },
+    {
+        "name": "Fungus3_11",
+        "logic": "ORIG | (Fungus3_11[left2] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW))) | (Fungus3_11[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Whispering_Root-Queens_Gardens",
+        "logic": "ORIG | (Fungus3_11 + DREAMNAIL + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Love_Key",
+        "logic": "ORIG | (Fungus3_39[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (ANTIGRAV + RIGHTSHARPSHADOW + FULLCLAW + PRECISEMOVEMENT) | (YEET + WINGS) | (YEET + AIRSTALL + ROOMSOUL + RIGHTCLAW)))"
+    },
+    {
+        "name": "Queen's_Gardens_Map",
+        "logic": "ORIG | (Fungus1_24[left1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus3_05[left1]",
+        "logic": "ORIG | (Fungus3_05[right2] + (ANTIGRAV | BLUEMOTH) + $TrueAndExists[Switch-Petra_Arena])"
+    },
+    {
+        "name": "Fungus3_05[right1]",
+        "logic": "ORIG | (Fungus3_05[left1] + (ANTIGRAV | BLUEMOTH)) | (Fungus3_05[right2] + (ANTIGRAV | BLUEMOTH) + $TrueAndExists[Switch-Petra_Arena])"
+    },
+    {
+        "name": "Fungus3_05[right2]",
+        "logic": "ORIG | ((Fungus3_05[left1] | Fungus3_05[right1]) + $TrueOrNotExist[Switch-Petra_Arena] + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW + PRECISEMOVEMENT) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
     }
 ]

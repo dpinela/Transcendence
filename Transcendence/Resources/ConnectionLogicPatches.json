@@ -14,5 +14,13 @@
     {
         "name": "Lever-Crystal_Peak_Above_Chest",
         "logic": "ORIG | (Mines_37[top1] + ANTIGRAVWINGS) | (Mines_37[bot1] + ANTIGRAVWINGS + ($TrueOrNotExist[Lever-Crystal_Peak_Crushers_Chest] | FULLDASH | (DASHSPRINT + OBSCURESKIPS)))"
+    },
+    {
+        "name": "Bench-Gardens_Cornifer",
+        "logic": "ORIG | (Fungus1_24[left1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Switch-Petra_Arena",
+        "logic": "ORIG | ((Fungus3_05[left1] | Fungus3_05[right1] | (Fungus3_05[right2] + Switch-Petra_Arena)) + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW + PRECISEMOVEMENT) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
     }
 ]
