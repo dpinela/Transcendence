@@ -624,5 +624,91 @@
     {
         "name": "Fungus3_05[right2]",
         "logic": "ORIG | ((Fungus3_05[left1] | Fungus3_05[right1]) + $TrueOrNotExist[Switch-Petra_Arena] + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW + PRECISEMOVEMENT) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Fungus3_04[left1]",
+        "logic": "ORIG | ((Fungus3_04[right1] | Fungus3_04[right2]) + $TrueAndExists[Lever-Queen's_Gardens_Ground_Block] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Fungus3_04[left2]",
+        "logic": "ORIG | ((Fungus3_04[right1] | Fungus3_04[right2]) + $TrueAndExists[Lever-Queen's_Gardens_Ground_Block] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus3_34",
+        "logic": "ORIG | (Fungus3_34[left1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus3_34[left1]",
+        "logic": "ORIG | (Fungus3_34 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus3_34[top1]",
+        "logic": "ORIG | (Fungus3_34 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Rancid_Egg-Queen's_Gardens",
+        "logic": "ORIG | (Fungus3_34 + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + AIRSTALL + ROOMSOUL) | (ANTIGRAV + GREATSLASH))) | (Fungus3_34[left1] + CRYSTALMASTER)"
+    },
+    {
+        "name": "Fungus3_13[left1]",
+        "logic": "ORIG | (Fungus3_13 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus3_13[left3]",
+        "logic": "ORIG | (Fungus3_13 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus3_13[right1]",
+        "logic": "ORIG | (Fungus3_13 + (ANTIGRAV | BLUEMOTH))"
+    },
+    /* this waypoint doesn't exist in the current release of rando but it will one day
+    {
+        "name": "Can_Deliver_Flower",
+        "logic": "ORIG | (Fungus3_49[right1] + $FLOWER + (CRYSTALMASTER | (BLUEMOTH + DIFFICULTSKIPS) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + AIRSTALL + AREASOUL)))"
+    },
+    */
+    {
+        "name": "Fungus3_40[top1]",
+        "logic": "ORIG | ((Fungus3_40[right1] | $TrueIfExists[Bench-Gardens_Stag]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus3_40[right1]",
+        "logic": "ORIG | (Fungus3_40[top1] + (Fungus3_40[right1] | Opened_Gardens_Stag_Exit) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Opened_Gardens_Stag_Exit",
+        "logic": "ORIG | (Fungus3_40[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Queen's_Gardens_Stag",
+        "logic": "ORIG | (Fungus3_40[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Soul_Totem-Below_Marmu",
+        "logic": "ORIG | ((Fungus3_40[right1] | $TrueIfExists[Bench-Gardens_Stag]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Boss_Essence-Marmu",
+        "logic": "ORIG | ((Fungus3_40[right1] | $TrueIfExists[Bench-Gardens_Stag]) + DREAMNAIL + COMBAT[Marmu] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Defeated_Marmu",
+        "logic": "ORIG | ((Fungus3_40[right1] | $TrueIfExists[Bench-Gardens_Stag]) + DREAMNAIL + COMBAT[Marmu] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus3_48[right2]",
+        "logic": "ORIG | (Fungus3_48[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Hallownest_Seal-Queen's_Gardens",
+        "logic": "ORIG | ((Fungus3_48[right2] | Fungus3_48[bot1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Grub-Queen's_Gardens_Marmu",
+        "logic": "ORIG | ((Fungus3_48[right2] | Fungus3_48[bot1]) + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-Queen's_Gardens_Above_Marmu",
+        "logic": "ORIG | (Fungus3_48[right2] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Fungus3_48[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + ROOMSOUL)))"
     }
 ]

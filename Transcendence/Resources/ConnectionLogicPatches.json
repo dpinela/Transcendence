@@ -22,5 +22,9 @@
     {
         "name": "Switch-Petra_Arena",
         "logic": "ORIG | ((Fungus3_05[left1] | Fungus3_05[right1] | (Fungus3_05[right2] + Switch-Petra_Arena)) + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW + PRECISEMOVEMENT) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Bench-Gardens_Stag",
+        "logic": "ORIG | (Fungus3_40[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     }
 ]
