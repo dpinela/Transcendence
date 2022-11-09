@@ -669,7 +669,7 @@
     */
     {
         "name": "Fungus3_40[top1]",
-        "logic": "ORIG | ((Fungus3_40[right1] | $TrueIfExists[Bench-Gardens_Stag]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | ((Fungus3_40[right1] | $TrueAndExists[Bench-Gardens_Stag]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Fungus3_40[right1]",
@@ -685,15 +685,15 @@
     },
     {
         "name": "Soul_Totem-Below_Marmu",
-        "logic": "ORIG | ((Fungus3_40[right1] | $TrueIfExists[Bench-Gardens_Stag]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | ((Fungus3_40[right1] | $TrueAndExists[Bench-Gardens_Stag]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Boss_Essence-Marmu",
-        "logic": "ORIG | ((Fungus3_40[right1] | $TrueIfExists[Bench-Gardens_Stag]) + DREAMNAIL + COMBAT[Marmu] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | ((Fungus3_40[right1] | $TrueAndExists[Bench-Gardens_Stag]) + DREAMNAIL + COMBAT[Marmu] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Defeated_Marmu",
-        "logic": "ORIG | ((Fungus3_40[right1] | $TrueIfExists[Bench-Gardens_Stag]) + DREAMNAIL + COMBAT[Marmu] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | ((Fungus3_40[right1] | $TrueAndExists[Bench-Gardens_Stag]) + DREAMNAIL + COMBAT[Marmu] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Fungus3_48[right2]",
@@ -710,5 +710,29 @@
     {
         "name": "Geo_Rock-Queen's_Gardens_Above_Marmu",
         "logic": "ORIG | (Fungus3_48[right2] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Fungus3_48[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Fungus3_21[top1]",
+        "logic": "ORIG | (Fungus3_21[right1] + ((BLUEMOTH + PRECISEMOVEMENT) | (BLUEMOTH + LEFTDASH) | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + WINGS)))"
+    },
+    {
+        "name": "Fungus3_21[right1]",
+        "logic": "ORIG | (Fungus3_21[top1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Soul_Totem-Top_Left_Queen's_Gardens",
+        "logic": "ORIG | (Fungus3_21[right1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW))) | (Fungus3_21[top1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Fungus3_22[right1]",
+        "logic": "ORIG | (Fungus3_22 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Grub-Queen's_Gardens_Top",
+        "logic": "ORIG | (Fungus3_22 + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH + LEFTCLAW) | (YEET + FULLCLAW) | (YEET + WINGS + ANYCLAW)))"
+    },
+    {
+        "name": "Fungus3_23[left1]",
+        "logic": "ORIG | (Fungus3_23[right1] + LEFTSHADOWDASH + Defeated_Traitor_Lord + (ANTIGRAV | BLUEMOTH))"
     }
 ]
