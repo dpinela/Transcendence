@@ -573,6 +573,8 @@
         "name": "Geo_Rock-Crystal_Peak_Above_Crushers_Higher",
         "logic": "ORIG | (Mines_37[top1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW))) | (Mines_37[bot1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)) + ($TrueOrNotExist[Lever-Crystal_Peak_Crushers_Chest] | FULLDASH | (DASHSPRINT + OBSCURESKIPS)))"
     },
+
+    // Queen's Gardens
     {
         "name": "Deepnest_43[bot1]",
         "logic": "ORIG | ((Deepnest_43[left1] | Deepnest_43[right1]) + (ANTIGRAV | BLUEMOTH))"
@@ -734,5 +736,43 @@
     {
         "name": "Fungus3_23[left1]",
         "logic": "ORIG | (Fungus3_23[right1] + LEFTSHADOWDASH + Defeated_Traitor_Lord + (ANTIGRAV | BLUEMOTH))"
+    },
+
+    // Fog Canyon
+    {
+        "name": "Fungus3_44",
+        "logic": "ORIG | (Fungus3_44[bot1] + $TrueOrNotExist[Lever-Below_Overgrown_Mound] + (ANTIGRAV | BLUEMOTH)) | (Fungus3_44[bot1] + RIGHTSHADOWDASH + (ANTIGRAVWINGS | (ANTIGRAV + LEFTCLAW)))"
+    },
+    {
+        "name": "Fungus3_44[door1]",
+        "logic": "ORIG | (Fungus3_44 + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Queen's_Gardens_Acid_Entrance",
+        "logic": "ORIG | (Fungus3_03[right1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    {
+        "name": "Fungus3_03[left1]",
+        "logic": "ORIG | (Fungus3_03[right1] + ANTIGRAV + LEFTSHARPSHADOW + (WINGS | BLUEMOTH) + (BLUEMOTH | GREATSLASH | (AIRSTALL + AREASOUL))) | (Fungus3_03[right1] + YEET + (WINGS | BLUEMOTH) + LEFTDASH)"
+    },
+    {
+        "name": "Fungus3_03[right1]",
+        "logic": "ORIG | (Fungus3_03[left1] + ANTIGRAV + LEFTSHARPSHADOW + (WINGS | BLUEMOTH) + (BLUEMOTH | GREATSLASH | (AIRSTALL + ITEMSOUL))) | (Fungus3_03[left1] + YEET + (WINGS | BLUEMOTH) + RIGHTDASH)"
+    },
+    {
+        "name": "Fog_Canyon_Map",
+        "logic": "ORIG | (((Fungus3_25[left1] + RIGHTSHADOWDASH) | Fungus3_25[right1]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW + ENEMYPOGOS))) | ($StartLocation[East Fog Canyon] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Fungus3_26[top1]",
+        "logic": "ORIG | (Fungus3_26 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Hallownest_Seal-Fog_Canyon_East",
+        "logic": "ORIG | (Fungus3_26 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS))) | (Fungus3_26[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Charm_Notch-Fog_Canyon",
+        "logic": "ORIG | (Fungus3_28[right1] + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS + ENEMYPOGOS) | (ANTIGRAV + ACID + WINGS + ENEMYPOGOS) | (ANTIGRAV + ACIDSKIPS + FIREBALLSKIPS + FIREBALL + WINGS + ENEMYPOGOS) | (ANTIGRAV + ACID + ANYCLAW) | (YEET + ACIDSKIPS + AIRSTALL + ROOMSOUL + LEFTCLAW) | (YEET + ACIDSKIPS + LEFTDASH + LEFTCLAW) + (YEET + WINGS + ENEMYPOGOS) | (YEET + WINGS + ANYCLAW) | (CRYSTALMASTER + ACIDSKIPS + WINGS + ANYCLAW)))"
     }
 ]

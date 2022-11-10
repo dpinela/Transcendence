@@ -26,5 +26,13 @@
     {
         "name": "Bench-Gardens_Stag",
         "logic": "ORIG | (Fungus3_40[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Lever-Below_Overgrown_Mound",
+        "logic": "ORIG | (Fungus3_44[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Bench-Canyon_Depths",
+        "logic": "ORIG | (Fungus3_26[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     }
 ]
