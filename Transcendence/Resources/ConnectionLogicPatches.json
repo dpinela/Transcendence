@@ -34,5 +34,9 @@
     {
         "name": "Bench-Canyon_Depths",
         "logic": "ORIG | (Fungus3_26[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Bench-Archives",
+        "logic": "ORIG | (Fungus3_archive[bot1] + (ANTIGRAV | BLUEMOTH))"
     }
 ]
