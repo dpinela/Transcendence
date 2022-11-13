@@ -139,7 +139,7 @@ namespace Transcendence
             }
             if (ModHooks.GetMod("DebugMod") != null)
             {
-                DebugModHook.GiveAllCharms(() => {
+                DebugMod.AddToOnGiveAllCharm(() => {
                     GrantAllOurCharms();
                     PlayerData.instance.CountCharms();
                 });
