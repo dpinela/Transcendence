@@ -38,5 +38,9 @@
     {
         "name": "Bench-Archives",
         "logic": "ORIG | (Fungus3_archive[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Lever-Queen's_Station_Mask_Shard",
+        "logic": "ORIG | (Fungus2_01 + (BLUEMOTH | YEET | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + AIRSTALL + AREASOUL) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (CRYSTALMASTER + FULLCLAW)))"
     }
 ]

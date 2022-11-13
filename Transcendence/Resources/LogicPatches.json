@@ -803,5 +803,45 @@
     {
         "name": "Monomon",
         "logic": "ORIG | (Defeated_Uumuu + DREAMNAIL + (BLUEMOTH | (ANTIGRAV + LEFTSHARPSHADOW + WINGS + ANYCLAW) | (YEET + WINGS + ANYCLAW + (LEFTDASH | GREATSLASH)) | (YEET + WINGS + LEFTCLAW + PRECISEMOVEMENT) | (YEET + WINGS + FULLCLAW) | (CRYSTALMASTER + WINGS + ANYCLAW + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Hallownest_Seal-Queen's_Station",
+        "logic": "ORIG | (Fungus2_34[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Mask_Shard-Queen's_Station",
+        "logic": "ORIG | (Fungus2_01 + (BLUEMOTH | YEET | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + AIRSTALL + AREASOUL) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (CRYSTALMASTER + FULLCLAW)))"
+    },
+    {
+        "name": "Fungus2_01[right1]",
+        "logic": "ORIG | (Fungus2_01 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Hallownest_Seal-Fungal_Wastes_Sporgs",
+        "logic": "ORIG | (Fungus2_03 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus2_18[bot1]",
+        "logic": "ORIG | (Fungus2_18 + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Fungus2_18[right1]",
+        "logic": "ORIG | (Fungus2_18[bot1] + ANTIGRAVWINGS + $TrueAndExists[Lever-Fungal_Wastes_Bouncy_Grub])"
+    },
+    {
+        "name": "Fungus2_19[left1]",
+        "logic": "ORIG | (Fungus2_19[top1] + (ANTIGRAVWINGS | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Fungus2_19[top1]",
+        "logic": "ORIG | (Fungus2_19[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Spore_Shroom",
+        "logic": "ORIG | ((Fungus2_20[left1] | Fungus2_20[right1]) + (ANTIGRAVWINGS | (ANTIGRAV + ACID) | (ANTIGRAV + RIGHTCLAW + GREATSLASH + AIRSTALL + TERMINALSOUL) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + AIRSTALL + TERMINALSOUL)))"
+    },
+    {
+        "name": "Lore_Tablet-Spore_Shroom",
+        "logic": "ORIG | ((Fungus2_20[left1] | Fungus2_20[right1]) + SPORESHROOM + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     }
 ]
