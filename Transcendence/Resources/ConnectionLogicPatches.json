@@ -42,5 +42,21 @@
     {
         "name": "Lever-Queen's_Station_Mask_Shard",
         "logic": "ORIG | (Fungus2_01 + (BLUEMOTH | YEET | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + AIRSTALL + AREASOUL) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (CRYSTALMASTER + FULLCLAW)))"
+    },
+    {
+        "name": "Lever-Fungal_Wastes_Bouncy_Grub",
+        "logic": "ORIG | (Fungus2_18[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Lever-Fungal_Wastes_Thorns_Gauntlet",
+        "logic": "ORIG | (Fungus2_04 + (BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW)))"
+    },
+    {
+        "name": "Lever-Pilgrim's_Way_Left",
+        "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS))) | (Fungus2_21[right1] + QUAKE + (ANTIGRAVWINGS | (CRYSTALMASTER + FULLCLAW)))"
+    },
+    {
+        "name": "Lever-Pilgrim's_Way_Right",
+        "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS))) | (Fungus2_21[right1] + QUAKE + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
     }
 ]

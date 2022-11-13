@@ -829,6 +829,47 @@
         "logic": "ORIG | (Fungus2_18[bot1] + ANTIGRAVWINGS + $TrueAndExists[Lever-Fungal_Wastes_Bouncy_Grub])"
     },
     {
+        "name": "Fungus2_18",
+        "logic": "ORIG | (Fungus2_18[bot1] + ANTIGRAVWINGS) | (Fungus2_18[right1] + $TrueOrNotExist[Lever-Fungal_Wastes_Bouncy_Grub] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Wanderer's_Journal-Fungal_Wastes_Thorns_Gauntlet",
+        "logic": "ORIG | (Fungus2_04 + (BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW)))"
+    },
+    {
+        "name": "Fungus2_06[right1]",
+        "logic": "ORIG | (Fungus2_06 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus2_07[left1]",
+        "logic": "ORIG | (Fungus2_07[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Lore_Tablet-Fungal_Wastes_Hidden",
+        "logic": "ORIG | ((Fungus2_07[left1] | Fungus2_07[right1]) + SPORESHROOM + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Fungal_After_Cloth",
+        "logic": "ORIG | ((Fungus2_10[right1] | Fungus2_10[bot1] | Fungus2_10[right2]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus2_21[right1]",
+        "logic": "ORIG | (Fungus2_21[left1] + CREST + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS)))"
+    },
+    {
+        "name": "Fungus2_21[left1]",
+        "logic": "ORIG | (Fungus2_21[right1] + QUAKE + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (YEET + WINGS) | (CRYSTALMASTER + FULLCLAW)))"
+    },
+    // Lore_Tablet-Pilgrim's_Way_2 has Fungus2_21[left1] as a branch so can be left alone
+    {
+        "name": "Geo_Rock-Fungal_Above_City_Entrance",
+        "logic": "ORIG | (Fungus2_21[right1] + (ANTIGRAVWINGS | (CRYSTALMASTER + FULLCLAW)))"
+    },
+    {
+        "name": "Soul_Totem-Pilgrim's_Way",
+        "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW + $TrueAndExists[Lever-Pilgrim's_Way_Left]) | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + RIGHTCLAW))) | (Fungus2_21[right1] + QUAKE + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + RIGHTCLAW + (LEFTSUPERDASH | $TrueOrNotExist[Lever-Pilgrim's_Way_Right])) | (ANTIGRAV + ((WINGS + LEFTCLAW) | (WINGS + $TrueOrNotExist[Lever-Pilgrim's_Way_Left]) | (LEFTCLAW + $TrueOrNotExist[Lever-Pilgrim's_Way_Left])) + (LEFTSUPERDASH | $TrueOrNotExist[Lever-Pilgrim's_Way_Right])) | (YEET + WINGS) | (CRYSTALMASTER + FULLCLAW))) | ((Fungus2_21[left1] | Fungus2_21[right1]) + ACID + ANTIGRAV + (ANYCLAW | WINGS))"
+    },
+    {
         "name": "Fungus2_19[left1]",
         "logic": "ORIG | (Fungus2_19[top1] + (ANTIGRAVWINGS | (CRYSTALMASTER + WINGS)))"
     },
