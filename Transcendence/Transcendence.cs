@@ -139,8 +139,12 @@ namespace Transcendence
             }
             if (ModHooks.GetMod("DebugMod") != null)
             {
-                DebugMod.AddToOnGiveAllCharm(() => {
-                    GrantAllOurCharms();
+                DebugModHook.GiveAllCharms(() => {
+                    GrantOrRemoveAllOurCharms(true);
+                    PlayerData.instance.CountCharms();
+                });
+                DebugModHook.RemoveAllCharms(() => {
+                    GrantOrRemoveAllOurCharms(false);
                     PlayerData.instance.CountCharms();
                 });
             }
@@ -310,7 +314,7 @@ namespace Transcendence
 
             if (bossRush)
             {
-                GrantAllOurCharms();
+                GrantOrRemoveAllOurCharms(true);
                 GrantGodhomeStartingItems();
             }
             
@@ -854,11 +858,11 @@ namespace Transcendence
             GameManager.instance.StartCoroutine(WaitThenCall());
         }
 
-        private void GrantAllOurCharms()
+        private void GrantOrRemoveAllOurCharms(bool got)
         {
             foreach (var charm in Charms)
             {
-                charm.Settings(Settings).Got = true;
+                charm.Settings(Settings).Got = got;
             }
         }
     }
