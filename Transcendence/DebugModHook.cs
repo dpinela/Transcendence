@@ -1,5 +1,5 @@
 using System.Reflection;
-using MonoMod.RuntimeDetour;
+using MonoMod.ModInterop;
 
 namespace Transcendence
 {
@@ -10,23 +10,12 @@ namespace Transcendence
     {
         public static void GiveAllCharms(Action a)
         {
-            var commands = Type.GetType("DebugMod.BindableFunctions, DebugMod");
-            if (commands == null)
-            {
-                return;
-            }
-            var method = commands.GetMethod("GiveAllCharms", BindingFlags.Public | BindingFlags.Static);
-            if (method == null)
-            {
-                return;
-            }
-            new Hook(
-                method,
-                (Action orig) => {
-                    orig();
-                    a();
-                }
-            );
+            DebugMod.BindableFunctions.OnGiveAllCharms += a;
+        }
+        
+        public static void RemoveAllCharms(Action a)
+        {
+            DebugMod.BindableFunctions.OnRemoveAllCharms += a;
         }
     }
 }

@@ -25,6 +25,9 @@
     <Reference Include="MonoMod.RuntimeDetour">
       <HintPath>$(HK15PATH)/MonoMod.RuntimeDetour.dll</HintPath>
     </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>$(HK15PATH)/MonoMod.Utils.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>$(HK15PATH)/Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -66,6 +69,9 @@
     </Reference>
     <Reference Include="RandoSettingsManager">
       <HintPath>$(HK15PATH)/Mods/RandoSettingsManager/RandoSettingsManager.dll</HintPath>
+    </Reference>
+    <Reference Include="DebugMod">
+      <HintPath>$(HK15PATH)/Mods/DebugMod/DebugMod.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Target Name="ClearReferenceCopyLocalPaths" AfterTargets="ResolveAssemblyReferences">

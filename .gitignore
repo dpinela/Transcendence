@@ -2,3 +2,4 @@ bin/
 obj/
 *.zip
 *.md
+Transcendence/.idea/*
