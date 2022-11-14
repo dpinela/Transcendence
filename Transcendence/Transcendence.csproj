@@ -22,12 +22,6 @@
     <Reference Include="MMHOOK_PlayMaker">
       <HintPath>$(HK15PATH)/MMHOOK_PlayMaker.dll</HintPath>
     </Reference>
-    <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>$(HK15PATH)/MonoMod.RuntimeDetour.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.Utils">
-      <HintPath>$(HK15PATH)/MonoMod.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>$(HK15PATH)/Newtonsoft.Json.dll</HintPath>
     </Reference>

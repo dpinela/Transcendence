@@ -139,14 +139,21 @@ namespace Transcendence
             }
             if (ModHooks.GetMod("DebugMod") != null)
             {
-                DebugModHook.GiveAllCharms(() => {
-                    GrantOrRemoveAllOurCharms(true);
-                    PlayerData.instance.CountCharms();
-                });
-                DebugModHook.RemoveAllCharms(() => {
-                    GrantOrRemoveAllOurCharms(false);
-                    PlayerData.instance.CountCharms();
-                });
+                try
+                {
+                    DebugModHook.GiveAllCharms(() => {
+                        ToggleAllOurCharms(true);
+                        PlayerData.instance.CountCharms();
+                    });
+                    DebugModHook.RemoveAllCharms(() => {
+                        ToggleAllOurCharms(false);
+                        PlayerData.instance.CountCharms();
+                    });
+                }
+                catch (MissingMethodException)
+                {
+                    LogWarn("DebugMod hooks for giving and removing charms are not available; those commands will not work on Transcendence charms. Updating DebugMod may fix this.");
+                }
             }
 
             TextEdits[(Key: "PERMA_GAME_OVER", Sheet: "Credits List")] = ABCDE.Title;
@@ -314,7 +321,7 @@ namespace Transcendence
 
             if (bossRush)
             {
-                GrantOrRemoveAllOurCharms(true);
+                ToggleAllOurCharms(true);
                 GrantGodhomeStartingItems();
             }
             
@@ -858,7 +865,7 @@ namespace Transcendence
             GameManager.instance.StartCoroutine(WaitThenCall());
         }
 
-        private void GrantOrRemoveAllOurCharms(bool got)
+        private void ToggleAllOurCharms(bool got)
         {
             foreach (var charm in Charms)
             {
