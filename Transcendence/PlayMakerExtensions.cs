@@ -88,6 +88,11 @@ namespace Transcendence
             s.Transitions = new FsmTransition[0];
         }
 
+        internal static FsmFloat GetFsmFloat(this PlayMakerFSM fsm, string name)
+        {
+            return fsm.FsmVariables.FloatVariables.FirstOrDefault(v => v.Name == name);
+        }
+
         internal static FsmInt GetFsmInt(this PlayMakerFSM fsm, string name)
         {
             return fsm.FsmVariables.IntVariables.FirstOrDefault(v => v.Name == name);

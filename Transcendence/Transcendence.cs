@@ -46,7 +46,8 @@ namespace Transcendence
             MillibellesBlessing.Instance,
             Greedsong.Instance,
             MarissasAudience.Instance,
-            ChaosOrb.Instance
+            ChaosOrb.Instance,
+            HiveBeacon.Instance
         };
 
         internal static Transcendence Instance;
@@ -59,10 +60,16 @@ namespace Transcendence
         private Dictionary<(string Key, string Sheet), Func<string?>> TextEdits = new();
         private List<(int Period, Action Func)> Tickers = new();
 
-        public override void Initialize()
+        public override List<(string, string)> GetPreloadNames()
+        {
+            return new() { ("Hive_05", "Battle Scene/Droppers/Bee Dropper") };
+        }
+
+        public override void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloads)
         {
             Log("Initializing");
             Instance = this;
+            HiveBeacon.Instance.Bee = preloads["Hive_05"]["Battle Scene/Droppers/Bee Dropper"];
             foreach (var charm in Charms)
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
