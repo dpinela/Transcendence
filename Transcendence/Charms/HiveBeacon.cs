@@ -42,7 +42,8 @@ namespace Transcendence
                         Transcendence.Instance.LogError("Bee prefab not loaded");
                         return;
                     }
-                    GameManager.instance.StartCoroutine(Swarm(10, ShamanStoneEquipped() ? 20 : 15));
+                    var target = BeaconProxy(NearestLargeEnemy(HeroController.instance.transform.position));
+                    GameManager.instance.StartCoroutine(Swarm(10, ShamanStoneEquipped() ? WraithsShamanDamage : WraithsDamage, target));
                 }
                 else
                 {
@@ -60,7 +61,8 @@ namespace Transcendence
                         Transcendence.Instance.LogError("Bee prefab not loaded");
                         return;
                     }
-                    GameManager.instance.StartCoroutine(Swarm(10, ShamanStoneEquipped() ? 40 : 30));
+                    var target = BeaconProxy(NearestLargeEnemy(HeroController.instance.transform.position));
+                    GameManager.instance.StartCoroutine(Swarm(10, ShamanStoneEquipped() ? ShriekShamanDamage : ShriekDamage, target));
                 }
                 else
                 {
@@ -69,10 +71,15 @@ namespace Transcendence
             });
         }
 
+        private const int WraithsDamage = 15;
+        private const int WraithsShamanDamage = 20;
+        private const int ShriekDamage = 30;
+        private const int ShriekShamanDamage = 40;
+
         private static bool ShamanStoneEquipped() =>
             PlayerData.instance.GetBool("equippedCharm_19");
 
-        private IEnumerator Swarm(int n, int damage)
+        private IEnumerator Swarm(int n, int damage, GameObject target)
         {
             for (var i = 0; i < n; i++)
             {
@@ -89,7 +96,12 @@ namespace Transcendence
                 bFSM.GetFsmFloat("X Left").Value = here.x - 15;
                 bFSM.GetFsmFloat("X Right").Value = here.x + 15;
                 bFSM.GetFsmFloat("Start Y").Value = here.y + 10;
-                ((FloatCompare)bFSM.GetState("Swarm").Actions[3]).float2.Value = here.y - 10;
+                var swarmState = bFSM.GetState("Swarm");
+                ((FloatCompare)swarmState.Actions[3]).float2.Value = here.y - 10;
+                if (target != null)
+                {
+                    ((ChaseObjectGround)swarmState.Actions[0]).target.Value = target;
+                }
                 GameObject.Destroy(b.GetComponent<DamageHero>());
                 var damager = b.AddComponent<DamageEnemies>();
                 damager.attackType = AttackTypes.Spell;
@@ -104,6 +116,37 @@ namespace Transcendence
                 bFSM.SendEvent("SWARM");
                 yield return new WaitForSeconds(0.2f);
             }
+        }
+
+        private static GameObject NearestLargeEnemy(Vector3 playerPos)
+        {
+            float bestScore = 0;
+            GameObject chosenEnemy = null;
+            foreach (var hm in UnityEngine.Object.FindObjectsOfType<HealthManager>())
+            {
+                var score = (float)hm.hp / Vector3.Distance(hm.gameObject.transform.position, playerPos);
+                if (score > bestScore)
+                {
+                    chosenEnemy = hm.gameObject;
+                    bestScore = score;
+                }
+            }
+            return chosenEnemy;
+        }
+
+        private static GameObject BeaconProxy(GameObject target)
+        {
+            if (target == null)
+            {
+                return null;
+            }
+            Transcendence.Instance.Log("Hive Beacon targeting " + target.name);
+            var proxy = new GameObject();
+            var sync = target.AddComponent<PositionSync>();
+            sync.dest = proxy;
+            sync.enabled = true;
+            proxy.SetActive(true);
+            return proxy;
         }
     }
 }
