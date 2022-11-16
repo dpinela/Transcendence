@@ -35,35 +35,56 @@ namespace Transcendence
             var orig1 = burst1.Actions[7];
             burst1.ReplaceAction(7, () =>
             {
-                if (Bee == null)
-                {
-                    Transcendence.Instance.LogError("Bee prefab not loaded");
-                    return;
-                }
-
                 if (Equipped())
                 {
-                    GameManager.instance.StartCoroutine(Swarm(10));
+                    if (Bee == null)
+                    {
+                        Transcendence.Instance.LogError("Bee prefab not loaded");
+                        return;
+                    }
+                    GameManager.instance.StartCoroutine(Swarm(10, ShamanStoneEquipped() ? 20 : 15));
                 }
                 else
                 {
                     orig1.OnEnter();
                 }
             });
+            var burst2 = fsm.GetState("Scream Burst 2");
+            var orig2 = burst2.Actions[8];
+            burst2.ReplaceAction(8, () =>
+            {
+                if (Equipped())
+                {
+                    if (Bee == null)
+                    {
+                        Transcendence.Instance.LogError("Bee prefab not loaded");
+                        return;
+                    }
+                    GameManager.instance.StartCoroutine(Swarm(10, ShamanStoneEquipped() ? 40 : 30));
+                }
+                else
+                {
+                    orig2.OnEnter();
+                }
+            });
         }
 
-        private IEnumerator Swarm(int n)
+        private static bool ShamanStoneEquipped() =>
+            PlayerData.instance.GetBool("equippedCharm_19");
+
+        private IEnumerator Swarm(int n, int damage)
         {
             for (var i = 0; i < n; i++)
             {
                 var here = HeroController.instance.transform.position;
-                // spawn'em over time I guess
-                // and mak'em actually do damage to enemies
-                // and be affected by both shamans and dcrest
-                // (EXPLOSIONS!)
+                // and mak'em be affected by dcrest (EXPLOSIONS!)
                 var b = GameObject.Instantiate(Bee);
                 b.SetActive(true);
                 b.layer = (int)PhysLayers.HERO_ATTACK;
+                if (ShamanAmp.Instance.Equipped())
+                {
+                    ShamanAmp.Instance.Enlarge(b);
+                }
                 var bFSM = b.LocateMyFSM("Control");
                 bFSM.GetFsmFloat("X Left").Value = here.x - 15;
                 bFSM.GetFsmFloat("X Right").Value = here.x + 15;
@@ -73,7 +94,7 @@ namespace Transcendence
                 var damager = b.AddComponent<DamageEnemies>();
                 damager.attackType = AttackTypes.Spell;
                 damager.circleDirection = false;
-                damager.damageDealt = 15;
+                damager.damageDealt = damage;
                 damager.direction = 0;
                 damager.ignoreInvuln = false;
                 damager.magnitudeMult = 1.5f;

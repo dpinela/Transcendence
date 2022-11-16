@@ -156,9 +156,7 @@ namespace Transcendence
         {
             if (Equipped())
             {
-                var vec = obj.transform.localScale;
-                var k = EnlargementFactor();
-                obj.transform.localScale = new Vector3(vec.x * k, vec.y * k, vec.z);
+                Enlarge(obj);
             }
         }
 
@@ -166,11 +164,16 @@ namespace Transcendence
         {
             if (obj.name.StartsWith("Spell Fluke") && Equipped())
             {
-                var vec = obj.transform.localScale;
-                var k = EnlargementFactor();
-                obj.transform.localScale = new Vector3(vec.x * k, vec.y * k, vec.z);
+                Enlarge(obj);
             }
             return obj;
+        }
+
+        public void Enlarge(GameObject obj)
+        {
+            var vec = obj.transform.localScale;
+            var k = EnlargementFactor();
+            obj.transform.localScale = new Vector3(vec.x * k, vec.y * k, vec.z);
         }
     }
 }
