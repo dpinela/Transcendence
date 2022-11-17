@@ -81,6 +81,9 @@ namespace Transcendence
 
         private IEnumerator Swarm(int n, int damage, GameObject target)
         {
+            var targetingVanillaSoulMaster = target.name == SoulMasterProxy &&
+                GameManager.instance.sceneName == "Ruins1_24";
+            Transcendence.Instance.Log("targeting vanilla SM? " + targetingVanillaSoulMaster);
             for (var i = 0; i < n; i++)
             {
                 var here = HeroController.instance.transform.position;
@@ -97,7 +100,8 @@ namespace Transcendence
                 bFSM.GetFsmFloat("X Right").Value = here.x + 15;
                 bFSM.GetFsmFloat("Start Y").Value = here.y + 10;
                 var swarmState = bFSM.GetState("Swarm");
-                ((FloatCompare)swarmState.Actions[3]).float2.Value = here.y - 10;
+                // Avoid hitting Soul Master's second phase prematurely.
+                ((FloatCompare)swarmState.Actions[3]).float2.Value = targetingVanillaSoulMaster ? 28 : here.y - 10;
                 if (target != null)
                 {
                     ((ChaseObjectGround)swarmState.Actions[0]).target.Value = target;
@@ -118,12 +122,21 @@ namespace Transcendence
             }
         }
 
+        private static readonly HashSet<string> PriorityEnemies = new()
+        {
+            "Mage Lord" // prevents the second phase from being targeted instead of the first
+        };
+
         private static GameObject NearestLargeEnemy(Vector3 playerPos)
         {
             float bestScore = 0;
             GameObject chosenEnemy = null;
             foreach (var hm in UnityEngine.Object.FindObjectsOfType<HealthManager>())
             {
+                if (PriorityEnemies.Contains(hm.gameObject.name))
+                {
+                    return hm.gameObject;
+                }
                 var score = (float)hm.hp / Vector3.Distance(hm.gameObject.transform.position, playerPos);
                 if (score > bestScore)
                 {
@@ -134,6 +147,9 @@ namespace Transcendence
             return chosenEnemy;
         }
 
+        private const string ProxyPrefix = "Hive Beacon Proxy-";
+        private const string SoulMasterProxy = ProxyPrefix + "Mage Lord";
+
         private static GameObject BeaconProxy(GameObject target)
         {
             if (target == null)
@@ -142,6 +158,7 @@ namespace Transcendence
             }
             Transcendence.Instance.Log("Hive Beacon targeting " + target.name);
             var proxy = new GameObject();
+            proxy.name = ProxyPrefix + target.name;
             var sync = target.AddComponent<PositionSync>();
             sync.dest = proxy;
             sync.enabled = true;
