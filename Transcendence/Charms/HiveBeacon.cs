@@ -82,9 +82,6 @@ namespace Transcendence
 
         private IEnumerator Swarm(int n, int damage, GameObject target)
         {
-            var targetingVanillaSoulMaster = target.name == SoulMasterProxy &&
-                GameManager.instance.sceneName == "Ruins1_24";
-            Transcendence.Instance.Log("targeting vanilla SM? " + targetingVanillaSoulMaster);
             var fsmTargetRef = target != null ? new FsmGameObject("") { RawValue = target } : null;
             for (var i = 0; i < n; i++)
             {
@@ -102,13 +99,6 @@ namespace Transcendence
                 bFSM.GetFsmFloat("X Right").Value = here.x + 15;
                 bFSM.GetFsmFloat("Start Y").Value = here.y + 10;
                 var swarmState = bFSM.GetState("Swarm");
-                // Avoid hitting Soul Master's second phase prematurely.
-                if (targetingVanillaSoulMaster)
-                {
-                    var p = b.AddComponent<SelfDestructPlane>();
-                    p.enabled = true;
-                    p.y = 27;
-                }
                 ((FloatCompare)swarmState.Actions[3]).float2.Value = here.y - 10;
                 if (fsmTargetRef != null)
                 {
@@ -161,7 +151,6 @@ namespace Transcendence
         }
 
         private const string ProxyPrefix = "Hive Beacon Proxy-";
-        private const string SoulMasterProxy = ProxyPrefix + "Mage Lord";
 
         private static GameObject BeaconProxy(GameObject target)
         {
