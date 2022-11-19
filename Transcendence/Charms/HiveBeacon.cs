@@ -2,6 +2,7 @@
 using System.Collections;
 using GlobalEnums;
 using UnityEngine;
+using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 
 namespace Transcendence
@@ -84,6 +85,7 @@ namespace Transcendence
             var targetingVanillaSoulMaster = target.name == SoulMasterProxy &&
                 GameManager.instance.sceneName == "Ruins1_24";
             Transcendence.Instance.Log("targeting vanilla SM? " + targetingVanillaSoulMaster);
+            var fsmTargetRef = target != null ? new FsmGameObject("") { RawValue = target } : null;
             for (var i = 0; i < n; i++)
             {
                 var here = HeroController.instance.transform.position;
@@ -101,10 +103,21 @@ namespace Transcendence
                 bFSM.GetFsmFloat("Start Y").Value = here.y + 10;
                 var swarmState = bFSM.GetState("Swarm");
                 // Avoid hitting Soul Master's second phase prematurely.
-                ((FloatCompare)swarmState.Actions[3]).float2.Value = targetingVanillaSoulMaster ? 28 : here.y - 10;
-                if (target != null)
+                if (targetingVanillaSoulMaster)
                 {
-                    ((ChaseObjectGround)swarmState.Actions[0]).target.Value = target;
+                    var p = b.AddComponent<SelfDestructPlane>();
+                    p.enabled = true;
+                    p.y = 27;
+                }
+                ((FloatCompare)swarmState.Actions[3]).float2.Value = here.y - 10;
+                if (fsmTargetRef != null)
+                {
+                    // WARNING: Changing the Value property of FsmGameObject this action targets
+                    // will wreak havoc on most enemy FSMs - bosses included -, because seemingly all of them 
+                    // reference the Knight through the same FsmGameObject instance.
+                    // Instead, we replace the FsmGameObject object itself. Since each volley of bees targets
+                    // the same thing, we can reuse the same FsmGameObject for all of them.
+                    ((ChaseObjectGround)swarmState.Actions[0]).target = fsmTargetRef;
                 }
                 GameObject.Destroy(b.GetComponent<DamageHero>());
                 var damager = b.AddComponent<DamageEnemies>();
