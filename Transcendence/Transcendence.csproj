@@ -40,6 +40,9 @@
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>$(HK15PATH)/UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(HK15PATH)/UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(HK15PATH)/UnityEngine.UI.dll</HintPath>
     </Reference>

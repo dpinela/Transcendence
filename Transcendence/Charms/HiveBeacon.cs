@@ -27,7 +27,8 @@ namespace Transcendence
 
         public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
         {
-            ("Knight", "Spell Control", ReplaceScreamWithBEES)
+            ("Knight", "Spell Control", ReplaceScreamWithBEES),
+            ("Charm Effects", "Hatchling Spawn", GrabExplosionAssets)
         };
 
         private void ReplaceScreamWithBEES(PlayMakerFSM fsm)
@@ -78,15 +79,15 @@ namespace Transcendence
         private const int ShriekShamanDamage = 40;
 
         private static bool ShamanStoneEquipped() =>
-            PlayerData.instance.GetBool("equippedCharm_19");
+            PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_19));
 
         private IEnumerator Swarm(int n, int damage, GameObject target)
         {
             var fsmTargetRef = target != null ? new FsmGameObject("") { RawValue = target } : null;
+            var dcrestEquipped = PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_10));
             for (var i = 0; i < n; i++)
             {
                 var here = HeroController.instance.transform.position;
-                // and mak'em be affected by dcrest (EXPLOSIONS!)
                 var b = GameObject.Instantiate(Bee);
                 b.SetActive(true);
                 b.layer = (int)PhysLayers.HERO_ATTACK;
@@ -110,16 +111,46 @@ namespace Transcendence
                     ((ChaseObjectGround)swarmState.Actions[0]).target = fsmTargetRef;
                 }
                 GameObject.Destroy(b.GetComponent<DamageHero>());
-                var damager = b.AddComponent<DamageEnemies>();
-                damager.attackType = AttackTypes.Spell;
-                damager.circleDirection = false;
-                damager.damageDealt = damage;
-                damager.direction = 0;
-                damager.ignoreInvuln = false;
-                damager.magnitudeMult = 1.5f;
-                damager.moveDirection = false;
-                damager.specialType = SpecialTypes.None;
-                damager.enabled = true;
+                if (dcrestEquipped)
+                {
+                    var boom = b.AddComponent<OnHitFunc>();
+                    boom.OnHit = victim =>
+                    {
+                        FSMUtility.SendEventToGameObject(victim, "TAKE DAMAGE");
+                        HitTaker.Hit(victim, new HitInstance()
+                        {
+                            Source = b,
+                            AttackType = AttackTypes.Spell,
+                            CircleDirection = false,
+                            DamageDealt = damage,
+                            Direction = 0,
+                            IgnoreInvulnerable = false,
+                            MagnitudeMultiplier = 1.5f,
+                            Multiplier = 1f,
+                            MoveDirection = false,
+                            SpecialType = SpecialTypes.None,
+                            IsExtraDamage = false
+                        });
+                        ExplosionAudioClip.SpawnAndPlayOneShot(ExplosionAudioSourcePrefab, b.transform.position);
+                        Explosion.Spawn(b.transform.position);
+                        // Destroy the bee by sending it to the Spell Death state
+                        bFSM.SendEvent("SPELL");
+                    };
+                    boom.enabled = true;
+                }
+                else
+                {
+                    var damager = b.AddComponent<DamageEnemies>();
+                    damager.attackType = AttackTypes.Spell;
+                    damager.circleDirection = false;
+                    damager.damageDealt = damage;
+                    damager.direction = 0;
+                    damager.ignoreInvuln = false;
+                    damager.magnitudeMult = 1.5f;
+                    damager.moveDirection = false;
+                    damager.specialType = SpecialTypes.None;
+                    damager.enabled = true;
+                }
                 bFSM.SendEvent("SWARM");
                 yield return new WaitForSeconds(0.2f);
             }
@@ -166,6 +197,26 @@ namespace Transcendence
             sync.enabled = true;
             proxy.SetActive(true);
             return proxy;
+        }
+
+        private AudioSource ExplosionAudioSourcePrefab;
+        private AudioEvent ExplosionAudioClip;
+        private GameObject Explosion;
+
+        private void GrabExplosionAssets(PlayMakerFSM fsm)
+        {
+            foreach (var a in fsm.GetState("Hatch").Actions)
+            {
+                if (a is SpawnObjectFromGlobalPool sa)
+                {
+                    var kh = sa.gameObject.Value.GetComponent<KnightHatchling>();
+                    ExplosionAudioSourcePrefab = kh.audioSourcePrefab;
+                    ExplosionAudioClip = kh.dungExplodeSound;
+                    Explosion = kh.dungExplosionPrefab;
+                    return;
+                }
+            }
+            Transcendence.Instance.LogError("Knight Hatchling spawn action not found. Bee-bombs will not work.");
         }
     }
 }
