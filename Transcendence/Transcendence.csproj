@@ -49,7 +49,7 @@
     <Reference Include="SFCore">
       <HintPath>$(HK15PATH)/Mods/SFCore/SFCore.dll</HintPath>
     </Reference>
-    <Reference Include="SFCore">
+    <Reference Include="MagicUI">
       <HintPath>$(HK15PATH)/Mods/MagicUI/MagicUI.dll</HintPath>
     </Reference>
     <Reference Include="ItemChanger">
