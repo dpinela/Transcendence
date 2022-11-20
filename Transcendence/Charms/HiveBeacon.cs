@@ -85,13 +85,14 @@ namespace Transcendence
         {
             var fsmTargetRef = target != null ? new FsmGameObject("") { RawValue = target } : null;
             var dcrestEquipped = PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_10));
+            var ampEquipped = ShamanAmp.Instance.Equipped();
             for (var i = 0; i < n; i++)
             {
                 var here = HeroController.instance.transform.position;
                 var b = GameObject.Instantiate(Bee);
                 b.SetActive(true);
                 b.layer = (int)PhysLayers.HERO_ATTACK;
-                if (ShamanAmp.Instance.Equipped())
+                if (ampEquipped)
                 {
                     ShamanAmp.Instance.Enlarge(b);
                 }
@@ -132,7 +133,11 @@ namespace Transcendence
                             IsExtraDamage = false
                         });
                         ExplosionAudioClip.SpawnAndPlayOneShot(ExplosionAudioSourcePrefab, b.transform.position);
-                        Explosion.Spawn(b.transform.position);
+                        var exp = Explosion.Spawn(b.transform.position);
+                        if (ampEquipped)
+                        {
+                            ShamanAmp.Instance.Enlarge(exp);
+                        }
                         // Destroy the bee by sending it to the Spell Death state
                         bFSM.SendEvent("SPELL");
                     };
