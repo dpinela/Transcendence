@@ -1,7 +1,7 @@
 
 using System.Collections;
-using GlobalEnums;
 using UnityEngine;
+using GlobalEnums;
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 
@@ -30,6 +30,40 @@ namespace Transcendence
             ("Knight", "Spell Control", ReplaceScreamWithBEES),
             ("Charm Effects", "Hatchling Spawn", GrabExplosionAssets)
         };
+
+        public override void Hook()
+        {
+            // ExtraDamageable hardcodes the damage value for each ExtraDamageTypes [sic],
+            // so our only way of changing it is to hook the method that applies the damage
+            // whenever it is being dealt by our explosions. Since there is *also* no way to
+            // check for that in said method, we apply the hook temporarily around
+            // DamageEffectTicker.Update, but only if the DamageEffectTicker's owner has
+            // our CustomTickDamage component.
+            On.DamageEffectTicker.Update += ModifyTickDamage;
+        }
+
+        private void ModifyTickDamage(On.DamageEffectTicker.orig_Update orig, DamageEffectTicker self)
+        {
+            var cd = self.GetComponent<CustomTickDamage>();
+            if (cd == null)
+            {
+                orig(self);
+                return;
+            }
+            void ApplyModifiedExtraDamage(On.ExtraDamageable.orig_ApplyExtraDamageToHealthManager orig, ExtraDamageable self, int damage)
+            {
+                orig(self, cd.DamagePerTick);
+            }
+            On.ExtraDamageable.ApplyExtraDamageToHealthManager += ApplyModifiedExtraDamage;
+            try
+            {
+                orig(self);
+            }
+            finally
+            {
+                On.ExtraDamageable.ApplyExtraDamageToHealthManager -= ApplyModifiedExtraDamage;
+            }
+        }
 
         private void ReplaceScreamWithBEES(PlayMakerFSM fsm)
         {
@@ -102,6 +136,8 @@ namespace Transcendence
                 bFSM.GetFsmFloat("Start Y").Value = here.y + 10;
                 var swarmState = bFSM.GetState("Swarm");
                 ((FloatCompare)swarmState.Actions[3]).float2.Value = here.y - 10;
+                // The bee will never destroy itself otherwise.
+                bFSM.GetState("Reset").AppendAction(() => GameObject.Destroy(b));
                 if (fsmTargetRef != null)
                 {
                     // WARNING: Changing the Value property of FsmGameObject this action targets
@@ -133,7 +169,19 @@ namespace Transcendence
                             IsExtraDamage = false
                         });
                         ExplosionAudioClip.SpawnAndPlayOneShot(ExplosionAudioSourcePrefab, b.transform.position);
-                        var exp = Explosion.Spawn(b.transform.position);
+                        var exp = GameObject.Instantiate(Explosion);
+                        exp.SetActive(true);
+                        exp.transform.position = b.transform.position;
+                        // The explosion must likewise be forced to destroy itself;
+                        // normally it goes back into the object pool.
+                        // This is also why we Instantiate it rather than Spawn it;
+                        // this prefab is also used by KnightHatchling and we don't want
+                        // to accidentally modify the hatchling explosion.
+                        exp.LocateMyFSM("Explosion Control").GetState("Recycle")
+                            .ReplaceAction(0, () => GameObject.Destroy(exp));
+                        var expdmg = exp.AddComponent<CustomTickDamage>();
+                        // 5/10/15/20 total damage over 5 ticks
+                        expdmg.DamagePerTick = damage / 10;
                         if (ampEquipped)
                         {
                             ShamanAmp.Instance.Enlarge(exp);
