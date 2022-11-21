@@ -111,6 +111,8 @@ namespace Transcendence
         private const int WraithsShamanDamage = 20;
         private const int ShriekDamage = 30;
         private const int ShriekShamanDamage = 40;
+        
+        private const float BeeAcceleration = 0.3f;
 
         private static bool ShamanStoneEquipped() =>
             PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_19));
@@ -118,6 +120,7 @@ namespace Transcendence
         private IEnumerator Swarm(int n, int damage, GameObject target)
         {
             var fsmTargetRef = target != null ? new FsmGameObject("") { RawValue = target } : null;
+            var accel = new FsmFloat("") { RawValue = BeeAcceleration };
             var dcrestEquipped = PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_10));
             var ampEquipped = ShamanAmp.Instance.Equipped();
             for (var i = 0; i < n; i++)
@@ -131,13 +134,15 @@ namespace Transcendence
                     ShamanAmp.Instance.Enlarge(b);
                 }
                 var bFSM = b.LocateMyFSM("Control");
-                bFSM.GetFsmFloat("X Left").Value = here.x - 15;
-                bFSM.GetFsmFloat("X Right").Value = here.x + 15;
+                bFSM.GetFsmFloat("X Left").Value = here.x - 8;
+                bFSM.GetFsmFloat("X Right").Value = here.x + 8;
                 bFSM.GetFsmFloat("Start Y").Value = here.y + 10;
                 var swarmState = bFSM.GetState("Swarm");
                 ((FloatCompare)swarmState.Actions[3]).float2.Value = here.y - 10;
                 // The bee will never destroy itself otherwise.
                 bFSM.GetState("Reset").AppendAction(() => GameObject.Destroy(b));
+                var chase = ((ChaseObjectGround)swarmState.Actions[0]);
+                chase.acceleration = accel;
                 if (fsmTargetRef != null)
                 {
                     // WARNING: Changing the Value property of FsmGameObject this action targets
@@ -145,7 +150,7 @@ namespace Transcendence
                     // reference the Knight through the same FsmGameObject instance.
                     // Instead, we replace the FsmGameObject object itself. Since each volley of bees targets
                     // the same thing, we can reuse the same FsmGameObject for all of them.
-                    ((ChaseObjectGround)swarmState.Actions[0]).target = fsmTargetRef;
+                    chase.target = fsmTargetRef;
                 }
                 GameObject.Destroy(b.GetComponent<DamageHero>());
                 if (dcrestEquipped)
