@@ -58,5 +58,13 @@
     {
         "name": "Lever-Pilgrim's_Way_Right",
         "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS))) | (Fungus2_21[right1] + QUAKE + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Bench-Bretta",
+        "logic": "ORIG | ((Fungus2_13 | Fungus2_13[left3]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Lever-Mantis_Lords_Access",
+        "logic": "ORIG | (Fungus2_14 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW)))"
     }
 ]

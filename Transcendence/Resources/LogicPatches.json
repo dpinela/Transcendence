@@ -884,5 +884,126 @@
     {
         "name": "Lore_Tablet-Spore_Shroom",
         "logic": "ORIG | ((Fungus2_20[left1] | Fungus2_20[right1]) + SPORESHROOM + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus2_11[left2]",
+        "logic": "ORIG | (Fungus2_11 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus2_17[left1]",
+        "logic": "ORIG | (Fungus2_17 + (ANTIGRAVWINGS | BLUEMOTH | (ANTIGRAV + ANYCLAW))) | (Fungus2_17[right1] + CRYSTALMASTER)"
+    },
+    {
+        "name": "Fungus2_17[right1]",
+        "logic": "ORIG | (Fungus2_17 + (ANTIGRAVWINGS | BLUEMOTH | (ANTIGRAV + ANYCLAW) | (LEFTCLAW + CRYSTALMASTER))) | (Fungus2_17[left1] + ANTIGRAV)"
+    },
+    {
+        "name": "Fungus2_29[bot1]",
+        "logic": "ORIG | (Fungus2_29[right1] + (ANTIGRAVWINGS | BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Fungus2_29[right1]",
+        "logic": "ORIG | (Fungus2_29[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Rancid_Egg-Fungal_Core",
+        "logic": "ORIG | ((Fungus2_29[right1] | Fungus2_29[bot1]) + (ANTIGRAVWINGS | BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Soul_Totem-Fungal_Core",
+        "logic": "ORIG | ((Fungus2_29[right1] | Fungus2_29[bot1]) + (ANTIGRAVWINGS | BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Fungal_Core_Entrance",
+        "logic": "ORIG | ((Fungus2_29[right1] | Fungus2_29[bot1]) + (ANTIGRAVWINGS | BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Fungus2_30[top1]",
+        "logic": "ORIG | ((Fungus2_30[top1] | Fungus2_30[bot1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Grimmkin_Flame-Fungal_Core",
+        "logic": "ORIG | (Fungus2_30[bot1] + Second_Grimmchild_Upgrade + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Fungal_Core_Above_Elder",
+        "logic": "ORIG | ((Fungus2_30[top1] | Fungus2_30[bot1]) + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + LEFTCLAW + RIGHTDASH + PRECISEMOVEMENT) | (YEET + LEFTCLAW)))"
+    },
+    {
+        "name": "Fungus2_12[left1]",
+        "logic": "ORIG | (Fungus2_12[bot1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus2_13",
+        "logic": "ORIG | ((Fungus2_13[left3] | $TrueAndExists[Bench-Bretta]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus2_13[top1]",
+        "logic": "ORIG | (Fungus2_13 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus2_13[left3]",
+        "logic": "ORIG | (Fungus2_13 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Geo_Rock-Mantis_Outskirts_Alcove",
+        "logic": "ORIG | ((Fungus2_13 | Fungus2_13[left3]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Rescued_Bretta",
+        "logic": "ORIG | (Fungus2_23 + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + RIGHTCLAW + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Fungus2_14",
+        "logic": "ORIG | (Fungus2_14[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus2_14[top1]",
+        "logic": "ORIG | (Fungus2_14[top1] + ANTIGRAVWINGS) | (Fungus2_14 + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    {
+        "name": "Fungus2_14[right1]",
+        "logic": "ORIG | (Fungus2_14 + (ANTIGRAV | BLUEMOTH))"
+    },
+    // If the lever exists and is true, the added clause is just redundant with the one introduced by lever rando.
+    {
+        "name": "Fungus2_14[bot3]",
+        "logic": "ORIG | (Fungus2_14 + $TrueOrNotExist[Lever-Mantis_Lords_Access] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Mantis_Claw",
+        "logic": "ORIG | (Fungus2_14 + $TrueOrNotExist[Lever-Mantis_Claw] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Left_Mantis_Claw",
+        "logic": "ORIG | (Fungus2_14 + $TrueOrNotExist[Lever-Mantis_Claw] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Right_Mantis_Claw",
+        "logic": "ORIG | (Fungus2_14 + $TrueOrNotExist[Lever-Mantis_Claw] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Geo_Rock-Mantis_Village_Above_Claw",
+        "logic": "ORIG | (Fungus2_14 + $TrueOrNotExist[Lever-Mantis_Claw] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Mantis_Village_Above_Claw_Dupe",
+        "logic": "ORIG | (Fungus2_14 + $TrueOrNotExist[Lever-Mantis_Claw] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Mantis_Village_Below_Lore",
+        "logic": "ORIG | (Fungus2_14 + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Mantis_Village_Above_Lever",
+        "logic": "ORIG | ((Fungus2_14 | Fungus2_14[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Mantis_Village_After_Lever",
+        "logic": "ORIG | (Fungus2_14 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW + $TrueOrNotExist[Lever-Mantis_Lords_Access])))"
+    },
+    {
+        "name": "Lore_Tablet-Mantis_Village",
+        "logic": "ORIG | (Fungus2_14 + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
     }
 ]
