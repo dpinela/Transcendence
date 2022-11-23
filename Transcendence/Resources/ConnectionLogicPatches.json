@@ -66,5 +66,26 @@
     {
         "name": "Lever-Mantis_Lords_Access",
         "logic": "ORIG | (Fungus2_14 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Lever-Mantis_Lords_Top_Left",
+        "logic": "ORIG | (Fungus2_15[top3] + (ANTIGRAV | BLUEMOTH)) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + $TrueOrNotExist[Lever-Mantis_Lords_Middle_Right]))) | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS)))"
+    },
+    // TODO: the following 2 may require additional logic from top3 or right1 if the ANYCLAW requirement in the lever logic turns out to be a bug
+    {
+        "name": "Lever-Mantis_Lords_Middle_Left",
+        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS)))"
+    },
+    {
+        "name": "Lever-Mantis_Lords_Bottom_Left",
+        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS)))"
+    },
+    {
+        "name": "Lever-Mantis_Lords_Middle_Right",
+        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS))) | (Fungus2_15[top3] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Lever-Mantis_Lords_Bottom_Right",
+        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS))) | (Fungus2_15[top3] + ANTIGRAVWINGS) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
     }
 ]

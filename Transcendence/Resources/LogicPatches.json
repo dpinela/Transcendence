@@ -804,6 +804,8 @@
         "name": "Monomon",
         "logic": "ORIG | (Defeated_Uumuu + DREAMNAIL + (BLUEMOTH | (ANTIGRAV + LEFTSHARPSHADOW + WINGS + ANYCLAW) | (YEET + WINGS + ANYCLAW + (LEFTDASH | GREATSLASH)) | (YEET + WINGS + LEFTCLAW + PRECISEMOVEMENT) | (YEET + WINGS + FULLCLAW) | (CRYSTALMASTER + WINGS + ANYCLAW + AIRSTALL + ROOMSOUL)))"
     },
+
+    // Fungal Wastes
     {
         "name": "Hallownest_Seal-Queen's_Station",
         "logic": "ORIG | (Fungus2_34[right1] + (ANTIGRAV | BLUEMOTH))"
@@ -1005,5 +1007,27 @@
     {
         "name": "Lore_Tablet-Mantis_Village",
         "logic": "ORIG | (Fungus2_14 + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    // TODO: account for ability to exit the arena with YEET + LEFTCLAW + WINGS (lever patches already do)
+    {
+        "name": "Fungus2_15[top3]",
+        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW))) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + $TrueOrNotExist[Lever-Mantis_Lords_Middle_Right])))"
+    },
+    {
+        "name": "Fungus2_15[right1]",
+        "logic": "ORIG | (Fungus2_15[left1] + BLUEMOTH) | (Fungus2_15[top3] + ANTIGRAVWINGS)"
+    },
+    // ROOMSOUL = $CASTSPELL[3, before:ROOMSOUL]
+    {
+        "name": "Lifeblood_Cocoon-Mantis_Village",
+        "logic": "ORIG | ((Fungus2_15[left1] | Fungus2_15[right1] | Fungus2_15[top3]) + (ANTIGRAVWINGS | (ANTIGRAV + LEFTCLAW) | (CRYSTALMASTER + FULLCLAW + AIRSTALL + ROOMSOUL) | (YEET + RIGHTCLAW + LEFTDASH) | (CRYSTALMASTER + RIGHTCLAW + WINGS + LEFTDASH)))"
+    },
+    {
+        "name": "Geo_Rock-Above_Mantis_Lords_1",
+        "logic": "ORIG | (Fungus2_15[left1] + BLUEMOTH) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW))) | (Fungus2_15[top3] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Geo_Rock-Above_Mantis_Lords_2",
+        "logic": "ORIG | (Fungus2_15[left1] + BLUEMOTH) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
     }
 ]
