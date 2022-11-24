@@ -1011,11 +1011,11 @@
     // TODO: account for ability to exit the arena with YEET + LEFTCLAW + WINGS (lever patches already do)
     {
         "name": "Fungus2_15[top3]",
-        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW))) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + $TrueOrNotExist[Lever-Mantis_Lords_Middle_Right])))"
+        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (YEET + LEFTCLAW + WINGS))) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + $TrueOrNotExist[Lever-Mantis_Lords_Middle_Right])))"
     },
     {
         "name": "Fungus2_15[right1]",
-        "logic": "ORIG | (Fungus2_15[left1] + BLUEMOTH) | (Fungus2_15[top3] + ANTIGRAVWINGS)"
+        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS))) | (Fungus2_15[top3] + ANTIGRAVWINGS)"
     },
     // ROOMSOUL = $CASTSPELL[3, before:ROOMSOUL]
     {
@@ -1024,10 +1024,22 @@
     },
     {
         "name": "Geo_Rock-Above_Mantis_Lords_1",
-        "logic": "ORIG | (Fungus2_15[left1] + BLUEMOTH) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW))) | (Fungus2_15[top3] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS))) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW))) | (Fungus2_15[top3] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Geo_Rock-Above_Mantis_Lords_2",
-        "logic": "ORIG | (Fungus2_15[left1] + BLUEMOTH) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+        "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS))) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Mark_of_Pride",
+        "logic": "ORIG | (((Fungus2_31[left1] + Defeated_Mantis_Lords) | $TrueAndExists[Bench-Mantis_Village]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Chest-Mantis_Lords",
+        "logic": "ORIG | (((Fungus2_31[left1] + Defeated_Mantis_Lords) | $TrueAndExists[Bench-Mantis_Village]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Hallownest_Seal-Mantis_Lords",
+        "logic": "ORIG | (((Fungus2_31[left1] + Defeated_Mantis_Lords) | $TrueAndExists[Bench-Mantis_Village]) + (ANTIGRAV | BLUEMOTH))"
     }
 ]
