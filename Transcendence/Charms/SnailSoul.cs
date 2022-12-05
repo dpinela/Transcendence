@@ -24,11 +24,15 @@ namespace Transcendence
 
         public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
         {
-            ("Fireball(Clone)", "Fireball Control", ExtendVengefulSpiritDuration),
             ("Fireball Top(Clone)", "Fireball Cast", SlowVengefulSpirit),
             ("Fireball2 Spiral(Clone)", "Fireball Control", ExtendShadeSoulDuration),
             ("Fireball2 Top(Clone)", "Fireball Cast", SlowShadeSoul)
         };
+
+        public override void Hook()
+        {
+            On.HutongGames.PlayMaker.Actions.Wait.OnEnter += ExtendVengefulSpiritDuration;
+        }
 
         private const float Slowdown = 4f;
 
@@ -37,14 +41,24 @@ namespace Transcendence
         private const float SSWait = 0.475f;
         private const float SSVelocity = 45f;
 
-        private void ExtendVengefulSpiritDuration(PlayMakerFSM fsm)
+        // Avoid colliding with QoL's FixFireballs by not adding or removing any actions on
+        // this state.
+        private void ExtendVengefulSpiritDuration(On.HutongGames.PlayMaker.Actions.Wait.orig_OnEnter orig, Wait self)
         {
-            var idle = fsm.GetState("Idle");
-            var wait = idle.Actions[idle.Actions.Length - 1] as Wait;
-            idle.SpliceAction(8, () =>
+            try
             {
-                wait.time.Value = VSWait * (Equipped() ? Slowdown : 1);
-            });
+                if (self.Fsm.FsmComponent.gameObject.name == "Fireball(Clone)" &&
+                    self.Fsm.Name == "Fireball Control" &&
+                    self.State.Name == "Idle")
+                {
+                    self.time.Value = VSWait * (Equipped() ? Slowdown : 1);
+                }
+            }
+            catch (Exception err)
+            {
+                Transcendence.Instance.LogError(err.ToString());
+            }
+            orig(self);
         }
 
         private void SlowVengefulSpirit(PlayMakerFSM fsm)

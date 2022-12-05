@@ -833,14 +833,7 @@ namespace Transcendence
             }
             foreach (var charm in Charms)
             {
-                if (charm == AntigravityAmulet.Instance && RandoSettings.Logic.AntigravityAmulet)
-                {
-                    rb.AddToStart(charm.Name.Replace(" ", "_"));
-                }
-                else
-                {
-                    rb.AddItemByName(charm.Name.Replace(" ", "_"));
-                }
+                rb.AddItemByName(charm.Name.Replace(" ", "_"));
             }
         }
 
