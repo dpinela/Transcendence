@@ -71,7 +71,6 @@
         "name": "Lever-Mantis_Lords_Top_Left",
         "logic": "ORIG | (Fungus2_15[top3] + (ANTIGRAV | BLUEMOTH)) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + $TrueOrNotExist[Lever-Mantis_Lords_Middle_Right]))) | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS)))"
     },
-    // TODO: the following 2 may require additional logic from top3 or right1 if the ANYCLAW requirement in the lever logic turns out to be a bug
     {
         "name": "Lever-Mantis_Lords_Middle_Left",
         "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS)))"
@@ -87,5 +86,25 @@
     {
         "name": "Lever-Mantis_Lords_Bottom_Right",
         "logic": "ORIG | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS))) | (Fungus2_15[top3] + ANTIGRAVWINGS) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Lever-City_Above_Lemm_Upper",
+        "logic": "ORIG | (Ruins1_05[bot2] + BLUEMOTH + Lever-City_Above_Lemm_Upper) | (Ruins1_05[bot1] + Lever-City_Above_Lemm_Upper + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (SNAILSLASH + Longnail + Mark_of_Pride + BACKGROUNDPOGOS)))"
+    },
+    {
+        "name": "Lever-City_Above_Lemm_Left",
+        "logic": "ORIG | ((Ruins1_05c[top1] | Ruins1_05c[top3] | Ruins1_05c) + $TrueAndExists[Lever-City_Above_Lemm_Left] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Lever-Sanctum_Soul_Warrior",
+        "logic": "ORIG | (Ruins1_23 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Lever-Sanctum_Bottom",
+        "logic": "ORIG | (Ruins1_23 + $TrueAndExists[Lever-Sanctum_Bottom] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Lever-Sanctum_East",
+        "logic": "ORIG | ((Ruins1_25[left1] | Ruins1_25[left2] | Ruins1_25[left3]) + (ANTIGRAV | BLUEMOTH))"
     }
 ]

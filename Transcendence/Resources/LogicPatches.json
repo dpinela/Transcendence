@@ -1041,5 +1041,136 @@
     {
         "name": "Hallownest_Seal-Mantis_Lords",
         "logic": "ORIG | (((Fungus2_31[left1] + Defeated_Mantis_Lords) | $TrueAndExists[Bench-Mantis_Village]) + (ANTIGRAV | BLUEMOTH))"
+    },
+
+    // City of Tears
+    {
+        "name": "Ruins1_01[left1]",
+        "logic": "ORIG | (Ruins1_01[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_01[top1]",
+        "logic": "ORIG | (Ruins1_01[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_02[top1]",
+        "logic": "ORIG | (Ruins1_02[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Lore_Tablet-City_Entrance",
+        "logic": "ORIG | (Ruins1_02[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_03[top1]",
+        "logic": "ORIG | (Ruins1_03 + (ANTIGRAV | BLUEMOTH | SNAILSLASH))"
+    },
+    {
+        "name": "Ruins1_04[door1]",
+        "logic": "ORIG | ((Ruins1_04[right1] | Ruins1_04[bot1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_04[right1]",
+        "logic": "ORIG | ((Ruins1_04[right1] | Ruins1_04[bot1]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Simple_Key-City",
+        "logic": "ORIG | ((Ruins1_17[top1] | Ruins1_17[right1]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Whispering_Root-City",
+        "logic": "ORIG | ((Ruins1_17[top1] | Ruins1_17[right1]) + DREAMNAIL + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Ruins1_28",
+        "logic": "ORIG | (Ruins1_28[left1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Ruins1_31[left2]",
+        "logic": "ORIG | (Ruins1_31 + Lever-Shade_Soul + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    {
+        "name": "Ruins1_05[top1]",
+        "logic": "ORIG | ((Ruins1_05[right1] | Ruins1_05[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + LEFTCLAW))) | ((Ruins1_05[right2] | Ruins1_05[bot3]) + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Ruins1_05[right1]",
+        "logic": "ORIG | ((Ruins1_05[right2] | Ruins1_05[bot3]) + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Ruins1_05[bot1]",
+        "logic": "ORIG | (Ruins1_05[bot2] + BLUEMOTH + $TrueAndExists[Lever-City_Above_Lemm_Upper])"
+    },
+    {
+        "name": "Ruins1_05[bot2]",
+        "logic": "ORIG | (Ruins1_05[bot1] + $TrueOrNotExist[Lever-City_Above_Lemm_Upper] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (SNAILSLASH + Longnail + Mark_of_Pride + BACKGROUNDPOGOS)))"
+    },
+    {
+        "name": "Grub-City_of_Tears_Left",
+        "logic": "ORIG | ((Ruins1_05[right1] | Ruins1_05[top1]) + (ANTIGRAV | BLUEMOTH)) | ((Ruins1_05[right2] | Ruins1_05[bot3]) + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Ruins1_05c[top1]",
+        "logic": "ORIG | (Ruins1_05c[top1] + ANTIGRAVWINGS) | (Ruins1_05c[top2] + $TrueOrNotExist[Lever-City_Above_Lemm_Left] + ANTIGRAVWINGS) | (Ruins1_05c[top3] + $TrueAndExists[Lever-City_Above_Lemm_Left] + ANTIGRAVWINGS) | (Ruins1_05c + $TrueOrNotExist[Lever-City_Above_Lemm_Right] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Ruins1_05c[top2]",
+        "logic": "ORIG | ((Ruins1_05c[top1] | Ruins1_05c[top3] | Ruins1_05c) + $TrueAndExists[Lever-City_Above_Lemm_Left] + BLUEMOTH) | (Ruins1_05c[top2] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Ruins1_05c[top3]",
+        "logic": "ORIG | (Ruins1_05c[top1] + $TrueAndExists[Lever-City_Above_Lemm_Left] + (ANTIGRAV | BLUEMOTH)) | (Ruins1_05c[top2] + $TrueOrNotExist[Lever-City_Above_Lemm_Left] + (ANTIGRAV | BLUEMOTH)) | (Ruins1_05c[top3] + (ANTIGRAV | BLUEMOTH)) | (Ruins1_05c + $TrueAndExists[Lever-City_Above_Lemm_Right] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW))) | (Ruins1_05c + $TrueAndExists[Lever-City_Above_Lemm_Left] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Rancid_Egg-City_of_Tears_Left",
+        "logic": "ORIG | (Ruins1_05c + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_05b[top1]",
+        "logic": "ORIG | (Ruins1_05b[top1] + ANTIGRAVWINGS) | (Ruins1_05b + $TrueAndExists[Lever-City_Lemm] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-City_of_Tears_Lemm",
+        "logic": "ORIG | (Ruins1_05b + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_09[top1]",
+        "logic": "ORIG | ((Ruins1_09[left1] | Ruins1_09[top1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_23[right2]",
+        "logic": "ORIG | (Ruins1_23 + $TrueAndExists[Lever-Sanctum_Bottom] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_23[right1]",
+        "logic": "ORIG | (Ruins1_23 + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + Defeated_Sanctum_Warrior + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Ruins1_23[top1]",
+        "logic": "ORIG | (Ruins1_23[top1] + ANTIGRAVWINGS) | (Ruins1_23 + Defeated_Sanctum_Warrior + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Defeated_Sanctum_Warrior",
+        "logic": "ORIG | (Ruins1_23 + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + COMBAT[Sanctum_Warrior] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + ROOMSOUL)))"
+    },
+    // The lack of COMBAT[Sanctum_Warrior] in base rando logic for this is probably a bug?
+    {
+        "name": "Boss_Geo-Sanctum_Soul_Warrior",
+        "logic": "ORIG | (Ruins1_23 + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + COMBAT[Sanctum_Warrior] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Lore_Tablet-Sanctum_Entrance",
+        "logic": "ORIG | (Ruins1_23 + (ANTIGRAV | BLUEMOTH)) | (Ruins1_23[top1] + Defeated_Sanctum_Warrior + $TrueAndExists[Lever-Sanctum_Soul_Warrior] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_25[left1]",
+        "logic": "ORIG | ((Ruins1_25[left2] | Ruins1_25[left3]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_25[left2]",
+        "logic": "ORIG | ((Ruins1_25[left1] | Ruins1_25[left3]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_25[left3]",
+        "logic": "ORIG | (Ruins1_25[left1] + (ANTIGRAV | BLUEMOTH))"
     }
 ]
