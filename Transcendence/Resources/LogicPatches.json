@@ -1270,5 +1270,54 @@
     {
         "name": "Soul_Totem-Sanctum_Above_Grub",
         "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + ROOMSOUL)"
+    },
+    {
+        "name": "Ruins1_27[right1]",
+        "logic": "ORIG | (Ruins1_27[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    // redundant in base rando logic, but useful with lever rando
+    {
+        "name": "Ruins1_27[left1]",
+        "logic": "ORIG | (Ruins1_27[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins2_01_b[top1]",
+        "logic": "ORIG | (Ruins2_01_b + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins2_01[left2]",
+        "logic": "ORIG | (Ruins2_01 + (SNAILSLASH | BLUEMOTH | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + WINGS + $TrueAndExists[Lever-City_Spire_Sentry_Lower] + $TrueOrNotExist[Lever-City_Spire_Sentry_Upper]) | (CRYSTALMASTER + FULLCLAW)))"
+    },
+    {
+        "name": "Ruins2_01[top1]",
+        "logic": "ORIG | (Ruins2_01 + $TrueAndExists[Lever-City_Spire_Sentry_Upper] + (SNAILSLASH | BLUEMOTH | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + ANYCLAW))) | (Ruins2_01 + $TrueAndExists[Lever-City_Spire_Sentry_Lower] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-Watcher's_Spire",
+        "logic": "ORIG | (Ruins2_01 + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + RIGHTCLAW + LEFTDASH) | (ANTIGRAV + RIGHTCLAW + CRYSTALMASTER) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (YEET + RIGHTCLAW) | (ANTIGRAV + RIGHTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (ANTIGRAV + WINGS + $TrueAndExists[Lever-City_Spire_Sentry_Lower] + $TrueOrNotExist[Lever-City_Spire_Sentry_Upper]) | (CRYSTALMASTER + FULLCLAW))) | (Ruins2_01[top1] + $TrueOrNotExist[Lever-City_Spire_Sentry_Upper] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + AIRSTALL + ROOMSOUL) | CRYSTALMASTER))"
+    },
+    {
+        "name": "Ruins2_03b[top1]",
+        "logic": "ORIG | ((Ruins2_03b[top1] | Ruins2_03b) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins2_03b[top2]",
+        "logic": "ORIG | ((Ruins2_03b[top2] | Ruins2_03b) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins2_03[top1]",
+        "logic": "ORIG | (Ruins2_03[bot1] + BLUEMOTH)"
+    },
+    {
+        "name": "Geo_Chest-Watcher_Knights",
+        "logic": "ORIG | (Ruins2_03[bot1] + Defeated_Watcher_Knights + BLUEMOTH)"
+    },
+    {
+        "name": "Hallownest_Seal-Watcher_Knight",
+        "logic": "ORIG | (Ruins2_03[bot1] + Defeated_Watcher_Knights + BLUEMOTH) | (Ruins2_03[top1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + BACKGROUNDPOGOS) | (CRYSTALMASTER + LEFTCLAW)))"
+    }
+    {
+        "name": "Grub-Watcher's_Spire",
+        "logic": "ORIG | (Ruins2_03[bot2] + ANTIGRAVWINGS)"
     }
 ]

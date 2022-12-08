@@ -118,5 +118,9 @@
     {
         "name": "Lever-Sanctum_West_Lower",
         "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + Lever-Sanctum_West_Upper)) + QUAKE + ROOMSOUL)"
+    },
+    {
+        "name": "Lever-City_Fountain",
+        "logic": "ORIG | (Ruins1_27[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
     }
 ]
