@@ -1315,9 +1315,121 @@
     {
         "name": "Hallownest_Seal-Watcher_Knight",
         "logic": "ORIG | (Ruins2_03[bot1] + Defeated_Watcher_Knights + BLUEMOTH) | (Ruins2_03[top1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + BACKGROUNDPOGOS) | (CRYSTALMASTER + LEFTCLAW)))"
-    }
+    },
     {
         "name": "Grub-Watcher's_Spire",
         "logic": "ORIG | (Ruins2_03[bot2] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Ruins2_04[right1]",
+        "logic": "ORIG | (Ruins2_04 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Ruins2_04[door_Ruin_Elevator]",
+        "logic": "ORIG | (Ruins2_04 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Ruins2_04[door_Ruin_House_02]",
+        "logic": "ORIG | (Ruins2_04 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Ruins2_04[door_Ruin_House_01]",
+        "logic": "ORIG | (Ruins2_04 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Abyss_01",
+        "logic": "ORIG | (Abyss_01[left3] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Abyss_01[right1]",
+        "logic": "ORIG | (Abyss_01 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW + ENEMYPOGOS)) | (Abyss_01[left1] + SNAILSLASH)"
+    },
+    {
+        "name": "Abyss_01[left1]",
+        "logic": "ORIG | (Abyss_01 + Opened_Dung_Defender_Wall + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Broken_Elevator_3",
+        "logic": "ORIG | (Abyss_01 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Broken_Elevator_2",
+        "logic": "ORIG | (Abyss_01 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Broken_Elevator_1",
+        "logic": "ORIG | (Abyss_01 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Whispering_Root-Waterways",
+        "logic": "ORIG | (Abyss_01[left3] + DREAMNAIL + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Ruins2_06[left1]",
+        "logic": "ORIG | ((Ruins2_06[left2] | Ruins2_06[right1] | Ruins2_06[right2]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins2_06[left2]",
+        "logic": "ORIG | ((Ruins2_06[left1] | Ruins2_06[right1] | Ruins2_06[right2] | Ruins2_06[top1]) + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + AIRSTALL + ROOMSOUL) | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    {
+        "name": "Ruins2_06[right1]",
+        "logic": "ORIG | (Ruins2_06[right2] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW))) | (Ruins2_06[left2] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW)))"
+    },
+    {
+        "name": "Ruins2_06[right2]",
+        "logic": "ORIG | (Ruins2_06[left2] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + AIRSTALL + AREASOUL) | (CRYSTALMASTER + RIGHTCLAW)))"
+    },
+    {
+        "name": "Ruins2_06[top1]",
+        "logic": "ORIG | (Ruins2_06[left2] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW))) | (Ruins2_06[right2] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-King's_Station",
+        "logic": "ORIG | ((Ruins2_06[left2] | Ruins2_06[left1] | Ruins2_06[top1] | Ruins2_06[right1] | Ruins2_06[right2]) + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Hallownest_Seal-King's_Station",
+        "logic": "ORIG | (Ruins2_08[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW)))"
+    },
+    {
+        "name": "Ruins2_05[top1]",
+        "logic": "ORIG | ((Ruins2_05[left1] | Ruins2_05[bot1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins2_05[left1]",
+        "logic": "ORIG | (Ruins2_05[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Wanderer's_Journal-King's_Station",
+        "logic": "ORIG | (Ruins2_05[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Above_King's_Station",
+        "logic": "ORIG | (Ruins2_05[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins2_10b[left1]",
+        "logic": "ORIG | ((Right_Elevator | Ruins2_10b[right2]) + Opened_Pleasure_House_Wall + (BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Ruins2_10b[right1]",
+        "logic": "ORIG | ((Right_Elevator | Ruins2_10b[right2]) + (BLUEMOTH | (ANTIGRAV + LEFTCLAW))) | (Ruins2_10b[left1] + BLUEMOTH)"
+    },
+    {
+        "name": "Ruins2_07[right1]",
+        "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS)))"
+    },
+    {
+        "name": "Ruins2_07[left1]",
+        "logic": "ORIG | ((Ruins2_07[right1] | Ruins2_07[top1]) + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (YEET + AIRSTALL + ITEMSOUL + WINGS)))"
+    },
+    {
+        "name": "Ruins2_07[top1]",
+        "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS))) | (Ruins2_07[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Grub-King's_Station",
+        "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS))) | ((Ruins2_07[right1] | Ruins2_07[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + AIRSTALL + ITEMSOUL) | (ANTIGRAV + GREATSLASH + FULLCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL) | YEET | (CRYSTALMASTER + LEFTSUPERDASH + LEFTCLAW)))"
     }
 ]
