@@ -1172,5 +1172,103 @@
     {
         "name": "Ruins1_25[left3]",
         "logic": "ORIG | (Ruins1_25[left1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_30[left1]",
+        "logic": "ORIG | (Ruins1_30 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Ruins1_30[right1]",
+        "logic": "ORIG | (Ruins1_30 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Spell_Twister",
+        "logic": "ORIG | (Ruins1_30 + (ANTIGRAV | BLUEMOTH))"
+    },
+    /*
+    TODO: When Rando updates, replace the Ruins1_30 edit with these
+    {
+        "name": "Broke_Sanctum_Escape_Quake_Floor_1",
+        "logic": "ORIG | (Ruins1_30[left2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Broke_Sanctum_Escape_Quake_Floor_2",
+        "logic": "ORIG | (Ruins1_30[left2] + Broke_Sanctum_Escape_Quake_Floor_1 + QUAKE + $CASTSPELL[before:ROOMSOUL] + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Ruins1_30",
+        "logic": "ORIG | (Ruins1_30[left2] + Broke_Sanctum_Escape_Quake_Floor_1 + Broke_Sanctum_Escape_Quake_Floor_2 + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    */
+    {
+        "name": "Ruins1_30",
+        "logic": "ORIG | (Ruins1_30[left2] + QUAKE + ROOMSOUL + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Ruins1_24[left1]",
+        "logic": "ORIG | (Ruins1_24[right1] + Defeated_Soul_Master + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + AIRSTALL + AREASOUL)))"
+    },
+    {
+        "name": "Defeated_Soul_Tyrant",
+        "logic": "ORIG | ((Ruins1_24[left1] | Ruins1_24[right1]) + Defeated_Soul_Master + DREAMNAIL + COMBAT[Soul_Tyrant] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    /*
+    TODO: When Rando updates, replace the Ruins1_32[right2] edit with these
+    {
+        "name": "Broke_Sanctum_Geo_Rock_Quake_Floor",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + $CASTSPELL[before:ROOMSOUL])"
+    },
+    {
+        "name": "Broke_Quake_Floor_After_Soul_Master_1",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + $CASTSPELL[before:ROOMSOUL])"
+    },
+    {
+        "name": "Broke_Quake_Floor_After_Soul_Master_2",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + $CASTSPELL[before:ROOMSOUL])"
+    },
+    {
+        "name": "Broke_Quake_Floor_After_Soul_Master_3",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + $CASTSPELL[before:ROOMSOUL])"
+    },
+    {
+        "name": "Broke_Quake_Floor_After_Soul_Master_4",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + $CASTSPELL[before:ROOMSOUL])"
+    },
+    {
+        "name": "Ruins1_32[right2]",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + Broke_Quake_Floor_After_Soul_Master_1 + Broke_Quake_Floor_After_Soul_Master_2 + Broke_Quake_Floor_After_Soul_Master_3 + Broke_Quake_Floor_After_Soul_Master_4)
+    },
+    */
+    {
+        "name": "Ruins1_32[right2]",
+        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper] + $TrueAndExists[Lever-Sanctum_West_Lower])) + QUAKE + ROOMSOUL)"
+    },
+    {
+        "name": "Geo_Chest-Soul_Master",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Hallownest_Seal-Soul_Sanctum",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + ROOMSOUL)"
+    },
+    {
+        "name": "Grub-Soul_Sanctum",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + ROOMSOUL)"
+    },
+    {
+        "name": "Geo_Rock-Soul_Sanctum",
+        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper])) + QUAKE + ROOMSOUL)"
+    },
+    {
+        "name": "Lore_Tablet-Sanctum_Past_Soul_Master",
+        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper])) + QUAKE + ROOMSOUL)"
+    },
+    {
+        "name": "Soul_Totem-Sanctum_Below_Chest",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Soul_Totem-Sanctum_Above_Grub",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + ROOMSOUL)"
     }
 ]

@@ -106,5 +106,17 @@
     {
         "name": "Lever-Sanctum_East",
         "logic": "ORIG | ((Ruins1_25[left1] | Ruins1_25[left2] | Ruins1_25[left3]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Lever-Below_Spell_Twister",
+        "logic": "ORIG | (Ruins1_30 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Lever-Sanctum_West_Upper",
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + ROOMSOUL)"
+    },
+    {
+        "name": "Lever-Sanctum_West_Lower",
+        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + Lever-Sanctum_West_Upper)) + QUAKE + ROOMSOUL)"
     }
 ]
