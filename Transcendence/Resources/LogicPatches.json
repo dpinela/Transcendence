@@ -1431,5 +1431,33 @@
     {
         "name": "Grub-King's_Station",
         "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS))) | ((Ruins2_07[right1] | Ruins2_07[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + AIRSTALL + ITEMSOUL) | (ANTIGRAV + GREATSLASH + FULLCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL) | YEET | (CRYSTALMASTER + LEFTSUPERDASH + LEFTCLAW)))"
+    },
+    {
+        "name": "Ruins2_11_b[left1]",
+        "logic": "ORIG | (Ruins2_11_b[bot1] + LOVE + $TrueAndExists[Lever-Tower_of_Love] + BLUEMOTH)"
+    },
+    {
+        "name": "Ruins2_11_b[right1]",
+        "logic": "ORIG | (Ruins2_11_b[bot1] + $TrueAndExists[Lever-Tower_of_Love] + BLUEMOTH)"
+    },
+    {
+        "name": "Defeated_Collector",
+        "logic": "ORIG | (Ruins2_11[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Collector's_Map",
+        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH + AIRSTALL)))"
+    },
+    {
+        "name": "Grub-Collector_1",
+        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH + AIRSTALL)))"
+    },
+    {
+        "name": "Grub-Collector_2",
+        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH + AIRSTALL)))"
+    },
+    {
+        "name": "Grub-Collector_3",
+        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH + AIRSTALL)))"
     }
 ]
