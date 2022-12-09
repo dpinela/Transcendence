@@ -122,5 +122,9 @@
     {
         "name": "Lever-City_Fountain",
         "logic": "ORIG | (Ruins1_27[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW)))"
+    },
+    {
+        "name": "Lever-Emilitia",
+        "logic": "ORIG | (Ruins_House_03[left2] + BLUEMOTH)"
     }
 ]

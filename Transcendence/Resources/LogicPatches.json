@@ -1459,5 +1459,14 @@
     {
         "name": "Grub-Collector_3",
         "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH + AIRSTALL)))"
+    },
+    {
+        "name": "Ruins_House_03[left1]",
+        "logic": "ORIG | (Ruins_House_03[left2] + BLUEMOTH + $TrueOrNotExist[Lever-Emilitia])"
+    },
+    // If lever rando is enabled, this clause is merely redundant.
+    {
+        "name": "Opened_Emilitia_Door",
+        "logic": "ORIG | (Ruins_House_03[left2] + BLUEMOTH + $TrueOrNotExist[Lever-Emilitia])"
     }
 ]
