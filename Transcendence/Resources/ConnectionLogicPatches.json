@@ -126,5 +126,23 @@
     {
         "name": "Lever-Emilitia",
         "logic": "ORIG | (Ruins_House_03[left2] + BLUEMOTH)"
+    },
+    {
+        "name": "Mr_Mushroom-Kingdom's_Edge",
+        "logic": "ORIG | (Deepnest_East_01[bot1] + Spore_Shroom + (MRMUSHROOMFOUND>1 | (MRMUSHROOMFOUND>0 + DREAMER3)) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Bench-Bardoon",
+        "logic": "ORIG | ((Deepnest_East_04 | Bench-Bardoon's_Tail) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Bench-Bardoon's_Tail",
+        "logic": "ORIG | (Deepnest_East_04 + (ANTIGRAV | BLUEMOTH))"
+    },
+
+    // move these to LogicPatches later
+    {
+        "name": "Broke_Camp_Bench_Wall",
+        "logic": "ORIG | ((Deepnest_East_11[right1] | Deepnest_East_11[left1] | Deepnest_East_11[bot1]) + (ANTIGRAV | BLUEMOTH) + UPWALLBREAK)"
     }
 ]

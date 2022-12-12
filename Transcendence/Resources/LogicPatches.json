@@ -1342,7 +1342,7 @@
     },
     {
         "name": "Abyss_01[right1]",
-        "logic": "ORIG | (Abyss_01 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW + ENEMYPOGOS)) | (Abyss_01[left1] + SNAILSLASH)"
+        "logic": "ORIG | (Abyss_01 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW + ENEMYPOGOS))) | (Abyss_01[left1] + SNAILSLASH)"
     },
     {
         "name": "Abyss_01[left1]",
@@ -1468,5 +1468,211 @@
     {
         "name": "Opened_Emilitia_Door",
         "logic": "ORIG | (Ruins_House_03[left2] + BLUEMOTH + $TrueOrNotExist[Lever-Emilitia])"
+    },
+
+    // Kingdom's Edge
+    {
+        "name": "Abyss_03_c[top1]",
+        "logic": "ORIG | ((Abyss_03_c | Lower_Tram) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_01[top1]",
+        "logic": "ORIG | (Deepnest_East_01[bot1] + (ANTIGRAV | BLUEMOTH)) | (Deepnest_East_01[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Geo_Rock-Lower_Kingdom's_Edge_1",
+        "logic": "ORIG | ((Deepnest_East_01[bot1] | Deepnest_East_01[top1] | Deepnest_East_01[right1]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Geo_Rock-Lower_Kingdom's_Edge_2",
+        "logic": "ORIG | (Deepnest_East_01[bot1] + (ANTIGRAV | BLUEMOTH)) | (Deepnest_East_01[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Deepnest_East_02",
+        "logic": "ORIG | (Deepnest_East_02[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Deepnest_East_02[top1]",
+        "logic": "ORIG | ((Deepnest_East_02 | Deepnest_East_02[top1]) + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Deepnest_East_02[bot2]",
+        "logic": "ORIG | (Deepnest_East_02 + QUAKE + ROOMSOUL + ACIDSKIPS + (BLUEMOTH | (YEET + LEFTDASH + LEFTCLAW) | (YEET + AIRSTALL + ROOMSOUL + LEFTCLAW) | (ANTIGRAV + LEFTDASH + LEFTCLAW + AIRSTALL + ROOMSOUL) | (ANTIGRAV + LEFTSHARPSHADOW + LEFTCLAW)))"
+    },
+    {
+        "name": "Soul_Totem-Lower_Kingdom's_Edge_2",
+        "logic": "ORIG | ((Deepnest_East_02[top1] | Deepnest_East_02) + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE)))"
+    },
+    {
+        "name": "Geo_Rock-Lower_Kingdom's_Edge_Dive",
+        "logic": "ORIG | (Deepnest_East_02[bot2] + ACIDSKIPS + (BLUEMOTH | (YEET + RIGHTDASH + RIGHTCLAW) | (YEET + AIRSTALL + ROOMSOUL + RIGHTCLAW) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (ANTIGRAV + RIGHTSHARPSHADOW + RIGHTCLAW)))"
+    },
+    {
+        "name": "Deepnest_East_03[top1]",
+        "logic": "ORIG | (Deepnest_East_03 + UPWALLBREAK + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW))) | (Deepnest_East_03[top1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Deepnest_East_03[right1]",
+        "logic": "ORIG | (Deepnest_East_03 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Deepnest_East_06[right1]",
+        "logic": "ORIG | (Deepnest_East_06[left1] + ANTIGRAVWINGS) | (Deepnest_East_06[top1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_06[top1]",
+        "logic": "ORIG | (Deepnest_East_06[left1] + ANTIGRAVWINGS) | ((Deepnest_East_06[right1] | Deepnest_East_06[door1] | Deepnest_East_06[bot1]) + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Deepnest_East_06[left1]",
+        "logic": "ORIG | ((Deepnest_East_06[right1] | Deepnest_East_06[door1] | Deepnest_East_06[bot1]) + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Kingdom's_Edge_Oro_Far_Left",
+        "logic": "ORIG | ((Deepnest_East_06[left1] | Deepnest_East_06[right1] | Deepnest_East_06[top1] | Deepnest_East_06[bot1] | Deepnest_East_06[door1]) + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Kingdom's_Edge_Oro_Middle_Left",
+        "logic": "ORIG | (Deepnest_East_06[left1] + ANTIGRAVWINGS) | ((Deepnest_East_06[right1] | Deepnest_East_06[door1] | Deepnest_East_06[bot1]) + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Deepnest_East_14[top2]",
+        "logic": "ORIG | (Deepnest_East_14[top2] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Deepnest_East_14[left1]",
+        "logic": "ORIG | (Deepnest_East_14[top2] + QUAKE + AREASOUL + (ANTIGRAV | CRYSTALMASTER)) | (Deepnest_East_14[door1] + (ANTIGRAV | CRYSTALMASTER))"
+    },
+    {
+        "name": "Deepnest_East_14[door1]",
+        "logic": "ORIG | (Deepnest_East_14[top2] + QUAKE + AREASOUL + (BLUEMOTH | ANTIGRAV | CRYSTALMASTER)) | (Deepnest_East_14[left1] + (BLUEMOTH | ANTIGRAV | CRYSTALMASTER))"
+    },
+    {
+        "name": "Rancid_Egg-Near_Quick_Slash",
+        "logic": "ORIG | (Deepnest_East_14[top2] + QUAKE + AREASOUL + (ANTIGRAV | BLUEMOTH)) | (Deepnest_East_14[left1] + ANTIGRAVWINGS + (ANTIGRAV | CRYSTALMASTER | RIGHTDASH | SPIKETUNNELS)) | (Deepnest_East_14[door1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Grub-Kingdom's_Edge_Oro",
+        "logic": "ORIG | (Deepnest_East_14[top2] + QUAKE + AREASOUL + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + ANYCLAW))) | (Deepnest_East_14[door1] + (ANTIGRAV | BLUEMOTH)) | (Deepnest_East_14[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Deepnest_East_14b[top1]",
+        "logic": "ORIG | ((Deepnest_East_14b[top1] | Deepnest_East_14b[right1] | $TrueAndExists[Bench-Pure_Altar]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Quick_Slash",
+        "logic": "ORIG | (Deepnest_East_14b[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_18[right2]",
+        "logic": "ORIG | (Deepnest_East_18 + RIGHTSHADOWDASH + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_18[top1]",
+        "logic": "ORIG | (Deepnest_East_18 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Wanderer's_Journal-Kingdom's_Edge_Requires_Dive",
+        "logic": "ORIG | (Deepnest_East_18 + QUAKE + ROOMSOUL + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_11[top1]",
+        "logic": "ORIG | ((Deepnest_East_11[right1] | Deepnest_East_11[left1] | Deepnest_East_11[bot1]) + (UPWALLBREAK | $TrueAndExists[Broke_Camp_Bench_Wall]) + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS + DANGEROUSSKIPS)))"
+    },
+    {
+        "name": "Deepnest_East_11[right1]",
+        "logic": "ORIG | ((Deepnest_East_11[left1] | Deepnest_East_11[bot1]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS + DANGEROUSSKIPS)))"
+    },
+    {
+        "name": "Deepnest_East_11[left1]",
+        "logic": "ORIG | (Deepnest_East_11[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS + DANGEROUSSKIPS)))"
+    },
+    {
+        "name": "Grub-Kingdom's_Edge_Camp",
+        "logic": "ORIG | (Deepnest_East_11 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + PRECISEMOVEMENT)))"
+    },
+    {
+        "name": "Soul_Totem-Kingdom's_Edge_Camp",
+        "logic": "ORIG | (Deepnest_East_11[left1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Deepnest_East_11[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS + DANGEROUSSKIPS) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Deepnest_East_04",
+        "logic": "ORIG | (Deepnest_East_04[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Deepnest_East_04[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS)))"
+    },
+    {
+        "name": "Deepnest_East_04[left1]",
+        "logic": "ORIG | (Deepnest_East_04 + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS)))"
+    },
+    {
+        "name": "Deepnest_East_04[left2]",
+        "logic": "ORIG | ((Deepnest_East_04 | $TrueAndExists[Bench-Bardoon's_Tail]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_04[right2]",
+        "logic": "ORIG | (Deepnest_East_04 | $TrueAndExists[Bench-Bardoon's_Tail] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_07[left1]",
+        "logic": "ORIG | (Deepnest_East_07 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Rancid_Egg-Upper_Kingdom's_Edge",
+        "logic": "ORIG | (Deepnest_East_07 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Whispering_Root-Kingdoms_Edge",
+        "logic": "ORIG | (Deepnest_East_07 + DREAMNAIL + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Soul_Totem-Upper_Kingdom's_Edge",
+        "logic": "ORIG | (Deepnest_East_07 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_08[top1]",
+        "logic": "ORIG | (Deepnest_East_08[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Kingdom's_Edge_Below_Colosseum",
+        "logic": "ORIG | (Deepnest_East_08[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Deepnest_East_08[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_09[left1]",
+        "logic": "ORIG | (Deepnest_East_09[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_East_09[right1]",
+        "logic": "ORIG | (Deepnest_East_09[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Pale_Ore-Colosseum",
+        "logic": "ORIG | (Room_Colosseum_01[left1] + Can_Replenish_Geo + Defeated_Colosseum_2 + BLUEMOTH)"
+    },
+    {
+        "name": "Defeated_Colosseum_2",
+        "logic": "ORIG | (Room_Colosseum_01[left1] + Can_Replenish_Geo + COMBAT[Colosseum_2] + BLUEMOTH)"
+    },
+    {
+        "name": "Room_Colosseum_02[top1]",
+        "logic": "ORIG | ((Room_Colosseum_02[top1] | Room_Colosseum_02[top2] | $TrueAndExists[Bench-Colosseum]) + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Room_Colosseum_02[top2]",
+        "logic": "ORIG | ((Room_Colosseum_02[top1] | Room_Colosseum_02[top2] | $TrueAndExists[Bench-Colosseum]) + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-Pale_Lurker",
+        "logic": "ORIG | (GG_Lurker[left1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "King's_Idol-Pale_Lurker",
+        "logic": "ORIG | (GG_Lurker[left1] + ACIDSKIPS + (BLUEMOTH | (YEET + AIRSTALL + ITEMSOUL + WINGS)))"
+    },
+    {
+        "name": "Simple_Key-Lurker",
+        "logic": "ORIG | (GG_Lurker[left1] + Defeated_Pale_Lurker + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))"
+    },
+    {
+        "name": "Defeated_Pale_Lurker",
+        "logic": "ORIG | (GG_Lurker[left1] + COMBAT[Pale_Lurker] + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))"
     }
 ]
