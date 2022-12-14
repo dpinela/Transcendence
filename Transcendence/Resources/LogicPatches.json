@@ -1674,5 +1674,66 @@
     {
         "name": "Defeated_Pale_Lurker",
         "logic": "ORIG | (GG_Lurker[left1] + COMBAT[Pale_Lurker] + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))"
+    },
+    {
+        "name": "Deepnest_10",
+        "logic": "ORIG | (Deepnest_10[right3] + BLUEMOTH)"
+    },
+    {
+        "name": "Deepnest_10[right1]",
+        "logic": "ORIG | (Deepnest_10 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW))) | (Deepnest_10[door1] + CRYSTALMASTER)"
+    },
+    {
+        "name": "Deepnest_10[door1]",
+        "logic": "ORIG | (Deepnest_10 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Deepnest_10[door2]",
+        "logic": "ORIG | (Deepnest_10 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Soul_Totem-Distant_Village",
+        "logic": "ORIG | (Deepnest_10 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Deepnest_10[right3] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS + (CRYSTALMASTER | LEFTSUPERDASH | SWIM))))"
+    },
+    // The bench does not give any more access using Transcendence charms than the transition does.
+    {
+        "name": "Soul_Totem-Beast's_Den",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + COMBAT[Left_Devout] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Rancid_Egg-Beast's_Den",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Beast's_Den_Below_Egg",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Beast's_Den_Below_Egg_Dupe",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Grub-Beast's_Den",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Beast's_Den_After_Herrah",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Beast's_Den_Below_Herrah",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Herrah",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + DREAMNAIL + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Beast's_Den_Above_Trilobite",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Beast's_Den_Above_Trilobite_Dupe",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
     }
 ]

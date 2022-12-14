@@ -139,6 +139,10 @@
         "name": "Bench-Bardoon's_Tail",
         "logic": "ORIG | (Deepnest_East_04 + (ANTIGRAV | BLUEMOTH))"
     },
+    {
+        "name": "Bench-Beast's_Den",
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
 
     // move these to LogicPatches later
     {
