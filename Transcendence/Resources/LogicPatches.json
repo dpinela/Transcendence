@@ -1735,5 +1735,47 @@
     {
         "name": "Geo_Rock-Beast's_Den_Above_Trilobite_Dupe",
         "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Deepnest_41[right1]",
+        "logic": "ORIG | (Deepnest_41[left2] + (LANTERN | DARKROOMS) + (BLUEMOTH | (ANTIGRAV + ANYCLAW))) | (Deepnest_41[left1] + (LANTERN | DARKROOMS) + ((ANTIGRAV + ENEMYPOGOS) | BLUEMOTH | SNAILSLASH))"
+    },
+    {
+        "name": "Deepnest_41[left1]",
+        "logic": "ORIG | (Deepnest_41[left2] + (LANTERN | DARKROOMS) + (BLUEMOTH | (ANTIGRAV + ANYCLAW))) | (Deepnest_41[right1] + (LANTERN | DARKROOMS) + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS + DAMAGEBOOSTS + 2MASKS) | (ANTIGRAV + ANYCLAW)))"
+    },
+    // Transition logic from door1 is not necessary because right1 is reachable itemless from it
+    // and the paths from right1 are the same anyway.
+    {
+        "name": "Deepnest_39[left1]",
+        "logic": "ORIG | (Deepnest_39[right1] + (LANTERN | DARKROOMS) + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | SNAILSLASH | (ANTIGRAV + ENEMYPOGOS))) | (Deepnest_39[top1] + (LANTERN | DARKROOMS) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Deepnest_39[top1]",
+        "logic": "ORIG | (Deepnest_39[right1] + (LANTERN | DARKROOMS) + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | SNAILSLASH | (ANTIGRAV + ENEMYPOGOS))) | (Deepnest_39[left1] + (LANTERN | DARKROOMS) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Deepnest_39[door1]",
+        "logic": "ORIG | (Deepnest_39[right1] + (LANTERN | DARKROOMS) + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW) | SNAILSLASH | (ANTIGRAV + ENEMYPOGOS))) | ((Deepnest_39[top1] | Deepnest_39[left1]) + (LANTERN | DARKROOMS) + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS) | CRYSTALMASTER | SNAILSLASH))"
+    },
+    {
+        "name": "Rancid_Egg-Dark_Deepnest",
+        "logic": "ORIG | (Deepnest_39 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | SNAILSLASH | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Whispering_Root-Deepnest",
+        "logic": "ORIG | (Deepnest_39 + DREAMNAIL + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Grub-Dark_Deepnest",
+        "logic": "ORIG | (Deepnest_39 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | SNAILSLASH | (ANTIGRAV + ENEMYPOGOS))) | (Deepnest_39[left1] + (LANTERN | DARKROOMS) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Dark_Deepnest_Above_Grub_1",
+        "logic": "ORIG | (Deepnest_39 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | SNAILSLASH | (ANTIGRAV + ENEMYPOGOS))) | (Deepnest_39[left1] + (LANTERN | DARKROOMS) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Dark_Deepnest_Above_Grub_2",
+        "logic": "ORIG | (Deepnest_39 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | SNAILSLASH | (ANTIGRAV + ENEMYPOGOS))) | (Deepnest_39[left1] + (LANTERN | DARKROOMS) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS)))"
     }
 ]
