@@ -1777,5 +1777,58 @@
     {
         "name": "Geo_Rock-Dark_Deepnest_Above_Grub_2",
         "logic": "ORIG | (Deepnest_39 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | SNAILSLASH | (ANTIGRAV + ENEMYPOGOS))) | (Deepnest_39[left1] + (LANTERN | DARKROOMS) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Deepnest_42",
+        "logic": "ORIG | (Deepnest_42[bot1] + (LANTERN | DARKROOMS) + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + ANYCLAW) | SNAILSLASH))"
+    },
+    {
+        "name": "Deepnest_42[top1]",
+        "logic": "ORIG | (Deepnest_42 + (ANTIGRAV | BLUEMOTH | SNAILSLASH))"
+    },
+    {
+        "name": "Weaversong",
+        "logic": "ORIG | (Deepnest_45_v02[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + ANYCLAW) | SNAILSLASH))"
+    },
+    // (ways to get to the breakable wall) + (ways of breaking the wall) + (ways of getting up to the chest)
+    {
+        "name": "Geo_Chest-Weavers_Den",
+        "logic": "ORIG | (Deepnest_45_v02[left1] + (ANTIGRAVWINGS | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + LEFTDASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + GREATSLASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + CYCLONE) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + AIRSTALL + ROOMSOUL) | (SNAILSLASH + LEFTSUPERDASH) | (SNAILSLASH + CRYSTALMASTER) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS + LEFTCLAW)) + (LEFTSLASH | UPSLASH | FIREBALL | SCREAM) + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS) | (ANTIGRAV + WINGS + LEFTCLAW) | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SNAILSLASH) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + WINGS + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + SNAILSLASH) | (SNAILSLASH + LEFTDASH) | (SNAILSLASH + SPIKETUNNELS)))"
+    },
+    {
+        "name": "Rancid_Egg-Weaver's_Den",
+        "logic": "ORIG | (Deepnest_45_v02[left1] + (LANTERN | DARKROOMS) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Deepnest_34[left1]",
+        "logic": "ORIG | (Deepnest_34 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_34[right1]",
+        "logic": "ORIG | (Deepnest_34 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Deepnest_34[top1]",
+        "logic": "ORIG | (Deepnest_34[top1] + (ANTIGRAV | BLUEMOTH)) | (Deepnest_34 + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + WINGS + RIGHTCLAW)))"
+    },
+    {
+        "name": "Deepnest_35",
+        "logic": "ORIG | (Deepnest_35[bot1] + (LANTERN | DARKROOMS) + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Deepnest_35[top1]",
+        "logic": "ORIG | (Deepnest_35[top1] + (ANTIGRAV | BLUEMOTH) | (Deepnest_35 + BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_Above_Galien",
+        "logic": "ORIG | (Deepnest_35 + BLUEMOTH)"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_Galien_Spike",
+        "logic": "ORIG | (Deepnest_35[bot1] + (LANTERN | DARKROOMS) + ANTIGRAV + ENEMYPOGOS + BACKGROUNDPOGOS + Longnail + Mark_of_Pride) | (Deepnest_35 + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | SNAILSLASH))"
+    },
+    {
+        "name": "Lifeblood_Cocoon-Galien",
+        "logic": "ORIG | (Deepnest_40[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
     }
 ]

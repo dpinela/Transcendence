@@ -143,6 +143,10 @@
         "name": "Bench-Beast's_Den",
         "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
     },
+    {
+        "name": "Bench-Galien's_Grave",
+        "logic": "ORIG | (Deepnest_40[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    }
 
     // move these to LogicPatches later
     {
