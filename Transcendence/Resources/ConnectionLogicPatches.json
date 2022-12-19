@@ -146,6 +146,14 @@
     {
         "name": "Bench-Galien's_Grave",
         "logic": "ORIG | (Deepnest_40[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Lever-Failed_Tramway_Right",
+        "logic": "ORIG | (Deepnest_26 + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | SNAILSLASH))"
+    },
+    {
+        "name": "Lever-Failed_Tramway_Left",
+        "logic": "ORIG | (Deepnest_26b[right2] + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + LEFTCLAW))) | ($TrueAndExists[Bench-Destroyed_Tram] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + WINGS)))"
     }
 
     // move these to LogicPatches later

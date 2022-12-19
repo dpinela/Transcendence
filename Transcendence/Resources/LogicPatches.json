@@ -1830,5 +1830,125 @@
     {
         "name": "Lifeblood_Cocoon-Galien",
         "logic": "ORIG | (Deepnest_40[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Deepnest_26",
+        "logic": "ORIG | (Deepnest_26[left1] + Opened_Tramway_Exit_Gate + (ANTIGRAV | BLUEMOTH)) | (Deepnest_26[left2] + $TrueAndExists[Lever-Failed_Tramway_Right] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_26[left1]",
+        "logic": "ORIG | (Deepnest_26 + Opened_Tramway_Exit_Gate + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | SNAILSLASH)) | (Deepnest_26[left1] + $TrueAndExists[Lever-Failed_Tramway_Right] + Opened_Tramway_Exit_Gate + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_26[left2]",
+        "logic": "ORIG | (Deepnest_26 + $TrueOrNotExist[Lever-Failed_Tramway_Right] + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | SNAILSLASH))"
+    },
+    {
+        "name": "Lifeblood_Cocoon-Failed_Tramway",
+        "logic": "ORIG | (Deepnest_26 + (ANTIGRAVWINGS | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + ENEMYPOGOS) | SNAILSLASH)) | (Deepnest_26[left1] + Opened_Tramway_Exit_Gate + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW))) | (Deepnest_26[left2] + $TrueOrNotExist[Lever-Failed_Tramway_Right] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Deepnest_26b[right1]",
+        "logic": "ORIG | (Deepnest_26b[right2] + Opened_Tramway_Exit_Gate + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + LEFTCLAW))) | ($TrueAndExists[Bench-Destroyed_Tram] + Opened_Tramway_Exit_Gate + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Deepnest_26b[right2]",
+        "logic": "ORIG | ($TrueAndExists[Bench-Destroyed_Tram] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Opened_Tramway_Exit_Gate",
+        "logic": "ORIG | (Deepnest_26b[right2] + $TrueOrNotExist[Lever-Failed_Tramway_Left] + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + LEFTCLAW))) | ($TrueAndExists[Bench-Destroyed_Tram] + $TrueOrNotExist[Lever-Failed_Tramway_Left] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Tram_Pass",
+        "logic": "ORIG | (Deepnest_26b[right2] + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS))) | (Deepnest_26b[right1] + Opened_Tramway_Exit_Gate + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Deepnest_14[left1]",
+        "logic": "ORIG | (Deepnest_14 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Deepnest_14[right1]",
+        "logic": "ORIG | (Deepnest_14 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Deepnest_33[top1]",
+        "logic": "ORIG | ($TrueAndExists[Bench-Zote's_Folly] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + BACKGROUNDPOGOS + Longnail + Mark_of_Pride)))"
+    },
+    {
+        "name": "Deepnest_33[top2]",
+        "logic": "ORIG | ((Deepnest_33[top1] | Deepnest_33[bot1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_03[left1]",
+        "logic": "ORIG | (Deepnest_03 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_03[top1]",
+        "logic": "ORIG | (Deepnest_03 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_03[left2]",
+        "logic": "ORIG | (Deepnest_03 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Grub-Deepnest_Spike",
+        "logic": "ORIG | (Deepnest_03 + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_Below_Spike_Grub",
+        "logic": "ORIG | (Deepnest_03 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_Below_Spike_Grub_Dupe",
+        "logic": "ORIG | (Deepnest_03 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_Spike_Grub_Right",
+        "logic": "ORIG | (Deepnest_03 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_31[right2]",
+        "logic": "ORIG | (Deepnest_31[right1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Deepnest_31[right1]",
+        "logic": "ORIG | (Deepnest_31[right2] + (BLUEMOTH | (ANTIGRAV + ANYCLAW) | YEET | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Grub-Deepnest_Nosk",
+        "logic": "ORIG | (Deepnest_31[right2] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_Nosk_1",
+        "logic": "ORIG | (Deepnest_31[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Deepnest_31[right2] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_Nosk_2",
+        "logic": "ORIG | (Deepnest_31[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Deepnest_31[right2] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_Nosk_3",
+        "logic": "ORIG | (Deepnest_31[right1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Deepnest_30[left1]",
+        "logic": "ORIG | (Deepnest_30[top1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_30[right1]",
+        "logic": "ORIG | (Deepnest_30[top1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Vessel_Fragment-Deepnest",
+        "logic": "ORIG | (Deepnest_38[bot1] + BLUEMOTH)"
+    },
+    {
+        "name": "Soul_Totem-Deepnest_Vessel",
+        "logic": "ORIG | (Deepnest_38[bot1] + BLUEMOTH)"
+    },
+    {
+        "name": "Deepnest_44[top1]",
+        "logic": "ORIG | ($TrueAndExists[Bench-Ancient_Nest] + ANTIGRAVWINGS)"
     }
 ]
