@@ -1950,5 +1950,65 @@
     {
         "name": "Deepnest_44[top1]",
         "logic": "ORIG | ($TrueAndExists[Bench-Ancient_Nest] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Deepnest_01b",
+        "logic": "ORIG | ((Deepnest_01b[right2] | Deepnest_01b[bot1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_01b[right2]",
+        "logic": "ORIG | (Deepnest_01b + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Deepnest_01b[top1]",
+        "logic": "ORIG | (Deepnest_01b + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + ANYCLAW))) | (Deepnest_01b[right1] + ANTIGRAVWINGS) | (Deepnest_01b[top1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_02[left1]",
+        "logic": "ORIG | (Deepnest_02 + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Deepnest_02[right1]",
+        "logic": "ORIG | (Deepnest_02 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Fungus2_25[top1]",
+        "logic": "ORIG | ((Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + (ANTIGRAVWINGS | (ANTIGRAV + PRECISEMOVEMENT + Mark_of_Pride + Longnail))) | (Fungus2_25[top1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Deepnest_Map-Right",
+        "logic": "ORIG | ((Fungus2_25[top1] | Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_Lower_Cornifer",
+        "logic": "ORIG | ((Fungus2_25[top1] | Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_By_Mantis_Lords_1",
+        "logic": "ORIG | ((Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + (ANTIGRAVWINGS | (ANTIGRAV + PRECISEMOVEMENT + Mark_of_Pride + Longnail)))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_By_Mantis_Lords_2",
+        "logic": "ORIG | ((Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + (ANTIGRAVWINGS | (ANTIGRAV + PRECISEMOVEMENT + Mark_of_Pride + Longnail)))"
+    },
+    {
+        "name": "Deepnest_16[left1]",
+        "logic": "ORIG | (Deepnest_16[bot1] + (BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Hallownest_Seal-Deepnest_By_Mantis_Lords",
+        "logic": "ORIG | (Deepnest_16[bot1] + (BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_By_Mantis_Lords_Requires_Claw_1",
+        "logic": "ORIG | (Deepnest_16[bot1] + (BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_By_Mantis_Lords_Requires_Claw_2",
+        "logic": "ORIG | (Deepnest_16[bot1] + (BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Deepnest_By_Mantis_Lords_Requires_Claw_3",
+        "logic": "ORIG | (Deepnest_16[bot1] + (BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
     }
 ]

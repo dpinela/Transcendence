@@ -154,7 +154,7 @@
     {
         "name": "Lever-Failed_Tramway_Left",
         "logic": "ORIG | (Deepnest_26b[right2] + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + LEFTCLAW))) | ($TrueAndExists[Bench-Destroyed_Tram] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + WINGS)))"
-    }
+    },
 
     // move these to LogicPatches later
     {
