@@ -155,6 +155,18 @@
         "name": "Lever-Failed_Tramway_Left",
         "logic": "ORIG | (Deepnest_26b[right2] + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + LEFTCLAW))) | ($TrueAndExists[Bench-Destroyed_Tram] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + WINGS)))"
     },
+    {
+        "name": "Lever-Waterways_Hwurmp_Arena",
+        "logic": "ORIG | ((Waterways_09[left1] | Waterways_09[right1]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW)))"
+    },
+    {
+        "name": "Bench-Waterways_Entrance",
+        "logic": "ORIG | (Waterways_01 + (ANTIGRAV | BLUEMOTH)) | (Waterways_01[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Bench-Waterways",
+        "logic": "ORIG | (Waterways_02 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + ENEMYPOGOS + DANGEROUSSKIPS) | (SNAILSLASH + DANGEROUSSKIPS)))"
+    },
 
     // move these to LogicPatches later
     {
