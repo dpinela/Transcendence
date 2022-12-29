@@ -167,7 +167,19 @@
         "name": "Bench-Waterways",
         "logic": "ORIG | (Waterways_02 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + ENEMYPOGOS + DANGEROUSSKIPS) | (SNAILSLASH + DANGEROUSSKIPS)))"
     },
-
+    {
+        "name": "Bench-Fort_Flukefey",
+        "logic": "ORIG | (Waterways_08[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Waterways_08[left2] + CRYSTALMASTER) | (Waterways_08[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Bench-Hermit's_Approach",
+        "logic": "ORIG | (Room_GG_Shortcut[top1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS) | (YEET + AIRSTALL + ROOMSOUL + WINGS))) | (Room_GG_Shortcut[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTDASH + WINGS + ANYCLAW) | (YEET + AIRSTALL + ROOMSOUL + ANYCLAW)))"
+    },
+    {
+        "name": "Bench-Acid_Sluice_West",
+        "logic": "ORIG | (Waterways_06[right1] + (ANTIGRAVWINGS | (ANTIGRAV + AIRSTALL + ITEMSOUL + LEFTDASH) | YEET | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL)))"
+    },
+    
     // move these to LogicPatches later
     {
         "name": "Broke_Camp_Bench_Wall",

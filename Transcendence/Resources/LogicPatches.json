@@ -2121,5 +2121,145 @@
     {
         "name": "Rancid_Egg-Waterways_Main",
         "logic": "ORIG | (Waterways_02[bot1] + (ANTIGRAV | BLUEMOTH)) | (Waterways_02[top2] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + DANGEROUSSKIPS) | (CRYSTALMASTER + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Waterways_05[right1]",
+        "logic": "ORIG | (Waterways_05[bot1] + Defeated_Dung_Defender + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Waterways_05[bot2]",
+        "logic": "ORIG | (Waterways_05[bot1] + Defeated_Dung_Defender + QUAKE + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Lever-Dung_Defender",
+        "logic": "ORIG | (Waterways_05[bot1] + Defeated_Dung_Defender + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Defeated_Dung_Defender",
+        "logic": "ORIG | (Waterways_05[bot1] + COMBAT[Dung_Defender] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Opened_Dung_Defender_Wall",
+        "logic": "ORIG | (Waterways_05[bot1] + Defeated_Dung_Defender + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Defender's_Crest",
+        "logic": "ORIG | (Waterways_05[bot1] + Defeated_Dung_Defender + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Waterways_15[top1]",
+        "logic": "ORIG | ((Waterways_15[top1] | $TrueAndExists[Bench-Defender's_Repose]) + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Waterways_08[top1]",
+        "logic": "ORIG | ((Waterways_08[top1] | Waterways_08[left1] | Waterways_08[left2] | $TrueAndExists[Bench-Fort_Flukefey]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Waterways_08[left1]",
+        "logic": "ORIG | (Waterways_08[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Fort_Flukefey] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + GREATSLASH + RIGHTDASH)))"
+    },
+    {
+        "name": "Waterways_08[left2]",
+        "logic": "ORIG | (Waterways_08[left1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Waterways_Flukemarm",
+        "logic": "ORIG | ((Waterways_08[top1] | Waterways_08[left1] | $TrueAndExists[Bench-Fort_Flukefey]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Soul_Totem-Waterways_Flukemarm",
+        "logic": "ORIG | (Waterways_08[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Fort_Flukefey] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + GREATSLASH + RIGHTDASH)))"
+    },
+    {
+        "name": "Defeated_Flukemarm",
+        "logic": "ORIG | (Waterways_12[right1] + COMBAT[Flukemarm] + ACIDSKIPS + YEET + LEFTDASH + WINGS + (GREATSLASH | DASHSLASH | (AIRSTALL + AREASOUL) | LEFTCLAW | (RIGHTCLAW + OBSCURESKIPS))) | (Waterways_12[right1] + COMBAT[Flukemarm] + ACIDSKIPS + BLUEMOTH) | (Waterways_12[right1] + COMBAT[Flukemarm] + ACIDSKIPS + CRYSTALMASTER + LEFTDASH + WINGS + RIGHTCLAW + OBSCURESKIPS + (GREATSLASH | DASHSLASH | (AIRSTALL + AREASOUL)))"
+    },
+    {
+        "name": "Flukenest",
+        "logic": "ORIG | (Waterways_12[right1] + ACIDSKIPS + YEET + LEFTDASH + WINGS + (GREATSLASH | DASHSLASH | (AIRSTALL + AREASOUL) | LEFTCLAW | (RIGHTCLAW + OBSCURESKIPS))) | (Waterways_12[right1] + ACIDSKIPS + BLUEMOTH) | (Waterways_12[right1] + ACIDSKIPS + CRYSTALMASTER + LEFTDASH + WINGS + RIGHTCLAW + OBSCURESKIPS + (GREATSLASH | DASHSLASH | (AIRSTALL + AREASOUL)))"
+    },
+    {
+        "name": "GG_Pipeway[left1]",
+        "logic": "ORIG | (GG_Pipeway[right1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "GG_Pipeway[right1]",
+        "logic": "ORIG | (GG_Pipeway[left1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Godhome_Pipeway",
+        "logic": "ORIG | (GG_Pipeway[right1] + (BLUEMOTH | YEET | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "GG_Waterways",
+        "logic": "ORIG | (GG_Waterways[right1] + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + RIGHTCLAW + OBSCURESKIPS) | (ANTIGRAV + LEFTDASH + AIRSTALL + AREASOUL + (GREATSLASH | CYCLONE | LEFTSHARPSHADOW | (DASHSLASH + LEFTCLAW))) | (ANTIGRAV + LEFTDASH + GREATSLASH + Nailmaster's_Glory)))"
+    },
+    {
+        "name": "GG_Waterways[door1]",
+        "logic": "ORIG | (GG_Waterways[right1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + OBSCURESKIPS))) | (GG_Waterways + (BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "GG_Waterways[right1]",
+        "logic": "ORIG | (GG_Waterways[right1] + (BLUEMOTH | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW + WINGS))) | (GG_Waterways + (BLUEMOTH | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Room_GG_Shortcut[top1]",
+        "logic": "ORIG | (Room_GG_Shortcut[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + ANYCLAW + WINGS))) | (Room_GG_Shortcut[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (YEET + AIRSTALL + ROOMSOUL + WINGS)))"
+    },
+    {
+        "name": "Room_GG_Shortcut[left1]",
+        "logic": "ORIG | (Room_GG_Shortcut[top1] + (CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + AIRSTALL + ROOMSOUL))) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS) | (YEET + AIRSTALL + ROOMSOUL + WINGS)))"
+    },
+    {
+        "name": "Geo_Rock-Fluke_Hermit",
+        "logic": "ORIG | (Room_GG_Shortcut[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW))) | (Room_GG_Shortcut[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS) | (YEET + AIRSTALL + ROOMSOUL + WINGS)))"
+    },
+    {
+        "name": "Geo_Rock-Fluke_Hermit_Dupe",
+        "logic": "ORIG | (Room_GG_Shortcut[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW))) | (Room_GG_Shortcut[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS + ENEMYPOGOS) | (YEET + AIRSTALL + ROOMSOUL + WINGS)))"
+    },
+    {
+        "name": "Waterways_06[right1]",
+        "logic": "ORIG | ((Waterways_06[top1] | $TrueAndExists[Bench-Acid_Sluice_West]) + (BLUEMOTH | (ANTIGRAV + WINGS + RIGHTDASH) | (ANTIGRAV + WINGS + AIRSTALL + ROOMSOUL) | (ANTIGRAV + WINGS + FULLCLAW + PRECISEMOVEMENT) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + RIGHTDASH + RIGHTCLAW) | (CRYSTALMASTER + RIGHTDASH + RIGHTCLAW + OBSCURESKIPS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + RIGHTSHARPSHADOW) | YEET))"
+    },
+    {
+        "name": "Waterways_06[top1]",
+        "logic": "ORIG | (((Waterways_06[right1] + (ACID | LEFTSUPERDASH)) | $TrueAndExists[Bench-Acid_Sluice_West]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW) | (CRYSTALMASTER + ENEMYPOGOS))) | (Waterways_06[right1] + (ANTIGRAVWINGS | (ANTIGRAV + AIRSTALL + ITEMSOUL + LEFTDASH) | YEET | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTDASH + ANYCLAW) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL + (ANYCLAW | ENEMYPOGOS))))"
+    },
+    {
+        "name": "Waterways_07",
+        "logic": "ORIG | (Waterways_07[left1] + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + WINGS + RIGHTDASH) | (ANTIGRAV + RIGHTCLAW + RIGHTDASH + AIRSTALL + ITEMSOUL) | (ANTIGRAV + ACID) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTDASH + RIGHTCLAW) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL + RIGHTCLAW) | (YEET + WINGS) | (YEET + GREATSLASH + RIGHTCLAW) | (YEET + AIRSTALL + ITEMSOUL + RIGHTCLAW))) | (Waterways_07[right2] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTSHARPSHADOW) | (ANTIGRAV + WINGS + RIGHTCLAW + LEFTDASH + (DASHMASTER | GREATSLASH | DASHSLASH | (AIRSTALL + ITEMSOUL))) | (YEET + WINGS + LEFTDASH) | (YEET + WINGS + AIRSTALL + ITEMSOUL)))"
+    },
+    {
+        "name": "Waterways_07[right1]",
+        "logic": "ORIG | (Waterways_07 + Lever-Dung_Defender + ANTIGRAVWINGS) | ((Waterways_07[door1] | Waterways_08[top1]) + Lever-Dung_Defender + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Waterways_07[right2]",
+        "logic": "ORIG | (Waterways_07 + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + RIGHTSHARPSHADOW) | (YEET + WINGS + RIGHTDASH) | (YEET + WINGS + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Waterways_07[left1]",
+        "logic": "ORIG | (Waterways_07 + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + LEFTCLAW + LEFTDASH + GREATSLASH) | (ANTIGRAV + LEFTCLAW + LEFTDASH + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW) | (CRYSTALMASTER + LEFTCLAW + AIRSTALL + ROOMSOUL) | (YEET + WINGS) | (YEET + LEFTCLAW + GREATSLASH) | (YEET + LEFTCLAW + AIRSTALL + ROOMSOUL)))"
+    },
+    {
+        "name": "Waterways_07[door1]",
+        "logic": "ORIG | (Waterways_07 + ANTIGRAVWINGS) | (Waterways_07[top1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Waterways_07[top1]",
+        "logic": "ORIG | (Waterways_07[top1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Waterways_East",
+        "logic": "ORIG | (Waterways_07 + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Soul_Totem-Waterways_East",
+        "logic": "ORIG | (Waterways_07 + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + FULLCLAW) | (YEET + WINGS) | (YEET + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Lore_Tablet-Dung_Defender",
+        "logic": "ORIG | (Waterways_07 + ANTIGRAVWINGS) | ((Waterways_07[top1] | Waterways_07[door1] | Waterways_07[right1]) + (ANTIGRAV | BLUEMOTH))"
     }
 ]
