@@ -2289,5 +2289,127 @@
     {
         "name": "Grub-Waterways_Requires_Tram",
         "logic": "ORIG | ((Waterways_14[bot1] | Waterways_14[bot2]) + (BLUEMOTH | (ACID + ANTIGRAV + WINGS) | (ACID + ANTIGRAV + LEFTCLAW + ENEMYPOGOS))) | (Waterways_14[bot1] + RIGHTSUPERDASH + ANTIGRAV + WINGS + ANYCLAW) | (Waterways_14[bot2] + ((LEFTSUPERDASH + ANTIGRAV + WINGS + ANYCLAW) | (CRYSTALMASTER + WINGS + RIGHTCLAW) | (YEET + WINGS + LEFTCLAW)))"
+    },
+
+    // Ancient Basin
+    {
+        "name": "Wanderer's_Journal-Ancient_Basin",
+        "logic": "ORIG | (Abyss_02[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Abyss_02[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Abyss_02[right1]",
+        "logic": "ORIG | (Abyss_02[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Grimmkin_Flame-Ancient_Basin",
+        "logic": "ORIG | (Abyss_02[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "Geo_Rock-Broken_Bridge_Lower",
+        "logic": "ORIG | ((Abyss_02[bot1] | Abyss_02[right1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Broken_Bridge_Lower",
+        "logic": "ORIG | (Abyss_02[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Broken_Bridge_Lower_Dupe",
+        "logic": "ORIG | (Abyss_02[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Abyss_03",
+        "logic": "ORIG | (Abyss_03[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Abyss_17[top1]",
+        "logic": "ORIG | (Abyss_17[top1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Pale_Ore-Basin",
+        "logic": "ORIG | (Abyss_17[top1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Abyss_04[top1]",
+        "logic": "ORIG | (Abyss_04 + (ANTIGRAVWINGS | (ANTIGRAV + SNAILSLASH)))"
+    },
+    {
+        "name": "Abyss_04[right1]",
+        "logic": "ORIG | (Abyss_04 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Vessel_Fragment-Basin",
+        "logic": "ORIG | (Abyss_04 + Can_Visit_Lemm + Defeated_Colosseum_1 + (ANTIGRAVWINGS | (ANTIGRAV + SNAILSLASH)))"
+    },
+    {
+        "name": "Ancient_Basin_Map",
+        "logic": "ORIG | (Abyss_04[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Abyss_04 + (ANTIGRAVWINGS | (SNAILSLASH + RIGHTDASH) | (SNAILSLASH + RIGHTSUPERDASH) | (SNAILSLASH + ANTIGRAV) | (SNAILSLASH + CRYSTALMASTER) | (SNAILSLASH + _AIRSTALL_2 + ROOMSOUL)))"
+    },
+    {
+        "name": "Soul_Totem-Basin",
+        "logic": "ORIG | (Abyss_04 + (ANTIGRAVWINGS | (ANTIGRAV + SNAILSLASH)))"
+    },
+    {
+        "name": "Abyss_18[left1]",
+        "logic": "ORIG | (Abyss_18[right1] + (BLUEMOTH | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + _AIRSTALL_3 + AREASOUL) | (YEET + GREATSLASH) | (ANTIGRAV + FULLCLAW + LEFTDASH + _AIRSTALL_3 + AREASOUL)))"
+    },
+    {
+        "name": "Abyss_18[right1]",
+        "logic": "ORIG | (Abyss_18[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + _AIRSTALL_3 + AREASOUL)))"
+    },
+    {
+        "name": "Geo_Rock-Basin_Tunnel",
+        "logic": "ORIG | (Abyss_18[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + _AIRSTALL_3 + AREASOUL))) | (Abyss_18[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Abyss_19[left1]",
+        "logic": "ORIG | (Abyss_19[bot1] + Defeated_Broken_Vessel + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Abyss_19[right1]",
+        "logic": "ORIG | (Abyss_19[bot1] + (ANTIGRAV | BLUEMOTH)) | (Abyss_19[bot2] + ANTIGRAV + (ANYDASH | Longnail | Mark_of_Pride))"
+    },
+    {
+        "name": "Abyss_19[bot2]",
+        "logic": "ORIG | (Abyss_19[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Defeated_Broken_Vessel",
+        "logic": "ORIG | (Abyss_19[bot1] + COMBAT[Broken_Vessel] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Defeated_Lost_Kin",
+        "logic": "ORIG | ((Abyss_19[left1] | Abyss_19[bot1]) + Defeated_Broken_Vessel + DREAMNAIL + COMBAT[Lost_Kin] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Abyss_19",
+        "logic": "ORIG | (Abyss_19[bot1] + (ANTIGRAV | BLUEMOTH)) | (Abyss_19[bot2] + ANTIGRAV + (ANYDASH | Longnail | Mark_of_Pride))"
+    },
+    {
+        "name": "Boss_Essence-Lost_Kin",
+        "logic": "ORIG | (Abyss_19[bot1] + DREAMNAIL + Defeated_Broken_Vessel + Defeated_Lost_Kin + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Grub-Basin_Requires_Wings",
+        "logic": "ORIG | (Abyss_19 + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Basin_Grub",
+        "logic": "ORIG | (Abyss_19 + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Basin_Before_Broken_Vessel",
+        "logic": "ORIG | (Abyss_19[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Abyss_20[top1]",
+        "logic": "ORIG | (Abyss_20[top2] + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | SNAILSLASH))"
+    },
+    {
+        "name": "Abyss_20[top2]",
+        "logic": "ORIG | (Abyss_20[top1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Monarch_Wings",
+        "logic": "ORIG | (Abyss_21[right1] + (ANTIGRAV | BLUEMOTH))"
     }
 ]
