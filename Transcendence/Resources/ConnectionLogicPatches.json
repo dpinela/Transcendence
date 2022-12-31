@@ -179,6 +179,10 @@
         "name": "Bench-Acid_Sluice_West",
         "logic": "ORIG | (Waterways_06[right1] + (ANTIGRAVWINGS | (ANTIGRAV + AIRSTALL + ITEMSOUL + LEFTDASH) | YEET | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL)))"
     },
+    {
+        "name": "Bench-Acid_Sluice_East",
+        "logic": "ORIG | (Waterways_07 + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + FULLCLAW) | (YEET + WINGS) | (YEET + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW)))"
+    },
     
     // move these to LogicPatches later
     {
