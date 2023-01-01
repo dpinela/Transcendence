@@ -31,7 +31,8 @@ namespace Transcendence
             "Init",
             "Init Enemy List",
             "Closed",
-            "Can Open Inventory?"
+            "Can Open Inventory?",
+            "No Inv"
         };
 
         private static bool InInventory()
