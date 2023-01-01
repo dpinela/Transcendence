@@ -2411,5 +2411,75 @@
     {
         "name": "Monarch_Wings",
         "logic": "ORIG | (Abyss_21[right1] + (ANTIGRAV | BLUEMOTH))"
+    },
+
+    // Abyss
+    {
+        "name": "Abyss_06_Core[top1]",
+        "logic": "ORIG | ((Abyss_06_Core[top1] | $TrueAndExists[Bench-King's_Door]) + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Abyss_06_Core[left1]",
+        "logic": "ORIG | (Abyss_06_Core + LIFEBLOOD + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Abyss_1",
+        "logic": "ORIG | ((Abyss_06_Core[top1] | $TrueAndExists[Bench-King's_Door]) + BRAND + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Abyss_06_Core + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Abyss_2",
+        "logic": "ORIG | ((Abyss_06_Core[top1] | $TrueAndExists[Bench-King's_Door]) + BRAND + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + _AIRSTALL_1 + ROOMSOUL))) | (Abyss_06_Core + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Abyss_3",
+        "logic": "ORIG | ((Abyss_06_Core[left3] | Abyss_06_Core[right2] | Abyss_06_Core[bot1]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Lifeblood_Core",
+        "logic": "ORIG | (Abyss_08[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Arcane_Egg-Lifeblood_Core",
+        "logic": "ORIG | (Abyss_08[right1] + BLUEMOTH)"
+    },
+    {
+        "name": "Warp-Lifeblood_Core_to_Abyss",
+        "logic": "ORIG | (Abyss_08[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Abyss_16[left1]",
+        "logic": "ORIG | (Abyss_16[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Abyss_16[right1]",
+        "logic": "ORIG | (Abyss_16[left1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Abyss_09",
+        "logic": "ORIG | (Abyss_09[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW)))"
+    },
+    {
+        "name": "Abyss_09[right1]",
+        "logic": "ORIG | (Abyss_09 + (Lit_Abyss_Lighthouse | VOIDHEART) + (BLUEMOTH | (YEET + RIGHTDASH + RIGHTCLAW + WINGS)))"
+    },
+    {
+        "name": "Abyss_09[right2]",
+        "logic": "ORIG | (Abyss_09 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + FULLCLAW) | (CRYSTALMASTER + LEFTCLAW + PRECISEMOVEMENT)))"
+    },
+    {
+        "name": "Abyss_10[left2]",
+        "logic": "ORIG | (Abyss_10[left1] + LEFTSHADOWDASH + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTSHADOWDASH) | (ANTIGRAV + VOIDHEART) | (CRYSTALMASTER + ANYCLAW + RIGHTSHADOWDASH + BACKGROUNDPOGOS) | (CRYSTALMASTER + ANYCLAW + VOIDHEART + BACKGROUNDPOGOS)))"
+    },
+    {
+        "name": "Abyss_10[left2]",
+        "logic": "ORIG | (Abyss_10[left1] + LEFTSHADOWDASH + ANTIGRAVWINGS) | (Abyss_10[left1] + LEFTSHADOWDASH + (ANTIGRAV | (CRYSTALMASTER + ANYCLAW + BACKGROUNDPOGOS)) + (RIGHTSHADOWDASH | VOIDHEART))"
+    },
+    {
+        "name": "Abyss_15[top1]",
+        "logic": "ORIG | (Abyss_15[top1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "Void_Heart",
+        "logic": "ORIG | (Abyss_15[top1] + RIGHTSHADOWDASH + DREAMNAIL + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
     }
 ]
