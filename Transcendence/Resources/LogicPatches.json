@@ -2481,5 +2481,79 @@
     {
         "name": "Void_Heart",
         "logic": "ORIG | (Abyss_15[top1] + RIGHTSHADOWDASH + DREAMNAIL + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
+    },
+
+    // Hive
+    {
+        "name": "Hive_01[right1]",
+        "logic": "ORIG | (Hive_01[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + ENEMYPOGOS) | (CRYSTALMASTER + LEFTCLAW + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Hive_02[left1]",
+        "logic": "ORIG | ((Hive_02[left2] | Hive_02[left3]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Hive_02[left2]",
+        "logic": "ORIG | ((Hive_02[left1] | Hive_02[left3]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW)))"
+    },
+    {
+        "name": "Whispering_Root-Hive",
+        "logic": "ORIG | ((Hive_02[left1] | Hive_02[left2] | Hive_02[left3]) + DREAMNAIL + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Hive_Outside_Bench",
+        "logic": "ORIG | ((Hive_02[left1] | Hive_02[left3]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Geo_Rock-Hive_Below_Root",
+        "logic": "ORIG | ((Hive_02[left2] | Hive_02[left3]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Geo_Rock-Hive_After_Root",
+        "logic": "ORIG | ((Hive_02[left2] | Hive_02[left3]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Hive_03_c[left1]",
+        "logic": "ORIG | (Hive_03_c + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Hive_03_c[top1]",
+        "logic": "ORIG | (Hive_03_c + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW))) | (Hive_03_c[right2] + CRYSTALMASTER)"
+    },
+    {
+        "name": "Hive_03[right1]",
+        "logic": "ORIG | (Hive_03[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Grimmkin_Flame-Hive",
+        "logic": "ORIG | (Hive_03[bot1] + Second_Grimmchild_Upgrade + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + BACKGROUNDPOGOS)))"
+    },
+    {
+        "name": "Geo_Rock-Hive_Stash",
+        "logic": "ORIG | (Hive_03[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Hive_Stash_Dupe",
+        "logic": "ORIG | (Hive_03[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Hive_04[left1]",
+        "logic": "ORIG | (Hive_04[right1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Hive_04[right1]",
+        "logic": "ORIG | (Hive_04[left1] + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + _AIRSTALL_1 + ROOMSOUL)))"
+    },
+    {
+        "name": "Grub-Hive_Internal",
+        "logic": "ORIG | ((Hive_04[left1] | Hive_04[right1]) + (BLUEMOTH | (ANTIGRAV + ANYCLAW + WINGS) | (ANTIGRAV + RIGHTSHARPSHADOW + WINGS) | (ANTIGRAV + ENEMYPOGOS + WINGS) | (CRYSTALMASTER + RIGHTCLAW + WINGS)))"
+    },
+    {
+        "name": "Geo_Rock-Hive_Below_Grub",
+        "logic": "ORIG | (Hive_04[right1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+    {
+        "name": "Geo_Rock-Hive_Above_Mask",
+        "logic": "ORIG | (Hive_04[right1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
     }
 ]
