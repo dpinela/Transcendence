@@ -183,6 +183,22 @@
         "name": "Bench-Acid_Sluice_East",
         "logic": "ORIG | (Waterways_07 + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + FULLCLAW) | (YEET + WINGS) | (YEET + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW)))"
     },
+    {
+        "name": "Bench-Kingsmould_Duelist",
+        "logic": "ORIG | (White_Palace_02[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + LEFTCLAW + COMBAT[White_Palace_Arenas])))"
+    },
+    {
+        "name": "Lever-Palace_Entrance_Orb",
+        "logic": "ORIG | (White_Palace_02[left1] + (BLUEMOTH | (ANTIGRAV + WINGS + COMBAT[White_Palace_Arenas]) | (ANTIGRAV + LEFTCLAW + COMBAT[White_Palace_Arenas])))"
+    },
+    {
+        "name": "Lever-Palace_Atrium",
+        "logic": "ORIG | (White_Palace_03_hub + Lever-Palace_Atrium + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTDASH)))"
+    },
+    {
+        "name": "Lever-Palace_Right",
+        "logic": "ORIG | ((White_Palace_15[left1] | White_Palace_15[right2]) + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))"
+    },
     
     // move these to LogicPatches later
     {

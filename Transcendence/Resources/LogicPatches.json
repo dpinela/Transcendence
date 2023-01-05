@@ -2555,5 +2555,75 @@
     {
         "name": "Geo_Rock-Hive_Above_Mask",
         "logic": "ORIG | (Hive_04[right1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+    },
+
+    // White Palace
+    {
+        "name": "White_Palace_01",
+        "logic": "ORIG | (White_Palace_01[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW))) | ((White_Palace_01[right1] | (White_Palace_01[top1] + Palace_Entrance_Lantern_Lit)) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + BACKGROUNDPOGOS) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "White_Palace_01[right1]",
+        "logic": "ORIG | (White_Palace_01 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + _AIRSTALL_1 + ROOMSOUL)))"
+    },
+    {
+        "name": "White_Palace_01[top1]",
+        "logic": "ORIG | (White_Palace_01 + Palace_Entrance_Lantern_Lit + ((ANTIGRAV + ANYCLAW) | BLUEMOTH | (CRYSTALMASTER + GREATSLASH + ANYCLAW) | (CRYSTALMASTER + _AIRSTALL_1 + ROOMSOUL + ANYCLAW))) | (White_Palace_01[right1] + Palace_Entrance_Lantern_Lit + ((ANTIGRAV + ANYCLAW) | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Soul_Totem-White_Palace_Entrance",
+        "logic": "ORIG | (White_Palace_02[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + LEFTDASH + WINGS) | (ANTIGRAV + _AIRSTALL_3 + AREASOUL + WINGS) | (YEET + WINGS) | (CRYSTALMASTER + RIGHTCLAW + LEFTDASH + WINGS) | (CRYSTALMASTER + RIGHTCLAW + _AIRSTALL_2 + AREASOUL + WINGS))) | ($TrueAndExists[Bench-Kingsmould_Duelist] + CRYSTALMASTER + LEFTDASH + WINGS)"
+    },
+    {
+        "name": "Palace_Entrance_Lantern_Lit",
+        "logic": "ORIG | (White_Palace_02[left1] + $TrueOrNotExist[Lever-Palace_Entrance_Orb] + (BLUEMOTH | (ANTIGRAV + WINGS + COMBAT[White_Palace_Arenas]) | (ANTIGRAV + LEFTCLAW + COMBAT[White_Palace_Arenas])))"
+    },
+    {
+        "name": "Warp-White_Palace_Atrium_to_Palace_Grounds",
+        "logic": "ORIG | (White_Palace_03_hub + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "White_Palace_03_hub",
+        "logic": "ORIG | (White_Palace_03_hub[bot1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "White_Palace_03_hub[left1]",
+        "logic": "ORIG | (White_Palace_03_hub + $TrueAndExists[Lever-Palace_Atrium] + ANTIGRAV + ANYCLAW)"
+    },
+    {
+        "name": "White_Palace_03_hub[right1]",
+        "logic": "ORIG | (White_Palace_03_hub + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + Palace_Atrium_Gates_Opened)))"
+    },
+    {
+        "name": "White_Palace_03_hub[top1]",
+        "logic": "ORIG | (White_Palace_03_hub + Palace_Atrium_Gates_Opened + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + FULLCLAW + LEFTDASH) | (CRYSTALMASTER + FULLCLAW + _AIRSTALL_2 + ROOMSOUL)))"
+    },
+    {
+        "name": "Soul_Totem-White_Palace_Hub",
+        "logic": "ORIG | (White_Palace_03_hub + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "White_Palace_15[left1]",
+        "logic": "ORIG | (White_Palace_15[right2] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "White_Palace_15[right2]",
+        "logic": "ORIG | (White_Palace_15[left1] + ANTIGRAVWINGS)"
+    },
+    {
+        "name": "White_Palace_15[right1]",
+        "logic": "ORIG | ((White_Palace_15[left1] | White_Palace_15[right2]) + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))"
+    },
+    {
+        "name": "Soul_Totem-White_Palace_Right",
+        "logic": "ORIG | ((White_Palace_15[left1] | White_Palace_15[right2]) + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))"
+    },
+    {
+        "name": "Palace_Right_Lantern_Lit",
+        "logic": "ORIG | ((White_Palace_15[left1] | White_Palace_15[right2]) + $TrueOrNotExist[Lever-Palace_Right] + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))"
+    },
+    {
+        "name": "White_Palace_05[right1]",
+        "logic": "ORIG | (White_Palace_05[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + PRECISEMOVEMENT))) | ($TrueAndExists[Bench-Thorny_Respite] + (ANTIGRAVWINGS | (CRYSTALMASTER + WINGS + ANYCLAW)))"
     }
 ]
