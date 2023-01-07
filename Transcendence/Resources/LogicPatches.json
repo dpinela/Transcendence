@@ -2625,5 +2625,17 @@
     {
         "name": "White_Palace_05[right1]",
         "logic": "ORIG | (White_Palace_05[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + PRECISEMOVEMENT))) | ($TrueAndExists[Bench-Thorny_Respite] + (ANTIGRAVWINGS | (CRYSTALMASTER + WINGS + ANYCLAW)))"
+    },
+    {
+        "name": "White_Palace_05[left1]",
+        "logic": "ORIG | (White_Palace_05[right1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW + WINGS))) | ($TrueAndExists[Bench-Thorny_Respite] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "White_Palace_16[left1]",
+        "logic": "ORIG | (White_Palace_16[left2] + (BLUEMOTH | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "White_Palace_04[top1]",
+        "logic": "ORIG | (White_Palace_04[top1] + (ANTIGRAV | BLUEMOTH)) | (White_Palace_04[right2] + (ANTIGRAVWINGS | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS))) | ($TrueAndExists[Bench-Sawblade_Choir] + (ANTIGRAVWINGS | (CRYSTALMASTER + WINGS)))"
     }
 ]

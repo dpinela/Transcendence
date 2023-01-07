@@ -199,6 +199,10 @@
         "name": "Lever-Palace_Right",
         "logic": "ORIG | ((White_Palace_15[left1] | White_Palace_15[right2]) + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))"
     },
+    {
+        "name": "Bench-Thorny_Respite",
+        "logic": "ORIG | (White_Palace_05[right1] + (ANTIGRAVWINGS | (ANTIGRAV + LEFTDASH + ANYCLAW) | (YEET + ANYCLAW + GREATSLASH) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW + WINGS)))"
+    },
     
     // move these to LogicPatches later
     {
