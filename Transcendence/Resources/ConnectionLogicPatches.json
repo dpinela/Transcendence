@@ -1,7 +1,7 @@
 [
     {
         "name": "Lever-Crystal_Peak_Spike_Grub",
-        "logic": "ORIG | ((Mines_03[bot1] | Mines_03[right1]) + BLUEMOTH + (((CRYSTALMASTER | LEFTDASH | AIRSTALL) + SPIKETUNNELS) | Lever-Crystal_Peak_Spike_Grub)) | (Mines_03[bot1] + ANTIGRAV + (PRECISEMOVEMENT | Longnail | Mark_of_Pride) + SPIKETUNNELS) | (Mines_03[right1] + ANTIGRAV + SPIKETUNNELS)"
+        "logic": "ORIG | ((Mines_03[bot1] | Mines_03[right1]) + BLUEMOTH + (((CRYSTALMASTER | LEFTDASH | SPELLAIRSTALL + $CASTSPELL[3]) + SPIKETUNNELS) | Lever-Crystal_Peak_Spike_Grub)) | (Mines_03[bot1] + ANTIGRAV + (PRECISEMOVEMENT | LONGNAIL | MARKOFPRIDE) + SPIKETUNNELS) | (Mines_03[right1] + ANTIGRAV + SPIKETUNNELS)"
     },
     {
         "name": "Lever-Crystal_Peak_Crushers_Grub",
@@ -21,7 +21,7 @@
     },
     {
         "name": "Switch-Petra_Arena",
-        "logic": "ORIG | ((Fungus3_05[left1] | Fungus3_05[right1] | (Fungus3_05[right2] + Switch-Petra_Arena)) + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW + PRECISEMOVEMENT) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | ((Fungus3_05[left1] | Fungus3_05[right1] | (Fungus3_05[right2] + Switch-Petra_Arena)) + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW + PRECISEMOVEMENT) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Bench-Gardens_Stag",
@@ -41,7 +41,7 @@
     },
     {
         "name": "Lever-Queen's_Station_Mask_Shard",
-        "logic": "ORIG | (Fungus2_01 + (BLUEMOTH | YEET | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + AIRSTALL + AREASOUL) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (CRYSTALMASTER + FULLCLAW)))"
+        "logic": "ORIG | (Fungus2_01 + (BLUEMOTH | YEET | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (CRYSTALMASTER + FULLCLAW)))"
     },
     {
         "name": "Lever-Fungal_Wastes_Bouncy_Grub",
@@ -53,11 +53,11 @@
     },
     {
         "name": "Lever-Pilgrim's_Way_Left",
-        "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS))) | (Fungus2_21[right1] + QUAKE + (ANTIGRAVWINGS | (CRYSTALMASTER + FULLCLAW)))"
+        "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS))) | (Fungus2_21[right1] + Broke_Pilgrim's_Way_Quake_Floor + (ANTIGRAVWINGS | (CRYSTALMASTER + FULLCLAW)))"
     },
     {
         "name": "Lever-Pilgrim's_Way_Right",
-        "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS))) | (Fungus2_21[right1] + QUAKE + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+        "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS))) | (Fungus2_21[right1] + Broke_Pilgrim's_Way_Quake_Floor + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
     },
     {
         "name": "Bench-Bretta",
@@ -89,7 +89,7 @@
     },
     {
         "name": "Lever-City_Above_Lemm_Upper",
-        "logic": "ORIG | (Ruins1_05[bot2] + BLUEMOTH + Lever-City_Above_Lemm_Upper) | (Ruins1_05[bot1] + Lever-City_Above_Lemm_Upper + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (SNAILSLASH + Longnail + Mark_of_Pride + BACKGROUNDPOGOS)))"
+        "logic": "ORIG | (Ruins1_05[bot2] + BLUEMOTH + Lever-City_Above_Lemm_Upper) | (Ruins1_05[bot1] + Lever-City_Above_Lemm_Upper + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (SNAILSLASH + LONGMARK + BACKGROUNDPOGOS)))"
     },
     {
         "name": "Lever-City_Above_Lemm_Left",
@@ -97,7 +97,7 @@
     },
     {
         "name": "Lever-Sanctum_Soul_Warrior",
-        "logic": "ORIG | (Ruins1_23 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Ruins1_23 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Lever-Sanctum_Bottom",
@@ -113,11 +113,11 @@
     },
     {
         "name": "Lever-Sanctum_West_Upper",
-        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + ROOMSOUL)"
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + Broke_Quake_Floor_After_Soul_Master_1)"
     },
     {
         "name": "Lever-Sanctum_West_Lower",
-        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + Lever-Sanctum_West_Upper)) + QUAKE + ROOMSOUL)"
+        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + Lever-Sanctum_West_Upper)) + (Broke_Quake_Floor_After_Soul_Master_1 | Lever-Sanctum_West_Upper) + Broke_Quake_Floor_After_Soul_Master_2 + Broke_Quake_Floor_After_Soul_Master_3)"
     },
     {
         "name": "Lever-City_Fountain",
@@ -173,11 +173,11 @@
     },
     {
         "name": "Bench-Hermit's_Approach",
-        "logic": "ORIG | (Room_GG_Shortcut[top1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS) | (YEET + AIRSTALL + ROOMSOUL + WINGS))) | (Room_GG_Shortcut[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTDASH + WINGS + ANYCLAW) | (YEET + AIRSTALL + ROOMSOUL + ANYCLAW)))"
+        "logic": "ORIG | (Room_GG_Shortcut[top1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS))) | (Room_GG_Shortcut[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTDASH + WINGS + ANYCLAW) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + ANYCLAW)))"
     },
     {
         "name": "Bench-Acid_Sluice_West",
-        "logic": "ORIG | (Waterways_06[right1] + (ANTIGRAVWINGS | (ANTIGRAV + AIRSTALL + ITEMSOUL + LEFTDASH) | YEET | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL)))"
+        "logic": "ORIG | (Waterways_06[right1] + (ANTIGRAVWINGS | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3] + LEFTDASH) | YEET | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3])))"
     },
     {
         "name": "Bench-Acid_Sluice_East",

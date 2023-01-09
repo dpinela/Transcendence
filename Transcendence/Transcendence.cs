@@ -720,7 +720,7 @@ namespace Transcendence
                 lmb.GetOrAddTerm(key);
             }
             var origResolver = lmb.VariableResolver;
-            lmb.VariableResolver = new FuncVariableResolver((LogicManager lm, string term, out LogicInt lvar) =>
+            lmb.VariableResolver = new FuncVariableResolver((LogicManager lm, string term, out LogicVariable lvar) =>
             {
                 if (origResolver.TryMatch(lm, term, out lvar))
                 {
@@ -730,7 +730,7 @@ namespace Transcendence
                 {
                     if (!origResolver.TryMatch(lm, innerTerm, out lvar))
                     {
-                        lvar = new FuncLogicInt(term, () => 1);
+                        lvar = new ConstantInt(LogicVariable.TRUE);
                     }
                     return true;
                 }
@@ -738,21 +738,11 @@ namespace Transcendence
                 {
                     if (!origResolver.TryMatch(lm, innerTermII, out lvar))
                     {
-                        lvar = new FuncLogicInt(term, () => 0);
+                        lvar = new ConstantInt(LogicVariable.FALSE);
                     }
                     return true;
                 }
-                switch (term)
-                {
-                    case "$NotchCostYEET":
-                        lvar = new FuncLogicInt(term, () => NextRandoNotchCosts[AntigravityAmulet.Instance.Num] + NextRandoNotchCosts[Crystalmaster.Instance.Num]);
-                        return true;
-                    case "$NotchCostANTIGRAVNITRO":
-                        lvar = new FuncLogicInt(term, () => NextRandoNotchCosts[AntigravityAmulet.Instance.Num] + NextRandoNotchCosts[NitroCrystal.Instance.Num]);
-                        return true;
-                    default:
-                        return false;
-                }
+                return false;
             });
 
             var modDir = Path.GetDirectoryName(typeof(Transcendence).Assembly.Location);

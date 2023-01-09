@@ -10,12 +10,7 @@
     "NITRO": "NITRO_CRYSTAL_ON + (Nitro_Crystal | CHAOSORB) + Can_Bench",
     "CRYSTALMASTER_TRULY_ON": "CRYSTALMASTER_ON | (CRYSTALMASTER_ON_GEO + Can_Replenish_Geo)",
     "CRYSTALMASTER": "(Crystalmaster | CHAOSORB) + Can_Bench + CRYSTALMASTER_TRULY_ON",
-    "YEET": "(CHAOS_ORB_ON + ANTIGRAVITY_AMULET_ON + CRYSTALMASTER_TRULY_ON + Chaos_Orb + Can_Bench) | (ANTIGRAVITY_AMULET_ON + Antigravity_Amulet + CRYSTALMASTER_TRULY_ON + Crystalmaster + Can_Bench + $NotchCostYEET)",
-    "ANTIGRAVNITRO": "(CHAOS_ORB_ON + ANTIGRAVITY_AMULET_ON + NITRO_CRYSTAL_ON + Chaos_Orb + Can_Bench) | (ANTIGRAVITY_AMULET_ON + NITRO_CRYSTAL_ON + Antigravity_Amulet + Nitro_Crystal + Can_Bench + $NotchCostANTIGRAVNITRO)",
+    "YEET": "(CHAOS_ORB_ON + ANTIGRAVITY_AMULET_ON + CRYSTALMASTER_TRULY_ON + Chaos_Orb + Can_Bench) | (ANTIGRAVITY_AMULET_ON + Antigravity_Amulet + CRYSTALMASTER_TRULY_ON + Crystalmaster + Can_Bench)",
 
-    "PEAKSPIKEGRUBEXT": "((Mines_03[bot1] | Mines_03[right1]) + BLUEMOTH + (((CRYSTALMASTER | LEFTDASH | AIRSTALL) + SPIKETUNNELS) | $TrueAndExist[Lever-Crystal_Peak_Spike_Grub])) | (Mines_03[bot1] + ANTIGRAV + (PRECISEMOVEMENT | Longnail | Mark_of_Pride) + SPIKETUNNELS) | (Mines_03[right1] + ANTIGRAV + SPIKETUNNELS)",
-
-    "_AIRSTALL_3": "AIRSTALL",
-    "_AIRSTALL_2": "AIRSTALL",
-    "_AIRSTALL_1": "AIRSTALL"
+    "SNAILSLASH_WITH_AIRSTALL": "SNAILSLASH + SPELLAIRSTALL"
 }

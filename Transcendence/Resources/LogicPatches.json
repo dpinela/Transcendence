@@ -22,11 +22,11 @@
     },
     {
         "name": "Soul_Totem-Crossroads_Acid",
-        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + YEET + AIRSTALL)))"
+        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + YEET + SPELLAIRSTALL + $CASTSPELL[3])))"
     },
     {
         "name": "Crossroads_35[bot1]",
-        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + YEET + AIRSTALL)))"
+        "logic": "ORIG | (Crossroads_35[right1] + ACIDSKIPS + (BLUEMOTH | (RIGHTDASH + RIGHTCLAW + YEET + SPELLAIRSTALL + $CASTSPELL[3])))"
     },
     {
         "name": "Crossroads_35[right1]",
@@ -92,11 +92,11 @@
     },
     {
         "name": "Vessel_Fragment-Greenpath",
-        "logic": "ORIG | (Fungus1_13[right1] + ((ANTIGRAV + DAMAGEBOOSTS + 2HITS) | BLUEMOTH))"
+        "logic": "ORIG | (Fungus1_13[right1] + ((ANTIGRAV + $TAKEDAMAGE[1]) | BLUEMOTH))"
     },
     {
         "name": "Lore_Tablet-Greenpath_QG",
-        "logic": "ORIG | (Fungus1_13[right1] + ((ANTIGRAV + DAMAGEBOOSTS + 2HITS) | BLUEMOTH | CRYSTALMASTER) + (SIDESLASH | CYCLONE | GREATSLASH | LEFTDASHSLASH | (RIGHTDASHSLASH + DASHMASTER + OBSCURESKIPS)))"
+        "logic": "ORIG | (Fungus1_13[right1] + ((ANTIGRAV + $TAKEDAMAGE[1]) | BLUEMOTH | CRYSTALMASTER) + (SIDESLASH | CYCLONE | GREATSLASH | LEFTDASHSLASH | (RIGHTDASHSLASH + DASHMASTER + OBSCURESKIPS)))"
     },
     {
         "name": "Whispering_Root-Greenpath",
@@ -108,11 +108,11 @@
     },
     {
         "name": "Hallownest_Seal-Greenpath",
-        "logic": "ORIG | ((Fungus1_10[left1] | Fungus1_10[right1] | Fungus1_10[top1]) + ((CRYSTALMASTER + FULLCLAW) | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + AIRSTALL + LEFTCLAW) | (YEET + LEFTCLAW) | (YEET + AIRSTALL) | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + WINGS) | (ANTIGRAV + AIRSTALL + FULLCLAW) | BLUEMOTH))"
+        "logic": "ORIG | ((Fungus1_10[left1] | Fungus1_10[right1] | Fungus1_10[top1]) + ((CRYSTALMASTER + FULLCLAW) | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3] + LEFTCLAW) | (YEET + LEFTCLAW) | (YEET + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + WINGS) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3] + FULLCLAW) | BLUEMOTH))"
     },
     {
         "name": "Fungus1_09[left1]",
-        "logic": "ORIG | (Fungus1_09[right1] + (BLUEMOTH | (ANTIGRAV + LEFTDASH + LEFTCLAW) | (CRYSTALMASTER + AIRSTALL + LEFTCLAW) | (CRYSTALMASTER + GREATSLASH + LEFTCLAW) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW) | (CRYSTALMASTER + WINGS + LEFTCLAW) | (CRYSTALMASTER + WINGS + ANTIGRAV) | (RIGHTCLAW + WINGS + ANTIGRAV) | (AIRSTALL + WINGS + ANTIGRAV)))"
+        "logic": "ORIG | (Fungus1_09[right1] + (BLUEMOTH | (ANTIGRAV + LEFTDASH + LEFTCLAW) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3] + LEFTCLAW) | (CRYSTALMASTER + GREATSLASH + LEFTCLAW) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW) | (CRYSTALMASTER + WINGS + LEFTCLAW) | (CRYSTALMASTER + WINGS + ANTIGRAV) | (RIGHTCLAW + WINGS + ANTIGRAV) | (SPELLAIRSTALL + $CASTSPELL[3] + WINGS + ANTIGRAV)))"
     },
     {
         "name": "Fungus1_15[door1]",
@@ -120,7 +120,7 @@
     },
     {
         "name": "Thorns_of_Agony",
-        "logic": "ORIG | (Fungus1_14[left1] + ((ANTIGRAV + AIRSTALL + 2HITS + DAMAGEBOOSTS) | YEET | (AIRSTALL + CRYSTALMASTER) | (RIGHTCLAW + CRYSTALMASTER)))"
+        "logic": "ORIG | (Fungus1_14[left1] + ((ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3] + $TAKEDAMAGE[1]) | YEET | (SPELLAIRSTALL + $CASTSPELL[3] + CRYSTALMASTER) | (RIGHTCLAW + CRYSTALMASTER)))"
     },
     {
         "name": "Fungus1_04[left1]",
@@ -136,11 +136,11 @@
     },
     {
         "name": "Fungus1_26[right1]",
-        "logic": "ORIG | (Fungus1_26[left1] + (BLUEMOTH | (RIGHTDASH + WINGS + YEET) | (RIGHTDASH + LEFTCLAW + WINGS + CRYSTALMASTER) | (AIRSTALL + ROOMSOUL + LEFTCLAW + WINGS + CRYSTALMASTER)))"
+        "logic": "ORIG | (Fungus1_26[left1] + (BLUEMOTH | (RIGHTDASH + WINGS + YEET) | (RIGHTDASH + LEFTCLAW + WINGS + CRYSTALMASTER) | (SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + LEFTCLAW + WINGS + CRYSTALMASTER)))"
     },
     {
         "name": "Shape_of_Unn",
-        "logic": "ORIG | (Fungus1_Slug[right1] + (BLUEMOTH | (FULLDASH + WINGS + CRYSTALMASTER) | (WINGS + AIRSTALL + ROOMSOUL + YEET) | (WINGS + GREATSLASH + YEET)))"
+        "logic": "ORIG | (Fungus1_Slug[right1] + (BLUEMOTH | (FULLDASH + WINGS + CRYSTALMASTER) | (WINGS + SPELLAIRSTALL + $CASTSPELL[3] + YEET) | (WINGS + GREATSLASH + YEET)))"
     },
     {
         "name": "Greenpath_Map",
@@ -156,7 +156,7 @@
     },
     {
         "name": "Grub-Greenpath_Journal",
-        "logic": "ORIG | ((Fungus1_07[left1] | Fungus1_07[top1] | Fungus1_07[right1]) + (CRYSTALMASTER | ANTIGRAVWINGS | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + AIRSTALL) | (ANTIGRAV + RIGHTCLAW)))"
+        "logic": "ORIG | ((Fungus1_07[left1] | Fungus1_07[top1] | Fungus1_07[right1]) + (CRYSTALMASTER | ANTIGRAVWINGS | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + RIGHTCLAW)))"
     },
     {
         "name": "Boss_Geo-Vengefly_King",
@@ -166,11 +166,11 @@
     // Resting Grounds
     {
         "name": "King's_Idol-Glade_of_Hope",
-        "logic": "ORIG | (RestingGrounds_08[left1] + (ANTIGRAVWINGS | YEET | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + ((AIRSTALL + ROOMSOUL) | GREATSLASH | CYCLONE | SWIM) + ANYCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS)))"
+        "logic": "ORIG | (RestingGrounds_08[left1] + (ANTIGRAVWINGS | YEET | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + ((SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | GREATSLASH | CYCLONE | SWIM) + ANYCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS)))"
     },
     {
         "name": "Whispering_Root-Spirits_Glade",
-        "logic": "ORIG | (RestingGrounds_08[left1] + DREAMNAIL + (ANTIGRAVWINGS | YEET | (ANTIGRAV + FULLDASH) | (ANTIGRAV + ANYCLAW + ((AIRSTALL + ROOMSOUL) | GREATSLASH | CYCLONE)) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS)))"
+        "logic": "ORIG | (RestingGrounds_08[left1] + DREAMNAIL + (ANTIGRAVWINGS | YEET | (ANTIGRAV + FULLDASH) | (ANTIGRAV + ANYCLAW + ((SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | GREATSLASH | CYCLONE)) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS)))"
     },
     {
         "name": "Grub-Resting_Grounds",
@@ -210,7 +210,7 @@
     },
     {
         "name": "Rancid_Egg-Blue_Lake",
-        "logic": "ORIG | (Crossroads_50[left1] + (BLUEMOTH | (YEET + AIRSTALL) | (YEET + GREATSLASH) | (YEET + RIGHTDASH) | (YEET + WINGS) | (ANTIGRAV + SWIM + ENEMYPOGOS + DAMAGEBOOSTS + 2HITS))) | (Crossroads_50[right1] + ANTIGRAV + LEFTSUPERDASH + WINGS + ENEMYPOGOS)"
+        "logic": "ORIG | (Crossroads_50[left1] + (BLUEMOTH | (YEET + SPELLAIRSTALL + $CASTSPELL[3]) | (YEET + GREATSLASH) | (YEET + RIGHTDASH) | (YEET + WINGS) | (ANTIGRAV + SWIM + ENEMYPOGOS + $TAKEDAMAGE[1]))) | (Crossroads_50[right1] + ANTIGRAV + LEFTSUPERDASH + WINGS + ENEMYPOGOS)"
     },
     {
         "name": "Boss_Essence-Xero",
@@ -220,11 +220,11 @@
     // Howling Cliffs
     {
         "name": "Cliffs_02[left2]",
-        "logic": "ORIG | (Cliffs_02 + (ANTIGRAVWINGS | (SNAILSLASH + AIRSTALL + ENEMYPOGOS)))"
+        "logic": "ORIG | (Cliffs_02 + (ANTIGRAVWINGS | SNAILSLASH_WITH_AIRSTALL))"
     },
     {
         "name": "Cliffs_02[right1]",
-        "logic": "ORIG | (Cliffs_02 + (ANTIGRAVWINGS | CRYSTALMASTER | (SNAILSLASH + AIRSTALL + ENEMYPOGOS)))"
+        "logic": "ORIG | (Cliffs_02 + (ANTIGRAVWINGS | CRYSTALMASTER | SNAILSLASH_WITH_AIRSTALL))"
     },
     {
         "name": "Cliffs_02",
@@ -315,7 +315,7 @@
     // Crystal Peak
     {
         "name": "Rancid_Egg-Crystal_Peak_Dive_Entrance",
-        "logic": "ORIG | (Mines_01[left1] + (BLUEMOTH | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + AIRSTALL + TERMINALSOUL) | (CRYSTALMASTER + ANYCLAW) | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + AIRSTALL + TERMINALSOUL))) | (Mines_01[bot1] + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + LEFTCLAW + RIGHTDASH) | (ANTIGRAV + LEFTCLAW + AIRSTALL + TERMINALSOUL) | (ANTIGRAV + LEFTCLAW + RIGHTSUPERDASH) | (YEET + LEFTCLAW) | (CRYSTALMASTER + LEFTCLAW + PRECISEMOVEMENT) | (CRYSTALMASTER + LEFTCLAW + WINGS)))"
+        "logic": "ORIG | (Mines_01[left1] + (BLUEMOTH | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3]) | (CRYSTALMASTER + ANYCLAW) | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3]))) | (Mines_01[bot1] + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + LEFTCLAW + RIGHTDASH) | (ANTIGRAV + LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + LEFTCLAW + RIGHTSUPERDASH) | (YEET + LEFTCLAW) | (CRYSTALMASTER + LEFTCLAW + PRECISEMOVEMENT) | (CRYSTALMASTER + LEFTCLAW + WINGS)))"
     },
     {
         "name": "Mines_02[top1]",
@@ -331,7 +331,7 @@
     },
     {
         "name": "Mines_04",
-        "logic": "ORIG | (Mines_04[left3] + (ANTIGRAVWINGS | (SNAILSLASH + AIRSTALL)))"
+        "logic": "ORIG | (Mines_04[left3] + (ANTIGRAVWINGS | (SNAILSLASH_WITH_AIRSTALL)))"
     },
     {
         "name": "Mines_04[left1]",
@@ -355,27 +355,27 @@
     },
     {
         "name": "Soul_Totem-Crystallized_Mound",
-        "logic": "ORIG | (Mines_35[left1] + QUAKE + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + DIFFICULTSKIPS)))"
+        "logic": "ORIG | (Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (ANTIGRAV | BLUEMOTH | (SNAILSLASH_WITH_AIRSTALL + DIFFICULTSKIPS)))"
     },
     {
         "name": "Grub-Crystallized_Mound",
-        "logic": "ORIG | (Mines_35[left1] + QUAKE + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + DIFFICULTSKIPS)))"
+        "logic": "ORIG | (Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + (ANTIGRAV | BLUEMOTH | (SNAILSLASH_WITH_AIRSTALL + DIFFICULTSKIPS)))"
     },
     {
         "name": "Descending_Dark",
-        "logic": "ORIG | (Mines_35[left1] + QUAKE + ((ANTIGRAV + AIRSTALL + ENEMYPOGOS) | BLUEMOTH | (SNAILSLASH + AIRSTALL + DIFFICULTSKIPS)))"
+        "logic": "ORIG | (Mines_35[left1] + Broke_Crystallized_Mound_Quake_Floor + ((ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3] + ENEMYPOGOS) | BLUEMOTH | (SNAILSLASH_WITH_AIRSTALL + DIFFICULTSKIPS)))"
     },
     {
         "name": "Mines_03[right1]",
-        "logic": "ORIG | (Mines_03[bot1] + (BLUEMOTH | (ANTIGRAV + (PRECISEMOVEMENT | Longnail | Mark_of_Pride))))"
+        "logic": "ORIG | (Mines_03[bot1] + (BLUEMOTH | (ANTIGRAV + (PRECISEMOVEMENT | LONGNAIL | MARKOFPRIDE))))"
     },
     {
         "name": "Mines_03[top1]",
-        "logic": "ORIG | ((Mines_03[bot1] | Mines_03[right1]) + BLUEMOTH) | (Mines_03[bot1] + ANTIGRAV + (PRECISEMOVEMENT | Longnail | Mark_of_Pride) + SPIKETUNNELS + $TrueOrNotExist[Lever-Crystal_Peak_Spike_Grub]) | (Mines_03[right1] + ANTIGRAV + SPIKETUNNELS + $TrueOrNotExist[Lever-Crystal_Peak_Spike_Grub])"
+        "logic": "ORIG | ((Mines_03[bot1] | Mines_03[right1]) + BLUEMOTH) | (Mines_03[bot1] + ANTIGRAV + (PRECISEMOVEMENT | LONGNAIL | MARKOFPRIDE) + SPIKETUNNELS + $TrueOrNotExist[Lever-Crystal_Peak_Spike_Grub]) | (Mines_03[right1] + ANTIGRAV + SPIKETUNNELS + $TrueOrNotExist[Lever-Crystal_Peak_Spike_Grub])"
     },
     {
         "name": "Grub-Crystal_Peak_Spike",
-        "logic": "ORIG | ((Mines_03[bot1] | Mines_03[right1]) + BLUEMOTH + (((CRYSTALMASTER | LEFTDASH | AIRSTALL) + SPIKETUNNELS) | $TrueAndExists[Lever-Crystal_Peak_Spike_Grub])) | (Mines_03[bot1] + ANTIGRAV + (PRECISEMOVEMENT | Longnail | Mark_of_Pride) + SPIKETUNNELS) | (Mines_03[right1] + ANTIGRAV + SPIKETUNNELS)"
+        "logic": "ORIG | ((Mines_03[bot1] | Mines_03[right1]) + BLUEMOTH + (((CRYSTALMASTER | LEFTDASH | SPELLAIRSTALL + $CASTSPELL[3]) + SPIKETUNNELS) | $TrueAndExists[Lever-Crystal_Peak_Spike_Grub])) | (Mines_03[bot1] + ANTIGRAV + (PRECISEMOVEMENT | LONGNAIL | MARKOFPRIDE) + SPIKETUNNELS) | (Mines_03[right1] + ANTIGRAV + SPIKETUNNELS)"
     },
     {
         "name": "Mines_05[right1]",
@@ -391,39 +391,39 @@
     },
     {
         "name": "Mines_06[left1]",
-        "logic": "ORIG | (Mines_06[right1] + (ANTIGRAVWINGS | YEET | (ANTIGRAV + LEFTDASH + AIRSTALL + AREASOUL + DAMAGEBOOSTS + 2HITS) | (CRYSTALMASTER + (LEFTDASH | (AIRSTALL + AREASOUL)) + ANYCLAW) | (CRYSTALMASTER + WINGS)))"
+        "logic": "ORIG | (Mines_06[right1] + (ANTIGRAVWINGS | YEET | (ANTIGRAV + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + $TAKEDAMAGE[1]) | (CRYSTALMASTER + (LEFTDASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])) + ANYCLAW) | (CRYSTALMASTER + WINGS)))"
     },
     {
         "name": "Mines_30[left1]",
-        "logic": "ORIG | (Mines_30[right1] + (BLUEMOTH | (YEET + (LEFTDASH | (AIRSTALL + AREASOUL)) + LEFTCLAW)))"
+        "logic": "ORIG | (Mines_30[right1] + (BLUEMOTH | (YEET + (LEFTDASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])) + LEFTCLAW)))"
     },
     {
         "name": "Mines_30[right1]",
-        "logic": "ORIG | (Mines_30[left1] + (BLUEMOTH | (YEET + (FULLCLAW | (RIGHTCLAW + GREATSLASH)) + RIGHTDASH + AIRSTALL + AREASOUL)))"
+        "logic": "ORIG | (Mines_30[left1] + (BLUEMOTH | (YEET + (FULLCLAW | (RIGHTCLAW + GREATSLASH)) + RIGHTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     {
         "name": "King's_Idol-Crystal_Peak",
-        "logic": "ORIG | (Mines_30[left1] + (BLUEMOTH | (ANTIGRAV + RIGHTSUPERDASH) | (YEET + (LEFTDASH | (AIRSTALL + AREASOUL)) + LEFTCLAW))) | (Mines_30[right1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + BACKGROUNDPOGOS)))"
+        "logic": "ORIG | (Mines_30[left1] + (BLUEMOTH | (ANTIGRAV + RIGHTSUPERDASH) | (YEET + (LEFTDASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])) + LEFTCLAW))) | (Mines_30[right1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + BACKGROUNDPOGOS)))"
     },
     {
         "name": "Crystal_Peak_Map",
-        "logic": "ORIG | (Mines_30[left1] + (BLUEMOTH | (YEET + (FULLCLAW | (RIGHTCLAW + GREATSLASH)) + RIGHTDASH + AIRSTALL + AREASOUL)))"
+        "logic": "ORIG | (Mines_30[left1] + (BLUEMOTH | (YEET + (FULLCLAW | (RIGHTCLAW + GREATSLASH)) + RIGHTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     {
         "name": "Mines_10[left1]",
-        "logic": "ORIG | (Mines_10[right1] + (BLUEMOTH | (ANTIGRAV + FULLCLAW + LEFTDASH + AIRSTALL + AREASOUL) | (ANTIGRAV + WINGS + ANYCLAW + (LEFTDASH | (AIRSTALL + AREASOUL))) | (YEET + LEFTCLAW + (LEFTDASH | GREATSLASH | (AIRSTALL + AREASOUL))) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW))) | (Mines_10[bot1] + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + (LEFTDASH | WINGS | (AIRSTALL + AREASOUL) | (GREATSLASH + LEFTCLAW)))))"
+        "logic": "ORIG | (Mines_10[right1] + (BLUEMOTH | (ANTIGRAV + FULLCLAW + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (ANTIGRAV + WINGS + ANYCLAW + (LEFTDASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]))) | (YEET + LEFTCLAW + (LEFTDASH | GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]))) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW))) | (Mines_10[bot1] + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + (LEFTDASH | WINGS | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (GREATSLASH + LEFTCLAW)))))"
     },
     {
         "name": "Mines_10[bot1]",
-        "logic": "ORIG | (Mines_10[right1] + (BLUEMOTH | (ANTIGRAV + FULLCLAW + LEFTDASH + AIRSTALL + AREASOUL) | (ANTIGRAV + WINGS + ANYCLAW + (LEFTDASH | (AIRSTALL + AREASOUL))) | (YEET + LEFTCLAW + (LEFTDASH | GREATSLASH | (AIRSTALL + AREASOUL))) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW))) | (Mines_10[left1] + (ANTIGRAVWINGS | (ANTIGRAV + (ANYCLAW | GREATSLASH | (AIRSTALL + ITEMSOUL)) + RIGHTDASH) | (ANTIGRAV + FULLCLAW + AIRSTALL + ITEMSOUL) | CRYSTALMASTER))"
+        "logic": "ORIG | (Mines_10[right1] + (BLUEMOTH | (ANTIGRAV + FULLCLAW + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (ANTIGRAV + WINGS + ANYCLAW + (LEFTDASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]))) | (YEET + LEFTCLAW + (LEFTDASH | GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]))) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW))) | (Mines_10[left1] + (ANTIGRAVWINGS | (ANTIGRAV + (ANYCLAW | GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[3])) + RIGHTDASH) | (ANTIGRAV + FULLCLAW + SPELLAIRSTALL + $CASTSPELL[3]) | CRYSTALMASTER))"
     },
     {
         "name": "Mines_10[right1]",
-        "logic": "ORIG | ((Mines_10[left1] | Mines_10[bot1]) + (BLUEMOTH | (ANTIGRAV + RIGHTSUPERDASH + WINGS) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + AREASOUL) | (CRYSTALMASTER + RIGHTCLAW + RIGHTDASH) | (YEET + WINGS)))"
+        "logic": "ORIG | ((Mines_10[left1] | Mines_10[bot1]) + (BLUEMOTH | (ANTIGRAV + RIGHTSUPERDASH + WINGS) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (CRYSTALMASTER + RIGHTCLAW + RIGHTDASH) | (YEET + WINGS)))"
     },
     {
         "name": "Grimmkin_Flame-Crystal_Peak",
-        "logic": "ORIG | ((Mines_10[left1] | Mines_10[bot1]) + GRIMMCHILD + (BLUEMOTH | (ANTIGRAV + RIGHTSUPERDASH + WINGS) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + AREASOUL) | (CRYSTALMASTER + RIGHTCLAW + RIGHTDASH) | (YEET + WINGS))) | (Mines_10[right1] + GRIMMCHILD + (ANTIGRAVWINGS | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTCLAW + LEFTDASH) | (CRYSTALMASTER + LEFTCLAW + AIRSTALL + AREASOUL) | (YEET + LEFTCLAW) | (YEET + LEFTDASH) | (ANTIGRAV + LEFTCLAW + LEFTDASH + (GREATSLASH | (AIRSTALL + AREASOUL)))))"
+        "logic": "ORIG | ((Mines_10[left1] | Mines_10[bot1]) + GRIMMCHILD + (BLUEMOTH | (ANTIGRAV + RIGHTSUPERDASH + WINGS) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (CRYSTALMASTER + RIGHTCLAW + RIGHTDASH) | (YEET + WINGS))) | (Mines_10[right1] + GRIMMCHILD + (ANTIGRAVWINGS | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTCLAW + LEFTDASH) | (CRYSTALMASTER + LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (YEET + LEFTCLAW) | (YEET + LEFTDASH) | (ANTIGRAV + LEFTCLAW + LEFTDASH + (GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))))"
     },
     {
         "name": "Mines_16[top1]",
@@ -443,7 +443,7 @@
     },
     {
         "name": "Shopkeeper's_Key",
-        "logic": "ORIG | (Mines_11 + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL)))"
+        "logic": "ORIG | (Mines_11 + (ANTIGRAV | BLUEMOTH | (SNAILSLASH_WITH_AIRSTALL)))"
     },
     {
         "name": "Mines_13[right1]",
@@ -471,7 +471,7 @@
     },
     {
         "name": "Mines_23",
-        "logic": "ORIG | ((Mines_23[left1] | Mines_23[top1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH)) | (Mines_23[top1] + CRYSTALMASTER) | (Mines_23[left1] + CRYSTALMASTER + RIGHTCLAW) | (Mines_23[left1] + SNAILSLASH + AIRSTALL + ROOMSOUL + RIGHTCLAW) | (Mines_23[right2] + SNAILSLASH + AIRSTALL + ROOMSOUL)"
+        "logic": "ORIG | ((Mines_23[left1] | Mines_23[top1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH)) | (Mines_23[top1] + CRYSTALMASTER) | (Mines_23[left1] + CRYSTALMASTER + RIGHTCLAW) | (Mines_23[left1] + SNAILSLASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + RIGHTCLAW) | (Mines_23[right2] + SNAILSLASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])"
     },
     {
         "name": "Mines_23[left1]",
@@ -479,11 +479,11 @@
     },
     {
         "name": "Mines_23[right1]",
-        "logic": "ORIG | ((Mines_23[left1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW))) | (Mines_23[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Mines_23[right2] + SNAILSLASH + AIRSTALL + ROOMSOUL)"
+        "logic": "ORIG | ((Mines_23[left1] | Mines_23[right2]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW))) | (Mines_23[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Mines_23[right2] + SNAILSLASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])"
     },
     {
         "name": "Grub-Hallownest_Crown",
-        "logic": "ORIG | (Mines_24[left1] + (CRYSTALMASTER | ANTIGRAVWINGS | (BLUEMOTH + PRECISEMOVEMENT) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Mines_24[left1] + (CRYSTALMASTER | ANTIGRAVWINGS | (BLUEMOTH + PRECISEMOVEMENT) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Mines_25[top1]",
@@ -491,15 +491,19 @@
     },
     {
         "name": "Geo_Rock-Hallownest_Crown_Dive",
-        "logic": "ORIG | (Mines_25[left1] + QUAKE + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
+        "logic": "ORIG | (Mines_25[left1] + Broke_Hallownest's_Crown_Quake_Floor + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
     },
     {
         "name": "Geo_Rock-Hallownest_Crown_Dive_Dupe",
-        "logic": "ORIG | (Mines_25[left1] + QUAKE + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
+        "logic": "ORIG | (Mines_25[left1] + Broke_Hallownest's_Crown_Quake_Floor + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
     },
     {
         "name": "Soul_Totem-Hallownest_Crown",
-        "logic": "ORIG | (Mines_25[left1] + QUAKE + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
+        "logic": "ORIG | (Mines_25[left1] + Broke_Hallownest's_Crown_Quake_Floor + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
+    },
+    {
+        "name": "Broke_Hallownest's_Crown_Quake_Floor",
+        "logic": "ORIG | (Mines_25[left1] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (BLUEMOTH | ((ANTIGRAV | SNAILSLASH) + WINGS + ENEMYPOGOS)))"
     },
     {
         "name": "Geo_Rock-Hallownest_Crown_Hidden",
@@ -539,7 +543,7 @@
     },
     {
         "name": "Grub-Crystal_Heart",
-        "logic": "ORIG | (Mines_31[left1] + (ANTIGRAVWINGS | (ANTIGRAV + FULLCLAW + AIRSTALL + AREASOUL) | (ANTIGRAV + FULLCLAW + RIGHTDASH) | (YEET + LEFTCLAW) | (CRYSTALMASTER + FULLCLAW) | (CRYSTALMASTER + LEFTCLAW + GREATSLASH) | (CRYSTALMASTER + LEFTCLAW + AIRSTALL + AREASOUL)))"
+        "logic": "ORIG | (Mines_31[left1] + (ANTIGRAVWINGS | (ANTIGRAV + FULLCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (ANTIGRAV + FULLCLAW + RIGHTDASH) | (YEET + LEFTCLAW) | (CRYSTALMASTER + FULLCLAW) | (CRYSTALMASTER + LEFTCLAW + GREATSLASH) | (CRYSTALMASTER + LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     {
         "name": "Crystal_Heart",
@@ -597,7 +601,7 @@
     },
     {
         "name": "Fungus3_08[top1]",
-        "logic": "ORIG | ((Fungus3_08[right1] | Fungus3_08[left1] | Fungus3_08[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SNAILSLASH) | (ANTIGRAV + ENEMYPOGOS) | (SNAILSLASH + AIRSTALL + DANGEROUSSKIPS)))"
+        "logic": "ORIG | ((Fungus3_08[right1] | Fungus3_08[left1] | Fungus3_08[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SNAILSLASH) | (ANTIGRAV + ENEMYPOGOS) | (SNAILSLASH_WITH_AIRSTALL + DANGEROUSSKIPS)))"
     },
     {
         "name": "Fungus3_11",
@@ -609,7 +613,7 @@
     },
     {
         "name": "Love_Key",
-        "logic": "ORIG | (Fungus3_39[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (ANTIGRAV + RIGHTSHARPSHADOW + FULLCLAW + PRECISEMOVEMENT) | (YEET + WINGS) | (YEET + AIRSTALL + ROOMSOUL + RIGHTCLAW)))"
+        "logic": "ORIG | (Fungus3_39[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (ANTIGRAV + RIGHTSHARPSHADOW + FULLCLAW + PRECISEMOVEMENT) | (YEET + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + RIGHTCLAW)))"
     },
     {
         "name": "Queen's_Gardens_Map",
@@ -625,7 +629,7 @@
     },
     {
         "name": "Fungus3_05[right2]",
-        "logic": "ORIG | ((Fungus3_05[left1] | Fungus3_05[right1]) + $TrueOrNotExist[Switch-Petra_Arena] + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW + PRECISEMOVEMENT) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | ((Fungus3_05[left1] | Fungus3_05[right1]) + $TrueOrNotExist[Switch-Petra_Arena] + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW + PRECISEMOVEMENT) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Fungus3_04[left1]",
@@ -649,7 +653,7 @@
     },
     {
         "name": "Rancid_Egg-Queen's_Gardens",
-        "logic": "ORIG | (Fungus3_34 + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + AIRSTALL + ROOMSOUL) | (ANTIGRAV + GREATSLASH))) | (Fungus3_34[left1] + CRYSTALMASTER)"
+        "logic": "ORIG | (Fungus3_34 + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (ANTIGRAV + GREATSLASH))) | (Fungus3_34[left1] + CRYSTALMASTER)"
     },
     {
         "name": "Fungus3_13[left1]",
@@ -666,7 +670,7 @@
     /* this waypoint doesn't exist in the current release of rando but it will one day
     {
         "name": "Can_Deliver_Flower",
-        "logic": "ORIG | (Fungus3_49[right1] + $FLOWER + (CRYSTALMASTER | (BLUEMOTH + DIFFICULTSKIPS) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + AIRSTALL + AREASOUL)))"
+        "logic": "ORIG | (Fungus3_49[right1] + $FLOWER + (CRYSTALMASTER | (BLUEMOTH + DIFFICULTSKIPS) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     */
     {
@@ -699,7 +703,7 @@
     },
     {
         "name": "Fungus3_48[right2]",
-        "logic": "ORIG | (Fungus3_48[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Fungus3_48[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Hallownest_Seal-Queen's_Gardens",
@@ -711,7 +715,7 @@
     },
     {
         "name": "Geo_Rock-Queen's_Gardens_Above_Marmu",
-        "logic": "ORIG | (Fungus3_48[right2] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Fungus3_48[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Fungus3_48[right2] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Fungus3_48[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Fungus3_21[top1]",
@@ -753,11 +757,11 @@
     },
     {
         "name": "Fungus3_03[left1]",
-        "logic": "ORIG | (Fungus3_03[right1] + ANTIGRAV + LEFTSHARPSHADOW + (WINGS | BLUEMOTH) + (BLUEMOTH | GREATSLASH | (AIRSTALL + AREASOUL))) | (Fungus3_03[right1] + YEET + (WINGS | BLUEMOTH) + LEFTDASH)"
+        "logic": "ORIG | (Fungus3_03[right1] + ANTIGRAV + LEFTSHARPSHADOW + (WINGS | BLUEMOTH) + (BLUEMOTH | GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]))) | (Fungus3_03[right1] + YEET + (WINGS | BLUEMOTH) + LEFTDASH)"
     },
     {
         "name": "Fungus3_03[right1]",
-        "logic": "ORIG | (Fungus3_03[left1] + ANTIGRAV + LEFTSHARPSHADOW + (WINGS | BLUEMOTH) + (BLUEMOTH | GREATSLASH | (AIRSTALL + ITEMSOUL))) | (Fungus3_03[left1] + YEET + (WINGS | BLUEMOTH) + RIGHTDASH)"
+        "logic": "ORIG | (Fungus3_03[left1] + ANTIGRAV + LEFTSHARPSHADOW + (WINGS | BLUEMOTH) + (BLUEMOTH | GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[3]))) | (Fungus3_03[left1] + YEET + (WINGS | BLUEMOTH) + RIGHTDASH)"
     },
     {
         "name": "Fog_Canyon_Map",
@@ -773,11 +777,11 @@
     },
     {
         "name": "Charm_Notch-Fog_Canyon",
-        "logic": "ORIG | (Fungus3_28[right1] + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS + ENEMYPOGOS) | (ANTIGRAV + ACID + WINGS + ENEMYPOGOS) | (ANTIGRAV + ACIDSKIPS + FIREBALLSKIPS + FIREBALL + WINGS + ENEMYPOGOS) | (ANTIGRAV + ACID + ANYCLAW) | (YEET + ACIDSKIPS + AIRSTALL + ROOMSOUL + LEFTCLAW) | (YEET + ACIDSKIPS + LEFTDASH + LEFTCLAW) + (YEET + WINGS + ENEMYPOGOS) | (YEET + WINGS + ANYCLAW) | (CRYSTALMASTER + ACIDSKIPS + WINGS + ANYCLAW)))"
+        "logic": "ORIG | (Fungus3_28[right1] + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS + ENEMYPOGOS) | (ANTIGRAV + ACID + WINGS + ENEMYPOGOS) | (ANTIGRAV + ACIDSKIPS + FIREBALLSKIPS + FIREBALL + WINGS + ENEMYPOGOS) | (ANTIGRAV + ACID + ANYCLAW) | (YEET + ACIDSKIPS + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + LEFTCLAW) | (YEET + ACIDSKIPS + LEFTDASH + LEFTCLAW) + (YEET + WINGS + ENEMYPOGOS) | (YEET + WINGS + ANYCLAW) | (CRYSTALMASTER + ACIDSKIPS + WINGS + ANYCLAW)))"
     },
     {
         "name": "Grub-Fog_Canyon",
-        "logic": "ORIG | (Fungus3_47 + (ANTIGRAVWINGS | (YEET + AIRSTALL + AREASOUL)))"
+        "logic": "ORIG | (Fungus3_47 + (ANTIGRAVWINGS | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     {
         "name": "Lore_Tablet-Archives_Upper",
@@ -786,7 +790,7 @@
     // first part is left-side, second part is right-side, except for DIFFICULTSKIPS near the end
     {
         "name": "Defeated_Uumuu",
-        "logic": "ORIG | (Fungus3_archive_02[top1] + COMBAT[Uumuu] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + LEFTDASH + AIRSTALL + ROOMSOUL) | (ACIDSKIPS + ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTCLAW + LEFTDASH + (GREATSLASH | DASHSLASH | (AIRSTALL + ROOMSOUL))) | (YEET + LEFTDASH + (LEFTCLAW | GREATSLASH | DASHSLASH | (AIRSTALL + ROOMSOUL))) | (YEET + LEFTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + (RIGHTDASH | GREATSLASH | (AIRSTALL + ROOMSOUL))) | (ANTIGRAV + RIGHTDASH + WINGS) | (ANTIGRAV + (RIGHTCLAW | DIFFICULTSKIPS) + WINGS + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Fungus3_archive_02[top1] + COMBAT[Uumuu] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (ACIDSKIPS + ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTCLAW + LEFTDASH + (GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]))) | (YEET + LEFTDASH + (LEFTCLAW | GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]))) | (YEET + LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + (RIGHTDASH | GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]))) | (ANTIGRAV + RIGHTDASH + WINGS) | (ANTIGRAV + (RIGHTCLAW | DIFFICULTSKIPS) + WINGS + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Lore_Tablet-Archives_Right",
@@ -794,15 +798,15 @@
     },
     {
         "name": "Lore_Tablet-Archives_Left",
-        "logic": "ORIG | (Defeated_Uumuu + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (ANTIGRAV + RIGHTCLAW + WINGS + (OBSCURESKIPS | GREATSLASH | LEFTCLAW | (AIRSTALL + ROOMSOUL))) | (ANTIGRAV + FULLCLAW + RIGHTDASH + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTCLAW + (ANTIGRAV | RIGHTDASH | GREATSLASH | (AIRSTALL + ROOMSOUL))) | (YEET + WINGS) | (ANTIGRAV + ACID + LEFTCLAW) | (ANTIGRAV + ACID + WINGS)))"
+        "logic": "ORIG | (Defeated_Uumuu + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (ANTIGRAV + RIGHTCLAW + WINGS + (OBSCURESKIPS | GREATSLASH | LEFTCLAW | (SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]))) | (ANTIGRAV + FULLCLAW + RIGHTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTCLAW + (ANTIGRAV | RIGHTDASH | GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]))) | (YEET + WINGS) | (ANTIGRAV + ACID + LEFTCLAW) | (ANTIGRAV + ACID + WINGS)))"
     },
     {
         "name": "Journal_Entry-Charged_Lumafly",
-        "logic": "ORIG | (Defeated_Uumuu + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (ANTIGRAV + RIGHTCLAW + WINGS + (OBSCURESKIPS | GREATSLASH | LEFTCLAW | (AIRSTALL + ROOMSOUL))) | (ANTIGRAV + FULLCLAW + RIGHTDASH + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTCLAW + (ANTIGRAV | RIGHTDASH | GREATSLASH | (AIRSTALL + ROOMSOUL))) | (YEET + WINGS) | (ANTIGRAV + ACID + LEFTCLAW) | (ANTIGRAV + ACID + WINGS)))"
+        "logic": "ORIG | (Defeated_Uumuu + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (ANTIGRAV + RIGHTCLAW + WINGS + (OBSCURESKIPS | GREATSLASH | LEFTCLAW | (SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]))) | (ANTIGRAV + FULLCLAW + RIGHTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTCLAW + (ANTIGRAV | RIGHTDASH | GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]))) | (YEET + WINGS) | (ANTIGRAV + ACID + LEFTCLAW) | (ANTIGRAV + ACID + WINGS)))"
     },
     {
         "name": "Monomon",
-        "logic": "ORIG | (Defeated_Uumuu + DREAMNAIL + (BLUEMOTH | (ANTIGRAV + LEFTSHARPSHADOW + WINGS + ANYCLAW) | (YEET + WINGS + ANYCLAW + (LEFTDASH | GREATSLASH)) | (YEET + WINGS + LEFTCLAW + PRECISEMOVEMENT) | (YEET + WINGS + FULLCLAW) | (CRYSTALMASTER + WINGS + ANYCLAW + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Defeated_Uumuu + DREAMNAIL + (BLUEMOTH | (ANTIGRAV + LEFTSHARPSHADOW + WINGS + ANYCLAW) | (YEET + WINGS + ANYCLAW + (LEFTDASH | GREATSLASH)) | (YEET + WINGS + LEFTCLAW + PRECISEMOVEMENT) | (YEET + WINGS + FULLCLAW) | (CRYSTALMASTER + WINGS + ANYCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
 
     // Fungal Wastes
@@ -812,7 +816,7 @@
     },
     {
         "name": "Mask_Shard-Queen's_Station",
-        "logic": "ORIG | (Fungus2_01 + (BLUEMOTH | YEET | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + AIRSTALL + AREASOUL) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (CRYSTALMASTER + FULLCLAW)))"
+        "logic": "ORIG | (Fungus2_01 + (BLUEMOTH | YEET | (ANTIGRAV + LEFTDASH) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (CRYSTALMASTER + FULLCLAW)))"
     },
     {
         "name": "Fungus2_01[right1]",
@@ -856,11 +860,15 @@
     },
     {
         "name": "Fungus2_21[right1]",
-        "logic": "ORIG | (Fungus2_21[left1] + CREST + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS)))"
+        "logic": "ORIG | (Fungus2_21[left1] + CREST + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS)))"
     },
     {
         "name": "Fungus2_21[left1]",
-        "logic": "ORIG | (Fungus2_21[right1] + QUAKE + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (YEET + WINGS) | (CRYSTALMASTER + FULLCLAW)))"
+        "logic": "ORIG | (Fungus2_21[right1] + Broke_Pilgrim's_Way_Quake_Floor + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (YEET + WINGS) | (CRYSTALMASTER + FULLCLAW)))"
+    },
+    {
+        "name": "Broke_Pilgrim's_Way_Quake_Floor",
+        "logic": "ORIG | (Fungus2_21[right1] + QUAKE + $CASTSPELL[before:ITEMSOUL] + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (YEET + WINGS) | (CRYSTALMASTER + FULLCLAW)))"
     },
     // Lore_Tablet-Pilgrim's_Way_2 has Fungus2_21[left1] as a branch so can be left alone
     {
@@ -869,7 +877,7 @@
     },
     {
         "name": "Soul_Totem-Pilgrim's_Way",
-        "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW + $TrueAndExists[Lever-Pilgrim's_Way_Left]) | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + RIGHTCLAW))) | (Fungus2_21[right1] + QUAKE + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + RIGHTCLAW + (LEFTSUPERDASH | $TrueOrNotExist[Lever-Pilgrim's_Way_Right])) | (ANTIGRAV + ((WINGS + LEFTCLAW) | (WINGS + $TrueOrNotExist[Lever-Pilgrim's_Way_Left]) | (LEFTCLAW + $TrueOrNotExist[Lever-Pilgrim's_Way_Left])) + (LEFTSUPERDASH | $TrueOrNotExist[Lever-Pilgrim's_Way_Right])) | (YEET + WINGS) | (CRYSTALMASTER + FULLCLAW))) | ((Fungus2_21[left1] | Fungus2_21[right1]) + ACID + ANTIGRAV + (ANYCLAW | WINGS))"
+        "logic": "ORIG | (Fungus2_21[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW + $TrueAndExists[Lever-Pilgrim's_Way_Left]) | (ANTIGRAV + RIGHTCLAW + GREATSLASH) | (ANTIGRAV + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + RIGHTCLAW))) | (Fungus2_21[right1] + Broke_Pilgrim's_Way_Quake_Floor + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + RIGHTCLAW + (LEFTSUPERDASH | $TrueOrNotExist[Lever-Pilgrim's_Way_Right])) | (ANTIGRAV + ((WINGS + LEFTCLAW) | (WINGS + $TrueOrNotExist[Lever-Pilgrim's_Way_Left]) | (LEFTCLAW + $TrueOrNotExist[Lever-Pilgrim's_Way_Left])) + (LEFTSUPERDASH | $TrueOrNotExist[Lever-Pilgrim's_Way_Right])) | (YEET + WINGS) | (CRYSTALMASTER + FULLCLAW))) | ((Fungus2_21[left1] | Fungus2_21[right1]) + ACID + ANTIGRAV + (ANYCLAW | WINGS))"
     },
     {
         "name": "Fungus2_19[left1]",
@@ -881,7 +889,7 @@
     },
     {
         "name": "Spore_Shroom",
-        "logic": "ORIG | ((Fungus2_20[left1] | Fungus2_20[right1]) + (ANTIGRAVWINGS | (ANTIGRAV + ACID) | (ANTIGRAV + RIGHTCLAW + GREATSLASH + AIRSTALL + TERMINALSOUL) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + AIRSTALL + TERMINALSOUL)))"
+        "logic": "ORIG | ((Fungus2_20[left1] | Fungus2_20[right1]) + (ANTIGRAVWINGS | (ANTIGRAV + ACID) | (ANTIGRAV + RIGHTCLAW + GREATSLASH + SPELLAIRSTALL + $CASTSPELL[3]) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3])))"
     },
     {
         "name": "Lore_Tablet-Spore_Shroom",
@@ -1020,7 +1028,7 @@
     // ROOMSOUL = $CASTSPELL[3, before:ROOMSOUL]
     {
         "name": "Lifeblood_Cocoon-Mantis_Village",
-        "logic": "ORIG | ((Fungus2_15[left1] | Fungus2_15[right1] | Fungus2_15[top3]) + (ANTIGRAVWINGS | (ANTIGRAV + LEFTCLAW) | (CRYSTALMASTER + FULLCLAW + AIRSTALL + ROOMSOUL) | (YEET + RIGHTCLAW + LEFTDASH) | (CRYSTALMASTER + RIGHTCLAW + WINGS + LEFTDASH)))"
+        "logic": "ORIG | ((Fungus2_15[left1] | Fungus2_15[right1] | Fungus2_15[top3]) + (ANTIGRAVWINGS | (ANTIGRAV + LEFTCLAW) | (CRYSTALMASTER + FULLCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (YEET + RIGHTCLAW + LEFTDASH) | (CRYSTALMASTER + RIGHTCLAW + WINGS + LEFTDASH)))"
     },
     {
         "name": "Geo_Rock-Above_Mantis_Lords_1",
@@ -1102,7 +1110,7 @@
     },
     {
         "name": "Ruins1_05[bot2]",
-        "logic": "ORIG | (Ruins1_05[bot1] + $TrueOrNotExist[Lever-City_Above_Lemm_Upper] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (SNAILSLASH + Longnail + Mark_of_Pride + BACKGROUNDPOGOS)))"
+        "logic": "ORIG | (Ruins1_05[bot1] + $TrueOrNotExist[Lever-City_Above_Lemm_Upper] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (SNAILSLASH + LONGMARK + BACKGROUNDPOGOS)))"
     },
     {
         "name": "Grub-City_of_Tears_Left",
@@ -1142,7 +1150,7 @@
     },
     {
         "name": "Ruins1_23[right1]",
-        "logic": "ORIG | (Ruins1_23 + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + Defeated_Sanctum_Warrior + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Ruins1_23 + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + Defeated_Sanctum_Warrior + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Ruins1_23[top1]",
@@ -1150,12 +1158,12 @@
     },
     {
         "name": "Defeated_Sanctum_Warrior",
-        "logic": "ORIG | (Ruins1_23 + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + COMBAT[Sanctum_Warrior] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Ruins1_23 + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + COMBAT[Sanctum_Warrior] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     // The lack of COMBAT[Sanctum_Warrior] in base rando logic for this is probably a bug?
     {
         "name": "Boss_Geo-Sanctum_Soul_Warrior",
-        "logic": "ORIG | (Ruins1_23 + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + COMBAT[Sanctum_Warrior] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Ruins1_23 + $TrueOrNotExist[Lever-Sanctum_Soul_Warrior] + COMBAT[Sanctum_Warrior] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Lore_Tablet-Sanctum_Entrance",
@@ -1185,8 +1193,6 @@
         "name": "Spell_Twister",
         "logic": "ORIG | (Ruins1_30 + (ANTIGRAV | BLUEMOTH))"
     },
-    /*
-    TODO: When Rando updates, replace the Ruins1_30 edit with these
     {
         "name": "Broke_Sanctum_Escape_Quake_Floor_1",
         "logic": "ORIG | (Ruins1_30[left2] + QUAKE + $CASTSPELL[before:ROOMSOUL] + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS)))"
@@ -1199,28 +1205,21 @@
         "name": "Ruins1_30",
         "logic": "ORIG | (Ruins1_30[left2] + Broke_Sanctum_Escape_Quake_Floor_1 + Broke_Sanctum_Escape_Quake_Floor_2 + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS)))"
     },
-    */
-    {
-        "name": "Ruins1_30",
-        "logic": "ORIG | (Ruins1_30[left2] + QUAKE + ROOMSOUL + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS)))"
-    },
     {
         "name": "Ruins1_24[left1]",
-        "logic": "ORIG | (Ruins1_24[right1] + Defeated_Soul_Master + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + AIRSTALL + AREASOUL)))"
+        "logic": "ORIG | (Ruins1_24[right1] + Defeated_Soul_Master + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     {
         "name": "Defeated_Soul_Tyrant",
         "logic": "ORIG | ((Ruins1_24[left1] | Ruins1_24[right1]) + Defeated_Soul_Master + DREAMNAIL + COMBAT[Soul_Tyrant] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
-    /*
-    TODO: When Rando updates, replace the Ruins1_32[right2] edit with these
     {
         "name": "Broke_Sanctum_Geo_Rock_Quake_Floor",
-        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + $CASTSPELL[before:ROOMSOUL])"
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + $CASTSPELL[before:AREASOUL])"
     },
     {
         "name": "Broke_Quake_Floor_After_Soul_Master_1",
-        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + $CASTSPELL[before:ROOMSOUL])"
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + $CASTSPELL[before:AREASOUL])"
     },
     {
         "name": "Broke_Quake_Floor_After_Soul_Master_2",
@@ -1236,12 +1235,7 @@
     },
     {
         "name": "Ruins1_32[right2]",
-        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + Broke_Quake_Floor_After_Soul_Master_1 + Broke_Quake_Floor_After_Soul_Master_2 + Broke_Quake_Floor_After_Soul_Master_3 + Broke_Quake_Floor_After_Soul_Master_4)
-    },
-    */
-    {
-        "name": "Ruins1_32[right2]",
-        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper] + $TrueAndExists[Lever-Sanctum_West_Lower])) + QUAKE + ROOMSOUL)"
+        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper] + $TrueAndExists[Lever-Sanctum_West_Lower])) + Broke_Quake_Floor_After_Soul_Master_1 + Broke_Quake_Floor_After_Soul_Master_2 + Broke_Quake_Floor_After_Soul_Master_3 + Broke_Quake_Floor_After_Soul_Master_4)"
     },
     {
         "name": "Geo_Chest-Soul_Master",
@@ -1249,19 +1243,23 @@
     },
     {
         "name": "Hallownest_Seal-Soul_Sanctum",
-        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + ROOMSOUL)"
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + Broke_Quake_Floor_After_Soul_Master_1 + Broke_Quake_Floor_After_Soul_Master_2)"
     },
     {
         "name": "Grub-Soul_Sanctum",
-        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + ROOMSOUL)"
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + Broke_Quake_Floor_After_Soul_Master_1 + Broke_Quake_Floor_After_Soul_Master_2 + Broke_Quake_Floor_After_Soul_Master_3)"
     },
     {
         "name": "Geo_Rock-Soul_Sanctum",
-        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper])) + QUAKE + ROOMSOUL)"
+        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper])) + Broke_Sanctum_Geo_Rock_Quake_Floor)"
+    },
+    {
+        "name": "Broke_Sanctum_Geo_Rock_Quake_Floor",
+        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper])) + QUAKE + $CASTSPELL[before:AREASOUL])"
     },
     {
         "name": "Lore_Tablet-Sanctum_Past_Soul_Master",
-        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper])) + QUAKE + ROOMSOUL)"
+        "logic": "ORIG | (Ruins1_32[right1] + (ANTIGRAVWINGS | (SNAILSLASH + $TrueAndExists[Lever-Sanctum_West_Upper])) + Broke_Sanctum_Geo_Rock_Quake_Floor)"
     },
     {
         "name": "Soul_Totem-Sanctum_Below_Chest",
@@ -1269,7 +1267,7 @@
     },
     {
         "name": "Soul_Totem-Sanctum_Above_Grub",
-        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + QUAKE + ROOMSOUL)"
+        "logic": "ORIG | (Ruins1_32[right1] + ANTIGRAVWINGS + Broke_Quake_Floor_After_Soul_Master_1 + Broke_Quake_Floor_After_Soul_Master_2)"
     },
     {
         "name": "Ruins1_27[right1]",
@@ -1294,7 +1292,7 @@
     },
     {
         "name": "Geo_Rock-Watcher's_Spire",
-        "logic": "ORIG | (Ruins2_01 + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + RIGHTCLAW + LEFTDASH) | (ANTIGRAV + RIGHTCLAW + CRYSTALMASTER) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (YEET + RIGHTCLAW) | (ANTIGRAV + RIGHTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (ANTIGRAV + WINGS + $TrueAndExists[Lever-City_Spire_Sentry_Lower] + $TrueOrNotExist[Lever-City_Spire_Sentry_Upper]) | (CRYSTALMASTER + FULLCLAW))) | (Ruins2_01[top1] + $TrueOrNotExist[Lever-City_Spire_Sentry_Upper] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + AIRSTALL + ROOMSOUL) | CRYSTALMASTER))"
+        "logic": "ORIG | (Ruins2_01 + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + RIGHTCLAW + LEFTDASH) | (ANTIGRAV + RIGHTCLAW + CRYSTALMASTER) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH) | (YEET + RIGHTCLAW) | (ANTIGRAV + RIGHTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (ANTIGRAV + WINGS + $TrueAndExists[Lever-City_Spire_Sentry_Lower] + $TrueOrNotExist[Lever-City_Spire_Sentry_Upper]) | (CRYSTALMASTER + FULLCLAW))) | (Ruins2_01[top1] + $TrueOrNotExist[Lever-City_Spire_Sentry_Upper] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | CRYSTALMASTER))"
     },
     {
         "name": "Ruins2_03b[top1]",
@@ -1370,7 +1368,7 @@
     },
     {
         "name": "Ruins2_06[left2]",
-        "logic": "ORIG | ((Ruins2_06[left1] | Ruins2_06[right1] | Ruins2_06[right2] | Ruins2_06[top1]) + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + AIRSTALL + ROOMSOUL) | (ANTIGRAV + RIGHTCLAW)))"
+        "logic": "ORIG | ((Ruins2_06[left1] | Ruins2_06[right1] | Ruins2_06[right2] | Ruins2_06[top1]) + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (ANTIGRAV + RIGHTCLAW)))"
     },
     {
         "name": "Ruins2_06[right1]",
@@ -1378,7 +1376,7 @@
     },
     {
         "name": "Ruins2_06[right2]",
-        "logic": "ORIG | (Ruins2_06[left2] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + AIRSTALL + AREASOUL) | (CRYSTALMASTER + RIGHTCLAW)))"
+        "logic": "ORIG | (Ruins2_06[left2] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (CRYSTALMASTER + RIGHTCLAW)))"
     },
     {
         "name": "Ruins2_06[top1]",
@@ -1418,19 +1416,19 @@
     },
     {
         "name": "Ruins2_07[right1]",
-        "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS)))"
+        "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS)))"
     },
     {
         "name": "Ruins2_07[left1]",
-        "logic": "ORIG | ((Ruins2_07[right1] | Ruins2_07[top1]) + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (YEET + AIRSTALL + ITEMSOUL + WINGS)))"
+        "logic": "ORIG | ((Ruins2_07[right1] | Ruins2_07[top1]) + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3] + WINGS)))"
     },
     {
         "name": "Ruins2_07[top1]",
-        "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS))) | (Ruins2_07[right1] + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS))) | (Ruins2_07[right1] + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Grub-King's_Station",
-        "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS))) | ((Ruins2_07[right1] | Ruins2_07[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + AIRSTALL + ITEMSOUL) | (ANTIGRAV + GREATSLASH + FULLCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL) | YEET | (CRYSTALMASTER + LEFTSUPERDASH + LEFTCLAW)))"
+        "logic": "ORIG | (Ruins2_07[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS))) | ((Ruins2_07[right1] | Ruins2_07[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + GREATSLASH + FULLCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3]) | YEET | (CRYSTALMASTER + LEFTSUPERDASH + LEFTCLAW)))"
     },
     {
         "name": "Ruins2_11_b[left1]",
@@ -1446,19 +1444,19 @@
     },
     {
         "name": "Collector's_Map",
-        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH + AIRSTALL)))"
+        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH_WITH_AIRSTALL)))"
     },
     {
         "name": "Grub-Collector_1",
-        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH + AIRSTALL)))"
+        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH_WITH_AIRSTALL)))"
     },
     {
         "name": "Grub-Collector_2",
-        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH + AIRSTALL)))"
+        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH_WITH_AIRSTALL)))"
     },
     {
         "name": "Grub-Collector_3",
-        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH + AIRSTALL)))"
+        "logic": "ORIG | (Ruins2_11[right1] + Defeated_Collector + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SNAILSLASH_WITH_AIRSTALL)))"
     },
     {
         "name": "Ruins_House_03[left1]",
@@ -1489,15 +1487,15 @@
     },
     {
         "name": "Deepnest_East_02",
-        "logic": "ORIG | (Deepnest_East_02[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Deepnest_East_02[bot1] + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Deepnest_East_02[top1]",
-        "logic": "ORIG | ((Deepnest_East_02 | Deepnest_East_02[top1]) + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | ((Deepnest_East_02 | Deepnest_East_02[top1]) + (ANTIGRAV | BLUEMOTH | (SNAILSLASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Deepnest_East_02[bot2]",
-        "logic": "ORIG | (Deepnest_East_02 + QUAKE + ROOMSOUL + ACIDSKIPS + (BLUEMOTH | (YEET + LEFTDASH + LEFTCLAW) | (YEET + AIRSTALL + ROOMSOUL + LEFTCLAW) | (ANTIGRAV + LEFTDASH + LEFTCLAW + AIRSTALL + ROOMSOUL) | (ANTIGRAV + LEFTSHARPSHADOW + LEFTCLAW)))"
+        "logic": "ORIG | (Deepnest_East_02 + Broke_Lower_Edge_Quake_Floor + ACIDSKIPS + (BLUEMOTH | (YEET + LEFTDASH + LEFTCLAW) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + LEFTCLAW) | (ANTIGRAV + LEFTDASH + LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (ANTIGRAV + LEFTSHARPSHADOW + LEFTCLAW)))"
     },
     {
         "name": "Soul_Totem-Lower_Kingdom's_Edge_2",
@@ -1505,7 +1503,7 @@
     },
     {
         "name": "Geo_Rock-Lower_Kingdom's_Edge_Dive",
-        "logic": "ORIG | (Deepnest_East_02[bot2] + ACIDSKIPS + (BLUEMOTH | (YEET + RIGHTDASH + RIGHTCLAW) | (YEET + AIRSTALL + ROOMSOUL + RIGHTCLAW) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + AIRSTALL + ROOMSOUL) | (ANTIGRAV + RIGHTSHARPSHADOW + RIGHTCLAW)))"
+        "logic": "ORIG | (Deepnest_East_02[bot2] + ACIDSKIPS + (BLUEMOTH | (YEET + RIGHTDASH + RIGHTCLAW) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + RIGHTCLAW) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (ANTIGRAV + RIGHTSHARPSHADOW + RIGHTCLAW)))"
     },
     {
         "name": "Deepnest_East_03[top1]",
@@ -1541,19 +1539,23 @@
     },
     {
         "name": "Deepnest_East_14[left1]",
-        "logic": "ORIG | (Deepnest_East_14[top2] + QUAKE + AREASOUL + (ANTIGRAV | CRYSTALMASTER)) | (Deepnest_East_14[door1] + (ANTIGRAV | CRYSTALMASTER))"
+        "logic": "ORIG | (Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 + Broke_Oro_Quake_Floor_3 + (ANTIGRAV | CRYSTALMASTER)) | (Deepnest_East_14[door1] + (ANTIGRAV | CRYSTALMASTER))"
     },
     {
         "name": "Deepnest_East_14[door1]",
-        "logic": "ORIG | (Deepnest_East_14[top2] + QUAKE + AREASOUL + (BLUEMOTH | ANTIGRAV | CRYSTALMASTER)) | (Deepnest_East_14[left1] + (BLUEMOTH | ANTIGRAV | CRYSTALMASTER))"
+        "logic": "ORIG | (Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 + Broke_Oro_Quake_Floor_3 + (BLUEMOTH | ANTIGRAV | CRYSTALMASTER)) | (Deepnest_East_14[left1] + (BLUEMOTH | ANTIGRAV | CRYSTALMASTER))"
     },
     {
         "name": "Rancid_Egg-Near_Quick_Slash",
-        "logic": "ORIG | (Deepnest_East_14[top2] + QUAKE + AREASOUL + (ANTIGRAV | BLUEMOTH)) | (Deepnest_East_14[left1] + ANTIGRAVWINGS + (ANTIGRAV | CRYSTALMASTER | RIGHTDASH | SPIKETUNNELS)) | (Deepnest_East_14[door1] + ANTIGRAVWINGS)"
+        "logic": "ORIG | (Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 + Broke_Oro_Quake_Floor_3 + (ANTIGRAV | BLUEMOTH)) | (Deepnest_East_14[left1] + ANTIGRAVWINGS + (ANTIGRAV | CRYSTALMASTER | RIGHTDASH | SPIKETUNNELS)) | (Deepnest_East_14[door1] + ANTIGRAVWINGS)"
     },
     {
         "name": "Grub-Kingdom's_Edge_Oro",
-        "logic": "ORIG | (Deepnest_East_14[top2] + QUAKE + AREASOUL + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + ANYCLAW))) | (Deepnest_East_14[door1] + (ANTIGRAV | BLUEMOTH)) | (Deepnest_East_14[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + ANYCLAW)))"
+        "logic": "ORIG | (Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 + Broke_Oro_Quake_Floor_3 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + ANYCLAW))) | (Deepnest_East_14[door1] + (ANTIGRAV | BLUEMOTH)) | (Deepnest_East_14[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
+        "name": "Broke_Oro_Quake_Floor_3",
+        "logic": "ORIG | (Deepnest_East_14[top2] + Broke_Oro_Quake_Floor_2 + QUAKE + $CASTSPELL[before:ROOMSOUL] + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Deepnest_East_14b[top1]",
@@ -1573,7 +1575,11 @@
     },
     {
         "name": "Wanderer's_Journal-Kingdom's_Edge_Requires_Dive",
-        "logic": "ORIG | (Deepnest_East_18 + QUAKE + ROOMSOUL + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Deepnest_East_18 + Broke_Edge_Journal_Quake_Floor + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Broke_Edge_Journal_Quake_Floor",
+        "logic": "ORIG | (Deepnest_East_18 + QUAKE + $CASTSPELL + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Deepnest_East_11[top1]",
@@ -1597,11 +1603,11 @@
     },
     {
         "name": "Deepnest_East_04",
-        "logic": "ORIG | (Deepnest_East_04[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Deepnest_East_04[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS)))"
+        "logic": "ORIG | (Deepnest_East_04[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Deepnest_East_04[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS)))"
     },
     {
         "name": "Deepnest_East_04[left1]",
-        "logic": "ORIG | (Deepnest_East_04 + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (YEET + AIRSTALL + AREASOUL + WINGS)))"
+        "logic": "ORIG | (Deepnest_East_04 + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS)))"
     },
     {
         "name": "Deepnest_East_04[left2]",
@@ -1665,7 +1671,7 @@
     },
     {
         "name": "King's_Idol-Pale_Lurker",
-        "logic": "ORIG | (GG_Lurker[left1] + ACIDSKIPS + (BLUEMOTH | (YEET + AIRSTALL + ITEMSOUL + WINGS)))"
+        "logic": "ORIG | (GG_Lurker[left1] + ACIDSKIPS + (BLUEMOTH | (YEET + SPELLAIRSTALL + $CASTSPELL[3] + WINGS)))"
     },
     {
         "name": "Simple_Key-Lurker",
@@ -1744,7 +1750,7 @@
     },
     {
         "name": "Deepnest_41[left1]",
-        "logic": "ORIG | (Deepnest_41[left2] + (LANTERN | DARKROOMS) + (BLUEMOTH | (ANTIGRAV + ANYCLAW))) | (Deepnest_41[right1] + (LANTERN | DARKROOMS) + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS + DAMAGEBOOSTS + 2MASKS) | (ANTIGRAV + ANYCLAW)))"
+        "logic": "ORIG | (Deepnest_41[left2] + (LANTERN | DARKROOMS) + (BLUEMOTH | (ANTIGRAV + ANYCLAW))) | (Deepnest_41[right1] + (LANTERN | DARKROOMS) + (BLUEMOTH | (ANTIGRAV + ENEMYPOGOS + $TAKEDAMAGE[1]) | (ANTIGRAV + ANYCLAW)))"
     },
     // Transition logic from door1 is not necessary because right1 is reachable itemless from it
     // and the paths from right1 are the same anyway.
@@ -1795,7 +1801,7 @@
     // (ways to get to the breakable wall) + (ways of breaking the wall) + (ways of getting up to the chest)
     {
         "name": "Geo_Chest-Weavers_Den",
-        "logic": "ORIG | (Deepnest_45_v02[left1] + (ANTIGRAVWINGS | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + LEFTDASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + GREATSLASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + CYCLONE) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + AIRSTALL + ROOMSOUL) | (SNAILSLASH + LEFTSUPERDASH) | (SNAILSLASH + CRYSTALMASTER) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS + LEFTCLAW)) + (LEFTSLASH | UPSLASH | FIREBALL | SCREAM) + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS) | (ANTIGRAV + WINGS + LEFTCLAW) | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SNAILSLASH) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + WINGS + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + SNAILSLASH) | (SNAILSLASH + LEFTDASH) | (SNAILSLASH + SPIKETUNNELS)))"
+        "logic": "ORIG | (Deepnest_45_v02[left1] + (ANTIGRAVWINGS | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + LEFTDASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + GREATSLASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + CYCLONE) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (SNAILSLASH + LEFTSUPERDASH) | (SNAILSLASH + CRYSTALMASTER) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS + LEFTCLAW)) + (LEFTSLASH | UPSLASH | FIREBALL | SCREAM) + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS) | (ANTIGRAV + WINGS + LEFTCLAW) | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SNAILSLASH) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + WINGS + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + SNAILSLASH) | (SNAILSLASH + LEFTDASH) | (SNAILSLASH + SPIKETUNNELS)))"
     },
     {
         "name": "Rancid_Egg-Weaver's_Den",
@@ -1827,7 +1833,7 @@
     },
     {
         "name": "Geo_Rock-Deepnest_Galien_Spike",
-        "logic": "ORIG | (Deepnest_35[bot1] + (LANTERN | DARKROOMS) + ANTIGRAV + ENEMYPOGOS + BACKGROUNDPOGOS + Longnail + Mark_of_Pride) | (Deepnest_35 + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | SNAILSLASH))"
+        "logic": "ORIG | (Deepnest_35[bot1] + (LANTERN | DARKROOMS) + ANTIGRAV + ENEMYPOGOS + BACKGROUNDPOGOS + LONGMARK) | (Deepnest_35 + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | SNAILSLASH))"
     },
     {
         "name": "Lifeblood_Cocoon-Galien",
@@ -1863,7 +1869,7 @@
     },
     {
         "name": "Tram_Pass",
-        "logic": "ORIG | (Deepnest_26b[right2] + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS))) | (Deepnest_26b[right1] + Opened_Tramway_Exit_Gate + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Deepnest_26b[right2] + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS))) | (Deepnest_26b[right1] + Opened_Tramway_Exit_Gate + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Deepnest_14[left1]",
@@ -1875,7 +1881,7 @@
     },
     {
         "name": "Deepnest_33[top1]",
-        "logic": "ORIG | ($TrueAndExists[Bench-Zote's_Folly] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + BACKGROUNDPOGOS + Longnail + Mark_of_Pride)))"
+        "logic": "ORIG | ($TrueAndExists[Bench-Zote's_Folly] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + BACKGROUNDPOGOS + LONGMARK)))"
     },
     {
         "name": "Deepnest_33[top2]",
@@ -1891,7 +1897,7 @@
     },
     {
         "name": "Deepnest_03[left2]",
-        "logic": "ORIG | (Deepnest_03 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Deepnest_03 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Grub-Deepnest_Spike",
@@ -1975,7 +1981,7 @@
     },
     {
         "name": "Fungus2_25[top1]",
-        "logic": "ORIG | ((Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + (ANTIGRAVWINGS | (ANTIGRAV + PRECISEMOVEMENT + Mark_of_Pride + Longnail))) | (Fungus2_25[top1] + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | ((Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + (ANTIGRAVWINGS | (ANTIGRAV + PRECISEMOVEMENT + LONGMARK))) | (Fungus2_25[top1] + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Deepnest_Map-Right",
@@ -1987,11 +1993,11 @@
     },
     {
         "name": "Geo_Rock-Deepnest_By_Mantis_Lords_1",
-        "logic": "ORIG | ((Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + (ANTIGRAVWINGS | (ANTIGRAV + PRECISEMOVEMENT + Mark_of_Pride + Longnail)))"
+        "logic": "ORIG | ((Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + (ANTIGRAVWINGS | (ANTIGRAV + PRECISEMOVEMENT + LONGMARK)))"
     },
     {
         "name": "Geo_Rock-Deepnest_By_Mantis_Lords_2",
-        "logic": "ORIG | ((Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + (ANTIGRAVWINGS | (ANTIGRAV + PRECISEMOVEMENT + Mark_of_Pride + Longnail)))"
+        "logic": "ORIG | ((Fungus2_25[top2] | Fungus2_25[right1] | $TrueAndExists[Bench-Deepnest_Gate]) + (ANTIGRAVWINGS | (ANTIGRAV + PRECISEMOVEMENT + LONGMARK)))"
     },
     {
         "name": "Deepnest_16[left1]",
@@ -2029,46 +2035,54 @@
     },
     {
         "name": "Waterways_04b[right2]",
-        "logic": "ORIG | ((Waterways_04b[left1] | Waterways_04b[right1]) + (BLUEMOTH | (CRYSTALMASTER + RIGHTDASH + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + WINGS) | (YEET + WINGS)))"
+        "logic": "ORIG | ((Waterways_04b[left1] | Waterways_04b[right1]) + (BLUEMOTH | (CRYSTALMASTER + RIGHTDASH + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS) | (YEET + WINGS)))"
     },
     {
         "name": "Waterways_04b[right1]",
-        "logic": "ORIG | (Waterways_04b[left1] + (ANTIGRAVWINGS | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW) | (ANTIGRAV + AIRSTALL + ROOMSOUL + RIGHTCLAW) | (ANTIGRAV + GREATSLASH + RIGHTCLAW) | (ANTIGRAV + CYCLONE + RIGHTCLAW) | (ANTIGRAV + SWIM + RIGHTCLAW) | (ANTIGRAV + RIGHTSUPERDASH + RIGHTCLAW) | (CRYSTALMASTER + RIGHTCLAW))) | (Waterways_04b[right2] + (BLUEMOTH | (YEET + WINGS + ENEMYPOGOS) | (ANTIGRAV + WINGS + RIGHTCLAW + LEFTSUPERDASH) | (ANTIGRAV + WINGS + SWIM) | (ANTIGRAV + LEFTCLAW + SWIM)))"
+        "logic": "ORIG | (Waterways_04b[left1] + (ANTIGRAVWINGS | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + RIGHTCLAW) | (ANTIGRAV + GREATSLASH + RIGHTCLAW) | (ANTIGRAV + CYCLONE + RIGHTCLAW) | (ANTIGRAV + SWIM + RIGHTCLAW) | (ANTIGRAV + RIGHTSUPERDASH + RIGHTCLAW) | (CRYSTALMASTER + RIGHTCLAW))) | (Waterways_04b[right2] + (BLUEMOTH | (YEET + WINGS + ENEMYPOGOS) | (ANTIGRAV + WINGS + RIGHTCLAW + LEFTSUPERDASH) | (ANTIGRAV + WINGS + SWIM) | (ANTIGRAV + LEFTCLAW + SWIM)))"
     },
     {
         "name": "Waterways_04b[left1]",
-        "logic": "ORIG | (Waterways_04b[right1] + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) + (ANTIGRAV + AIRSTALL + AREASOUL) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH))) | (Waterways_04b[right2] + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS + DAMAGEBOOSTS + DANGEROUSSKIPS) | (CRYSTALMASTER + WINGS + ENEMYPOGOS + DANGEROUSSKIPS) | (ANTIGRAV + WINGS + SWIM) | (ANTIGRAV + LEFTCLAW + SWIM)))"
+        "logic": "ORIG | (Waterways_04b[right1] + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) + (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (ANTIGRAV + RIGHTCLAW + LEFTSUPERDASH))) | (Waterways_04b[right2] + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS + $TAKEDAMAGE[3] + DANGEROUSSKIPS) | (CRYSTALMASTER + WINGS + ENEMYPOGOS + DANGEROUSSKIPS) | (ANTIGRAV + WINGS + SWIM) | (ANTIGRAV + LEFTCLAW + SWIM)))"
     },
     // There are also new ways of reaching these checks from the right transitions, but all of them
     // can also be used to reach left1 anyway, and then reach the check with a subset of the same
     // equipment.
     {
         "name": "Mask_Shard-Waterways",
-        "logic": "ORIG | ((Waterways_04b[left1] | Waterways_04b[right1]) + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (ANTIGRAV + AIRSTALL + ROOMSOUL + WINGS) | (YEET + WINGS) | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + LEFTCLAW)))"
+        "logic": "ORIG | ((Waterways_04b[left1] | Waterways_04b[right1]) + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS) | (YEET + WINGS) | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + LEFTCLAW)))"
     },
     {
         "name": "Rancid_Egg-Waterways_West_Pickup",
-        "logic": "ORIG | (Waterways_04b[left1] + (ANTIGRAVWINGS | (SNAILSLASH + DAMAGEBOOSTS + 4HITS + DANGEROUSSKIPS) | (ANTIGRAV + ENEMYPOGOS + DAMAGEBOOSTS + 2HITS)))"
+        "logic": "ORIG | (Waterways_04b[left1] + (ANTIGRAVWINGS | (SNAILSLASH + $TAKEDAMAGE[3] + DANGEROUSSKIPS) | (ANTIGRAV + ENEMYPOGOS + $TAKEDAMAGE[1])))"
     },
     {
         "name": "Soul_Totem-Top_Left_Waterways",
-        "logic": "ORIG | (Waterways_04b[left1] + (ANTIGRAVWINGS | (SNAILSLASH + DAMAGEBOOSTS + 4HITS + DANGEROUSSKIPS) | (ANTIGRAV + ENEMYPOGOS + DAMAGEBOOSTS + 2HITS)))"
+        "logic": "ORIG | (Waterways_04b[left1] + (ANTIGRAVWINGS | (SNAILSLASH + $TAKEDAMAGE[3] + DANGEROUSSKIPS) | (ANTIGRAV + ENEMYPOGOS + $TAKEDAMAGE[1])))"
     },
     {
         "name": "Waterways_04[right1]",
-        "logic": "ORIG | (Waterways_04[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + AIRSTALL + ROOMSOUL) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | YEET)) | (Waterways_04[left2] + ((BLUEMOTH + ACIDSKIPS) | (YEET + RIGHTDASH + WINGS + ANYCLAW + ACIDSKIPS) | (YEET + AIRSTALL + AREASOUL + WINGS + ANYCLAW + ACIDSKIPS)))"
+        "logic": "ORIG | (Waterways_04[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | YEET)) | (Waterways_04[left2] + ((BLUEMOTH + ACIDSKIPS) | (YEET + RIGHTDASH + WINGS + ANYCLAW + ACIDSKIPS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS + ANYCLAW + ACIDSKIPS)))"
     },
     {
         "name": "Waterways_04[bot1]",
-        "logic": "ORIG | (Waterways_04[left1] + QUAKE + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + ANYCLAW) | YEET)) | (Waterways_04[left2] + QUAKE + ((BLUEMOTH + ACIDSKIPS) |(YEET + RIGHTDASH + WINGS + ANYCLAW + ACIDSKIPS) | (YEET + AIRSTALL + AREASOUL + WINGS + ANYCLAW + ACIDSKIPS)))"
+        "logic": "ORIG | (Waterways_04[left1] + Broke_Waterways_Bench_Quake_Floor_1 + Broke_Waterways_Bench_Quake_Floor_2 + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + ANYCLAW) | YEET)) | (Waterways_04[left2] + Broke_Waterways_Bench_Quake_Floor_1 + Broke_Waterways_Bench_Quake_Floor_2 + ((BLUEMOTH + ACIDSKIPS) | (YEET + RIGHTDASH + WINGS + ANYCLAW + ACIDSKIPS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS + ANYCLAW + ACIDSKIPS)))"
+    },
+    {
+        "name": "Broke_Waterways_Bench_Quake_Floor_1",
+        "logic": "ORIG | (Waterways_04[left1] + QUAKE + $CASTSPELL + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + ANYCLAW) | YEET)) | (Waterways_04[left2] + QUAKE + $CASTSPELL + ((BLUEMOTH + ACIDSKIPS) | (YEET + RIGHTDASH + WINGS + ANYCLAW + ACIDSKIPS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS + ANYCLAW + ACIDSKIPS)))"
+    },
+    {
+        "name": "Broke_Waterways_Bench_Quake_Floor_2",
+        "logic": "ORIG | (Waterways_04[left1] + Broke_Waterways_Bench_Quake_Floor_1 + QUAKE + $CASTSPELL + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + RIGHTSUPERDASH) | (ANTIGRAV + ANYCLAW) | YEET)) | (Waterways_04[left2] + Broke_Waterways_Bench_Quake_Floor_1 + QUAKE + $CASTSPELL + ((BLUEMOTH + ACIDSKIPS) | (YEET + RIGHTDASH + WINGS + ANYCLAW + ACIDSKIPS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS + ANYCLAW + ACIDSKIPS)))"
     },
     {
         "name": "Waterways_04[left1]",
-        "logic": "ORIG | (Waterways_04[right1] + (BLUEMOTH | (SNAILSLASH + DANGEROUSSKIPS) | (ANTIGRAV + ENEMYPOGOS))) | (Waterways_04[left2] + ((BLUEMOTH + ACIDSKIPS) | (YEET + RIGHTDASH + WINGS + ANYCLAW + ACIDSKIPS) | (YEET + AIRSTALL + AREASOUL + WINGS + ANYCLAW + ACIDSKIPS)))"
+        "logic": "ORIG | (Waterways_04[right1] + (BLUEMOTH | (SNAILSLASH + DANGEROUSSKIPS) | (ANTIGRAV + ENEMYPOGOS))) | (Waterways_04[left2] + ((BLUEMOTH + ACIDSKIPS) | (YEET + RIGHTDASH + WINGS + ANYCLAW + ACIDSKIPS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS + ANYCLAW + ACIDSKIPS)))"
     },
     {
         "name": "Waterways_04[left2]",
-        "logic": "ORIG | ((Waterways_04[left1] | Waterways_04[right1]) + ((BLUEMOTH + ACIDSKIPS) | (YEET + LEFTDASH + WINGS + ACIDSKIPS) | (YEET + AIRSTALL + ROOMSOUL + WINGS + ACIDSKIPS)))"
+        "logic": "ORIG | ((Waterways_04[left1] | Waterways_04[right1]) + ((BLUEMOTH + ACIDSKIPS) | (YEET + LEFTDASH + WINGS + ACIDSKIPS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS + ACIDSKIPS)))"
     },
     {
         "name": "Grub-Waterways_Main",
@@ -2076,7 +2090,7 @@
     },
     {
         "name": "Rancid_Egg-Waterways_West_Bluggsac",
-        "logic": "ORIG | ((Waterways_04[left1] | Waterways_04[right1]) + ((BLUEMOTH + ACIDSKIPS) | (YEET + LEFTDASH + WINGS + ACIDSKIPS) | (YEET + AIRSTALL + ROOMSOUL + WINGS + ACIDSKIPS))) | (Waterways_04[left2] + ((BLUEMOTH + ACIDSKIPS) | (YEET + RIGHTDASH + WINGS + ACIDSKIPS) | (YEET + AIRSTALL + AREASOUL + WINGS + ACIDSKIPS))) | ((Waterways_04[left1] | Waterways_04[right1] | Waterways_04[left2]) + SWIM + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | ((Waterways_04[left1] | Waterways_04[right1]) + ((BLUEMOTH + ACIDSKIPS) | (YEET + LEFTDASH + WINGS + ACIDSKIPS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS + ACIDSKIPS))) | (Waterways_04[left2] + ((BLUEMOTH + ACIDSKIPS) | (YEET + RIGHTDASH + WINGS + ACIDSKIPS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS + ACIDSKIPS))) | ((Waterways_04[left1] | Waterways_04[right1] | Waterways_04[left2]) + SWIM + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Waterways_01[right1]",
@@ -2084,7 +2098,7 @@
     },
     {
         "name": "Waterways_01[top1]",
-        "logic": "ORIG | (((Waterways_01 + Opened_Waterways_Manhole) | Waterways_01[top1]) + (ANTIGRAVWINGS | (SNAILSLASH + DAMAGEBOOSTS + 4HITS)))"
+        "logic": "ORIG | (((Waterways_01 + Opened_Waterways_Manhole) | Waterways_01[top1]) + (ANTIGRAVWINGS | (SNAILSLASH + $TAKEDAMAGE[3])))"
     },
     {
         "name": "Geo_Rock-Waterways_Tuk",
@@ -2112,11 +2126,15 @@
     },
     {
         "name": "Waterways_02[bot1]",
-        "logic": "ORIG | ((Waterways_02[bot2] | Waterways_02[top2]) + QUAKE + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER | (SNAILSLASH + DANGEROUSSKIPS)))"
+        "logic": "ORIG | ((Waterways_02[bot2] | Waterways_02[top2]) + Broke_Flukemarm_Quake_Floor + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER | (SNAILSLASH + DANGEROUSSKIPS)))"
+    },
+    {
+        "name": "Broke_Flukemarm_Quake_Floor",
+        "logic": "ORIG | ((Waterways_02[bot2] | Waterways_02[top2]) + QUAKE + $CASTSPELL[before:ROOMSOUL] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER | (SNAILSLASH + DANGEROUSSKIPS)))"
     },
     {
         "name": "Waterways_02[bot2]",
-        "logic": "ORIG | (Waterways_02[top3] + QUAKE + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Waterways_02[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (SNAILSLASH + DANGEROUSSKIPS)))"
+        "logic": "ORIG | (Waterways_02[top3] + Broke_Waterways_Bench_Quake_Floor_3 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Bench-Waterways + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Waterways_02[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (SNAILSLASH + DANGEROUSSKIPS)))"
     },
     {
         "name": "Rancid_Egg-Waterways_Main",
@@ -2128,7 +2146,11 @@
     },
     {
         "name": "Waterways_05[bot2]",
-        "logic": "ORIG | (Waterways_05[bot1] + Defeated_Dung_Defender + QUAKE + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Waterways_05[bot1] + Defeated_Dung_Defender + Broke_Dung_Defender_Quake_Floor + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Broke_Dung_Defender_Quake_Floor",
+        "logic": "ORIG | (Waterways_05[bot1] + Defeated_Dung_Defender + QUAKE + $CASTSPELL + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Lever-Dung_Defender",
@@ -2172,11 +2194,11 @@
     },
     {
         "name": "Defeated_Flukemarm",
-        "logic": "ORIG | (Waterways_12[right1] + COMBAT[Flukemarm] + ACIDSKIPS + YEET + LEFTDASH + WINGS + (GREATSLASH | DASHSLASH | (AIRSTALL + AREASOUL) | LEFTCLAW | (RIGHTCLAW + OBSCURESKIPS))) | (Waterways_12[right1] + COMBAT[Flukemarm] + ACIDSKIPS + BLUEMOTH) | (Waterways_12[right1] + COMBAT[Flukemarm] + ACIDSKIPS + CRYSTALMASTER + LEFTDASH + WINGS + RIGHTCLAW + OBSCURESKIPS + (GREATSLASH | DASHSLASH | (AIRSTALL + AREASOUL)))"
+        "logic": "ORIG | (Waterways_12[right1] + COMBAT[Flukemarm] + ACIDSKIPS + YEET + LEFTDASH + WINGS + (GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | LEFTCLAW | (RIGHTCLAW + OBSCURESKIPS))) | (Waterways_12[right1] + COMBAT[Flukemarm] + ACIDSKIPS + BLUEMOTH) | (Waterways_12[right1] + COMBAT[Flukemarm] + ACIDSKIPS + CRYSTALMASTER + LEFTDASH + WINGS + RIGHTCLAW + OBSCURESKIPS + (GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     {
         "name": "Flukenest",
-        "logic": "ORIG | (Waterways_12[right1] + ACIDSKIPS + YEET + LEFTDASH + WINGS + (GREATSLASH | DASHSLASH | (AIRSTALL + AREASOUL) | LEFTCLAW | (RIGHTCLAW + OBSCURESKIPS))) | (Waterways_12[right1] + ACIDSKIPS + BLUEMOTH) | (Waterways_12[right1] + ACIDSKIPS + CRYSTALMASTER + LEFTDASH + WINGS + RIGHTCLAW + OBSCURESKIPS + (GREATSLASH | DASHSLASH | (AIRSTALL + AREASOUL)))"
+        "logic": "ORIG | (Waterways_12[right1] + ACIDSKIPS + YEET + LEFTDASH + WINGS + (GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | LEFTCLAW | (RIGHTCLAW + OBSCURESKIPS))) | (Waterways_12[right1] + ACIDSKIPS + BLUEMOTH) | (Waterways_12[right1] + ACIDSKIPS + CRYSTALMASTER + LEFTDASH + WINGS + RIGHTCLAW + OBSCURESKIPS + (GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     {
         "name": "GG_Pipeway[left1]",
@@ -2188,11 +2210,11 @@
     },
     {
         "name": "Geo_Rock-Godhome_Pipeway",
-        "logic": "ORIG | (GG_Pipeway[right1] + (BLUEMOTH | YEET | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (GG_Pipeway[right1] + (BLUEMOTH | YEET | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "GG_Waterways",
-        "logic": "ORIG | (GG_Waterways[right1] + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + RIGHTCLAW + OBSCURESKIPS) | (ANTIGRAV + LEFTDASH + AIRSTALL + AREASOUL + (GREATSLASH | CYCLONE | LEFTSHARPSHADOW | (DASHSLASH + LEFTCLAW))) | (ANTIGRAV + LEFTDASH + GREATSLASH + Nailmaster's_Glory)))"
+        "logic": "ORIG | (GG_Waterways[right1] + (ANTIGRAVWINGS | CRYSTALMASTER | (ANTIGRAV + RIGHTCLAW + OBSCURESKIPS) | (ANTIGRAV + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + (GREATSLASH | CYCLONE | LEFTSHARPSHADOW | (DASHSLASH + LEFTCLAW))) | (ANTIGRAV + LEFTDASH + GREATSLASH + Nailmaster's_Glory)))"
     },
     {
         "name": "GG_Waterways[door1]",
@@ -2204,31 +2226,31 @@
     },
     {
         "name": "Room_GG_Shortcut[top1]",
-        "logic": "ORIG | (Room_GG_Shortcut[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + ANYCLAW + WINGS))) | (Room_GG_Shortcut[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (YEET + AIRSTALL + ROOMSOUL + WINGS)))"
+        "logic": "ORIG | (Room_GG_Shortcut[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + ANYCLAW + WINGS))) | (Room_GG_Shortcut[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS)))"
     },
     {
         "name": "Room_GG_Shortcut[left1]",
-        "logic": "ORIG | (Room_GG_Shortcut[top1] + (CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + AIRSTALL + ROOMSOUL))) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS) | (YEET + AIRSTALL + ROOMSOUL + WINGS)))"
+        "logic": "ORIG | (Room_GG_Shortcut[top1] + (CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]))) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS)))"
     },
     {
         "name": "Geo_Rock-Fluke_Hermit",
-        "logic": "ORIG | (Room_GG_Shortcut[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW))) | (Room_GG_Shortcut[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS) | (YEET + AIRSTALL + ROOMSOUL + WINGS)))"
+        "logic": "ORIG | (Room_GG_Shortcut[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW))) | (Room_GG_Shortcut[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS)))"
     },
     {
         "name": "Geo_Rock-Fluke_Hermit_Dupe",
-        "logic": "ORIG | (Room_GG_Shortcut[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW))) | (Room_GG_Shortcut[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS + ENEMYPOGOS) | (YEET + AIRSTALL + ROOMSOUL + WINGS)))"
+        "logic": "ORIG | (Room_GG_Shortcut[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW + WINGS) | (ANTIGRAV + RIGHTCLAW) | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + RIGHTCLAW))) | (Room_GG_Shortcut[top1] + (ANTIGRAV | BLUEMOTH)) | ($TrueAndExists[Bench-Hermit's_Approach] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + LEFTDASH + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS + ENEMYPOGOS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS)))"
     },
     {
         "name": "Waterways_06[right1]",
-        "logic": "ORIG | ((Waterways_06[top1] | $TrueAndExists[Bench-Acid_Sluice_West]) + (BLUEMOTH | (ANTIGRAV + WINGS + RIGHTDASH) | (ANTIGRAV + WINGS + AIRSTALL + ROOMSOUL) | (ANTIGRAV + WINGS + FULLCLAW + PRECISEMOVEMENT) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + RIGHTDASH + RIGHTCLAW) | (CRYSTALMASTER + RIGHTDASH + RIGHTCLAW + OBSCURESKIPS) | (CRYSTALMASTER + AIRSTALL + ROOMSOUL + RIGHTSHARPSHADOW) | YEET))"
+        "logic": "ORIG | ((Waterways_06[top1] | $TrueAndExists[Bench-Acid_Sluice_West]) + (BLUEMOTH | (ANTIGRAV + WINGS + RIGHTDASH) | (ANTIGRAV + WINGS + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (ANTIGRAV + WINGS + FULLCLAW + PRECISEMOVEMENT) | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + RIGHTDASH + RIGHTCLAW) | (CRYSTALMASTER + RIGHTDASH + RIGHTCLAW + OBSCURESKIPS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + RIGHTSHARPSHADOW) | YEET))"
     },
     {
         "name": "Waterways_06[top1]",
-        "logic": "ORIG | (((Waterways_06[right1] + (ACID | LEFTSUPERDASH)) | $TrueAndExists[Bench-Acid_Sluice_West]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW) | (CRYSTALMASTER + ENEMYPOGOS))) | (Waterways_06[right1] + (ANTIGRAVWINGS | (ANTIGRAV + AIRSTALL + ITEMSOUL + LEFTDASH) | YEET | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTDASH + ANYCLAW) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL + (ANYCLAW | ENEMYPOGOS))))"
+        "logic": "ORIG | (((Waterways_06[right1] + (ACID | LEFTSUPERDASH)) | $TrueAndExists[Bench-Acid_Sluice_West]) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ANYCLAW) | (CRYSTALMASTER + ENEMYPOGOS))) | (Waterways_06[right1] + (ANTIGRAVWINGS | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3] + LEFTDASH) | YEET | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTDASH + ANYCLAW) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3] + (ANYCLAW | ENEMYPOGOS))))"
     },
     {
         "name": "Waterways_07",
-        "logic": "ORIG | (Waterways_07[left1] + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + WINGS + RIGHTDASH) | (ANTIGRAV + RIGHTCLAW + RIGHTDASH + AIRSTALL + ITEMSOUL) | (ANTIGRAV + ACID) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTDASH + RIGHTCLAW) | (CRYSTALMASTER + AIRSTALL + ITEMSOUL + RIGHTCLAW) | (YEET + WINGS) | (YEET + GREATSLASH + RIGHTCLAW) | (YEET + AIRSTALL + ITEMSOUL + RIGHTCLAW))) | (Waterways_07[right2] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTSHARPSHADOW) | (ANTIGRAV + WINGS + RIGHTCLAW + LEFTDASH + (DASHMASTER | GREATSLASH | DASHSLASH | (AIRSTALL + ITEMSOUL))) | (YEET + WINGS + LEFTDASH) | (YEET + WINGS + AIRSTALL + ITEMSOUL))) | ($TrueAndExists[Bench-Acid_Sluice_East] + (BLUEMOTH | (ANTIGRAV + ANYCLAW + GREATSLASH) | (ANTIGRAV + ANYCLAW + _AIRSTALL_1 + ROOMSOUL) | (ANTIGRAV + ACID) | (CRYSTALMASTER + ANYCLAW) | (CRYSTALMASTER + GREATSLASH)))"
+        "logic": "ORIG | (Waterways_07[left1] + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + WINGS + RIGHTDASH) | (ANTIGRAV + RIGHTCLAW + RIGHTDASH + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + ACID) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTDASH + RIGHTCLAW) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3] + RIGHTCLAW) | (YEET + WINGS) | (YEET + GREATSLASH + RIGHTCLAW) | (YEET + SPELLAIRSTALL + $CASTSPELL[3] + RIGHTCLAW))) | (Waterways_07[right2] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTSHARPSHADOW) | (ANTIGRAV + WINGS + RIGHTCLAW + LEFTDASH + (DASHMASTER | GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[3]))) | (YEET + WINGS + LEFTDASH) | (YEET + WINGS + SPELLAIRSTALL + $CASTSPELL[3]))) | ($TrueAndExists[Bench-Acid_Sluice_East] + (BLUEMOTH | (ANTIGRAV + ANYCLAW + GREATSLASH) | (ANTIGRAV + ANYCLAW + SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL]) | (ANTIGRAV + ACID) | (CRYSTALMASTER + ANYCLAW) | (CRYSTALMASTER + GREATSLASH)))"
     },
     {
         "name": "Waterways_07[right1]",
@@ -2236,11 +2258,11 @@
     },
     {
         "name": "Waterways_07[right2]",
-        "logic": "ORIG | (Waterways_07 + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + RIGHTSHARPSHADOW) | (YEET + WINGS + RIGHTDASH) | (YEET + WINGS + AIRSTALL + ROOMSOUL)))"
+        "logic": "ORIG | (Waterways_07 + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + RIGHTSHARPSHADOW) | (YEET + WINGS + RIGHTDASH) | (YEET + WINGS + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
     {
         "name": "Waterways_07[left1]",
-        "logic": "ORIG | ((Waterways_07 | $TrueAndExists[Bench-Acid_Sluice_East]) + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + WINGS + GREATSLASH) | (ANTIGRAV + WINGS + _AIRSTALL_1 + ROOMSOUL) | (ANTIGRAV + LEFTCLAW + LEFTDASH + GREATSLASH) | (ANTIGRAV + LEFTCLAW + LEFTDASH + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW) | (CRYSTALMASTER + LEFTCLAW + AIRSTALL + ROOMSOUL) | (YEET + WINGS) | (YEET + LEFTCLAW + GREATSLASH)))"
+        "logic": "ORIG | ((Waterways_07 | $TrueAndExists[Bench-Acid_Sluice_East]) + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + WINGS + GREATSLASH) | (ANTIGRAV + WINGS + SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL]) | (ANTIGRAV + LEFTCLAW + LEFTDASH + GREATSLASH) | (ANTIGRAV + LEFTCLAW + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + WINGS + ANYCLAW) | (CRYSTALMASTER + LEFTDASH + LEFTCLAW) | (CRYSTALMASTER + LEFTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (YEET + WINGS) | (YEET + LEFTCLAW + GREATSLASH)))"
     },
     {
         "name": "Waterways_07[door1]",
@@ -2264,19 +2286,19 @@
     },
     {
         "name": "Isma's_Tear",
-        "logic": "ORIG | (Waterways_13[left2] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + RIGHTSHARPSHADOW) | (ANTIGRAV + WINGS + RIGHTDASH + GREATSLASH) | (ANTIGRAV + WINGS + RIGHTDASH + AIRSTALL + ITEMSOUL) | (ANTIGRAV + LEFTCLAW + RIGHTDASH + (DASHSLASH | GREATSLASH | DASHMASTER | (_AIRSTALL_1 + ITEMSOUL)) + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS + RIGHTCLAW) | (CRYSTALMASTER + _AIRSTALL_2 + ITEMSOUL + WINGS + RIGHTCLAW) | (YEET + GREATSLASH + WINGS) | (YEET + _AIRSTALL_1 + ITEMSOUL + WINGS))) | (Waterways_13[left2] + ACID + (ANTIGRAV | BLUEMOTH)) | (Waterways_13[left1] + ANTIGRAVWINGS)"
+        "logic": "ORIG | (Waterways_13[left2] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + RIGHTSHARPSHADOW) | (ANTIGRAV + WINGS + RIGHTDASH + GREATSLASH) | (ANTIGRAV + WINGS + RIGHTDASH + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + LEFTCLAW + RIGHTDASH + (DASHSLASH | GREATSLASH | DASHMASTER | (SPELLAIRSTALL + $CASTSPELL[1])) + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS + RIGHTCLAW) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[2] + WINGS + RIGHTCLAW) | (YEET + GREATSLASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[1] + WINGS))) | (Waterways_13[left2] + ACID + (ANTIGRAV | BLUEMOTH)) | (Waterways_13[left1] + ANTIGRAVWINGS)"
     },
     {
         "name": "Grub-Isma's_Grove",
-        "logic": "ORIG | (*Isma's_Tear + ACID + BLUEMOTH) | (Waterways_13[left1] + ACIDSKIPS + (BLUEMOTH | (YEET + WINGS + GREATSLASH) | (YEET + WINGS + _AIRSTALL_1 + ROOMSOUL) | (ANTIGRAV + WINGS + RIGHTSHARPSHADOW + (GREATSLASH | DASHSLASH | (_AIRSTALL_1 + ROOMSOUL)))))"
+        "logic": "ORIG | (*Isma's_Tear + ACID + BLUEMOTH) | (Waterways_13[left1] + ACIDSKIPS + (BLUEMOTH | (YEET + WINGS + GREATSLASH) | (YEET + WINGS + SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL]) | (ANTIGRAV + WINGS + RIGHTSHARPSHADOW + (GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL])))))"
     },
     {
         "name": "Waterways_13[left1]",
-        "logic": "ORIG | (*Isma's_Tear + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW))) | (*Grub-Isma's_Grove + ACID + (BLUEMOTH | (ANTIGRAV + ANYCLAW))) | (*Grub-Isma's_Grove + ACIDSKIPS + (BLUEMOTH | (YEET + ANYCLAW + WINGS + (GREATSLASH | (_AIRSTALL_1 + ITEMSOUL))) | (ANTIGRAV + ANYCLAW + WINGS + LEFTSHARPSHADOW + (GREATSLASH | (_AIRSTALL_1 + ITEMSOUL)))))"
+        "logic": "ORIG | (*Isma's_Tear + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW))) | (*Grub-Isma's_Grove + ACID + (BLUEMOTH | (ANTIGRAV + ANYCLAW))) | (*Grub-Isma's_Grove + ACIDSKIPS + (BLUEMOTH | (YEET + ANYCLAW + WINGS + (GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[1]))) | (ANTIGRAV + ANYCLAW + WINGS + LEFTSHARPSHADOW + (GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[1])))))"
     },
     {
         "name": "Waterways_13[left2]",
-        "logic": "ORIG | (*Isma's_Tear + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTSHARPSHADOW) | (ANTIGRAV + WINGS + LEFTDASH + GREATSLASH) | (ANTIGRAV + WINGS + LEFTDASH + AIRSTALL + ROOMSOUL) | (CRYSTALMASTER + LEFTDASH + WINGS) | (CRYSTALMASTER + _AIRSTALL_2 + ROOMSOUL + WINGS) | (YEET + GREATSLASH + WINGS)))"
+        "logic": "ORIG | (*Isma's_Tear + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTSHARPSHADOW) | (ANTIGRAV + WINGS + LEFTDASH + GREATSLASH) | (ANTIGRAV + WINGS + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + LEFTDASH + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[2,before:ROOMSOUL] + WINGS) | (YEET + GREATSLASH + WINGS)))"
     },
     {
         "name": "Waterways_14[bot1]",
@@ -2342,7 +2364,7 @@
     },
     {
         "name": "Ancient_Basin_Map",
-        "logic": "ORIG | (Abyss_04[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Abyss_04 + (ANTIGRAVWINGS | (SNAILSLASH + RIGHTDASH) | (SNAILSLASH + RIGHTSUPERDASH) | (SNAILSLASH + ANTIGRAV) | (SNAILSLASH + CRYSTALMASTER) | (SNAILSLASH + _AIRSTALL_2 + ROOMSOUL)))"
+        "logic": "ORIG | (Abyss_04[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Abyss_04 + (ANTIGRAVWINGS | (SNAILSLASH + RIGHTDASH) | (SNAILSLASH + RIGHTSUPERDASH) | (SNAILSLASH + ANTIGRAV) | (SNAILSLASH + CRYSTALMASTER) | (SNAILSLASH + SPELLAIRSTALL + $CASTSPELL[2,before:ROOMSOUL])))"
     },
     {
         "name": "Soul_Totem-Basin",
@@ -2350,15 +2372,15 @@
     },
     {
         "name": "Abyss_18[left1]",
-        "logic": "ORIG | (Abyss_18[right1] + (BLUEMOTH | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + _AIRSTALL_3 + AREASOUL) | (YEET + GREATSLASH) | (ANTIGRAV + FULLCLAW + LEFTDASH + _AIRSTALL_3 + AREASOUL)))"
+        "logic": "ORIG | (Abyss_18[right1] + (BLUEMOTH | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]) | (YEET + GREATSLASH) | (ANTIGRAV + FULLCLAW + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     {
         "name": "Abyss_18[right1]",
-        "logic": "ORIG | (Abyss_18[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + _AIRSTALL_3 + AREASOUL)))"
+        "logic": "ORIG | (Abyss_18[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
     {
         "name": "Geo_Rock-Basin_Tunnel",
-        "logic": "ORIG | (Abyss_18[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + _AIRSTALL_3 + AREASOUL))) | (Abyss_18[right1] + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Abyss_18[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL]))) | (Abyss_18[right1] + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Abyss_19[left1]",
@@ -2366,7 +2388,7 @@
     },
     {
         "name": "Abyss_19[right1]",
-        "logic": "ORIG | (Abyss_19[bot1] + (ANTIGRAV | BLUEMOTH)) | (Abyss_19[bot2] + ANTIGRAV + (ANYDASH | Longnail | Mark_of_Pride))"
+        "logic": "ORIG | (Abyss_19[bot1] + (ANTIGRAV | BLUEMOTH)) | (Abyss_19[bot2] + ANTIGRAV + (ANYDASH | LONGNAIL | MARKOFPRIDE))"
     },
     {
         "name": "Abyss_19[bot2]",
@@ -2382,7 +2404,7 @@
     },
     {
         "name": "Abyss_19",
-        "logic": "ORIG | (Abyss_19[bot1] + (ANTIGRAV | BLUEMOTH)) | (Abyss_19[bot2] + ANTIGRAV + (ANYDASH | Longnail | Mark_of_Pride))"
+        "logic": "ORIG | (Abyss_19[bot1] + (ANTIGRAV | BLUEMOTH)) | (Abyss_19[bot2] + ANTIGRAV + (ANYDASH | LONGNAIL | MARKOFPRIDE))"
     },
     {
         "name": "Boss_Essence-Lost_Kin",
@@ -2428,7 +2450,7 @@
     },
     {
         "name": "Geo_Rock-Abyss_2",
-        "logic": "ORIG | ((Abyss_06_Core[top1] | $TrueAndExists[Bench-King's_Door]) + BRAND + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + _AIRSTALL_1 + ROOMSOUL))) | (Abyss_06_Core + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+        "logic": "ORIG | ((Abyss_06_Core[top1] | $TrueAndExists[Bench-King's_Door]) + BRAND + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL]))) | (Abyss_06_Core + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
     },
     {
         "name": "Geo_Rock-Abyss_3",
@@ -2542,7 +2564,7 @@
     },
     {
         "name": "Hive_04[right1]",
-        "logic": "ORIG | (Hive_04[left1] + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + _AIRSTALL_1 + ROOMSOUL)))"
+        "logic": "ORIG | (Hive_04[left1] + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + RIGHTDASH) | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL])))"
     },
     {
         "name": "Grub-Hive_Internal",
@@ -2564,15 +2586,15 @@
     },
     {
         "name": "White_Palace_01[right1]",
-        "logic": "ORIG | (White_Palace_01 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + _AIRSTALL_1 + ROOMSOUL)))"
+        "logic": "ORIG | (White_Palace_01 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + GREATSLASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL])))"
     },
     {
         "name": "White_Palace_01[top1]",
-        "logic": "ORIG | (White_Palace_01 + Palace_Entrance_Lantern_Lit + ((ANTIGRAV + ANYCLAW) | BLUEMOTH | (CRYSTALMASTER + GREATSLASH + ANYCLAW) | (CRYSTALMASTER + _AIRSTALL_1 + ROOMSOUL + ANYCLAW))) | (White_Palace_01[right1] + Palace_Entrance_Lantern_Lit + ((ANTIGRAV + ANYCLAW) | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
+        "logic": "ORIG | (White_Palace_01 + Palace_Entrance_Lantern_Lit + ((ANTIGRAV + ANYCLAW) | BLUEMOTH | (CRYSTALMASTER + GREATSLASH + ANYCLAW) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL] + ANYCLAW))) | (White_Palace_01[right1] + Palace_Entrance_Lantern_Lit + ((ANTIGRAV + ANYCLAW) | BLUEMOTH | (CRYSTALMASTER + ANYCLAW)))"
     },
     {
         "name": "Soul_Totem-White_Palace_Entrance",
-        "logic": "ORIG | (White_Palace_02[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + LEFTDASH + WINGS) | (ANTIGRAV + _AIRSTALL_3 + AREASOUL + WINGS) | (YEET + WINGS) | (CRYSTALMASTER + RIGHTCLAW + LEFTDASH + WINGS) | (CRYSTALMASTER + RIGHTCLAW + _AIRSTALL_2 + AREASOUL + WINGS))) | ($TrueAndExists[Bench-Kingsmould_Duelist] + CRYSTALMASTER + LEFTDASH + WINGS)"
+        "logic": "ORIG | (White_Palace_02[left1] + (BLUEMOTH | (ANTIGRAV + LEFTCLAW) | (ANTIGRAV + LEFTDASH + WINGS) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL] + WINGS) | (YEET + WINGS) | (CRYSTALMASTER + RIGHTCLAW + LEFTDASH + WINGS) | (CRYSTALMASTER + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[2,before:AREASOUL] + WINGS))) | ($TrueAndExists[Bench-Kingsmould_Duelist] + CRYSTALMASTER + LEFTDASH + WINGS)"
     },
     {
         "name": "Palace_Entrance_Lantern_Lit",
@@ -2596,7 +2618,7 @@
     },
     {
         "name": "White_Palace_03_hub[top1]",
-        "logic": "ORIG | (White_Palace_03_hub + Palace_Atrium_Gates_Opened + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + FULLCLAW + LEFTDASH) | (CRYSTALMASTER + FULLCLAW + _AIRSTALL_2 + ROOMSOUL)))"
+        "logic": "ORIG | (White_Palace_03_hub + Palace_Atrium_Gates_Opened + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + FULLCLAW + LEFTDASH) | (CRYSTALMASTER + FULLCLAW + SPELLAIRSTALL + $CASTSPELL[2,before:ROOMSOUL])))"
     },
     {
         "name": "Soul_Totem-White_Palace_Hub",
