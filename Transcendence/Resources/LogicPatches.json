@@ -2659,5 +2659,9 @@
     {
         "name": "White_Palace_04[top1]",
         "logic": "ORIG | (White_Palace_04[top1] + (ANTIGRAV | BLUEMOTH)) | (White_Palace_04[right2] + (ANTIGRAVWINGS | (CRYSTALMASTER + LEFTCLAW + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS))) | ($TrueAndExists[Bench-Sawblade_Choir] + (ANTIGRAVWINGS | (CRYSTALMASTER + WINGS)))"
+    },
+    {
+        "name": "White_Palace_04[right2]",
+        "logic": "ORIG | ((White_Palace_04[top1] | Bench-Sawblade_Choir ? FALSE) + ((BLUEMOTH + RIGHTDASH) | (BLUEMOTH + CRYSTALMASTER) | (CRYSTALMASTER + WINGS) | (ANTIGRAV + PRECISEMOVEMENT + RIGHTDASH) | (YEET + PRECISEMOVEMENT + DIFFICULTSKIPS + DANGEROUSSKIPS)))"
     }
 ]
