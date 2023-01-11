@@ -200,9 +200,7 @@ namespace Transcendence
 
         public GlobalSettings OnSaveGlobal()
         {
-            ModSettings.AddCharms = RandoSettings.AddCharms;
-            ModSettings.IncreaseMaxCharmCostBy = RandoSettings.IncreaseMaxCharmCostBy;
-            ModSettings.LogicSettings = JsonUtil.Serialize(RandoSettings.Logic);
+            RandoSettings.WriteTo(ModSettings);
             return ModSettings;
         }
 
@@ -414,7 +412,7 @@ namespace Transcendence
         private static MutablePlacement MakeFloristsBlessingPlacement(string name, string scene, float x, float y)
         {
             var repairPlacement = new CoordinateLocation() { x = x, y = y, elevation = 0, sceneName = scene, name = name }.Wrap() as MutablePlacement;
-            repairPlacement.Cost = new RecurringGeoCost(FloristsBlessing.RepairCost);
+            repairPlacement.Cost = new GeoCost(FloristsBlessing.RepairCost) { Recurring = true };
             repairPlacement.Add(new FloristsBlessingRepairItem());
             return repairPlacement;
         }

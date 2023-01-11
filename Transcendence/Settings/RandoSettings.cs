@@ -25,5 +25,17 @@ namespace Transcendence
             RandomizerMod.RandomizerData.JsonUtil.DeserializeString<LogicSettings>(rs.LogicSettings);
 
         public bool Enabled() => AddCharms;
+
+        internal void WriteTo(GlobalSettings gs)
+        {
+            gs.AddCharms = AddCharms;
+            gs.IncreaseMaxCharmCostBy = IncreaseMaxCharmCostBy;
+            if (Modding.ModHooks.GetMod("Randomizer 4") != null)
+            {
+                gs.LogicSettings = SaveLogic();
+            }
+        }
+
+        private string SaveLogic() => RandomizerMod.RandomizerData.JsonUtil.Serialize(Logic);
     }
 }
