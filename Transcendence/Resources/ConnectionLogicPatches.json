@@ -203,6 +203,14 @@
         "name": "Bench-Thorny_Respite",
         "logic": "ORIG | (White_Palace_05[right1] + (ANTIGRAVWINGS | (ANTIGRAV + LEFTDASH + ANYCLAW) | (YEET + ANYCLAW + GREATSLASH) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW + WINGS)))"
     },
+    {
+        "name": "Bench-Sawblade_Choir",
+        "logic": "ORIG | (White_Palace_04[top1] + (ANTIGRAV | BLUEMOTH)) | (White_Palace_04 + (ANTIGRAVWINGS | (CRYSTALMASTER + ANYCLAW + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS)))"
+    },
+    {
+        "name": "Bench-Palace_West",
+        "logic": "ORIG | (White_Palace_14[bot1] + (ANTIGRAV | BLUEMOTH))"
+    },
     
     // move these to LogicPatches later
     {
