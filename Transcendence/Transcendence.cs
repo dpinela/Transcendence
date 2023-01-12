@@ -421,7 +421,7 @@ namespace Transcendence
         private const int MaxTotalCost = 35;
 
         // stored here so it's accessible for logic purposes
-        private Dictionary<int, int> NextRandoNotchCosts = new();
+        internal Dictionary<int, int> NextRandoNotchCosts = new();
 
         private void SetRandoNotchCosts(RequestBuilder rb)
         {
@@ -705,6 +705,8 @@ namespace Transcendence
                     oneOf,
                     new TermValue(lmb.GetTerm("CHARMS"), 1)
                 }, oneOf));
+                lmb.StateManager.GetOrAddBool("CHARM" + charm.Num);
+                lmb.StateManager.GetOrAddBool("noCHARM" + charm.Num);
             }
 
             // remain hash-compatible with previous versions if logic options aren't turned on
@@ -722,6 +724,12 @@ namespace Transcendence
             {
                 if (origResolver.TryMatch(lm, term, out lvar))
                 {
+                    return true;
+                }
+                if (IsConditionalLogicTerm("EQUIPPED_TRANSCENDENCE_CHARM", term, out var charmName))
+                {
+                    var num = Charms.First(c => c.Name.Replace(" ", "_") == charmName).Num;
+                    lvar = new EquipTCharmVariable(term, charmName, num, lm);
                     return true;
                 }
                 if (IsConditionalLogicTerm("TrueOrNotExist", term, out var innerTerm))

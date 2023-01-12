@@ -133,7 +133,7 @@
     },
     {
         "name": "Bench-Bardoon",
-        "logic": "ORIG | ((Deepnest_East_04 | Bench-Bardoon's_Tail) + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | ((Deepnest_East_04 | (Bench-Bardoon's_Tail ? FALSE)) + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Bench-Bardoon's_Tail",
@@ -205,7 +205,7 @@
     },
     {
         "name": "Bench-Sawblade_Choir",
-        "logic": "ORIG | (White_Palace_04[top1] + (ANTIGRAV | BLUEMOTH)) | (White_Palace_04 + (ANTIGRAVWINGS | (CRYSTALMASTER + ANYCLAW + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS)))"
+        "logic": "ORIG | (White_Palace_04[top1] + (ANTIGRAV | BLUEMOTH)) | (White_Palace_04[right2] + (ANTIGRAVWINGS | (CRYSTALMASTER + ANYCLAW + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS)))"
     },
     {
         "name": "Bench-Palace_West",
