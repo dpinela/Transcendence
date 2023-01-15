@@ -676,19 +676,6 @@ namespace Transcendence
             }
         }
 
-        private static bool IsConditionalLogicTerm(string condition, string term, out string innerTerm)
-        {
-            var startMarker = "$" + condition + "[";
-            const string endMarker = "]";
-            if (term.StartsWith(startMarker) && term.EndsWith(endMarker))
-            {
-                innerTerm = term.Substring(startMarker.Length, term.Length - startMarker.Length - endMarker.Length);
-                return true;
-            }
-            innerTerm = "";
-            return false;
-        }
-
         private void HookLogic(GenerationSettings gs, LogicManagerBuilder lmb)
         {
             if (!gs.PoolSettings.Charms)
@@ -720,36 +707,7 @@ namespace Transcendence
                 lmb.GetOrAddTerm(key);
             }
             var origResolver = lmb.VariableResolver;
-            lmb.VariableResolver = new FuncVariableResolver((LogicManager lm, string term, out LogicVariable lvar) =>
-            {
-                if (origResolver.TryMatch(lm, term, out lvar))
-                {
-                    return true;
-                }
-                if (IsConditionalLogicTerm("EQUIPPED_TRANSCENDENCE_CHARM", term, out var charmName))
-                {
-                    var num = Charms.First(c => c.Name.Replace(" ", "_") == charmName).Num;
-                    lvar = new EquipTCharmVariable(term, charmName, num, lm);
-                    return true;
-                }
-                if (IsConditionalLogicTerm("TrueOrNotExist", term, out var innerTerm))
-                {
-                    if (!origResolver.TryMatch(lm, innerTerm, out lvar))
-                    {
-                        lvar = new ConstantInt(LogicVariable.TRUE);
-                    }
-                    return true;
-                }
-                if (IsConditionalLogicTerm("TrueAndExists", term, out var innerTermII))
-                {
-                    if (!origResolver.TryMatch(lm, innerTermII, out lvar))
-                    {
-                        lvar = new ConstantInt(LogicVariable.FALSE);
-                    }
-                    return true;
-                }
-                return false;
-            });
+            lmb.VariableResolver = new TVariableResolver() { Inner = origResolver };
 
             var modDir = Path.GetDirectoryName(typeof(Transcendence).Assembly.Location);
             var logicLoc = Path.Combine(modDir, "LogicPatches.json");

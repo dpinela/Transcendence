@@ -211,6 +211,10 @@
         "name": "Bench-Palace_West",
         "logic": "ORIG | (White_Palace_14[bot1] + (ANTIGRAV | BLUEMOTH))"
     },
+    {
+        "name": "Lever-Palace_Final",
+        "logic": "ORIG | ((White_Palace_12[right1] | White_Palace_12[bot1]) + Lever-Palace_Final + (ANTIGRAV | BLUEMOTH))"
+    },
     
     // move these to LogicPatches later
     {
