@@ -215,6 +215,10 @@
         "name": "Lever-Palace_Final",
         "logic": "ORIG | ((White_Palace_12[right1] | White_Palace_12[bot1]) + Lever-Palace_Final + (ANTIGRAV | BLUEMOTH))"
     },
+    {
+        "name": "Bench-Throne_Approach",
+        "logic": "ORIG | ((White_Palace_13[left2] | White_Palace_13) + (BLUEMOTH | (YEET + WINGS + RIGHTCLAW))) | (White_Palace_13[left1] + RIGHTSUPERDASH + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW))) | (White_Palace_13[right1] + (BLUEMOTH | (YEET + WINGS + ANYCLAW))) | (White_Palace_13 + ((RIGHTSUPERDASH + ANTIGRAV + WINGS) | (ANTIGRAV + WINGS + RIGHTDASH + SPIKETUNNELS) | (YEET + WINGS + SPIKETUNNELS) | (YEET + ANYCLAW + SPIKETUNNELS))) | (White_Palace_13[right1] + (BLUEMOTH | (YEET + WINGS + ANYCLAW)))"
+    },
     
     // move these to LogicPatches later
     {
