@@ -1,6 +1,6 @@
 namespace Transcendence
 {
-    public struct ChaosHudSettings
+    public class ChaosHudSettings
     {
         public bool Enabled;
         public float Spacing = 0.5f;

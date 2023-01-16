@@ -36,7 +36,7 @@ namespace Transcendence
             {
                 Transcendence.Instance.Log("falling back to base matcher for " + term);
             }
-            return base.TryMatch(lm, term, out lvar);
+            return Inner.TryMatch(lm, term, out lvar);
         }
 
         private static bool IsConditionalLogicTerm(string condition, string term, out string innerTerm)
