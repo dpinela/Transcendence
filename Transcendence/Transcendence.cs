@@ -692,14 +692,19 @@ namespace Transcendence
                     oneOf,
                     new TermValue(lmb.GetTerm("CHARMS"), 1)
                 }, oneOf));
-                lmb.StateManager.GetOrAddBool("CHARM" + charm.Num);
-                lmb.StateManager.GetOrAddBool("noCHARM" + charm.Num);
             }
 
             // remain hash-compatible with previous versions if logic options aren't turned on
             if (!(RandoSettings.AddCharms && RandoSettings.Logic.AnyEnabled()))
             {
                 return;
+            }
+
+            // this part is only required if $EQUIPPED_TRANSCENDENCE_CHARM is in use
+            foreach (var charm in Charms)
+            {
+                lmb.StateManager.GetOrAddBool("CHARM" + charm.Num);
+                lmb.StateManager.GetOrAddBool("noCHARM" + charm.Num);
             }
 
             foreach (var key in LogicTermDefs.Keys)
@@ -752,6 +757,11 @@ namespace Transcendence
 
         private void ReadCharmLogicTermsForProgression(LogicManager lm, GenerationSettings gs, ProgressionInitializer pinit)
         {
+            if (!(RandoSettings.AddCharms && RandoSettings.Logic.AnyEnabled()))
+            {
+                return;
+            }
+            
             foreach (var entry in LogicTermDefs)
             {
                 if (entry.Value(RandoSettings.Logic))
