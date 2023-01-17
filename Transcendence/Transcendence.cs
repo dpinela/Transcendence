@@ -47,7 +47,7 @@ namespace Transcendence
             Greedsong.Instance,
             MarissasAudience.Instance,
             ChaosOrb.Instance,
-            HiveBeacon.Instance
+            VespasVengeance.Instance
         };
 
         internal static Transcendence Instance;
@@ -69,7 +69,7 @@ namespace Transcendence
         {
             Log("Initializing");
             Instance = this;
-            HiveBeacon.Instance.Bee = preloads["Hive_05"]["Battle Scene/Droppers/Bee Dropper"];
+            VespasVengeance.Instance.Bee = preloads["Hive_05"]["Battle Scene/Droppers/Bee Dropper"];
             foreach (var charm in Charms)
             {
                 var num = CharmHelper.AddSprites(EmbeddedSprites.Get(charm.Sprite))[0];
@@ -417,8 +417,8 @@ namespace Transcendence
             return repairPlacement;
         }
 
-        private const int MinTotalCost = 22;
-        private const int MaxTotalCost = 35;
+        private const int MinTotalCost = 25;
+        private const int MaxTotalCost = 38;
 
         // stored here so it's accessible for logic purposes
         internal Dictionary<int, int> NextRandoNotchCosts = new();
@@ -540,10 +540,6 @@ namespace Transcendence
                 // Logic Settings
                 75f,
                 75f,
-                BUTTON_HEIGHT,
-                BUTTON_HEIGHT,
-                75f,
-                BUTTON_HEIGHT,
                 BUTTON_HEIGHT,
                 BUTTON_HEIGHT,
                 BUTTON_HEIGHT,
@@ -719,7 +715,7 @@ namespace Transcendence
             var macroLoc = Path.Combine(modDir, "LogicMacros.json");
             using (var macros = File.OpenRead(macroLoc))
             {
-                lmb.DeserializeJson(LogicManagerBuilder.JsonType.Macros, macros);
+                lmb.DeserializeJson(LogicManagerBuilder.JsonType.MacroEdit, macros);
             }
 
             using (var patches = File.OpenRead(logicLoc))
@@ -761,7 +757,7 @@ namespace Transcendence
             {
                 return;
             }
-            
+
             foreach (var entry in LogicTermDefs)
             {
                 if (entry.Value(RandoSettings.Logic))
@@ -776,16 +772,13 @@ namespace Transcendence
             {"ANTIGRAVITY_AMULET_ON", ls => ls.AntigravityAmulet},
             {"BLUEMOTH_WINGS_ON", ls => ls.BluemothWings == GeoCharmLogicMode.On},
             {"BLUEMOTH_WINGS_ON_GEO", ls => ls.BluemothWings == GeoCharmLogicMode.OnWithGeo},
-            {"LEMMS_STRENGTH_ON", ls => ls.LemmsStrength},
-            {"FLORISTS_BLESSING_ON", ls => ls.FloristsBlessing},
             {"SNAIL_SOUL_ON", ls => ls.SnailSoul},
             {"SNAIL_SLASH_ON", ls => ls.SnailSlash},
-            {"GREEDSONG_ON", ls => ls.Greedsong},
             {"MILLIBELLES_BLESSING_ON", ls => ls.MillibellesBlessing},
             {"NITRO_CRYSTAL_ON", ls => ls.NitroCrystal},
+            {"VESPAS_VENGEANCE_ON", ls => ls.VespasVengeance},
             {"CRYSTALMASTER_ON", ls => ls.Crystalmaster == GeoCharmLogicMode.On},
             {"CRYSTALMASTER_ON_GEO", ls => ls.Crystalmaster == GeoCharmLogicMode.OnWithGeo},
-            {"MARISSAS_AUDIENCE_ON", ls => ls.MarissasAudience},
             {"CHAOS_ORB_ON", ls => ls.ChaosOrb != ChaosOrbMode.Off}
         };
 

@@ -6,34 +6,25 @@ namespace Transcendence
     {
         public bool AntigravityAmulet;
         public GeoCharmLogicMode BluemothWings;
-        [MenuLabel("Lemm's Strength")]
-        public bool LemmsStrength;
-        public int MinimumRelicsRequired;
-        [MenuLabel("Florist's Blessing")]
-        public bool FloristsBlessing;
         public bool SnailSoul;
         public bool SnailSlash;
-        public bool Greedsong;
         [MenuLabel("Millibelle's Blessing")]
         public bool MillibellesBlessing;
         public bool NitroCrystal;
+        [MenuLabel("Vespa's Vengeance")]
+        public bool VespasVengeance;
         public GeoCharmLogicMode Crystalmaster;
-        [MenuLabel("Marissa's Audience")]
-        public bool MarissasAudience;
         public ChaosOrbMode ChaosOrb;
 
         public bool AnyEnabled() =>
             AntigravityAmulet ||
             BluemothWings != GeoCharmLogicMode.Off ||
-            LemmsStrength ||
-            FloristsBlessing ||
             SnailSoul ||
             SnailSlash ||
-            Greedsong ||
             MillibellesBlessing ||
             NitroCrystal ||
+            VespasVengeance ||
             Crystalmaster != GeoCharmLogicMode.Off ||
-            MarissasAudience ||
             ChaosOrb != ChaosOrbMode.Off;
     }
 

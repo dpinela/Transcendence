@@ -17,7 +17,7 @@ namespace Transcendence
 
         private static List<(Predicate<RandoSettings> feature, string name)> SupportedFeatures = new()
         {
-            (rs => rs.AddCharms, "AddCharms"),
+            (rs => rs.AddCharms, "Add15Charms"),
             (rs => rs.IncreaseMaxCharmCostBy > 0, "IncreaseMaxCharmCost"),
             (rs => rs.Logic.AntigravityAmulet, "AntigravLogic"),
             (rs => rs.Logic.BluemothWings == GeoCharmLogicMode.OnWithGeo, "BluemothGeoLogic"),
@@ -26,6 +26,7 @@ namespace Transcendence
             (rs => rs.Logic.SnailSlash, "SnailSlashLogic"),
             (rs => rs.Logic.MillibellesBlessing, "MillibelleLogic"),
             (rs => rs.Logic.NitroCrystal, "NitroLogic"),
+            (rs => rs.Logic.VespasVengeance, "VespaLogic"),
             (rs => rs.Logic.Crystalmaster == GeoCharmLogicMode.OnWithGeo, "CrystalmasterGeoLogic"),
             (rs => rs.Logic.Crystalmaster == GeoCharmLogicMode.On, "CrystalmasterLogic"),
             (rs => rs.Logic.ChaosOrb != ChaosOrbMode.Off, "ChaosLogic"),

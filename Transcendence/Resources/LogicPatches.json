@@ -2360,7 +2360,7 @@
     },
     {
         "name": "Vessel_Fragment-Basin",
-        "logic": "ORIG | (Abyss_04 + Can_Visit_Lemm + Defeated_Colosseum_1 + (ANTIGRAVWINGS | (ANTIGRAV + SNAILSLASH)))"
+        "logic": "ORIG | (Abyss_04 + ((Can_Visit_Lemm + Defeated_Colosseum_1) | MILLIBELLE) + (ANTIGRAVWINGS | (ANTIGRAV + SNAILSLASH)))"
     },
     {
         "name": "Ancient_Basin_Map",
@@ -2719,5 +2719,11 @@
     {
         "name": "Lore_Tablet-Palace_Throne",
         "logic": "ORIG | (White_Palace_09[right1] + (BLUEMOTH | (YEET + WINGS)))"
+    },
+
+    // Misc.
+    {
+        "name": "Can_Replenish_Geo",
+        "logic": "ORIG | MILLIBELLE"
     }
 ]

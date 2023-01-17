@@ -7,21 +7,21 @@ using HutongGames.PlayMaker.Actions;
 
 namespace Transcendence
 {
-    internal class HiveBeacon : Charm
+    internal class VespasVengeance : Charm
     {
-        public static readonly HiveBeacon Instance = new();
+        public static readonly VespasVengeance Instance = new();
 
-        private HiveBeacon() {}
+        private VespasVengeance() {}
 
-        public override string Sprite => "HiveBeacon.png";
-        public override string Name => "Hive Beacon";
+        public override string Sprite => "VespasVengeance.png";
+        public override string Name => "Vespa's Vengeance";
         public override string Description => "A device used by the guardians of the Hive to contact each other.\n\nTransforms the Howling Wraiths spell into a swarm of volatile worker bees.";
         public override int DefaultCost => 3;
         public override string Scene => "Hive_01";
         public override float X => 85.0f;
         public override float Y => 10.4f;
 
-        public override CharmSettings Settings(SaveSettings s) => s.HiveBeacon;
+        public override CharmSettings Settings(SaveSettings s) => s.VespasVengeance;
 
         public GameObject Bee;
 
