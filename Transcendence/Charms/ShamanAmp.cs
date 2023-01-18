@@ -169,7 +169,7 @@ namespace Transcendence
             return obj;
         }
 
-        public void Enlarge(GameObject obj)
+        public static void Enlarge(GameObject obj)
         {
             var vec = obj.transform.localScale;
             var k = EnlargementFactor();

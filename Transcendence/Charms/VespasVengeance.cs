@@ -79,7 +79,16 @@ namespace Transcendence
                         return;
                     }
                     var target = BeaconProxy(NearestLargeEnemy(HeroController.instance.transform.position));
-                    GameManager.instance.StartCoroutine(Swarm(10, ShamanStoneEquipped() ? WraithsShamanDamage : WraithsDamage, target));
+                    var n = 10;
+                    var damage = ShamanStoneEquipped() ? WraithsShamanDamage : WraithsDamage;
+                    var scale = 1.0f;
+                    if (HivebloodEquipped())
+                    {
+                        n *= 2;
+                        damage /= 2;
+                        scale /= 2;
+                    }
+                    GameManager.instance.StartCoroutine(Swarm(n, damage, scale, target));
                 }
                 else
                 {
@@ -98,7 +107,16 @@ namespace Transcendence
                         return;
                     }
                     var target = BeaconProxy(NearestLargeEnemy(HeroController.instance.transform.position));
-                    GameManager.instance.StartCoroutine(Swarm(10, ShamanStoneEquipped() ? ShriekShamanDamage : ShriekDamage, target));
+                    var n = 10;
+                    var damage = ShamanStoneEquipped() ? ShriekShamanDamage : ShriekDamage;
+                    var scale = 1.0f;
+                    if (HivebloodEquipped())
+                    {
+                        n *= 2;
+                        damage /= 2;
+                        scale /= 2;
+                    }
+                    GameManager.instance.StartCoroutine(Swarm(n, damage, scale, target));
                 }
                 else
                 {
@@ -117,12 +135,16 @@ namespace Transcendence
         private static bool ShamanStoneEquipped() =>
             PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_19));
 
-        private IEnumerator Swarm(int n, int damage, GameObject target)
+        private static bool HivebloodEquipped() =>
+            PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_29));
+
+        private IEnumerator Swarm(int n, int damage, float baseScale, GameObject target)
         {
             var fsmTargetRef = target != null ? new FsmGameObject("") { RawValue = target } : null;
             var accel = new FsmFloat("") { RawValue = BeeAcceleration };
             var dcrestEquipped = PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_10));
             var ampEquipped = ShamanAmp.Instance.Equipped();
+            var interval = 2.0f / n;
             for (var i = 0; i < n; i++)
             {
                 var here = HeroController.instance.transform.position;
@@ -131,7 +153,12 @@ namespace Transcendence
                 b.layer = (int)PhysLayers.HERO_ATTACK;
                 if (ampEquipped)
                 {
-                    ShamanAmp.Instance.Enlarge(b);
+                    ShamanAmp.Enlarge(b);
+                }
+                if (baseScale != 1)
+                {
+                    var ls = b.transform.localScale;
+                    b.transform.localScale = new Vector3(ls.x * baseScale, ls.y * baseScale, ls.z);
                 }
                 var bFSM = b.LocateMyFSM("Control");
                 bFSM.GetFsmFloat("X Left").Value = here.x - 8;
@@ -146,7 +173,7 @@ namespace Transcendence
                 if (fsmTargetRef != null)
                 {
                     // WARNING: Changing the Value property of FsmGameObject this action targets
-                    // will wreak havoc on most enemy FSMs - bosses included -, because seemingly all of them 
+                    // will wreak havoc on most enemy FSMs - bosses included -, because seemingly all of them
                     // reference the Knight through the same FsmGameObject instance.
                     // Instead, we replace the FsmGameObject object itself. Since each volley of bees targets
                     // the same thing, we can reuse the same FsmGameObject for all of them.
@@ -189,7 +216,7 @@ namespace Transcendence
                         expdmg.DamagePerTick = damage / 10;
                         if (ampEquipped)
                         {
-                            ShamanAmp.Instance.Enlarge(exp);
+                            ShamanAmp.Enlarge(exp);
                         }
                         // Destroy the bee by sending it to the Spell Death state
                         bFSM.SendEvent("SPELL");
@@ -210,7 +237,7 @@ namespace Transcendence
                     damager.enabled = true;
                 }
                 bFSM.SendEvent("SWARM");
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(interval);
             }
         }
 
