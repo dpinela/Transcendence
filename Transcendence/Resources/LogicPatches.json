@@ -2720,6 +2720,22 @@
         "name": "Lore_Tablet-Palace_Throne",
         "logic": "ORIG | (White_Palace_09[right1] + (BLUEMOTH | (YEET + WINGS)))"
     },
+    {
+        "name": "White_Palace_18[top1]",
+        "logic": "ORIG | (White_Palace_18[right1] + ((ANTIGRAV + WINGS + RIGHTCLAW + LEFTDASH) | (ANTIGRAV + BLUEMOTH + LEFTDASH) | (BLUEMOTH + RIGHTCLAW + LEFTSUPERDASH)))"
+    },
+    {
+        "name": "White_Palace_18[right1]",
+        "logic": "ORIG | (White_Palace_18[top1] + ((ANTIGRAV + WINGS + RIGHTDASH) | (BLUEMOTH + LEFTCLAW + RIGHTSUPERDASH) | (BLUEMOTH + RIGHTDASH)))"
+    },
+    {
+        "name": "Soul_Totem-Path_of_Pain_Entrance",
+        "logic": "ORIG | (White_Palace_18[right1] + (ANTIGRAVWINGS | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + CYCLONE) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[1]) | CRYSTALMASTER)) | (White_Palace_18[top1] + ((ANTIGRAV + WINGS + RIGHTDASH) | (BLUEMOTH + LEFTCLAW + RIGHTSUPERDASH)))"
+    },
+    {
+        "name": "Soul_Totem-Path_of_Pain_Second",
+        "logic": "ORIG | (White_Palace_18[right1] + ((ANTIGRAV + BLUEMOTH) | (ANTIGRAV + WINGS + RIGHTCLAW) | (BLUEMOTH + RIGHTCLAW + LEFTSUPERDASH))) | (White_Palace_18[top1] + ((ANTIGRAV + WINGS + RIGHTDASH) | (BLUEMOTH + LEFTCLAW + RIGHTSUPERDASH) | (BLUEMOTH + RIGHTDASH)))"
+    },
 
     // Misc.
     {

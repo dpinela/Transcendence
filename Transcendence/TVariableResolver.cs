@@ -6,10 +6,6 @@ namespace Transcendence
     {
         public override bool TryMatch(RCLogic.LogicManager lm, string term, out RCLogic.LogicVariable lvar)
         {
-            if (term.Contains("WARPTOSTART"))
-            {
-                Transcendence.Instance.Log("matching " + term);
-            }
             if (IsConditionalLogicTerm("EQUIPPED_TRANSCENDENCE_CHARM", term, out var charmName))
             {
                 var num = Transcendence.Charms.First(c => c.Name.Replace(" ", "_") == charmName).Num;
@@ -31,10 +27,6 @@ namespace Transcendence
                     lvar = new RCLogic.ConstantInt(RCLogic.LogicVariable.FALSE);
                 }
                 return true;
-            }
-            if (term.Contains("WARPTOSTART"))
-            {
-                Transcendence.Instance.Log("falling back to base matcher for " + term);
             }
             return Inner.TryMatch(lm, term, out lvar);
         }

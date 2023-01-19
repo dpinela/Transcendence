@@ -213,7 +213,8 @@ namespace Transcendence
                             .ReplaceAction(0, () => GameObject.Destroy(exp));
                         var expdmg = exp.AddComponent<CustomTickDamage>();
                         // 5/10/15/20 total damage over 5 ticks
-                        expdmg.DamagePerTick = damage / 10;
+                        // (5/5/5/10 with Hiveblood)
+                        expdmg.DamagePerTick = damage < 10 ? 1 : damage / 10;
                         if (ampEquipped)
                         {
                             ShamanAmp.Enlarge(exp);
