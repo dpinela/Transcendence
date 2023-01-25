@@ -29,7 +29,6 @@ namespace Transcendence
             (rs => rs.Logic.VespasVengeance, "VespaLogic"),
             (rs => rs.Logic.Crystalmaster == GeoCharmLogicMode.OnWithGeo, "CrystalmasterGeoLogic"),
             (rs => rs.Logic.Crystalmaster == GeoCharmLogicMode.On, "CrystalmasterLogic"),
-            (rs => rs.Logic.ChaosOrb != ChaosOrbMode.Off, "ChaosLogic"),
             (rs => rs.Logic.AnyEnabled(), "LogicHash:" + LogicHash())
         };
 

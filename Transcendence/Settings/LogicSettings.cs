@@ -14,7 +14,6 @@ namespace Transcendence
         [MenuLabel("Vespa's Vengeance")]
         public bool VespasVengeance;
         public GeoCharmLogicMode Crystalmaster;
-        public ChaosOrbMode ChaosOrb;
 
         public bool AnyEnabled() =>
             AntigravityAmulet ||
@@ -24,19 +23,12 @@ namespace Transcendence
             MillibellesBlessing ||
             NitroCrystal ||
             VespasVengeance ||
-            Crystalmaster != GeoCharmLogicMode.Off ||
-            ChaosOrb != ChaosOrbMode.Off;
+            Crystalmaster != GeoCharmLogicMode.Off;
     }
 
     public enum GeoCharmLogicMode {
         Off,
         OnWithGeo,
         On
-    }
-
-    public enum ChaosOrbMode {
-        Off,
-        Rigged,
-        Fair
     }
 }

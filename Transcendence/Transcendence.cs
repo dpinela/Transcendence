@@ -809,8 +809,7 @@ namespace Transcendence
             {"NITRO_CRYSTAL_ON", ls => ls.NitroCrystal},
             {"VESPAS_VENGEANCE_ON", ls => ls.VespasVengeance},
             {"CRYSTALMASTER_ON", ls => ls.Crystalmaster == GeoCharmLogicMode.On},
-            {"CRYSTALMASTER_ON_GEO", ls => ls.Crystalmaster == GeoCharmLogicMode.OnWithGeo},
-            {"CHAOS_ORB_ON", ls => ls.ChaosOrb != ChaosOrbMode.Off}
+            {"CRYSTALMASTER_ON_GEO", ls => ls.Crystalmaster == GeoCharmLogicMode.OnWithGeo}
         };
 
         private void AddCharmsToPool(RequestBuilder rb)

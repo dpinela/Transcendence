@@ -2360,7 +2360,7 @@
     },
     {
         "name": "Vessel_Fragment-Basin",
-        "logic": "ORIG | (Abyss_04 + ((Can_Visit_Lemm + Defeated_Colosseum_1) | MILLIBELLE) + (ANTIGRAVWINGS | (ANTIGRAV + SNAILSLASH)))"
+        "logic": "ORIG | (Abyss_04 + ((Can_Visit_Lemm + Defeated_Colosseum_1) | (MILLIBELLE + Can_Replenish_Geo)) + (ANTIGRAVWINGS | (ANTIGRAV + SNAILSLASH)))"
     },
     {
         "name": "Ancient_Basin_Map",
@@ -2674,7 +2674,7 @@
     },
     {
         "name": "White_Palace_06[top1]",
-        "logic": "ORIG | ((White_Palace_06[bot1] | White_Palace_06[left1] | Warp-Path_of_Pain_Complete) + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW))) | (Bench-Palace_Balcony + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | ((White_Palace_06[bot1] | White_Palace_06[left1] | Warp-Path_of_Pain_Complete) + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW))) | ((Bench-Palace_Balcony ? FALSE) + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "White_Palace_07[top1]",
@@ -2735,11 +2735,5 @@
     {
         "name": "Soul_Totem-Path_of_Pain_Second",
         "logic": "ORIG | (White_Palace_18[right1] + ((ANTIGRAV + BLUEMOTH) | (ANTIGRAV + WINGS + RIGHTCLAW) | (BLUEMOTH + RIGHTCLAW + LEFTSUPERDASH))) | (White_Palace_18[top1] + ((ANTIGRAV + WINGS + RIGHTDASH) | (BLUEMOTH + LEFTCLAW + RIGHTSUPERDASH) | (BLUEMOTH + RIGHTDASH)))"
-    },
-
-    // Misc.
-    {
-        "name": "Can_Replenish_Geo",
-        "logic": "ORIG | MILLIBELLE"
     }
 ]
