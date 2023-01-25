@@ -741,6 +741,12 @@ namespace Transcendence
             var origResolver = lmb.VariableResolver;
             lmb.VariableResolver = new TVariableResolver() { Inner = origResolver };
 
+            // These waypoints are not required for correctness, but greatly improve generation
+            // performance as otherwise the logic that uses them causes a combinatorial explosion
+            // when converted to DNF.
+            lmb.AddWaypoint(new("Can_Reach_Isma's_Tear", "*Isma's_Tear"));
+            lmb.AddWaypoint(new("Can_Reach_Grub-Isma's_Grove", "*Grub-Isma's_Grove"));
+
             var modDir = Path.GetDirectoryName(typeof(Transcendence).Assembly.Location);
             var logicLoc = Path.Combine(modDir, "LogicPatches.json");
             var macroLoc = Path.Combine(modDir, "LogicMacros.json");

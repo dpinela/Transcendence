@@ -667,12 +667,10 @@
         "name": "Fungus3_13[right1]",
         "logic": "ORIG | (Fungus3_13 + (ANTIGRAV | BLUEMOTH))"
     },
-    /* this waypoint doesn't exist in the current release of rando but it will one day
     {
         "name": "Can_Deliver_Flower",
-        "logic": "ORIG | (Fungus3_49[right1] + $FLOWER + (CRYSTALMASTER | (BLUEMOTH + DIFFICULTSKIPS) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
+        "logic": "ORIG | (Fungus3_49[right1] + NOFLOWER=FALSE + (CRYSTALMASTER | (BLUEMOTH + DIFFICULTSKIPS) | (ANTIGRAV + GREATSLASH) | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3,before:AREASOUL])))"
     },
-    */
     {
         "name": "Fungus3_40[top1]",
         "logic": "ORIG | ((Fungus3_40[right1] | $TrueAndExists[Bench-Gardens_Stag]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
@@ -2290,15 +2288,15 @@
     },
     {
         "name": "Grub-Isma's_Grove",
-        "logic": "ORIG | (*Isma's_Tear + ACID + BLUEMOTH) | (Waterways_13[left1] + ACIDSKIPS + (BLUEMOTH | (YEET + WINGS + GREATSLASH) | (YEET + WINGS + SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL]) | (ANTIGRAV + WINGS + RIGHTSHARPSHADOW + (GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL])))))"
+        "logic": "ORIG | (Can_Reach_Isma's_Tear + ACID + BLUEMOTH) | (Waterways_13[left1] + ACIDSKIPS + (BLUEMOTH | (YEET + WINGS + GREATSLASH) | (YEET + WINGS + SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL]) | (ANTIGRAV + WINGS + RIGHTSHARPSHADOW + (GREATSLASH | DASHSLASH | (SPELLAIRSTALL + $CASTSPELL[1,before:ROOMSOUL])))))"
     },
     {
         "name": "Waterways_13[left1]",
-        "logic": "ORIG | (*Isma's_Tear + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW))) | (*Grub-Isma's_Grove + ACID + (BLUEMOTH | (ANTIGRAV + ANYCLAW))) | (*Grub-Isma's_Grove + ACIDSKIPS + (BLUEMOTH | (YEET + ANYCLAW + WINGS + (GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[1]))) | (ANTIGRAV + ANYCLAW + WINGS + LEFTSHARPSHADOW + (GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[1])))))"
+        "logic": "ORIG | (Can_Reach_Isma's_Tear + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW))) | (Can_Reach_Grub-Isma's_Grove + ACID + (BLUEMOTH | (ANTIGRAV + ANYCLAW))) | (Can_Reach_Grub-Isma's_Grove + ACIDSKIPS + (BLUEMOTH | (YEET + ANYCLAW + WINGS + (GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[1]))) | (ANTIGRAV + ANYCLAW + WINGS + LEFTSHARPSHADOW + (GREATSLASH | (SPELLAIRSTALL + $CASTSPELL[1])))))"
     },
     {
         "name": "Waterways_13[left2]",
-        "logic": "ORIG | (*Isma's_Tear + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTSHARPSHADOW) | (ANTIGRAV + WINGS + LEFTDASH + GREATSLASH) | (ANTIGRAV + WINGS + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + LEFTDASH + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[2,before:ROOMSOUL] + WINGS) | (YEET + GREATSLASH + WINGS)))"
+        "logic": "ORIG | (Can_Reach_Isma's_Tear + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTSHARPSHADOW) | (ANTIGRAV + WINGS + LEFTDASH + GREATSLASH) | (ANTIGRAV + WINGS + LEFTDASH + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (CRYSTALMASTER + LEFTDASH + WINGS) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[2,before:ROOMSOUL] + WINGS) | (YEET + GREATSLASH + WINGS)))"
     },
     {
         "name": "Waterways_14[bot1]",
