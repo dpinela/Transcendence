@@ -335,8 +335,6 @@ namespace Transcendence
 
         private void PlaceItemsRando()
         {
-            StoreNotchCosts(NextRandoNotchCosts);
-
             var gs = RandomizerMod.RandomizerMod.RS.GenerationSettings;
             if (gs.PoolSettings.Charms)
             {
@@ -349,6 +347,18 @@ namespace Transcendence
             {
                 PlaceCharmsAtFixedPositions();
                 PlaceFloristsBlessingRepair();
+            }
+        }
+
+        private void StoreRandoNotchCosts(RandoController rc)
+        {
+            var pinit = (ProgressionInitializer)rc.ctx.InitialProgression;
+            var icPlayerData = ItemChangerMod.Modules.GetOrAdd<ItemChanger.Modules.PlayerDataEditModule>();
+            foreach (var c in Charms)
+            {
+                var t = rc.rb.lm.GetTermStrict(c.Name.Replace(" ", "_") + CostTermSuffix);
+                var cost = pinit.Setters.First(s => s.Term == t).Value;
+                icPlayerData.AddPDEdit($"charmCost_{c.Num}", cost);
             }
         }
 
@@ -420,13 +430,25 @@ namespace Transcendence
         private const int MinTotalCost = 25;
         private const int MaxTotalCost = 38;
 
-        // stored here so it's accessible for logic purposes
-        internal Dictionary<int, int> NextRandoNotchCosts = new();
+        internal const string CostTermSuffix = "_COST";
 
         private void SetRandoNotchCosts(RequestBuilder rb)
         {
-            NextRandoNotchCosts = rb.gs.MiscSettings.RandomizeNotchCosts ?
+            var nc = rb.gs.MiscSettings.RandomizeNotchCosts ?
                 RandomizeNotchCosts(rb.gs.Seed) : DefaultNotchCosts();
+            // We need to store charm costs in the context for them to be accessible to
+            // EquipTCharmVariable.
+            // The only currently available way of doing that is storing the cost
+            // as the value of a logic term. This is a kludge (as apparent from the necessary cast), but
+            // it will have to do until more suitable mechanisms are available.
+            var pinit = (ProgressionInitializer)rb.ctx.InitialProgression;
+            foreach (var c in Charms)
+            {
+                pinit.Setters.Add(new(
+                    rb.lm.GetTermStrict(c.Name.Replace(" ", "_") + CostTermSuffix),
+                    nc[c.Num]
+                ));
+            }
         }
 
         private Dictionary<int, int> RandomizeNotchCosts(int seed)
@@ -479,6 +501,7 @@ namespace Transcendence
         {
             UpdateSettingsMenu = (rs => RandoSettings = rs);
             RequestBuilder.OnUpdate.Subscribe(-9999, SetRandoNotchCosts);
+            RandoController.OnExportCompleted += StoreRandoNotchCosts;
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
             RequestBuilder.OnUpdate.Subscribe(-200, IncreaseMaxCharmCost);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
@@ -674,13 +697,21 @@ namespace Transcendence
 
         private void HookLogic(GenerationSettings gs, LogicManagerBuilder lmb)
         {
+            // These terms need to be created unconditionally because charm notch costs
+            // may be randomized even if charms themselves are not.
+            var charmNames = Charms.Select(c => c.Name.Replace(" ", "_")).ToList();
+            foreach (var name in charmNames)
+            {
+                lmb.GetOrAddTerm(name + CostTermSuffix);
+            }
+
             if (!gs.PoolSettings.Charms)
             {
                 return;
             }
-            foreach (var charm in Charms)
+
+            foreach (var name in charmNames)
             {
-                var name = charm.Name.Replace(" ", "_");
                 var term = lmb.GetOrAddTerm(name);
                 var oneOf = new TermValue(term, 1);
                 lmb.AddItem(new CappedItem(name, new TermValue[]
