@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Can_Reach_Isma's_Tear",
+        "logic": "*Isma's_Tear"
+    },
+    {
+        "name": "Can_Reach_Grub-Isma's_Grove",
+        "logic": "*Grub-Isma's_Grove"
+    },
+    {
+        "name": "Can_Reach_Weavers_Den_Breakable_Wall_With_Transcendence",
+        "logic": "Deepnest_45_v02[left1] + (ANTIGRAVWINGS | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + LEFTDASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + GREATSLASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + CYCLONE) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (SNAILSLASH + LEFTSUPERDASH) | (SNAILSLASH + CRYSTALMASTER) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS + LEFTCLAW))"
+    },
+    {
+        "name": "Can_Break_Weavers_Den_Breakable_Wall_With_Transcendence",
+        "logic": "(Can_Reach_Weavers_Den_Breakable_Wall_With_Transcendence + (LEFTSLASH | UPSLASH | FIREBALL | SCREAM))"
+    }
+]

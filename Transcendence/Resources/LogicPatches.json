@@ -693,7 +693,7 @@
     },
     {
         "name": "Boss_Essence-Marmu",
-        "logic": "ORIG | ((Fungus3_40[right1] | $TrueAndExists[Bench-Gardens_Stag]) + DREAMNAIL + COMBAT[Marmu] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | ((Fungus3_40[right1] | $TrueAndExists[Bench-Gardens_Stag]) + DREAMNAIL + Defeated_Marmu + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Defeated_Marmu",
@@ -1796,10 +1796,9 @@
         "name": "Weaversong",
         "logic": "ORIG | (Deepnest_45_v02[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ENEMYPOGOS) | (ANTIGRAV + ANYCLAW) | SNAILSLASH))"
     },
-    // (ways to get to the breakable wall) + (ways of breaking the wall) + (ways of getting up to the chest)
     {
         "name": "Geo_Chest-Weavers_Den",
-        "logic": "ORIG | (Deepnest_45_v02[left1] + (ANTIGRAVWINGS | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + LEFTDASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + GREATSLASH) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + CYCLONE) | (ANTIGRAV + (ANYCLAW | ENEMYPOGOS) + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL]) | (SNAILSLASH + LEFTSUPERDASH) | (SNAILSLASH + CRYSTALMASTER) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + WINGS + LEFTCLAW)) + (LEFTSLASH | UPSLASH | FIREBALL | SCREAM) + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS) | (ANTIGRAV + WINGS + LEFTCLAW) | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SNAILSLASH) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + WINGS + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + SNAILSLASH) | (SNAILSLASH + LEFTDASH) | (SNAILSLASH + SPIKETUNNELS)))"
+        "logic": "ORIG | (Can_Break_Weavers_Den_Breakable_Wall_With_Transcendence + (BLUEMOTH | (ANTIGRAV + WINGS + ENEMYPOGOS) | (ANTIGRAV + WINGS + LEFTCLAW) | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SNAILSLASH) | (CRYSTALMASTER + WINGS + ENEMYPOGOS) | (CRYSTALMASTER + WINGS + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW) | (CRYSTALMASTER + SNAILSLASH) | (SNAILSLASH + LEFTDASH) | (SNAILSLASH + SPIKETUNNELS)))"
     },
     {
         "name": "Rancid_Egg-Weaver's_Den",

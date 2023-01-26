@@ -42,7 +42,7 @@ namespace Transcendence
             using var hash = SHA256.Create();
             using var hstream = new CryptoStream(Stream.Null, hash, CryptoStreamMode.Write);
             var modDir = Path.GetDirectoryName(typeof(StructuralVersioningPolicy).Assembly.Location);
-            foreach (var name in new string[] { "LogicMacros.json", "LogicPatches.json", "ConnectionLogicPatches.json" })
+            foreach (var name in new string[] { "LogicMacros.json", "LogicPatches.json", "LogicWaypoints.json", "ConnectionLogicPatches.json" })
             {
                 using (var logicFile = File.OpenRead(Path.Combine(modDir, name)))
                 {
