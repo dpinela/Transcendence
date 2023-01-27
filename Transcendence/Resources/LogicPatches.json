@@ -1468,6 +1468,10 @@
 
     // Kingdom's Edge
     {
+        "name": "Broke_Camp_Bench_Wall",
+        "logic": "ORIG | ((Deepnest_East_11[right1] | Deepnest_East_11[left1] | Deepnest_East_11[bot1]) + (ANTIGRAV | BLUEMOTH) + UPWALLBREAK)"
+    },
+    {
         "name": "Abyss_03_c[top1]",
         "logic": "ORIG | ((Abyss_03_c | Lower_Tram) + (ANTIGRAV | BLUEMOTH))"
     },
@@ -2732,5 +2736,17 @@
     {
         "name": "Soul_Totem-Path_of_Pain_Second",
         "logic": "ORIG | (White_Palace_18[right1] + ((ANTIGRAV + BLUEMOTH) | (ANTIGRAV + WINGS + RIGHTCLAW) | (BLUEMOTH + RIGHTCLAW + LEFTSUPERDASH))) | (White_Palace_18[top1] + ((ANTIGRAV + WINGS + RIGHTDASH) | (BLUEMOTH + LEFTCLAW + RIGHTSUPERDASH) | (BLUEMOTH + RIGHTDASH)))"
+    },
+    {
+        "name": "White_Palace_17[right1]",
+        "logic": "ORIG | (White_Palace_17[bot1] + (Lever-Path_of_Pain ? TRUE) + ((BLUEMOTH + LEFTDASH) | (ANTIGRAV + BLUEMOTH + SPELLAIRSTALL + $CASTSPELL[2]) | (ANTIGRAV + BLUEMOTH + GREATSLASH + PRECISEMOVEMENT) | (ANTIGRAV + FULLDASH + FULLCLAW + DIFFICULTSKIPS) | (ANTIGRAV + LEFTDASH + RIGHTSUPERDASH + FULLCLAW + DIFFICULTSKIPS) | (ANTIGRAV + WINGS + ANYCLAW + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + WINGS + ANYCLAW + GREATSLASH + PRECISEMOVEMENT))) | (White_Palace_17[bot1] + (Lever-Path_of_Pain ? FALSE) + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + WINGS + LEFTCLAW)))"
+    },
+    {
+        "name": "Soul_Totem-Path_of_Pain_Below_Lever",
+        "logic": "ORIG | (White_Palace_17[bot1] + (BLUEMOTH | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + WINGS + LEFTCLAW)))"
+    },
+    {
+        "name": "Soul_Totem-Path_of_Pain_Left_of_Lever",
+        "logic": "ORIG | (White_Palace_17[bot1] + ((BLUEMOTH + LEFTDASH) | (ANTIGRAV + BLUEMOTH + SPELLAIRSTALL + $CASTSPELL[2]) | (ANTIGRAV + BLUEMOTH + GREATSLASH + PRECISEMOVEMENT) | (ANTIGRAV + LEFTDASH + FULLCLAW + DIFFICULTSKIPS) | (ANTIGRAV + WINGS + ANYCLAW + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + WINGS + ANYCLAW + GREATSLASH + PRECISEMOVEMENT))) | (White_Palace_17[right1] + (Lever-Path_of_Pain ? FALSE) + ((BLUEMOTH + LEFTDASH) | (ANTIGRAV + BLUEMOTH + SPELLAIRSTALL + $CASTSPELL[2]) | (ANTIGRAV + BLUEMOTH + GREATSLASH + PRECISEMOVEMENT) | (ANTIGRAV + LEFTDASH + LEFTCLAW + DIFFICULTSKIPS) | (ANTIGRAV + WINGS + ANYCLAW + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + WINGS + ANYCLAW + GREATSLASH + PRECISEMOVEMENT)))"
     }
 ]
