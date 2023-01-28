@@ -2748,5 +2748,21 @@
     {
         "name": "Soul_Totem-Path_of_Pain_Left_of_Lever",
         "logic": "ORIG | (White_Palace_17[bot1] + ((BLUEMOTH + LEFTDASH) | (ANTIGRAV + BLUEMOTH + SPELLAIRSTALL + $CASTSPELL[2]) | (ANTIGRAV + BLUEMOTH + GREATSLASH + PRECISEMOVEMENT) | (ANTIGRAV + LEFTDASH + FULLCLAW + DIFFICULTSKIPS) | (ANTIGRAV + WINGS + ANYCLAW + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + WINGS + ANYCLAW + GREATSLASH + PRECISEMOVEMENT))) | (White_Palace_17[right1] + (Lever-Path_of_Pain ? FALSE) + ((BLUEMOTH + LEFTDASH) | (ANTIGRAV + BLUEMOTH + SPELLAIRSTALL + $CASTSPELL[2]) | (ANTIGRAV + BLUEMOTH + GREATSLASH + PRECISEMOVEMENT) | (ANTIGRAV + LEFTDASH + LEFTCLAW + DIFFICULTSKIPS) | (ANTIGRAV + WINGS + ANYCLAW + SPELLAIRSTALL + $CASTSPELL[3]) | (ANTIGRAV + WINGS + ANYCLAW + GREATSLASH + PRECISEMOVEMENT)))"
+    },
+    {
+        "name": "White_Palace_19[top1]",
+        "logic": "ORIG | (White_Palace_19[left1] + ((BLUEMOTH + LEFTDASH) | (ANTIGRAV + WINGS + LEFTDASH)))"
+    },
+    {
+        "name": "White_Palace_19[left1]",
+        "logic": "ORIG | (White_Palace_19[top1] + ((BLUEMOTH + RIGHTDASH) | (ANTIGRAV + WINGS + RIGHTDASH + PRECISEMOVEMENT)))"
+    },
+    {
+        "name": "Soul_Totem-Path_of_Pain_Hidden",
+        "logic": "ORIG | (White_Palace_19[left1] + ((BLUEMOTH + RIGHTDASH) | (BLUEMOTH + ANTIGRAV) | (BLUEMOTH + PRECISEMOVEMENT) | (ANTIGRAV + WINGS + RIGHTDASH) | (ANTIGRAV + WINGS + SPELLAIRSTALL + $CASTSPELL[2]))) | (White_Palace_19[top1] + ((BLUEMOTH + RIGHTDASH) + (ANTIGRAV + WINGS + RIGHTDASH)))"
+    },
+    {
+        "name": "Soul_Totem-Path_of_Pain_Below_Thornskip",
+        "logic": "ORIG | (White_Palace_19[top1] + ((BLUEMOTH + RIGHTDASH) | (ANTIGRAV + WINGS + RIGHTDASH + PRECISEMOVEMENT)))"
     }
 ]
