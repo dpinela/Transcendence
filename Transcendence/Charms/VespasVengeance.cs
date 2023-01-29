@@ -180,6 +180,8 @@ namespace Transcendence
                     chase.target = fsmTargetRef;
                 }
                 GameObject.Destroy(b.GetComponent<DamageHero>());
+                // Prevent the bee from taking knockback or giving SOUL in response to nail hits.
+                GameObject.Destroy(b.LocateMyFSM("Recoil"));
                 if (dcrestEquipped)
                 {
                     var boom = b.AddComponent<OnHitFunc>();
