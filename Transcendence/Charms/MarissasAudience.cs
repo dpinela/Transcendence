@@ -21,6 +21,7 @@ namespace Transcendence
         public override float Y => 96.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.MarissasAudience;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredMarissasAudience = true;
 
         public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
         {

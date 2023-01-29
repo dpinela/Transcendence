@@ -21,6 +21,7 @@ namespace Transcendence
         public override float Y => 12.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.SnailSoul;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredSnailSoul = true;
 
         public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
         {

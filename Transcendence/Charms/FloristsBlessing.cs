@@ -18,6 +18,7 @@ namespace Transcendence
         public override float Y => 6.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.FloristsBlessing;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredFloristsBlessing = true;
 
         public bool Broken;
 

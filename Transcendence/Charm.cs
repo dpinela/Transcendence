@@ -16,6 +16,7 @@ namespace Transcendence
         public bool Equipped() => PlayerData.instance.GetBool($"equippedCharm_{Num}");
 
         public abstract CharmSettings Settings(SaveSettings s);
+        public abstract void MarkAsEncountered(GlobalSettings s);
 
         public virtual void Hook() {}
         public virtual List<(string obj, string fsm, Action<PlayMakerFSM> edit)> FsmEdits => new();

@@ -24,6 +24,7 @@ namespace Transcendence
         public override float Y => 24.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.BluemothWings;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredBluemothWings = true;
 
         public override void Hook()
         {

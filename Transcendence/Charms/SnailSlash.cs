@@ -17,6 +17,7 @@ namespace Transcendence
         public override float Y => 42.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.SnailSlash;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredSnailSlash = true;
 
         public override void Hook()
         {

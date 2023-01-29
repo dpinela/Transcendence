@@ -15,6 +15,7 @@ namespace Transcendence
         public override float Y => 5.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.MillibellesBlessing;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredMillibellesBlessing = true;
 
         public override List<(int, Action)> Tickers => new() {(TickPeriod, GivePeriodicGeo)};
 

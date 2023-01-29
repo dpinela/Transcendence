@@ -19,6 +19,7 @@ namespace Transcendence
         public override float Y => 69.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.ShamanAmp;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredShamanAmp = true;
 
         public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
         {

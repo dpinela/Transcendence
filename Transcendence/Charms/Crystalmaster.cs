@@ -17,6 +17,7 @@ namespace Transcendence
         public override float Y => 95.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.Crystalmaster;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredCrystalmaster = true;
 
         public override void Hook()
         {

@@ -84,7 +84,13 @@ namespace Transcendence
                     (value => settings(Settings).Equipped = value || Settings.ChaosMode)
                      : (value => settings(Settings).Equipped = value);
                 BoolGetters[$"gotCharm_{num}"] = _ => settings(Settings).Got;
-                BoolSetters[$"gotCharm_{num}"] = value => settings(Settings).Got = value;
+                BoolSetters[$"gotCharm_{num}"] = value => {
+                    settings(Settings).Got = value;
+                    if (value)
+                    {
+                        charm.MarkAsEncountered(ModSettings);
+                    }
+                };
                 BoolGetters[$"newCharm_{num}"] = _ => settings(Settings).New;
                 BoolSetters[$"newCharm_{num}"] = value => settings(Settings).New = value;
                 charm.Hook();
@@ -546,10 +552,31 @@ namespace Transcendence
             var items = new List<IMenuElement>();
             items.AddRange(mainMEF.Elements);
 
+            
+
             if (LogicAvailable())
             {
                 items.Add(new MenuLabel(sp, "Logic Settings", MenuLabel.Style.Title));
                 var logicMEF = new MenuElementFactory<LogicSettings>(sp, RandoSettings.Logic);
+                var logicRevealConditions = new Func<bool>[]
+                {
+                    () => ModSettings.EncounteredAntigravityAmulet,
+                    () => ModSettings.EncounteredBluemothWings,
+                    () => ModSettings.EncounteredSnailSoul,
+                    () => ModSettings.EncounteredSnailSlash,
+                    () => ModSettings.EncounteredMillibellesBlessing,
+                    () => ModSettings.EncounteredNitroCrystal,
+                    () => ModSettings.EncounteredVespasVengeance,
+                    () => ModSettings.EncounteredCrystalmaster
+                };
+                for (var i = 0; i < logicMEF.Elements.Length; i++)
+                {
+                    if (logicMEF.Elements[i] is MenuItem mi)
+                    {
+                        mi.Formatter = new MysteryMenuItemFormatter()
+                            { Inner = mi.Formatter, Revealed = logicRevealConditions[i] };
+                    }
+                }
                 items.AddRange(logicMEF.Elements);
                 UpdateSettingsMenu += rs => logicMEF.SetMenuValues(rs.Logic);
             }

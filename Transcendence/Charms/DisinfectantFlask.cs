@@ -21,6 +21,7 @@ namespace Transcendence
         public override float Y => 4.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.DisinfectantFlask;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredDisinfectantFlask = true;
 
         public override void Hook()
         {

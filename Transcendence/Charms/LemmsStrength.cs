@@ -17,6 +17,7 @@ namespace Transcendence
         public override float Y => 23.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.LemmsStrength;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredLemmsStrength = true;
 
         public override void Hook()
         {

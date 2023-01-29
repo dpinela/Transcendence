@@ -26,6 +26,7 @@ namespace Transcendence
         public string InternalName => Name.Replace(" ", "_");
 
         public override CharmSettings Settings(SaveSettings s) => s.ChaosOrb;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredChaosOrb = true;
 
         private const int TickPeriod = 30;
 

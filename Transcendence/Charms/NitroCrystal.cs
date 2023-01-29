@@ -17,6 +17,7 @@ namespace Transcendence
         public override float Y => 21.5f;
 
         public override CharmSettings Settings(SaveSettings s) => s.NitroCrystal;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredNitroCrystal = true;
 
         public override List<(string, string, Action<PlayMakerFSM>)> FsmEdits => new()
         {

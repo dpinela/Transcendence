@@ -17,6 +17,7 @@ namespace Transcendence
         public override float Y => 128.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.Greedsong;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredGreedsong = true;
 
         public override void Hook()
         {

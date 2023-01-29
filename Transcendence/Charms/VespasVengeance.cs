@@ -22,6 +22,7 @@ namespace Transcendence
         public override float Y => 10.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.VespasVengeance;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredVespasVengeance = true;
 
         public GameObject Bee;
 

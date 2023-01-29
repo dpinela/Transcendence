@@ -19,6 +19,7 @@ namespace Transcendence
         public override float Y => 27.4f;
 
         public override CharmSettings Settings(SaveSettings s) => s.AntigravityAmulet;
+        public override void MarkAsEncountered(GlobalSettings s) => s.EncounteredAntigravityAmulet = true;
 
         public override void Hook()
         {
