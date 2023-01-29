@@ -15,7 +15,7 @@ namespace Transcendence
 
         public override string Sprite => "VespasVengeance.png";
         public override string Name => "Vespa's Vengeance";
-        public override string Description => "A device used by the guardians of the Hive to contact each other.\n\nTransforms the Howling Wraiths spell into a swarm of volatile worker bees.";
+        public override string Description => "A beacon worn by the guardians of the Hive to call for the aid of their kin.\n\nTransforms the Howling Wraiths spell into a swarm of volatile worker bees.";
         public override int DefaultCost => 3;
         public override string Scene => "Hive_01";
         public override float X => 85.0f;
@@ -267,7 +267,7 @@ namespace Transcendence
             return chosenEnemy;
         }
 
-        private const string ProxyPrefix = "Hive Beacon Proxy-";
+        private const string ProxyPrefix = "Vespa's Vengeance Proxy-";
 
         private static GameObject BeaconProxy(GameObject target)
         {
@@ -275,7 +275,6 @@ namespace Transcendence
             {
                 return null;
             }
-            Transcendence.Instance.Log("Hive Beacon targeting " + target.name);
             var proxy = new GameObject();
             proxy.name = ProxyPrefix + target.name;
             var sync = target.AddComponent<PositionSync>();
