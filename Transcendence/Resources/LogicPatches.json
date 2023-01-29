@@ -2764,5 +2764,17 @@
     {
         "name": "Soul_Totem-Path_of_Pain_Below_Thornskip",
         "logic": "ORIG | (White_Palace_19[top1] + ((BLUEMOTH + RIGHTDASH) | (ANTIGRAV + WINGS + RIGHTDASH + PRECISEMOVEMENT)))"
+    },
+    {
+        "name": "Soul_Totem-Path_of_Pain_Final",
+        "logic": "ORIG | (White_Palace_20[bot1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
+        "name": "Defeated_Path_of_Pain_Arena",
+        "logic": "ORIG | (White_Palace_20[bot1] + COMBAT[Path_of_Pain_Arena] + ((BLUEMOTH + RIGHTDASH) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + WINGS)))"
+    },
+    {
+        "name": "Completed_Path_of_Pain",
+        "logic": "ORIG | (White_Palace_20[bot1] + Defeated_Path_of_Pain_Arena + ((BLUEMOTH + RIGHTDASH) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + WINGS)))"
     }
 ]
