@@ -4,7 +4,7 @@ namespace Transcendence
     {
         public bool AddCharms;
         
-        [MenuChanger.Attributes.MenuRange(0, 14)]
+        [MenuChanger.Attributes.MenuRange(0, 15)]
         public int IncreaseMaxCharmCostBy;
 
         public LogicSettings Logic = new();
