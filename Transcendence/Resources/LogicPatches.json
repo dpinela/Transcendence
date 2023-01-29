@@ -2776,5 +2776,12 @@
     {
         "name": "Completed_Path_of_Pain",
         "logic": "ORIG | (White_Palace_20[bot1] + Defeated_Path_of_Pain_Arena + ((BLUEMOTH + RIGHTDASH) | (ANTIGRAV + RIGHTDASH + RIGHTCLAW + WINGS)))"
-    }
+    },
+    
+    // Godhome
+    {
+        "name": "GG_Atrium",
+        "logic": "ORIG | (Warp-Junk_Pit_to_Godhome + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + PRECISEMOVEMENT) | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + LEFTCLAW))) | (GG_Workshop + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    
 ]
