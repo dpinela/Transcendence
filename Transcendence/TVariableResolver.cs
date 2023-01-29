@@ -12,22 +12,6 @@ namespace Transcendence
                 lvar = new EquipTCharmVariable(term, charmName, num, lm);
                 return true;
             }
-            if (IsConditionalLogicTerm("TrueOrNotExist", term, out var innerTerm))
-            {
-                if (Inner == null || !Inner.TryMatch(lm, innerTerm, out lvar))
-                {
-                    lvar = new RCLogic.ConstantInt(RCLogic.LogicVariable.TRUE);
-                }
-                return true;
-            }
-            if (IsConditionalLogicTerm("TrueAndExists", term, out var innerTermII))
-            {
-                if (Inner == null || !Inner.TryMatch(lm, innerTermII, out lvar))
-                {
-                    lvar = new RCLogic.ConstantInt(RCLogic.LogicVariable.FALSE);
-                }
-                return true;
-            }
             return Inner.TryMatch(lm, term, out lvar);
         }
 

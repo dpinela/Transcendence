@@ -13,7 +13,7 @@
     },
     {
         "name": "Lever-Crystal_Peak_Above_Chest",
-        "logic": "ORIG | (Mines_37[top1] + ANTIGRAVWINGS) | (Mines_37[bot1] + ANTIGRAVWINGS + ($TrueOrNotExist[Lever-Crystal_Peak_Crushers_Chest] | FULLDASH | (DASHSPRINT + OBSCURESKIPS)))"
+        "logic": "ORIG | (Mines_37[top1] + ANTIGRAVWINGS) | (Mines_37[bot1] + ANTIGRAVWINGS + ((Lever-Crystal_Peak_Crushers_Chest ? TRUE) | FULLDASH | (DASHSPRINT + OBSCURESKIPS)))"
     },
     {
         "name": "Bench-Gardens_Cornifer",
@@ -29,7 +29,7 @@
     },
     {
         "name": "Lever-Below_Overgrown_Mound",
-        "logic": "ORIG | (Fungus3_44[bot1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Fungus3_44[bot1] + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Bench-Canyon_Depths",
@@ -69,7 +69,7 @@
     },
     {
         "name": "Lever-Mantis_Lords_Top_Left",
-        "logic": "ORIG | (Fungus2_15[top3] + (ANTIGRAV | BLUEMOTH)) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + $TrueOrNotExist[Lever-Mantis_Lords_Middle_Right]))) | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS)))"
+        "logic": "ORIG | (Fungus2_15[top3] + (ANTIGRAV | BLUEMOTH)) | (Fungus2_15[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + (Lever-Mantis_Lords_Middle_Right ? TRUE)))) | (Fungus2_15[left1] + (BLUEMOTH | (YEET + LEFTCLAW + WINGS)))"
     },
     {
         "name": "Lever-Mantis_Lords_Middle_Left",
@@ -93,7 +93,7 @@
     },
     {
         "name": "Lever-City_Above_Lemm_Left",
-        "logic": "ORIG | ((Ruins1_05c[top1] | Ruins1_05c[top3] | Ruins1_05c) + $TrueAndExists[Lever-City_Above_Lemm_Left] + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | ((Ruins1_05c[top1] | Ruins1_05c[top3] | Ruins1_05c) + (Lever-City_Above_Lemm_Left ? FALSE) + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Lever-Sanctum_Soul_Warrior",
@@ -101,7 +101,7 @@
     },
     {
         "name": "Lever-Sanctum_Bottom",
-        "logic": "ORIG | (Ruins1_23 + $TrueAndExists[Lever-Sanctum_Bottom] + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Ruins1_23 + (Lever-Sanctum_Bottom ? FALSE) + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Lever-Sanctum_East",
@@ -153,7 +153,7 @@
     },
     {
         "name": "Lever-Failed_Tramway_Left",
-        "logic": "ORIG | (Deepnest_26b[right2] + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + LEFTCLAW))) | ($TrueAndExists[Bench-Destroyed_Tram] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + WINGS)))"
+        "logic": "ORIG | (Deepnest_26b[right2] + (ANTIGRAV | BLUEMOTH | SNAILSLASH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + LEFTCLAW))) | ((Bench-Destroyed_Tram ? FALSE) + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + ENEMYPOGOS) | (CRYSTALMASTER + WINGS)))"
     },
     {
         "name": "Lever-Waterways_Hwurmp_Arena",
