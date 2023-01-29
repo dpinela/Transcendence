@@ -17,7 +17,7 @@
     },
     {
         "name": "Bench-Gardens_Cornifer",
-        "logic": "ORIG | (Fungus1_24[left1] + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Fungus1_24[left1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Switch-Petra_Arena",
@@ -25,19 +25,19 @@
     },
     {
         "name": "Bench-Gardens_Stag",
-        "logic": "ORIG | (Fungus3_40[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | (Fungus3_40[top1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Lever-Below_Overgrown_Mound",
-        "logic": "ORIG | (Fungus3_44[bot1] + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Fungus3_44[bot1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Bench-Canyon_Depths",
-        "logic": "ORIG | (Fungus3_26[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | (Fungus3_26[right1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Bench-Archives",
-        "logic": "ORIG | (Fungus3_archive[bot1] + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Fungus3_archive[bot1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Lever-Queen's_Station_Mask_Shard",
@@ -61,7 +61,7 @@
     },
     {
         "name": "Bench-Bretta",
-        "logic": "ORIG | ((Fungus2_13 | Fungus2_13[left3]) + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | ((Fungus2_13 | Fungus2_13[left3]) + $BENCHRESET + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Lever-Mantis_Lords_Access",
@@ -133,19 +133,19 @@
     },
     {
         "name": "Bench-Bardoon",
-        "logic": "ORIG | ((Deepnest_East_04 | (Bench-Bardoon's_Tail ? FALSE)) + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | ((Deepnest_East_04 | (Bench-Bardoon's_Tail ? FALSE)) + $BENCHRESET + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Bench-Bardoon's_Tail",
-        "logic": "ORIG | (Deepnest_East_04 + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (Deepnest_East_04 + $BENCHRESET + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Bench-Beast's_Den",
-        "logic": "ORIG | (Deepnest_Spider_Town[left1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+        "logic": "ORIG | (Deepnest_Spider_Town[left1] + $BENCHRESET + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
     },
     {
         "name": "Bench-Galien's_Grave",
-        "logic": "ORIG | (Deepnest_40[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+        "logic": "ORIG | (Deepnest_40[right1] + $BENCHRESET + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
     },
     {
         "name": "Lever-Failed_Tramway_Right",
@@ -161,31 +161,31 @@
     },
     {
         "name": "Bench-Waterways_Entrance",
-        "logic": "ORIG | (Waterways_01 + (ANTIGRAV | BLUEMOTH)) | (Waterways_01[right1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | (Waterways_01 + $BENCHRESET + (ANTIGRAV | BLUEMOTH)) | (Waterways_01[right1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Bench-Waterways",
-        "logic": "ORIG | (Waterways_02 + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + ENEMYPOGOS + DANGEROUSSKIPS) | (SNAILSLASH + DANGEROUSSKIPS)))"
+        "logic": "ORIG | (Waterways_02 + $BENCHRESET + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW) | (ANTIGRAV + ENEMYPOGOS + DANGEROUSSKIPS) | (SNAILSLASH + DANGEROUSSKIPS)))"
     },
     {
         "name": "Bench-Fort_Flukefey",
-        "logic": "ORIG | (Waterways_08[top1] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Waterways_08[left2] + CRYSTALMASTER) | (Waterways_08[left1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
+        "logic": "ORIG | (Waterways_08[top1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER)) | (Waterways_08[left2] + CRYSTALMASTER) | (Waterways_08[left1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW)))"
     },
     {
         "name": "Bench-Hermit's_Approach",
-        "logic": "ORIG | (Room_GG_Shortcut[top1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS))) | (Room_GG_Shortcut[left1] + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTDASH + WINGS + ANYCLAW) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + ANYCLAW)))"
+        "logic": "ORIG | (Room_GG_Shortcut[top1] + $BENCHRESET + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS))) | (Room_GG_Shortcut[left1] + $BENCHRESET + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTDASH + WINGS + ANYCLAW) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + ANYCLAW)))"
     },
     {
         "name": "Bench-Acid_Sluice_West",
-        "logic": "ORIG | (Waterways_06[right1] + (ANTIGRAVWINGS | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3] + LEFTDASH) | YEET | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3])))"
+        "logic": "ORIG | (Waterways_06[right1] + $BENCHRESET + (ANTIGRAVWINGS | (ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3] + LEFTDASH) | YEET | (CRYSTALMASTER + WINGS) | (CRYSTALMASTER + LEFTDASH) | (CRYSTALMASTER + SPELLAIRSTALL + $CASTSPELL[3])))"
     },
     {
         "name": "Bench-Acid_Sluice_East",
-        "logic": "ORIG | (Waterways_07 + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + FULLCLAW) | (YEET + WINGS) | (YEET + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW)))"
+        "logic": "ORIG | (Waterways_07 + $BENCHRESET + (BLUEMOTH | (ANTIGRAV + WINGS + LEFTDASH) | (ANTIGRAV + WINGS + ANYCLAW) | (ANTIGRAV + FULLCLAW) | (YEET + WINGS) | (YEET + ANYCLAW) | (CRYSTALMASTER + LEFTCLAW)))"
     },
     {
         "name": "Bench-Kingsmould_Duelist",
-        "logic": "ORIG | (White_Palace_02[left1] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + LEFTCLAW + COMBAT[White_Palace_Arenas])))"
+        "logic": "ORIG | (White_Palace_02[left1] + $BENCHRESET + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + LEFTCLAW + COMBAT[White_Palace_Arenas])))"
     },
     {
         "name": "Lever-Palace_Entrance_Orb",
@@ -201,15 +201,15 @@
     },
     {
         "name": "Bench-Thorny_Respite",
-        "logic": "ORIG | (White_Palace_05[right1] + (ANTIGRAVWINGS | (ANTIGRAV + LEFTDASH + ANYCLAW) | (YEET + ANYCLAW + GREATSLASH) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW + WINGS)))"
+        "logic": "ORIG | (White_Palace_05[right1] + $BENCHRESET + (ANTIGRAVWINGS | (ANTIGRAV + LEFTDASH + ANYCLAW) | (YEET + ANYCLAW + GREATSLASH) | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + RIGHTCLAW + WINGS)))"
     },
     {
         "name": "Bench-Sawblade_Choir",
-        "logic": "ORIG | (White_Palace_04[top1] + (ANTIGRAV | BLUEMOTH)) | (White_Palace_04[right2] + (ANTIGRAVWINGS | (CRYSTALMASTER + ANYCLAW + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS)))"
+        "logic": "ORIG | (White_Palace_04[top1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH)) | (White_Palace_04[right2] + (ANTIGRAVWINGS | (CRYSTALMASTER + ANYCLAW + WINGS) | (CRYSTALMASTER + LEFTDASH + WINGS)))"
     },
     {
         "name": "Bench-Palace_West",
-        "logic": "ORIG | (White_Palace_14[bot1] + (ANTIGRAV | BLUEMOTH))"
+        "logic": "ORIG | (White_Palace_14[bot1] + $BENCHRESET + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Lever-Palace_Final",
@@ -217,7 +217,7 @@
     },
     {
         "name": "Bench-Throne_Approach",
-        "logic": "ORIG | ((White_Palace_13[left2] | White_Palace_13) + (BLUEMOTH | (YEET + WINGS + RIGHTCLAW))) | (White_Palace_13[left1] + RIGHTSUPERDASH + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW))) | (White_Palace_13[right1] + (BLUEMOTH | (YEET + WINGS + ANYCLAW))) | (White_Palace_13 + ((RIGHTSUPERDASH + ANTIGRAV + WINGS) | (ANTIGRAV + WINGS + RIGHTDASH + SPIKETUNNELS) | (YEET + WINGS + SPIKETUNNELS) | (YEET + ANYCLAW + SPIKETUNNELS))) | (White_Palace_13[right1] + (BLUEMOTH | (YEET + WINGS + ANYCLAW)))"
+        "logic": "ORIG | ((White_Palace_13[left2] | White_Palace_13) + $BENCHRESET + (BLUEMOTH | (YEET + WINGS + RIGHTCLAW))) | (White_Palace_13[left1] + $BENCHRESET + RIGHTSUPERDASH + (BLUEMOTH | CRYSTALMASTER | (ANTIGRAV + LEFTCLAW))) | (White_Palace_13[right1] + $BENCHRESET + (BLUEMOTH | (YEET + WINGS + ANYCLAW))) | (White_Palace_13 + $BENCHRESET + ((RIGHTSUPERDASH + ANTIGRAV + WINGS) | (ANTIGRAV + WINGS + RIGHTDASH + SPIKETUNNELS) | (YEET + WINGS + SPIKETUNNELS) | (YEET + ANYCLAW + SPIKETUNNELS))) | (White_Palace_13[right1] + $BENCHRESET + (BLUEMOTH | (YEET + WINGS + ANYCLAW)))"
     },
     {
         "name": "Lever-Path_of_Pain",
