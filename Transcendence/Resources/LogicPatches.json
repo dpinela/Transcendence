@@ -2782,6 +2782,5 @@
     {
         "name": "GG_Atrium",
         "logic": "ORIG | (Warp-Junk_Pit_to_Godhome + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + PRECISEMOVEMENT) | (CRYSTALMASTER + RIGHTDASH) | (CRYSTALMASTER + LEFTCLAW))) | (GG_Workshop + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
-    },
-    
+    }
 ]
