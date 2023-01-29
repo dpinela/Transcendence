@@ -41,7 +41,7 @@ namespace Transcendence
 
             fsm.GetState("Spell").ReplaceAction(0, () =>
             {
-                if (SnailSoul.Instance.Equipped() || ShamanAmp.Instance.Equipped())
+                if (SnailSoul.Instance.Equipped() || ShamanAmp.Instance.Equipped() || VespasVengeance.Instance.Equipped())
                 {
                     GiveAllSheoItems();
                     WarpToSheo();
