@@ -2325,7 +2325,7 @@
     },
     {
         "name": "Grimmkin_Flame-Ancient_Basin",
-        "logic": "ORIG | (Abyss_02[bot1] + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + WINGS)))"
+        "logic": "ORIG | (Abyss_02[bot1] + Second_Grimmchild_Upgrade + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + LEFTCLAW) | (CRYSTALMASTER + WINGS)))"
     },
     {
         "name": "Geo_Rock-Broken_Bridge_Lower",
