@@ -65,6 +65,10 @@
         "logic": "ORIG | ((Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + Defeated_Failed_Champion + DREAMNAIL + (ANTIGRAVWINGS | (INFECTED + ANTIGRAV)))"
     },
     {
+        "name": "Defeated_Failed_Champion",
+        "logic": "ORIG | ((Crossroads_10[left1] | Crossroads_10[right1]) + Defeated_False_Knight + COMBAT[Failed_Champion] + DREAMNAIL + (ANTIGRAVWINGS | (INFECTED + ANTIGRAV) | (ANTIGRAV + ANYCLAW) | (CRYSTALMASTER + ANYCLAW)))"
+    },
+    {
         "name": "Soul_Catcher",
         "logic": "ORIG | (Crossroads_ShamanTemple[left1] + ANTIGRAVWINGS)"
     },
@@ -567,7 +571,7 @@
     },
     {
         "name": "Geo_Chest-Crystal_Peak",
-        "logic": "ORIG | (Mines_37[top1] + ((YEET + WINGS) | (CRYSTALMASTER + ANYCLAW) | (ANTIGRAVWINGS + FULLDASH) | (ANTIGRAVWINGS + DASHSPRINT + OBSCURESKIPS)))"
+        "logic": "ORIG | (Mines_37[top1] + ((YEET + WINGS) | (CRYSTALMASTER + ANYCLAW) | (ANTIGRAVWINGS + FULLDASH) | (ANTIGRAVWINGS + DASHSPRINT + OBSCURESKIPS))) | (Mines_37[bot1] + (ANTIGRAVWINGS | ((Lever-Crystal_Peak_Crushers_Chest ? TRUE) + ANTIGRAV + RIGHTDASH)))"
     },
     {
         "name": "Geo_Rock-Crystal_Peak_Above_Crushers_Lower",
@@ -1322,7 +1326,7 @@
     },
     {
         "name": "Ruins2_04[door_Ruin_Elevator]",
-        "logic": "ORIG | (Ruins2_04 + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+        "logic": "ORIG | (Ruins2_04 + PLEASUREHOUSEUNLOCK + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
     },
     {
         "name": "Ruins2_04[door_Ruin_House_02]",
