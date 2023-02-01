@@ -362,6 +362,13 @@ namespace Transcendence
             var icPlayerData = ItemChangerMod.Modules.GetOrAdd<ItemChanger.Modules.PlayerDataEditModule>();
             foreach (var c in Charms)
             {
+                // ChaosModeModule will set the cost in this case, avoid setting it twice to avoid
+                // order-dependency. This must be done after storing costs in the rando context
+                // so that logic does not depend on Chaos Mode being on or not.
+                if (!(c == ChaosOrb.Instance && ModSettings.ChaosMode))
+                {
+                    continue;
+                }
                 var t = rc.rb.lm.GetTermStrict(c.Name.Replace(" ", "_") + CostTermSuffix);
                 var cost = pinit.Setters.First(s => s.Term == t).Value;
                 icPlayerData.AddPDEdit($"charmCost_{c.Num}", cost);
@@ -474,12 +481,6 @@ namespace Transcendence
                 }
                 var pick = rng.Next(possiblePicks.Count);
                 costs[possiblePicks[pick]]++;
-            }
-            // ChaosModeModule will set the cost in this case, avoid setting it twice to avoid
-            // order-dependency.
-            if (ModSettings.ChaosMode)
-            {
-                costs.Remove(ChaosOrb.Instance.Num);
             }
             return costs;
         }
