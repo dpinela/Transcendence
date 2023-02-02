@@ -135,7 +135,7 @@ namespace Transcendence
             On.PlayMakerFSM.OnEnable += EditFSMs;
             // This hook is set before ItemChanger's, so AutoSalubraNotches will take our charms into account.
             On.PlayerData.CountCharms += CountOurCharms;
-            On.PlayerData.UnequipCharm += BlockChaosOrbUnequip;
+            On.PlayerData.UnequipCharm += BCOU.BlockChaosOrbUnequip;
             StartTicking();
 
             if (ModHooks.GetMod("Randomizer 4") != null)
@@ -413,14 +413,6 @@ namespace Transcendence
 
             // store the Chaos Mode setting and initialization routine for later use with ICDL
             ItemChangerMod.Modules.Add<ChaosModeModule>();
-        }
-
-        private void BlockChaosOrbUnequip(On.PlayerData.orig_UnequipCharm orig, PlayerData pd, int charmNum)
-        {
-            if (!(charmNum == ChaosOrb.Instance.Num && Settings.ChaosMode))
-            {
-                orig(pd, charmNum);
-            }
         }
 
         private static void PlaceFloristsBlessingRepair()

@@ -173,11 +173,12 @@ namespace Transcendence
                         });
                     }
                 }
-                else if (HudSlots != null)
+                // If Chaos Mode is on, the Orb cannot actually be unequipped, and the hook
+                // in the Transcendence class will prevent that.
+                else if (HudSlots != null && !Transcendence.Instance.Settings.ChaosMode)
                 {
                     HudSlots.Visibility = Visibility.Collapsed;
                 }
-                RerollCharms();
             }
             return value;
         }
