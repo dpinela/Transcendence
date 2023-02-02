@@ -120,3 +120,18 @@ Joni's Blessing is not currently given due to technical limitations.
 This may change in the future.
 
 Found below Bardoon's tail (Deepnest_East_04, 27.5, 80.4).
+
+## Vespa's Vengeance
+
+Vanilla notch cost: 3
+
+Replaces Howling Wraiths and Abyss Shriek with a swarm of 10 bees coming from the top of the screen.
+Each bee deals 15/30 damage, for Wraiths and Shriek respectively. Combines with the following charms:
+
+- Shaman Stone: increases the damage to 20/40.
+- Shaman Amp: enlarges the bees by the same factor as other spells.
+- Defender's Crest: causes the bees to explode on contact, creating a cloud that deals additional damage
+  over 5 seconds.
+- Hiveblood: doubles the number of bees but halves their size and damage.
+
+Found to the right of the Hive bench (Hive_01, 85.0, 10.4).

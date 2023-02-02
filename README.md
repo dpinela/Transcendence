@@ -1,10 +1,10 @@
-A mod for Hollow Knight that adds 14 new charms.
+A mod for Hollow Knight that adds 15 new charms.
 
 Can work with or without the randomizer: if it is in use and charms are randomized,
 the charms are shuffled into the pool, otherwise they are placed at set hidden
 locations.
 
-See SPOILERS.md for a description of what the charms do and their vanilla locations and notch costs.
+See [SPOILERS.md](SPOILERS.md) for a description of what the charms do and their vanilla locations and notch costs.
 
 The charm icons were made by Tsira ([fiverr][], [Twitch][]).
 
@@ -34,14 +34,18 @@ in the main randomizer menu. They have no effect on non-randomizer save files.
 
 - **Add Charms**: determines whether the Transcendence charms are added to the item pool.
 - **Increase Max Charm Cost By**: if Add Charms is on, increases the maximum number of charms that Salubra may
-  require to buy her items, by up to 14.
+  require to buy her items, by up to 15.
+- **Logic Options**: allows the abilities given by some Transcendence charms to be considered by the
+  randomizer logic. See [LOGICSPOILERS.md](LOGICSPOILERS.md) for details on what each option does.
 
-# Dependencies
+To avoid revealing the names of the charms prematurely, they are hidden in the Logic Options menu until
+you obtain the charm in-game.
+
+# Dependency Mods
 
 - ItemChanger
 - SFCore
 - MagicUI
-- HK 1.5
 
 # License
 
