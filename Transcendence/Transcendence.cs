@@ -177,7 +177,7 @@ namespace Transcendence
         // breaks infinite loop when reading equippedCharm_X
         private bool Equipped(Charm c) => c.Settings(Settings).Equipped;
 
-        public override string GetVersion() => "1.4";
+        public override string GetVersion() => "1.4.1";
 
         internal SaveSettings Settings = new();
 
@@ -367,11 +367,10 @@ namespace Transcendence
                 // so that logic does not depend on Chaos Mode being on or not.
                 if (!(c == ChaosOrb.Instance && ModSettings.ChaosMode))
                 {
-                    continue;
+                    var t = rc.rb.lm.GetTermStrict(c.Name.Replace(" ", "_") + CostTermSuffix);
+                    var cost = pinit.Setters.First(s => s.Term == t).Value;
+                    icPlayerData.AddPDEdit($"charmCost_{c.Num}", cost);
                 }
-                var t = rc.rb.lm.GetTermStrict(c.Name.Replace(" ", "_") + CostTermSuffix);
-                var cost = pinit.Setters.First(s => s.Term == t).Value;
-                icPlayerData.AddPDEdit($"charmCost_{c.Num}", cost);
             }
         }
 
