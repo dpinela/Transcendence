@@ -177,7 +177,7 @@ namespace Transcendence
         // breaks infinite loop when reading equippedCharm_X
         private bool Equipped(Charm c) => c.Settings(Settings).Equipped;
 
-        public override string GetVersion() => "1.4.1";
+        public override string GetVersion() => "1.4.2";
 
         internal SaveSettings Settings = new();
 

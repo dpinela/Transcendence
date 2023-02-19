@@ -10,11 +10,15 @@
     },
     {
         "name": "Geo_Rock-Crossroads_Root",
-        "logic": "ORIG | (Crossroads_07 + ANTIGRAVWINGS)"
+        "logic": "ORIG | (Crossroads_07 + ANTIGRAVWINGS + UPWALLBREAK)"
+    },
+    {
+        "name": "Geo_Rock-Crossroads_Root_Dupe_1",
+        "logic": "ORIG | (Crossroads_07 + ANTIGRAVWINGS + UPWALLBREAK)"
     },
     {
         "name": "Geo_Rock-Crossroads_Root_Dupe_2",
-        "logic": "ORIG | (Crossroads_07 + ANTIGRAVWINGS)"
+        "logic": "ORIG | (Crossroads_07 + ANTIGRAVWINGS + UPWALLBREAK)"
     },
     {
         "name": "Grub-Crossroads_Center",

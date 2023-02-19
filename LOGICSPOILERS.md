@@ -4,6 +4,8 @@ Each of the logic options corresponds to a charm, and enables progression paths 
 charm. Some paths rely on a combination of charms; those are only enabled if all relevant charms are
 toggled on in these options.
 
+The options are, in the same order they appear in the menu:
+
 - **Antigravity Amulet**: includes high jumps (including Claw and Wings jumps), traversal of some horizontal
   gaps (where allowed by the ceiling height), and additional airstall skips.
 - **Bluemoth Wings**: includes unlimited air jumps. Movement that needs the use of this charm requires the 
