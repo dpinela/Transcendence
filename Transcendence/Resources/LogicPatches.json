@@ -140,7 +140,7 @@
     },
     {
         "name": "Fungus1_26[left1]",
-        "logic": "ORIG | ((Fungus1_26[right1] | Fungus1_26[door_SlugShrine]) + ((ACID + ANTIGRAV) | (ANTIGRAV + WINGS + LEFTDASH + ENEMYPOGOS + PRECISEMOVEMENT) | (CRYSTALMASTER + WINGS + LEFTDASH + (ANTIGRAV | LEFTCLAW | (ENEMYPOGOS + PRECISEMOVEMENT))) | BLUEMOTH))"
+        "logic": "ORIG | ((Fungus1_26[right1] | Fungus1_26[door_SlugShrine]) + ((ACID + (ANTIGRAV | BLUEMOTH)) | (ACIDSKIPS + ANTIGRAV + WINGS + LEFTDASH + ENEMYPOGOS + PRECISEMOVEMENT) | (ACIDSKIPS + CRYSTALMASTER + WINGS + LEFTDASH + (ANTIGRAV | LEFTCLAW | (ENEMYPOGOS + PRECISEMOVEMENT))) | (ACIDSKIPS + BLUEMOTH)))"
     },
     {
         "name": "Fungus1_26[right1]",
@@ -612,6 +612,26 @@
         "logic": "ORIG | ((Fungus3_08[right1] | Fungus3_08[left1] | Fungus3_08[top1]) + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW) | (ANTIGRAV + SNAILSLASH) | (ANTIGRAV + ENEMYPOGOS) | (SNAILSLASH_WITH_AIRSTALL + DANGEROUSSKIPS)))"
     },
     {
+        "name": "Fungus3_10[top1]",
+        "logic": "ORIG | (Fungus3_10[bot1] + Defeated_West_Queen's_Gardens_Arena + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Fungus3_10[bot1]",
+        "logic": "ORIG | (Fungus3_10[top1] + Defeated_West_Queen's_Gardens_Arena + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Defeated_West_Queen's_Gardens_Arena",
+        "logic": "ORIG | (Fungus3_10[top1] + COMBAT[West_Queen's_Gardens_Arena] + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Grub-Queen's_Gardens_Stag",
+        "logic": "ORIG | (Fungus3_10[bot1] + Defeated_West_Queen's_Gardens_Arena + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
+        "name": "Geo_Rock-Queen's_Gardens_Below_Stag",
+        "logic": "ORIG | (Fungus3_10[bot1] + Defeated_West_Queen's_Gardens_Arena + (ANTIGRAV | BLUEMOTH | CRYSTALMASTER))"
+    },
+    {
         "name": "Fungus3_11",
         "logic": "ORIG | (Fungus3_11[left2] + (ANTIGRAVWINGS | (ANTIGRAV + RIGHTCLAW))) | (Fungus3_11[right1] + (ANTIGRAV | BLUEMOTH))"
     },
@@ -912,6 +932,10 @@
     {
         "name": "Fungus2_17[right1]",
         "logic": "ORIG | (Fungus2_17 + (ANTIGRAVWINGS | BLUEMOTH | (ANTIGRAV + ANYCLAW) | (LEFTCLAW + CRYSTALMASTER))) | (Fungus2_17[left1] + ANTIGRAV)"
+    },
+    {
+        "name": "Wanderer's_Journal-Above_Mantis_Village",
+        "logic": "ORIG | (Fungus2_17 + ANTIGRAVWINGS)"
     },
     {
         "name": "Fungus2_29[bot1]",
