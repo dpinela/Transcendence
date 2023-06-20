@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Bluemoth_Wings",
+        "logic": "*Lore_Tablet-Greenpath_Upper_Hidden"
+    },
+    {
+        "name": "Antigravity_Amulet",
+        "logic": "Mines_28[door1] | Mines_28[left1]"
+    },
+    {
+        "name": "Lemm's_Strength",
+        "logic": "(Ruins1_27[left1] + RIGHTCLAW + WINGS) | (Ruins1_27[right1] + (ANYCLAW | WINGS))"
+    },
+    {
+        "name": "Florist's_Blessing",
+        "logic": "Room_Slug_Shrine[left1] | (Bench-Lake_of_Unn ? FALSE)"
+    },
+    {
+        "name": "Snail_Slash",
+        "logic": "*Geo_Chest-Weavers_Den"
+    },
+    {
+        "name": "Snail_Soul",
+        "logic": "Fungus3_44[bot1] | (Fungus3_44 + LEFTSHADOWDASH)"
+    },
+    {
+        "name": "Shaman_Amp",
+        "logic": "Room_GG_Shortcut + (SWIM | RIGHTSKIPACID) + (BREAKABLE_RoomGGShortcut_BreakableGrate ? TRUE)"
+    },
+    {
+        "name": "Nitro_Crystal",
+        "logic": "Mines_13[right1] | (Bench-Quirrel_Peak ? FALSE)"
+    },
+    {
+        "name": "Crystalmaster",
+        "logic": "*Geo_Rock-Hallownest_Crown_Hidden"
+    },
+    {
+        "name": "Disinfectant_Flask",
+        "logic": "Deepnest_East_15[left1]"
+    },
+    {
+        "name": "Millibelle's_Blessing",
+        "logic": "Fungus3_35[right1] | (Bench-Millibelle ? FALSE)"
+    },
+    {
+        "name": "Greedsong",
+        "logic": "Ruins2_11[right1] + (ANYCLAW | WINGS)"
+    },
+    {
+        "name": "Marissa's_Audience",
+        "logic": "*Rancid_Egg-City_of_Tears_Pleasure_House"
+    },
+    {
+        "name": "Chaos_Orb",
+        "logic": "(Deepnest_East_04[left2] + (LEFTCLAW | (RIGHTCLAW + WINGS) | (RIGHTCLAW + ENEMYPOGOS) | (WINGS + ENEMYPOGOS))) | (Bench-Bardoon's_Tail ? FALSE)"
+    },
+    {
+        "name": "Vespa's_Vengeance",
+        "logic": "Hive_01[right2] | (Bench-Hive ? FALSE)"
+    }
+]

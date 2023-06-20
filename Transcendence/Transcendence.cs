@@ -115,6 +115,14 @@ namespace Transcendence
                 mapmodTag.Properties["ModSource"] = GetName();
                 mapmodTag.Properties["PoolGroup"] = "Charms";
                 Finder.DefineCustomItem(item);
+
+                var location = new CoordinateLocation() {
+                    x = charm.X,
+                    y = charm.Y,
+                    elevation = 0,
+                    sceneName = charm.Scene,
+                    name = charm.Name.Replace(" ", "_") };
+                Finder.DefineCustomLocation(location);
             }
             for (var i = 1; i <= 40; i++)
             {
@@ -177,7 +185,7 @@ namespace Transcendence
         // breaks infinite loop when reading equippedCharm_X
         private bool Equipped(Charm c) => c.Settings(Settings).Equipped;
 
-        public override string GetVersion() => "1.4.2";
+        public override string GetVersion() => "1.4.3";
 
         internal SaveSettings Settings = new();
 
@@ -394,7 +402,7 @@ namespace Transcendence
             {
                 var name = charm.Name.Replace(" ", "_");
                 placements.Add(
-                    new CoordinateLocation() { x = charm.X, y = charm.Y, elevation = 0, sceneName = charm.Scene, name = name }
+                    Finder.GetLocation(name)
                     .Wrap()
                     .Add(Finder.GetItem(name)));
             }
@@ -502,6 +510,7 @@ namespace Transcendence
             RandoController.OnExportCompleted += StoreRandoNotchCosts;
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
             RequestBuilder.OnUpdate.Subscribe(-200, IncreaseMaxCharmCost);
+            RequestBuilder.OnUpdate.Subscribe(0.01f, AddCharmsToVanilla);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
             RCData.RuntimeLogicOverride.Subscribe(50, HookLogic);
             SettingsPM.OnResolveBoolTerm += ReadCharmLogicTermsForSettingsPM;
@@ -716,7 +725,7 @@ namespace Transcendence
 
         private void HookLogic(GenerationSettings gs, LogicManagerBuilder lmb)
         {
-            // These terms need to be created unconditionally because charm notch costs
+            // Cost terms need to be created unconditionally because charm notch costs
             // may be randomized even if charms themselves are not.
             var charmNames = Charms.Select(c => c.Name.Replace(" ", "_")).ToList();
             foreach (var name in charmNames)
@@ -724,11 +733,8 @@ namespace Transcendence
                 lmb.GetOrAddTerm(name + CostTermSuffix);
             }
 
-            if (!gs.PoolSettings.Charms)
-            {
-                return;
-            }
-
+            // The terms for the charms themselves also need to be created unconditionally
+            // so that RandoSBRCO can use them to support Transcendence charms.
             foreach (var name in charmNames)
             {
                 var term = lmb.GetOrAddTerm(name);
@@ -740,8 +746,16 @@ namespace Transcendence
                 }, oneOf));
             }
 
+            var modDir = Path.GetDirectoryName(typeof(Transcendence).Assembly.Location);
+            var vanillaLogicLoc = Path.Combine(modDir, "VanillaLocationLogic.json");
+
+            using (var vanillaLocs = File.OpenRead(vanillaLogicLoc))
+            {
+                lmb.DeserializeJson(LogicManagerBuilder.JsonType.Locations, vanillaLocs);
+            }
+
             // remain hash-compatible with previous versions if logic options aren't turned on
-            if (!(RandoSettings.AddCharms && RandoSettings.Logic.AnyEnabled()))
+            if (!(gs.PoolSettings.Charms && RandoSettings.AddCharms && RandoSettings.Logic.AnyEnabled()))
             {
                 return;
             }
@@ -760,7 +774,6 @@ namespace Transcendence
             var origResolver = lmb.VariableResolver;
             lmb.VariableResolver = new TVariableResolver() { Inner = origResolver };
 
-            var modDir = Path.GetDirectoryName(typeof(Transcendence).Assembly.Location);
             var logicLoc = Path.Combine(modDir, "LogicPatches.json");
             var macroLoc = Path.Combine(modDir, "LogicMacros.json");
             var waypointLoc = Path.Combine(modDir, "LogicWaypoints.json");
@@ -839,6 +852,9 @@ namespace Transcendence
             {"CRYSTALMASTER_ON_GEO", ls => ls.Crystalmaster == GeoCharmLogicMode.OnWithGeo}
         };
 
+        // This and AddCharmsToVanilla are mutually exclusive. One runs only if charms are randomized;
+        // the other only if they are not.
+        // AddCharmsToVanilla, however, must run earlier so that it precedes RandoSBRCO.
         private void AddCharmsToPool(RequestBuilder rb)
         {
             if (!(rb.gs.PoolSettings.Charms && RandoSettings.AddCharms))
@@ -848,6 +864,18 @@ namespace Transcendence
             foreach (var charm in Charms)
             {
                 rb.AddItemByName(charm.Name.Replace(" ", "_"));
+            }
+        }
+
+        private void AddCharmsToVanilla(RequestBuilder rb)
+        {
+            if (!rb.gs.PoolSettings.Charms)
+            {
+                foreach (var charm in Charms)
+                {
+                    var name = charm.Name.Replace(" ", "_");
+                    rb.AddToVanilla(name, name);
+                }
             }
         }
 
