@@ -327,6 +327,7 @@ namespace Transcendence
             {
                 ConfigureICModules();
                 PlaceCharmsAtFixedPositions();
+                AlterSalubrasBlessingCost();
                 PlaceFloristsBlessingRepair();
                 StoreNotchCosts(DefaultNotchCosts());
             }
@@ -406,6 +407,19 @@ namespace Transcendence
                     .Add(Finder.GetItem(name)));
             }
             ItemChangerMod.AddPlacements(placements, conflictResolution: PlacementConflictResolution.Ignore);
+        }
+
+        private void AlterSalubrasBlessingCost()
+        {
+            if (ModSettings.IncreaseSalubrasBlessingCost)
+            {
+                var p = (ShopPlacement)Finder.GetLocation(LocationNames.Salubra).Wrap();
+                p.defaultShopItems = DefaultShopItems.SalubraCharms | DefaultShopItems.SalubraNotches;
+                var newThreshold = 40 + Charms.Count;
+                var cost = new GeoCost(800) + new PDIntCost(newThreshold, "charmsOwned", $"Once you own {newThreshold} charms, I'll gladly sell it to you.");
+                p.AddItemWithCost(Finder.GetItem(ItemNames.Salubras_Blessing), cost);
+                ItemChangerMod.AddPlacements(new List<AbstractPlacement>() { p }, conflictResolution: PlacementConflictResolution.Ignore);
+            }
         }
 
         private void SetupChaosMode()
@@ -676,6 +690,13 @@ namespace Transcendence
                     ChaosOrb.Instance.UpdateChaosHudSettings(ModSettings.ChaosHud);
                 },
                 Loader = () => ModSettings.ChaosHud.Orientation
+            },
+            new()
+            {
+                Name = "Salubra's Blessing Cost",
+                Values = new[] { "Standard", "Increased" },
+                Saver = i => { ModSettings.IncreaseSalubrasBlessingCost = i == 1; },
+                Loader = () => ModSettings.IncreaseSalubrasBlessingCost ? 1 : 0
             }
         };
 

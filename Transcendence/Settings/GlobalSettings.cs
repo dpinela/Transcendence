@@ -11,6 +11,7 @@ namespace Transcendence
         public string LogicSettings = "{}";
         public bool ChaosMode = false;
         public ChaosHudSettings ChaosHud = new();
+        public bool IncreaseSalubrasBlessingCost = false;
 
         public bool EncounteredAntigravityAmulet;
         public bool EncounteredBluemothWings;
