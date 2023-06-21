@@ -359,7 +359,6 @@ namespace Transcendence
             }
             else
             {
-                PlaceCharmsAtFixedPositions();
                 PlaceFloristsBlessingRepair();
             }
         }
@@ -755,7 +754,7 @@ namespace Transcendence
             }
 
             // remain hash-compatible with previous versions if logic options aren't turned on
-            if (!(gs.PoolSettings.Charms && RandoSettings.AddCharms && RandoSettings.Logic.AnyEnabled()))
+            if (!(RandoSettings.AddCharms && RandoSettings.Logic.AnyEnabled()))
             {
                 return;
             }
@@ -857,24 +856,23 @@ namespace Transcendence
         // AddCharmsToVanilla, however, must run earlier so that it precedes RandoSBRCO.
         private void AddCharmsToPool(RequestBuilder rb)
         {
-            if (!(rb.gs.PoolSettings.Charms && RandoSettings.AddCharms))
+            if (rb.gs.PoolSettings.Charms && RandoSettings.AddCharms)
             {
-                return;
-            }
-            foreach (var charm in Charms)
-            {
-                rb.AddItemByName(charm.Name.Replace(" ", "_"));
+                foreach (var charm in Charms)
+                {
+                    rb.AddItemByName(charm.Name.Replace(" ", "_"));
+                }
             }
         }
 
         private void AddCharmsToVanilla(RequestBuilder rb)
         {
-            if (!rb.gs.PoolSettings.Charms)
+            if (!rb.gs.PoolSettings.Charms && RandoSettings.AddCharms)
             {
                 foreach (var charm in Charms)
                 {
                     var name = charm.Name.Replace(" ", "_");
-                    rb.AddToVanilla(name, name);
+                    rb.AddToPreplaced(name, name);
                 }
             }
         }
