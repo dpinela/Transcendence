@@ -108,12 +108,9 @@ namespace Transcendence
                         shopDesc = new LanguageString("UI", $"CHARM_DESC_{charm.Num}"),
                         sprite = new EmbeddedSprite() { key = charm.Sprite }
                     }};
-                // Tag the item for ConnectionMetadataInjector, so that MapModS and
-                // other mods recognize the items we're adding as charms.
-                var mapmodTag = item.AddTag<InteropTag>();
-                mapmodTag.Message = "RandoSupplementalMetadata";
-                mapmodTag.Properties["ModSource"] = GetName();
-                mapmodTag.Properties["PoolGroup"] = "Charms";
+                // Tag the item and location for ConnectionMetadataInjector, so that MapModS and
+                // other mods recognize them as charms.
+                TagForMapPins(item);
                 Finder.DefineCustomItem(item);
 
                 var location = new CoordinateLocation() {
@@ -122,6 +119,7 @@ namespace Transcendence
                     elevation = 0,
                     sceneName = charm.Scene,
                     name = charm.Name.Replace(" ", "_") };
+                TagForMapPins(location);
                 Finder.DefineCustomLocation(location);
             }
             for (var i = 1; i <= 40; i++)
@@ -180,6 +178,14 @@ namespace Transcendence
             TextEdits[(Key: "PERMA_GAME_OVER", Sheet: "Credits List")] = ABCDE.Title;
             TextEdits[(Key: "PERMA_GAME_OVER_BODY", Sheet: "Credits List")] = ABCDE.Body;
             AddFsmEdit("Hit Detect", "Hit Detect", Impurity.GrantConditionalImmortality);
+        }
+
+        private void TagForMapPins(TaggableObject obj)
+        {
+            var mapmodTag = obj.AddTag<InteropTag>();
+            mapmodTag.Message = "RandoSupplementalMetadata";
+            mapmodTag.Properties["ModSource"] = GetName();
+            mapmodTag.Properties["PoolGroup"] = "Charms";
         }
 
         // breaks infinite loop when reading equippedCharm_X
