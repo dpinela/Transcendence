@@ -88,6 +88,9 @@ namespace Transcendence
                     settings(Settings).Got = value;
                     if (value)
                     {
+                        // Increment ghostCoins to trigger the corresponding autosplit, as otherwise it is not
+                        // possible for the autosplitter to trigger on our charms.
+                        PlayerData.instance.IncrementInt(nameof(PlayerData.ghostCoins));
                         charm.MarkAsEncountered(ModSettings);
                     }
                 };
