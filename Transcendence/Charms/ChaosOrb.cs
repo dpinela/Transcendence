@@ -48,6 +48,7 @@ namespace Transcendence
             // - When NotchCostUI is active, picking up a charm that is currently being granted by the Orb would make
             // the pickup message display the cost as 0 instead of the charm's actual cost.
             AbstractItem.ModifyItemGlobal += DisableWhileGivingItem;
+            On.PlayerData.UnequipCharm += BlockUnequip;
 
             On.HeroController.Awake += SetupChaosHud;
             // Can't use ItemChanger's scene change hook because it doesn't trigger when exiting to
@@ -224,6 +225,14 @@ namespace Transcendence
             args.Info.Callback += (AbstractItem it) => {
                 GivenCharms = givenCharms;
             };
+        }
+
+        public void BlockUnequip(On.PlayerData.orig_UnequipCharm orig, PlayerData pd, int charmNum)
+        {
+            if (!(charmNum == Num && Transcendence.Instance.Settings.ChaosMode))
+            {
+                orig(pd, charmNum);
+            }
         }
 
         private StackLayout HudSlots;

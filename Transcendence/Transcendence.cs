@@ -144,7 +144,6 @@ namespace Transcendence
             On.PlayMakerFSM.OnEnable += EditFSMs;
             // This hook is set before ItemChanger's, so AutoSalubraNotches will take our charms into account.
             On.PlayerData.CountCharms += CountOurCharms;
-            On.PlayerData.UnequipCharm += BCOU.BlockChaosOrbUnequip;
             StartTicking();
 
             if (ModHooks.GetMod("Randomizer 4") != null)
