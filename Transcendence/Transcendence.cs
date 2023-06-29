@@ -430,6 +430,25 @@ namespace Transcendence
             }
         }
 
+        private void AlterSalubrasBlessingCostRando(RequestBuilder rb)
+        {
+            if (!rb.gs.PoolSettings.CharmNotches && RandoSettings.AddCharms)
+            {
+                rb.RemoveFromVanilla(ItemNames.Salubras_Blessing);
+                rb.AddToPreplaced(new VanillaDef(ItemNames.Salubras_Blessing, LocationNames.Salubra, new CostDef[]
+                {
+                    // Normally, every item placed at a shop gets a -1 geo cost set, which is replaced
+                    // during onRandomizerFinish with a randomized cost. However, preplaced items do not
+                    // receive the randomized cost and keep the -1 instead. This is a bug in rando,
+                    // which allows us to compensate for the -1 by increasing the item's cost by 1.
+                    // When the bug is fixed, we can instead override onRandomizerFinish on this item and
+                    // replace the -1 with the actual cost.
+                    new("GEO", 801),
+                    new("CHARMS", 40 + Charms.Count)
+                }));
+            }
+        }
+
         private void SetupChaosMode()
         {
             // Use MergeKeepingOld so that we don't conflict with any starting items
@@ -532,6 +551,7 @@ namespace Transcendence
             RequestBuilder.OnUpdate.Subscribe(-498, DefineCharmsForRando);
             RequestBuilder.OnUpdate.Subscribe(-200, IncreaseMaxCharmCost);
             RequestBuilder.OnUpdate.Subscribe(0.01f, AddCharmsToVanilla);
+            RequestBuilder.OnUpdate.Subscribe(0.1f, AlterSalubrasBlessingCostRando);
             RequestBuilder.OnUpdate.Subscribe(50, AddCharmsToPool);
             RCData.RuntimeLogicOverride.Subscribe(50, HookLogic);
             SettingsPM.OnResolveBoolTerm += ReadCharmLogicTermsForSettingsPM;
