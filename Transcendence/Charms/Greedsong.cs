@@ -34,10 +34,19 @@ namespace Transcendence
 
         private int SpawnGeoOnHit(int damage)
         {
-            if (Equipped())
+            if (Equipped() && damage > 0)
             {
-                var bonus = GreedEquipped() ? GreedBonus : 0;
-                GeoFlinger.Fling(rng.Next(MinGeoOnHit + bonus, MaxGeoOnHit + bonus + 1), HeroController.instance.transform);
+                var lowerLimit = MinGeoOnHit;
+                var upperLimit = MaxGeoOnHit;
+                if (GreedEquipped())
+                {
+                    lowerLimit += GreedBonus;
+                    upperLimit += GreedBonus;
+                }
+                lowerLimit *= damage;
+                upperLimit *= damage;
+
+                GeoFlinger.Fling(rng.Next(lowerLimit, upperLimit + 1), HeroController.instance.transform);
             }
             return damage;
         }
