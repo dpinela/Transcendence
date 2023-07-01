@@ -96,6 +96,10 @@
         "logic": "ORIG | ((Ruins1_05c[top1] | Ruins1_05c[top3] | Ruins1_05c) + (Lever-City_Above_Lemm_Left ? FALSE) + (ANTIGRAV | BLUEMOTH))"
     },
     {
+        "name": "Lemm's_Strength",
+        "logic": "ORIG | ((Ruins1_27[left1] | Ruins1_27[right1]) + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
         "name": "Lever-Sanctum_Soul_Warrior",
         "logic": "ORIG | (Ruins1_23 + (ANTIGRAV | BLUEMOTH | (CRYSTALMASTER + RIGHTCLAW + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL])))"
     },
@@ -128,6 +132,10 @@
         "logic": "ORIG | (Ruins_House_03[left2] + BLUEMOTH)"
     },
     {
+        "name": "Greedsong",
+        "logic": "ORIG | (Ruins2_11[right1] + (ANTIGRAVWINGS | (ANTIGRAV + ANYCLAW)))"
+    },
+    {
         "name": "Mr_Mushroom-Kingdom's_Edge",
         "logic": "ORIG | (Deepnest_East_01[bot1] + Spore_Shroom + (MRMUSHROOMFOUND>1 | (MRMUSHROOMFOUND>0 + DREAMER3)) + (ANTIGRAV | BLUEMOTH))"
     },
@@ -138,6 +146,10 @@
     {
         "name": "Bench-Bardoon's_Tail",
         "logic": "ORIG | (Deepnest_East_04 + $BENCHRESET + (ANTIGRAV | BLUEMOTH))"
+    },
+    {
+        "name": "Chaos_Orb",
+        "logic": "ORIG | (Deepnest_East_04 + (ANTIGRAV | BLUEMOTH))"
     },
     {
         "name": "Bench-Beast's_Den",
@@ -174,6 +186,10 @@
     {
         "name": "Bench-Hermit's_Approach",
         "logic": "ORIG | (Room_GG_Shortcut[top1] + $BENCHRESET + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS))) | (Room_GG_Shortcut[left1] + $BENCHRESET + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS + ANYCLAW) | (CRYSTALMASTER + RIGHTDASH + WINGS + ANYCLAW) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + ANYCLAW)))"
+    },
+    {
+        "name": "Shaman_Amp",
+        "logic": "ORIG | (Room_GG_Shortcut + ACIDSKIPS + (BLUEMOTH | (ANTIGRAV + RIGHTDASH + WINGS) | (CRYSTALMASTER + RIGHTDASH + WINGS) | (YEET + SPELLAIRSTALL + $CASTSPELL[3,before:ROOMSOUL] + WINGS)))"
     },
     {
         "name": "Bench-Acid_Sluice_West",

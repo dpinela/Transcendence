@@ -45,7 +45,7 @@
     },
     {
         "name": "Greedsong",
-        "logic": "Ruins2_11[right1] + (ANYCLAW | WINGS)"
+        "logic": "Ruins2_11[right1] + WINGS + ANYCLAW"
     },
     {
         "name": "Marissa's_Audience",
