@@ -434,7 +434,6 @@ namespace Transcendence
         {
             if (!rb.gs.PoolSettings.CharmNotches && RandoSettings.AddCharms)
             {
-                rb.RemoveFromVanilla(ItemNames.Salubras_Blessing);
                 rb.AddToPreplaced(new VanillaDef(ItemNames.Salubras_Blessing, LocationNames.Salubra, new CostDef[]
                 {
                     // Normally, every item placed at a shop gets a -1 geo cost set, which is replaced
@@ -446,6 +445,26 @@ namespace Transcendence
                     new("GEO", 801),
                     new("CHARMS", 40 + Charms.Count)
                 }));
+
+                // Remove the original Salubra's Blessing (which costs 40 charms instead of 55).
+                rb.RemoveFromVanilla(ItemNames.Salubras_Blessing);
+                rb.EditLocationRequest(LocationNames.Salubra, info =>
+                {
+                    var orig = info.customPlacementFetch;
+                    info.customPlacementFetch = (factory, placement) =>
+                    {
+                        var p = orig(factory, placement);
+                        if (p is ShopPlacement sp)
+                        {
+                            sp.defaultShopItems &= ~DefaultShopItems.SalubraBlessing;
+                        }
+                        else
+                        {
+                            LogWarn($"placement for Salubra isn't a ShopPlacement; can't remove vanilla Salubra's Blessing");
+                        }
+                        return p;
+                    };
+                });
             }
         }
 
