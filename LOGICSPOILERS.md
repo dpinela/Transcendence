@@ -16,7 +16,7 @@ The options are, in the same order they appear in the menu:
 - **Snail Slash**: includes pogo chains that pogo the same enemy more times than Old Nail (AKA nail 0) allows, and/or use the additional soul generated from the pogos for airstalls.
 - **Millibelle's Blessing**: treats Millibelle's Blessing as a large geo source for Bluemoth Wings, Crystalmaster, and the Ancient Basin fountain
 - **Nitro Crystal**: is a baldur killer in combination with Crystal Heart
-- **Vespa's Vengeance**: is a baldur killer in combation with Howling Wraiths or Abyss Shriek
+- **Vespa's Vengeance**: is a baldur killer in combination with Howling Wraiths or Abyss Shriek
 - **Crystalmaster**: includes traversal of horizontal gaps using the increased movement speed. Some gaps
-  will also require airstalls and/or Antigravity Amulet to cross. As with Bluemoth Wings, this requires
+  will also require airstalls, wings, and/or Antigravity Amulet to cross. As with Bluemoth Wings, this requires
   the ability to replenish Geo, and an equivalent "On With Geo" option is also available.
