@@ -19,9 +19,9 @@ using RandomizerMod;
 using RandomizerMod.Menu;
 using RandomizerMod.Settings;
 using RandomizerMod.Logging;
-using RandomizerMod.RandomizerData;
 using RandomizerMod.RC;
 using RandomizerCore;
+using RandomizerCore.Json;
 using RandomizerCore.Logic;
 using RandomizerCore.LogicItems;
 
@@ -643,7 +643,7 @@ namespace Transcendence
         private void LogRandoSettings(LogArguments args, TextWriter w)
         {
             w.WriteLine("Logging Transcendence settings:");
-            w.WriteLine(JsonUtil.Serialize(RandoSettings));
+            w.WriteLine(JsonUtil.SerializeToString(RandoSettings));
         }
 
         public bool ToggleButtonInsideMenu => false;
@@ -777,9 +777,11 @@ namespace Transcendence
             var modDir = Path.GetDirectoryName(typeof(Transcendence).Assembly.Location);
             var vanillaLogicLoc = Path.Combine(modDir, "VanillaLocationLogic.json");
 
+            var jsonFmt = new JsonLogicFormat();
+
             using (var vanillaLocs = File.OpenRead(vanillaLogicLoc))
             {
-                lmb.DeserializeJson(LogicManagerBuilder.JsonType.Locations, vanillaLocs);
+                lmb.DeserializeFile(LogicFileType.Locations, jsonFmt, vanillaLocs);
             }
 
             // remain hash-compatible with previous versions if logic options aren't turned on
@@ -807,26 +809,32 @@ namespace Transcendence
             var waypointLoc = Path.Combine(modDir, "LogicWaypoints.json");
             using (var macros = File.OpenRead(macroLoc))
             {
-                lmb.DeserializeJson(LogicManagerBuilder.JsonType.MacroEdit, macros);
+                lmb.DeserializeFile(LogicFileType.MacroEdit, jsonFmt, macros);
             }
             // These waypoints are not required for correctness, but greatly improve generation
             // performance as otherwise the logic that uses them causes a combinatorial explosion
             // when converted to DNF.
             using (var waypoints = File.OpenRead(waypointLoc))
             {
-                lmb.DeserializeJson(LogicManagerBuilder.JsonType.Waypoints, waypoints);
+                lmb.DeserializeFile(LogicFileType.Waypoints, jsonFmt, waypoints);
             }
 
             using (var patches = File.OpenRead(logicLoc))
             {
-                lmb.DeserializeJson(LogicManagerBuilder.JsonType.LogicEdit, patches);
+                lmb.DeserializeFile(LogicFileType.LogicEdit, jsonFmt, patches);
             }
-            PatchConnectionLogic(lmb, Path.Combine(modDir, "ConnectionLogicPatches.json"));
+
+            var connLogicLoc = Path.Combine(modDir, "ConnectionLogicPatches.json");
+
+            using (var patches = File.OpenRead(connLogicLoc))
+            {
+                PatchConnectionLogic(lmb, jsonFmt, patches);
+            }
         }
 
-        private void PatchConnectionLogic(LogicManagerBuilder lmb, string logicFileLoc)
+        private void PatchConnectionLogic(LogicManagerBuilder lmb, ILogicFormat fmt, Stream logicFile)
         {
-            var logicDefs = JsonUtil.DeserializeString<RawLogicDef[]>(File.ReadAllText(logicFileLoc));
+            var logicDefs = fmt.LoadLogicEdits(logicFile);
 
             foreach (var def in logicDefs)
             {

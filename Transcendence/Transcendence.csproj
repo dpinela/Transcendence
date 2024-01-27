@@ -64,6 +64,9 @@
     <Reference Include="RandomizerCore">
       <HintPath>$(HK15PATH)/Mods/RandomizerCore/RandomizerCore.dll</HintPath>
     </Reference>
+    <Reference Include="RandomizerCore.Json">
+      <HintPath>$(HK15PATH)/Mods/RandomizerCore.Json/RandomizerCore.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RandoSettingsManager">
       <HintPath>$(HK15PATH)/Mods/RandoSettingsManager/RandoSettingsManager.dll</HintPath>
     </Reference>
