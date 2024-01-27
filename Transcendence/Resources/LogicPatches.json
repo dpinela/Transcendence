@@ -128,7 +128,7 @@
     },
     {
         "name": "Thorns_of_Agony",
-        "logic": "ORIG | (Fungus1_14[left1] + ((ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3] + $TAKEDAMAGE[1]) | YEET | (SPELLAIRSTALL + $CASTSPELL[3] + CRYSTALMASTER) | (RIGHTCLAW + CRYSTALMASTER)))"
+        "logic": "ORIG | (Fungus1_14[left1] + ((ANTIGRAV + SPELLAIRSTALL + $CASTSPELL[3] + $TAKEDAMAGE[1]) | YEET | (ANTIGRAV + CYCLONE + $TAKEDAMAGE[1]) | (SPELLAIRSTALL + $CASTSPELL[3] + CRYSTALMASTER) | (RIGHTCLAW + CRYSTALMASTER)))"
     },
     {
         "name": "Fungus1_04[left1]",
