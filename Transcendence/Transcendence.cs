@@ -193,7 +193,7 @@ namespace Transcendence
         // breaks infinite loop when reading equippedCharm_X
         private bool Equipped(Charm c) => c.Settings(Settings).Equipped;
 
-        public override string GetVersion() => "1.5.1";
+        public override string GetVersion() => "1.5.2";
 
         internal SaveSettings Settings = new();
 
@@ -509,7 +509,7 @@ namespace Transcendence
             var costs = Charms.ToDictionary(c => c.Num, c => c.DefaultCost);
             if (ModSettings.ChaosMode)
             {
-                costs.Remove(ChaosOrb.Instance.Num);
+                costs[ChaosOrb.Instance.Num] = 0;
             }
             return costs;
         }
