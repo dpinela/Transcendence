@@ -575,7 +575,7 @@
     },
     {
         "name": "Geo_Chest-Crystal_Peak",
-        "logic": "ORIG | (Mines_37[top1] + ((YEET + WINGS) | (CRYSTALMASTER + ANYCLAW) | (ANTIGRAVWINGS + FULLDASH) | (ANTIGRAVWINGS + DASHSPRINT + OBSCURESKIPS))) | (Mines_37[bot1] + (ANTIGRAVWINGS | ((Lever-Crystal_Peak_Crushers_Chest ? TRUE) + ANTIGRAV + RIGHTDASH)))"
+        "logic": "ORIG | (Mines_37[top1] + ((YEET + WINGS) | (CRYSTALMASTER + ANYCLAW) | (ANTIGRAVWINGS + FULLDASH) | (ANTIGRAVWINGS + DASHSPRINT + OBSCURESKIPS))) | (Mines_37[bot1] + (ANTIGRAVWINGS | ((Lever-Crystal_Peak_Crushers_Chest ? FALSE) + ANTIGRAV)))"
     },
     {
         "name": "Geo_Rock-Crystal_Peak_Above_Crushers_Lower",
@@ -2675,7 +2675,7 @@
     },
     {
         "name": "Palace_Right_Lantern_Lit",
-        "logic": "ORIG | ((White_Palace_15[left1] | White_Palace_15[right2]) + (Lever-Palace_Right ? TRUE) + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))"
+        "logic": "ORIG | (Lever-Palace_Right_Orb ? ((White_Palace_15[left1] | White_Palace_15[right2]) + (Lever-Palace_Right ? (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))))"
     },
     {
         "name": "White_Palace_05[right1]",

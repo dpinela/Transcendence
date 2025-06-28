@@ -9,7 +9,7 @@
     },
     {
         "name": "Lever-Crystal_Peak_Crushers_Chest",
-        "logic": "ORIG | (Mines_37[bot1] + (ANTIGRAVWINGS | (Lever-Crystal_Peak_Crushers_Chest + ANTIGRAV + RIGHTDASH)))"
+        "logic": "ORIG | (Mines_37[bot1] + (ANTIGRAVWINGS | (Lever-Crystal_Peak_Crushers_Chest + ANTIGRAV)))"
     },
     {
         "name": "Lever-Crystal_Peak_Above_Chest",
