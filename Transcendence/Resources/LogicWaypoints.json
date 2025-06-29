@@ -14,5 +14,12 @@
     {
         "name": "Can_Break_Weavers_Den_Breakable_Wall_With_Transcendence",
         "logic": "(Can_Reach_Weavers_Den_Breakable_Wall_With_Transcendence + (LEFTSLASH | UPSLASH | FIREBALL | SCREAM))"
+    },
+    // Used as the right side of a coalescing token.
+    // The left side of that token is a lever rando name,
+    // so we can assume that lever rando is not active if this waypoint is used.
+    {
+        "name": "Can_Reach_White_Palace_Right_Lever_With_Transcendence",
+        "logic": "(White_Palace_15[left1] | White_Palace_15[right2]) + (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW))"
     }
 ]

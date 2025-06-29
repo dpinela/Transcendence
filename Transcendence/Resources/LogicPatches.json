@@ -2675,7 +2675,7 @@
     },
     {
         "name": "Palace_Right_Lantern_Lit",
-        "logic": "ORIG | (Lever-Palace_Right_Orb ? ((White_Palace_15[left1] | White_Palace_15[right2]) + (Lever-Palace_Right ? (BLUEMOTH | (ANTIGRAV + WINGS + ANYCLAW)))))"
+        "logic": "ORIG | (Lever-Palace_Right_Orb ? Can_Reach_White_Palace_Right_Lever_With_Transcendence)"
     },
     {
         "name": "White_Palace_05[right1]",
