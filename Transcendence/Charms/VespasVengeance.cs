@@ -251,7 +251,7 @@ try
     try { pccLoaded = Modding.ModHooks.GetMod("PaleCourtCharms") != null; } catch { pccLoaded = false; }
 
     bool boonEquipped = false;
-    try { if (PlayerData.instance != null) boonEquipped = PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_43)); } catch { boonEquipped = false; }
+    try { if (PlayerData.instance != null) boonEquipped =  PaleCourtCharms.Settings.equippedCharms[2]; } catch { boonEquipped = false; }
 
     if (pccloaded && boonEquipped)
     {
