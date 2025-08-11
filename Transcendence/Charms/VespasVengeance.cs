@@ -4,6 +4,10 @@ using UnityEngine;
 using GlobalEnums;
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
+using System;
+using System.Linq;
+using System.Reflection;
+using Modding;
 
 namespace Transcendence
 {
@@ -240,6 +244,114 @@ namespace Transcendence
                     damager.specialType = SpecialTypes.None;
                     damager.enabled = true;
                 }
+// --- PCC boon extra explosion (additive) ---
+try
+{
+    bool pccLoaded = false;
+    try { pccLoaded = Modding.ModHooks.GetMod("PaleCourtCharms") != null; } catch { pccLoaded = false; }
+
+    bool boonEquipped = false;
+    try { if (PlayerData.instance != null) boonEquipped = PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_43)); } catch { boonEquipped = false; }
+
+    if (pccloaded && boonEquipped)
+    {
+        // compute explosion damage: base 10, +5 for Shriek, +5 for Shaman Stone
+        int explosionDamage = 10;
+        try { if (damage >= ShriekDamage) explosionDamage += 5; } catch { }
+        try { if (PlayerData.instance != null && PlayerData.instance.GetBool(nameof(PlayerData.equippedCharm_19))) explosionDamage += 5; } catch { }
+
+        // try to grab PaleCourtCharms' Burst clip and Blast prefab
+        AudioClip paleBurst = null;
+        GameObject paleBlastPrefab = null;
+        try
+        {
+            var paleType = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(a => { try { return a.GetTypes(); } catch { return new Type[0]; } })
+                .FirstOrDefault(t => (t.Namespace ?? "").Contains("PaleCourtCharms"));
+
+            if (paleType != null)
+            {
+                var clipsField = paleType.GetField("Clips", BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
+                if (clipsField != null)
+                {
+                    var clipsObj = clipsField.GetValue(null) as System.Collections.IDictionary;
+                    if (clipsObj != null)
+                    {
+                        try { if (clipsObj.Contains("Burst")) paleBurst = clipsObj["Burst"] as AudioClip; }
+                        catch { foreach (var key in clipsObj.Keys) if (key is string s && s == "Burst") { paleBurst = clipsObj[key] as AudioClip; break; } }
+                    }
+                }
+
+                var preloadField = paleType.GetField("preloadedGO", BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
+                if (preloadField != null)
+                {
+                    var prel = preloadField.GetValue(null) as System.Collections.IDictionary;
+                    if (prel != null)
+                    {
+                        try { if (prel.Contains("Blast")) paleBlastPrefab = prel["Blast"] as GameObject; }
+                        catch { foreach (var key in prel.Keys) if (key is string s && s == "Blast") { paleBlastPrefab = prel[key] as GameObject; break; } }
+                    }
+                }
+            }
+        }
+        catch { /* non-fatal reflective lookup failure -> fallbacks below */ }
+
+        // Add an extra OnHitFunc so bee still keeps any existing OnHit or DamageEnemies behavior.
+        var extraBoom = b.AddComponent<OnHitFunc>();
+        var localPaleBurst = paleBurst;
+        var localPaleBlast = paleBlastPrefab;
+        extraBoom.OnHit = victim =>
+        {
+            // play quiet sound if available, otherwise fallback
+            try
+            {
+                if (localPaleBurst != null)
+                {
+                    AudioSource.PlayClipAtPoint(localPaleBurst, b.transform.position, 0.45f);
+                }
+                else
+                {
+                    try { ExplosionAudioClip.SpawnAndPlayOneShot(ExplosionAudioSourcePrefab, b.transform.position); } catch { }
+                }
+            }
+            catch { }
+
+            // spawn explosion visual & damage (use pcc Blast prefab if available)
+            try
+            {
+                GameObject exp = null;
+                if (localPaleBlast != null) exp = GameObject.Instantiate(localPaleBlast);
+                else exp = GameObject.Instantiate(Explosion);
+
+                if (exp != null)
+                {
+                    exp.SetActive(true);
+                    exp.transform.position = b.transform.position;
+                    try
+                    {
+                        exp.LocateMyFSM("Explosion Control").GetState("Recycle")
+                            .ReplaceAction(0, () => GameObject.Destroy(exp));
+                    }
+                    catch { }
+
+                    var de = exp.AddComponent<DamageEnemies>();
+                    de.attackType = AttackTypes.Spell;
+                    de.damageDealt = explosionDamage;
+                    de.ignoreInvuln = false;
+                    de.enabled = true;
+
+                    // Check for Shaman Amp
+                    try { if (ShamanAmp.Instance != null && ShamanAmp.Instance.Equipped()) ShamanAmp.Enlarge(exp); } catch { }
+                }
+            }
+            catch { }
+        };
+        extraBoom.enabled = true;
+    }
+}
+catch { /* swallow to avoid breaking Transcendence if reflection fails */ }
+// --- end boon extra explosion ---
+
                 bFSM.SendEvent("SWARM");
                 yield return new WaitForSeconds(interval);
             }
