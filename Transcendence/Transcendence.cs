@@ -790,13 +790,6 @@ namespace Transcendence
                 return;
             }
 
-            // this part is only required if $EQUIPPED_TRANSCENDENCE_CHARM is in use
-            foreach (var charm in Charms)
-            {
-                lmb.StateManager.GetOrAddBool("CHARM" + charm.Num);
-                lmb.StateManager.GetOrAddBool("noCHARM" + charm.Num);
-            }
-
             foreach (var key in LogicTermDefs.Keys)
             {
                 lmb.GetOrAddTerm(key);

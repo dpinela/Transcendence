@@ -1,9 +1,22 @@
+using RandomizerCore.Logic.StateLogic;
 using RCLogic = RandomizerCore.Logic;
 
 namespace Transcendence
 {
     internal class TVariableResolver : RCLogic.VariableResolver
     {
+        public override StateManagerBuilder GetStateModel()
+        {
+            StateManagerBuilder smb = base.GetStateModel();
+            // required for $EQUIPPED_TRANSCENDENCE_CHARM
+            foreach (var charm in Transcendence.Charms)
+            {
+                smb.GetOrAddBool("CHARM" + charm.Num);
+                smb.GetOrAddBool("noCHARM" + charm.Num);
+            }
+            return smb;
+        }
+
         public override bool TryMatch(RCLogic.LogicManager lm, string term, out RCLogic.LogicVariable lvar)
         {
             if (IsConditionalLogicTerm("EQUIPPED_TRANSCENDENCE_CHARM", term, out var charmName))
